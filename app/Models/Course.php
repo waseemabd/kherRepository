@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Course extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'desc',
+        'diploma_id'
+    ];
+    public  const create_update_rules = [
+
+        'title' => 'required',
+        'diploma_id' => 'required',
+
+    ];
+
+    public function diploma()
+    {
+        return $this->belongsTo(Diploma::class,'diploma_id','id');
+
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'course_users','course_id', 'user_id');
+    }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'course_users','course_id', 'student_id');
+    }
+
+
+    public function lectures()
+    {
+        return $this->hasMany(Lecture::class);
+    }
+
+    public function tests()
+    {
+        return $this->hasMany(Test::class);
+    }
+
+
+    public function progress()
+    {
+        return $this->hasMany(Progress::class);
+    }
+
+
+}
