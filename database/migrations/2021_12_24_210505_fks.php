@@ -37,6 +37,7 @@ class Fks extends Migration
         Schema::table('course_students', function (Blueprint $table) {    /// set null or cascade ??????????
             // ******************
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
 
         });
 
@@ -87,8 +88,8 @@ class Fks extends Migration
 
         Schema::table('files', function (Blueprint $table) {    /// set null or cascade ??????????
             // ******************
-            $table->foreignId('homework_id')->constrained('homework')->onDelete('cascade');
-            $table->foreignId('lecture_id')->constrained('lectures')->onDelete('cascade');
+            $table->foreignId('homework_id')->nullable()->constrained('homework')->onDelete('cascade');
+            $table->foreignId('lecture_id')->nullable()->constrained('lectures')->onDelete('cascade');
 
         });
 
@@ -139,6 +140,7 @@ class Fks extends Migration
             // ******************
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
             $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('cascade');
+            $table->foreignId('blog_id')->constrained('blogs')->onDelete('cascade');
 
         });
 

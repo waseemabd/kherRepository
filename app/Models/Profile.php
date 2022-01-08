@@ -14,7 +14,6 @@ class Profile extends Model
         'phone',
         'image',
         'birthday',
-        'password',
         'user_id',
         'student_id'
     ];

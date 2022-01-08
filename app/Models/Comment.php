@@ -13,11 +13,13 @@ class Comment extends Model
         'desc',
         'student_id',
         'user_id',
+        'blog_id'
     ];
     public  const create_update_rules = [
 
 
         'desc' => 'required',
+        'blog_id' => 'required',
 
     ];
 

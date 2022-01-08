@@ -20,8 +20,10 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('role');
-            $table->integer('roles');
+            $table->string('roleIds');
             $table->boolean('status')->default(1);
+            $table->string('fcm_token')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
         });

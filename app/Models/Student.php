@@ -17,7 +17,9 @@ class Student extends Model
         'password',
         'is_confirmed',
         'status',
-        'certificate_id'
+        'certificate_id',
+        'fcm_token'
+
     ];
     public  const create_update_rules = [
 

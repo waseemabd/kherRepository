@@ -11,14 +11,14 @@ class Option extends Model
 
     protected $fillable = [
         'desc',
-        'test_id',
+        'question_id',
     ];
 
 
     public  const create_update_rules = [
 
         'desc' => 'required',
-        'test_id' => 'required',
+        'question_id' => 'required',
 
     ];
 
