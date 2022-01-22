@@ -42,9 +42,11 @@ class DatabaseSeeder extends Seeder
             SettingSeeder::class,
             SettingImageSeeder::class,
             ContactSeeder::class,
-
-
-
+            SurveySeeder::class,
+            StudentSurveySeeder::class,
+            SurveyQuestionSeeder::class,
+            SurveyOptionSeeder::class,
+            SurveyAnswerSeeder::class,
         ]);
     }
 }

@@ -158,6 +158,39 @@ class Fks extends Migration
 
         });
 
+        Schema::table('surveys', function (Blueprint $table) {
+            // ******************
+            $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+
+        });
+
+        Schema::table('student_surveys', function (Blueprint $table) {    /// set null or cascade ??????????
+            // ******************
+            $table->foreignId('survey_id')->constrained('surveys')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+
+        });
+
+        Schema::table('survey_questions', function (Blueprint $table) {    /// set null or cascade ??????????
+            // ******************
+            $table->foreignId('question_type_id')->constrained('question_types')->onDelete('cascade');
+            $table->foreignId('survey_id')->constrained('surveys')->onDelete('cascade');
+
+        });
+
+        Schema::table('survey_options', function (Blueprint $table) {
+            // ******************
+            $table->foreignId('survey_question_id')->constrained('survey_questions')->onDelete('cascade');
+
+        });
+
+        Schema::table('survey_answers', function (Blueprint $table) {    /// set null or cascade ??????????
+            // ******************
+            $table->foreignId('survey_question_id')->constrained('survey_questions')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+
+        });
     }
 
     /**

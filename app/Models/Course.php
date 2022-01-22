@@ -48,6 +48,10 @@ class Course extends Model
         return $this->hasMany(Test::class);
     }
 
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
 
     public function progress()
     {

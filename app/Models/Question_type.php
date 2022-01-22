@@ -23,6 +23,9 @@ class Question_type extends Model
         return $this->hasMany(Question::class);
     }
 
-
+    public function surveyQuestions()
+    {
+        return $this->hasMany(SurveyQuestion::class);
+    }
 
 }

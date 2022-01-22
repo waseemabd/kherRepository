@@ -67,9 +67,19 @@ class Student extends Model
         return $this->belongsToMany(Test::class, 'student_tests','student_id', 'test_id');
     }
 
+    public function surveys()
+    {
+        return $this->belongsToMany(Survey::class, 'student_surveys','student_id', 'survey_id');
+    }
+
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function surveyAnswers()
+    {
+        return $this->hasMany(SurveyAnswer::class);
     }
 
     public function progress()

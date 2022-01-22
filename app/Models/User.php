@@ -76,6 +76,12 @@ class User extends Authenticatable
         return $this->hasMany(Test::class);
     }
 
+    public function surveys()
+    {
+        return $this->hasMany(Survey::class);
+    }
+
+
     public function comments()
     {
         return $this->hasMany(Comment::class);

@@ -5,30 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class SurveyQuestion extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'desc',
-        'image',
-        'mark',
         'question_type_id',
-        'test_id',
+        'survey_id',
     ];
     public  const create_update_rules = [
 
         'desc' => 'required',
-        'mark' => 'required',
         'question_type_id' => 'required',
-        'test_id' => 'required',
+        'survey_id' => 'required',
 
     ];
 
-
-    public function test()
+    public function survey()
     {
-        return $this->belongsTo(Test::class,'test_id','id');
+        return $this->belongsTo(Survey::class,'survey_id','id');
 
     }
 
@@ -38,13 +34,14 @@ class Question extends Model
 
     }
 
-    public function answers()
+    public function SurveyAnswers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(SurveyAnswer::class);
     }
 
-    public function options()
+    public function SurveyOptions()
     {
-        return $this->hasMany(Option::class);
+        return $this->hasMany(SurveyOption::class);
     }
+
 }
