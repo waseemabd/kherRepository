@@ -1,0 +1,61 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+use App\Http\IRepositories\IRoleRepository;
+
+use App\Http\Requests\LoginRequest;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
+
+class RoleController extends Controller
+{
+
+    protected $roleRepository;
+    public function __construct(IRoleRepository  $roleRepository)
+    {
+        $this->roleRepository = $roleRepository;
+    }
+
+    public function index(Request $request)
+    {
+        return $this->roleRepository->getAllRoles($request);
+    }
+
+    public function create()
+    {
+        return $this->roleRepository->createRole();
+    }
+
+    public function store(RoleRequest $request)
+    {
+        return $this->roleRepository->storeRole($request);
+
+    }
+
+    public function show($id)
+    {
+        return $this->roleRepository->showRole($id);
+    }
+
+    public function edit($id)
+    {
+        return $this->roleRepository->editRole($id);
+    }
+
+    public function update(RoleRequest $request, $id)
+    {
+        return $this->roleRepository->updateRole($request,$id);
+
+    }
+
+    public function destroy($id)
+    {
+        return $this->roleRepository->deleteRole($id);
+    }
+}
