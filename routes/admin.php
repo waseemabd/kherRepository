@@ -221,6 +221,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
     Route::post('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
     Route::post('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
+
     Route::get('roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('role/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('role.create');
     Route::post('role/store', [App\Http\Controllers\Admin\RoleController::class, 'store'])->name('role.store');
@@ -228,6 +229,31 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('role/edit/{id}', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('role.edit');
     Route::post('role/update/{id}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('role.update');
     Route::post('role/delete/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('role.destroy');
+
+
+    Route::get('certificates', [App\Http\Controllers\Admin\CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('certificates/create', [App\Http\Controllers\Admin\CertificateController::class, 'create'])->name('certificate.create');
+    Route::post('certificates/store', [App\Http\Controllers\Admin\CertificateController::class, 'store'])->name('certificate.store');
+    Route::get('certificates/edit/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'edit'])->name('certificate.edit');
+    Route::post('certificates/update/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'update'])->name('certificate.update');
+    Route::post('certificates/delete/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'destroy'])->name('certificate.destroy');
+
+    Route::get('diplomas', [App\Http\Controllers\Admin\DiplomaController::class, 'index'])->name('diploma.index');
+    Route::get('diplomas/create', [App\Http\Controllers\Admin\DiplomaController::class, 'create'])->name('diploma.create');
+    Route::post('diplomas/store', [App\Http\Controllers\Admin\DiplomaController::class, 'store'])->name('diploma.store');
+    Route::get('diplomas/edit/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'edit'])->name('diploma.edit');
+    Route::post('diplomas/update/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'update'])->name('diploma.update');
+    Route::post('diplomas/delete/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'destroy'])->name('diploma.destroy');
+
+    Route::get('courses', [App\Http\Controllers\Admin\CourseController::class, 'index'])->name('course.index');
+    Route::get('courses/create', [App\Http\Controllers\Admin\CourseController::class, 'create'])->name('course.create');
+    Route::post('courses/store', [App\Http\Controllers\Admin\CourseController::class, 'store'])->name('course.store');
+    Route::get('courses/edit/{id}', [App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('course.edit');
+    Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
+    Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
+
+
+
 });
 
 Route::group(['middleware' => 'guest:admin'], function () {

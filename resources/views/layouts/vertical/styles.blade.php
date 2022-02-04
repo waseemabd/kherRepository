@@ -29,3 +29,6 @@
 
 		<!--- Animations css-->
 		<link href="{{asset('assets/css-rtl/animate.css')}}" rel="stylesheet">
+
+        <link rel="stylesheet" href="{{ asset('assets/css-rtl/toastr/toastr.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css-rtl/toastr/ext-component-toastr.css') }}">

@@ -179,6 +179,9 @@ return [
 
         // custom provider
         \App\Providers\RepositoryServiceProvider::class,
+
+        Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class
+
     ],
 
     /*

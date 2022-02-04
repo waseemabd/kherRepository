@@ -1,4 +1,6 @@
-		<!-- Back-to-top -->
+<script src="{{ URL::asset('messages.js') }}"></script>
+
+<!-- Back-to-top -->
 		<a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 
 		<!-- Jquery js-->
@@ -35,6 +37,39 @@
 		<!-- eva-icons js -->
 		<script src="{{asset('assets/plugins/eva-icons/eva-icons.min.js')}}"></script>
 
+<script src="{{asset('assets/plugins/toastr/toastr.min.js') }}"></script>
+<script>
+    var isRtl =true;
+
+
+    @if(Session::has('message'))
+    setTimeout(function () {
+        toastr['success'](
+            '{{ session('message') }}',
+            {
+                closeButton: true,
+                tapToDismiss: false,
+                rtl: isRtl
+            }
+        );
+    }, 500);
+
+    @endif
+    @if(Session::has('error'))
+    setTimeout(function () {
+        toastr['error'](
+            '{{ session('error') }}',
+            {
+                closeButton: true,
+                tapToDismiss: false,
+                rtl: isRtl
+            }
+        );
+    }, 500);
+    @endif
+
+
+</script>
 		@yield('scripts')
 
 		<!-- custom js -->

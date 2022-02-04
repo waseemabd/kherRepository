@@ -9,6 +9,7 @@
 		<meta name="Description" content="Valex – Laravel Admin & Dashboard Template">
 		<meta name="Author" content="SPRUKO™">
 		<meta name="Keywords" content="laravel admin panel, laravel admin panel template, laravel admin dashboard template, laravel bootstrap admin template, laravel ui, laravel dashboard, laravel dashboard template, admin, admin template, bootstrap dashboard, bootstrap 5 admin template, laravel blade, laravel blade template bootstrap, php laravel, laravel mix"/>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!-- Title -->
 		<title> Valex – Laravel Admin & Dashboard Template </title>
