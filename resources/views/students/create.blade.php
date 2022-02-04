@@ -12,8 +12,6 @@
     <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 
-
-
 @endsection
 
 
@@ -21,9 +19,6 @@
 
 
 @section('content')
-
-
-    <!-- row closed -->
 <!-- row -->
 <div class="row">
     <div class="col-lg-12 col-md-12">
@@ -45,8 +40,8 @@
             <div class="breadcrumb-header justify-content-between">
                 <div class="my-auto">
                     <div class="d-flex">
-                        <h4 class="content-title mb-0 my-auto">Users</h4><span
-                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ Users Menu</span>
+                        <h4 class="content-title mb-0 my-auto">Students</h4><span
+                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ Create Students</span>
                     </div>
                 </div>
 
@@ -56,11 +51,11 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}">Back</a>
                     </div>
                 </div><br>
                 <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
-                    action="{{route('user.store','test')}}" method="post">
+                    action="{{route('student.store','test')}}" method="post">
                     {{csrf_field()}}
 
                     <div class="">
@@ -69,7 +64,18 @@
                             <div class="parsley-input col-md-6" id="fnWrapper">
                                 <label>user name: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
-                                    data-parsley-class-handler="#lnWrapper"  name="name" required="" type="text">
+                                    data-parsley-class-handler="#lnWrapper"  name="username" required="" type="text">
+                            </div>
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>English name: <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20"
+                                       data-parsley-class-handler="#lnWrapper"  name="name_en" required="" type="text">
+                            </div>
+
+                            <div class="parsley-input col-md-6" id="fnWrapper">
+                                <label>Arabic name: <span class="tx-danger">*</span></label>
+                                <input class="form-control form-control-sm mg-b-20"
+                                       data-parsley-class-handler="#lnWrapper"  name="name_ar" required="" type="text">
                             </div>
 
                             <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
@@ -97,25 +103,24 @@
 
                     <div class="row row-sm mg-b-20">
                         <div class="col-lg-6">
+                            <label class="form-label">certificate</label>
+                            <select name="certificate_id" id="select-beast" class="form-control  nice-select  custom-select">
+                                @foreach($certificate as $one)
+                                <option value="{{$one->id}}">{{$one->getTranslatedName()}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row row-sm mg-b-20">
+                        <div class="col-lg-6">
                             <label class="form-label">status</label>
-                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
+                            <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
                                 <option value="1">Active</option>
                                 <option value="0">Inactive</option>
                             </select>
                         </div>
                     </div>
-
-                    <div class="row mg-b-20">
-                        <div class="col-xs-12 col-md-12">
-                            <div class="form-group">
-                                <label class="form-label"> user role</label>
-                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple')) !!}
-                            </div>
-                        </div>
-                    </div>
-
-
-
 
 
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -133,14 +138,12 @@
 <!-- main-content closed -->
 @endsection
 @section('scripts')
-    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
-    <script src="{{asset('assets/js/form-elements.js')}}"></script>
 
     <!-- Internal Data tables -->
-{{--    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>--}}
+    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
@@ -148,13 +151,10 @@
     <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
-    <script>
-        $('.select2').select2();
-    </script>
-{{--    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>--}}
-{{--    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>--}}
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
     <!--Internal  Datatable js -->
-{{--    <script src="{{asset('assets/js/table-data.js')}}"></script>--}}
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
 
 @endsection

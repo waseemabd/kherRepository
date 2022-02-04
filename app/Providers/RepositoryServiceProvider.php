@@ -24,6 +24,7 @@ use App\Http\IRepositories\ISettingImageRepository;
 use App\Http\IRepositories\ISettingRepository;
 use App\Http\IRepositories\IStudentFileRepository;
 use App\Http\IRepositories\IStudentRepository;
+use App\Http\IRepositories\ITeacherRepository;
 use App\Http\IRepositories\ITestRepository;
 use App\Http\IRepositories\IUserRepository;
 use App\Http\Repository\AnswerRepository;
@@ -48,6 +49,7 @@ use App\Http\Repository\SettingImageRepository;
 use App\Http\Repository\SettingRepository;
 use App\Http\Repository\StudentFileRepository;
 use App\Http\Repository\StudentRepository;
+use App\Http\Repository\TeacherRepository;
 use App\Http\Repository\TestRepository;
 use App\Http\Repository\UserRepository;
 use Illuminate\Support\ServiceProvider;
@@ -87,6 +89,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ITestRepository::class, TestRepository::class);
         $this->app->bind(IRoleRepository::class, RoleRepository::class);
         $this->app->bind(ILoginRepository::class, LoginRepository::class);
+        $this->app->bind(ITeacherRepository::class, TeacherRepository::class);
     }
 
     /**

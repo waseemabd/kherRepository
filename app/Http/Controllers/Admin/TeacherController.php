@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\IRepositories\ITeacherRepository;
 use App\Http\IRepositories\IUserRepository;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
@@ -15,56 +16,44 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
 
-class UserController extends Controller
+class TeacherController extends Controller
 {
 
+    protected $teacherRepository;
     protected $userRepository;
-    public function __construct(IUserRepository  $userRepository)
+    public function __construct(ITeacherRepository  $teacherRepository,IUserRepository $userRepository)
     {
+        $this->teacherRepository = $teacherRepository;
         $this->userRepository = $userRepository;
     }
 
     public function index(Request $request)
     {
-        return $this->userRepository->getAllUsers($request);
-    }
-
-
-    public function create()
-    {
-        return $this->userRepository->createUser();
-    }
-
-
-    public function store(UserRequest $request)
-    {
-        return $this->userRepository->storeUser($request);
-
+        return $this->teacherRepository->getAllTeachers($request);
     }
 
     public function show($id)
     {
-        $user = $this->userRepository->showUser($id);
-        return view('users.show',compact('user'));
+
     }
 
     public function edit($id)
     {
         $data= $this->userRepository->editUser($id);
-        return view('users.edit',$data);
-
+        return view('teachers.edit',$data);
     }
 
     public function update(UserUpdateRequest $request, $id)
     {
-         $this->userRepository->updateUser($request,$id);
-        return redirect()->route('users.index')
+        $this->userRepository->updateUser($request,$id);
+        return redirect()->route('teachers.index')
             ->with('edit','User information has updated successfully');
+
     }
 
     public function destroy($id)
     {
          $this->userRepository->deleteUser($id);
-        return redirect()->route('users.index')->with('delete','User has Deleted Successfully');
+        return redirect()->route('teachers.index')->with('delete','Teacher has Deleted Successfully');
     }
 }

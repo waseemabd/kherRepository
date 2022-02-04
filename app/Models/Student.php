@@ -18,7 +18,8 @@ class Student extends Model
         'is_confirmed',
         'status',
         'certificate_id',
-        'fcm_token'
+        'fcm_token',
+
 
     ];
     public  const create_update_rules = [
@@ -31,6 +32,13 @@ class Student extends Model
         'certificate_id'=> 'required',
     ];
 
+
+    public function getTranslatedName()
+    {
+        return $this->{'name_' . app()->getLocale()};
+    }
+
+
     public function certificate()
     {
         return $this->belongsTo(Certificate::class,'certificate_id','id');
@@ -39,7 +47,7 @@ class Student extends Model
 
     public function profile()
     {
-        return $this->hasOne(Profile::class);
+        return $this->hasOne(Profile::class,'student_id');
     }
 
     public function courses()

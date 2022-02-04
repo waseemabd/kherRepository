@@ -228,6 +228,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('role/edit/{id}', [App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('role.edit');
     Route::post('role/update/{id}', [App\Http\Controllers\Admin\RoleController::class, 'update'])->name('role.update');
     Route::post('role/delete/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('role.destroy');
+
+    //teachers///
+    Route::get('teachers', [App\Http\Controllers\Admin\TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('teacher/create', [App\Http\Controllers\Admin\TeacherController::class, 'create'])->name('teacher.create');
+    Route::post('teacher/store', [App\Http\Controllers\Admin\TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('teacher/edit/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('teacher/update/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'update'])->name('teacher.update');
+    Route::post('teacher/delete/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'destroy'])->name('teacher.destroy');
+    Route::get('teacher/show/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'show'])->name('teacher.show');
+
+
+    //students///
+    Route::get('students', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('students.index');
+    Route::get('students/create', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('student.create');
+    Route::post('students/store', [App\Http\Controllers\Admin\StudentController::class, 'store'])->name('student.store');
+    Route::get('students/edit/{id}', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('student.edit');
+    Route::post('students/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('student.update');
+    Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
+    Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
+
+
 });
 
 Route::group(['middleware' => 'guest:admin'], function () {
