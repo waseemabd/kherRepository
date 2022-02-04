@@ -16,5 +16,8 @@ return [
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'this email is required'=>'this email is required',
+    'this password is required'=>'this password is required',
+    'something wrong in data input'=>'something wrong in data input',
 
 ];

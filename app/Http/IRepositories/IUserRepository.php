@@ -6,14 +6,12 @@ namespace App\Http\IRepositories;
 
 interface IUserRepository
 {
-
-    public function userLogin();
-
-    public function registerUser($input);
-
-
-    public function allAdmins();
-
-
+    public function getAllUsers($input);
+    public function createUser();
+    public function storeUser($input);
+    public function showUser($id);
+    public function editUser($id);
+    public function updateUser($input,$id);
+    public function deleteUser($id);
 
 }

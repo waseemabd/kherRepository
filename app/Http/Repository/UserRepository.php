@@ -7,9 +7,12 @@ namespace App\Http\Repository;
 use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IUserRepository;
 use App\Models\User;
+
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserRepository extends BaseRepository implements IUserRepository
 {
@@ -19,70 +22,66 @@ class UserRepository extends BaseRepository implements IUserRepository
         return User::class;
     }
 
-    public function userLogin()
+    public function getAllUsers($request)
     {
-
-        try {
-
-            $success = [];
-
-
-            if (request('remember_me') == 1) {
-                $remember_me = true;
-            } else {
-                $remember_me = false;
-            }
-
-            if (Auth::attempt(['phone_number' => request('phone_number'), 'password' => request('password'),'role' => 2],$remember_me)) {
-                $user = auth()->user();
-
-                Auth::logoutOtherDevices( request('password'));
-                $success['user'] = $user;
-                $success['token']['token'] = $user->createToken('MyApp')->accessToken;
-                $success['msg'] = 'Authorized';
-            } else {
-                $success = [];
-                $success['msg'] = 'Not Authorized';
-            }
-
-            return $success;
-        } catch (\Exception $exception) {
-            throw new \Exception(trans($exception->getMessage()));
-        }
+        $data = User::orderBy('id','DESC')->paginate(5);
+        return view('users.show_users',compact('data'))
+            ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
-
-    public function registerUser($input)
+    public function createUser()
     {
+        $roles = Role::pluck('name','name')->all();
+        return view('users.Add_user',compact('roles'));
+    }
 
-        try {
-
-
-            $input['password'] = bcrypt($input['password']);
-            $user = $this->model->create($input);
-            $success['token'] = $user->createToken('MyApp')->accessToken;
-            $success['user'] = $user;
-            return $success;
-
-
-        } catch (\Exception $exception) {
-            throw new \Exception(trans($exception->getMessage()));
-        }
+    public function storeUser($request)
+    {
+        $input = $request->all();
+        $input['password'] = Hash::make($input['password']);
+        $user = User::create($input);
+        $user->assignRole($request->input('roles_name'));
+        return redirect()->route('users.index')
+            ->with('success','User has Added Successfully');
     }
 
 
-    public function allAdmins(){
-        try {
 
-            $data = $this->model->where('role',1)->with('roles')->get();
-
-            return $data;
-        }catch (\Exception $exception){
-
-            throw new \Exception(trans($exception->getMessage()));
-        }
+    public function showUser($id)
+    {
+        $user = User::find($id);
+        return view('users.show',compact('user'));
     }
 
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('users.edit',compact('user','roles','userRole'));
+    }
+    public function updateUser($request, $id)
+    {
+        $user = User::find($id);
+        $input = $request->all();
+        if(!empty($input['password'])){
+            $input['password'] = Hash::make($input['password']);
+        }else{
+            $input['password']=$user->password;
+        }
+        $user->update($input);
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        $user->assignRole($request->input('roles'));
+        return redirect()->route('users.index')
+            ->with('edit','User information has updated successfully');
+    }
+
+    public function deleteUser($id)
+    {
+        User::find($id)->delete();
+        return redirect()->route('users.index')->with('delete','User has Deleted Successfully');
+    }
 
 
 }

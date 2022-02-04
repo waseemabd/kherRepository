@@ -12,11 +12,13 @@ use App\Http\IRepositories\IDiplomaRepository;
 use App\Http\IRepositories\IFileRepository;
 use App\Http\IRepositories\IHomeworkRepository;
 use App\Http\IRepositories\ILectureRepository;
+use App\Http\IRepositories\ILoginRepository;
 use App\Http\IRepositories\IOptionRepository;
 use App\Http\IRepositories\IProfileRepository;
 use App\Http\IRepositories\IProgressRepository;
 use App\Http\IRepositories\IQuestionRepository;
 use App\Http\IRepositories\IQuestionTypeRepository;
+use App\Http\IRepositories\IRoleRepository;
 use App\Http\IRepositories\IScheduleRepository;
 use App\Http\IRepositories\ISettingImageRepository;
 use App\Http\IRepositories\ISettingRepository;
@@ -34,11 +36,13 @@ use App\Http\Repository\DiplomaRepository;
 use App\Http\Repository\FileRepository;
 use App\Http\Repository\HomeworkRepository;
 use App\Http\Repository\LectureRepository;
+use App\Http\Repository\LoginRepository;
 use App\Http\Repository\OptionRepository;
 use App\Http\Repository\ProfileRepository;
 use App\Http\Repository\ProgressRepository;
 use App\Http\Repository\QuestionRepository;
 use App\Http\Repository\QuestionTypeRepository;
+use App\Http\Repository\RoleRepository;
 use App\Http\Repository\ScheduleRepository;
 use App\Http\Repository\SettingImageRepository;
 use App\Http\Repository\SettingRepository;
@@ -81,7 +85,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IStudentRepository::class, StudentRepository::class);
         $this->app->bind(IStudentFileRepository::class, StudentFileRepository::class);
         $this->app->bind(ITestRepository::class, TestRepository::class);
-
+        $this->app->bind(IRoleRepository::class, RoleRepository::class);
+        $this->app->bind(ILoginRepository::class, LoginRepository::class);
     }
 
     /**

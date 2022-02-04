@@ -1,5 +1,19 @@
 <?php
 
+/*
+Project         :   Valex - Laravel Admin & Dashboard Template
+@package        :   Laravel
+Laravel Version :   8.54
+PHP Version     :   8.0.9
+Create Date     :   07/10/2021
+Copyright       :   Spruko Technologies Private Limited
+Author          :   Spruko
+Author URL      :   https://themeforest.net/user/sprukosoft
+Support         :   support@spruko.com
+License         :   Licensed under ThemeForest Licence
+*/
+
+
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
@@ -16,8 +30,8 @@ define('LARAVEL_START', microtime(true));
 |
 */
 
-if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
-    require $maintenance;
+if (file_exists(__DIR__.'/../storage/framework/maintenance.php')) {
+    require __DIR__.'/../storage/framework/maintenance.php';
 }
 
 /*
@@ -48,8 +62,8 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 
 $kernel = $app->make(Kernel::class);
 
-$response = $kernel->handle(
+$response = tap($kernel->handle(
     $request = Request::capture()
-)->send();
+))->send();
 
 $kernel->terminate($request, $response);
