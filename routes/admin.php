@@ -252,6 +252,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
 
+    Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
+    Route::get('lectures/create', [App\Http\Controllers\Admin\LectureController::class, 'create'])->name('lecture.create');
+    Route::post('lectures/store', [App\Http\Controllers\Admin\LectureController::class, 'store'])->name('lecture.store');
+    Route::get('lectures/edit/{id}', [App\Http\Controllers\Admin\LectureController::class, 'edit'])->name('lecture.edit');
+    Route::post('lectures/update/{id}', [App\Http\Controllers\Admin\LectureController::class, 'update'])->name('lecture.update');
+    Route::post('lectures/delete/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy'])->name('lecture.destroy');
 
 
 });

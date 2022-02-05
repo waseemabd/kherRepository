@@ -42,6 +42,8 @@ return [
     'Certificate_Deleted_Successfully' => 'Certificate Deleted Successfully',
     'Diploma_Deleted_Successfully' => 'Diploma Deleted Successfully',
     'Course_Deleted_Successfully' => 'Course Deleted Successfully',
+    'Lecture_Deleted_Successfully' => 'Lecture Deleted Successfully',
+    'Homework_Deleted_Successfully' => 'Homework Deleted Successfully',
     'Title' => 'Title',
     'Choose_one' => 'Choose One',
 

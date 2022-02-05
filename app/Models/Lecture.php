@@ -20,6 +20,7 @@ class Lecture extends Model
     ];
     public  const create_update_rules = [
 
+        'title' => 'required',
         'type' => 'required',
         'course_id' => 'required',
 
