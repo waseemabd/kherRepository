@@ -20,6 +20,10 @@ class Certificate extends Model
 
     ];
 
+    public function getTranslatedName()
+    {
+        return $this->{'name_' . app()->getLocale()};
+    }
 
     public function students()
     {

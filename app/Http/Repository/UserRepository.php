@@ -7,7 +7,6 @@ namespace App\Http\Repository;
 use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IUserRepository;
 use App\Models\User;
-
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,17 +48,18 @@ class UserRepository extends BaseRepository implements IUserRepository
 
     public function showUser($id)
     {
-        $user = User::find($id);
-        return view('users.show',compact('user'));
+       return  User::find($id);
+
     }
 
 
     public function editUser($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
-        return view('users.edit',compact('user','roles','userRole'));
+        $data['user'] = User::find($id);
+        $data['roles'] = Role::pluck('name','name')->all();
+        $data['userRole'] =$data['user']->roles->pluck('name','name')->all();
+        return $data;
+
     }
     public function updateUser($request, $id)
     {
@@ -73,14 +73,13 @@ class UserRepository extends BaseRepository implements IUserRepository
         $user->update($input);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('roles'));
-        return redirect()->route('users.index')
-            ->with('edit','User information has updated successfully');
+
     }
 
     public function deleteUser($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')->with('delete','User has Deleted Successfully');
+       return User::find($id)->delete();
+
     }
 
 

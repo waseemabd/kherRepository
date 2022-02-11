@@ -26,8 +26,18 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
+            'password' => 'required|confirmed',
             'roles_name' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+
+            'name.required' => 'name is required',
+            'email.required' => 'email is required',
+
         ];
     }
 }
