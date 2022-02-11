@@ -76,6 +76,9 @@ class LectureController extends Controller
         //
         try {
 
+            if($request->hasFile('files')){
+                dd();
+            }
             $data = $this->requestData;
             $data['course_id'] = $this->requestData['course'];
 //            dd($data);
@@ -185,4 +188,31 @@ class LectureController extends Controller
             return JsonResponse::respondError($ex->getMessage());
         }
     }
+    public function uploadFile(Request $request)
+    {
+        //
+        try {
+
+
+            if($request->hasFile('files')){
+
+                $file = $request->file('files');
+                $filename = 'lecture_'.time() . '_' . $file->getClientOriginalName();
+                // File upload location
+                $location = public_path('files/lectures/');
+
+                // Upload file
+                $file->move($location, $filename);
+                $path = '/files/lectures/' . $filename;
+
+                return json_encode($path);;
+
+            }
+            return  json_encode(false);
+//            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (\Exception $ex) {
+            return json_encode($ex->getMessage());
+        }
+    }
+
 }

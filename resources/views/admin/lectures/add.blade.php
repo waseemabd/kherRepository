@@ -20,7 +20,11 @@
     <!-- Internal Spectrum-colorpicker css -->
     <link href="{{asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
 
+    <!---Internal Fileupload css-->
+{{--    <link href="{{asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>--}}
 
+{{--    <!---Internal Fancy uploader css-->--}}
+{{--    <link href="{{asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />--}}
 @endsection
 
 @section('content')
@@ -141,6 +145,25 @@
                                 </div>
                             </div>
 
+                             <!-- files -->
+                             <div class="row">
+                                 <div class="col-lg-12 col-md-12">
+                                     <div class="card">
+                                         <div class="card-body">
+                                             <div>
+                                                 <h6 class="card-title mb-1">File Upload</h6>
+                                             </div>
+                                             <div>
+{{--                                                 <input id="demo" type="file" name="files" accept=".jpg, .png, image/jpeg, image/png, .doc,.docx,application/msword ,.pdf, .zip" multiple>--}}
+                                                 <div class="col-sm-12 col-md-4">
+                                                     <input type="files[]" class="dropify" data-height="200" multiple/>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <!-- files closed -->
 
                             <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Add')}}</button></div>
                         </div>
@@ -198,6 +221,20 @@
 
     <!-- Ionicons js -->
     <script src="{{asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+
+    <!--Internal Fileuploads js-->
+{{--    <script src="{{asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>--}}
+
+{{--    <!--Internal Fancy uploader js-->--}}
+{{--    <script src="{{asset('assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>--}}
+{{--    <script src="{{asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>--}}
+
+{{--    <!--Internal  Form-elements js-->--}}
+{{--    <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>--}}
 
 
 
