@@ -252,6 +252,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
 
+    Route::get('homework', [App\Http\Controllers\Admin\HomeworkController::class, 'index'])->name('homework.index');
+    Route::get('homework/create', [App\Http\Controllers\Admin\HomeworkController::class, 'create'])->name('homework.create');
+    Route::post('homework/store', [App\Http\Controllers\Admin\HomeworkController::class, 'store'])->name('homework.store');
+    Route::get('homework/edit/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'edit'])->name('homework.edit');
+    Route::post('homework/update/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'update'])->name('homework.update');
+    Route::post('homework/delete/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy'])->name('homework.destroy');
+    Route::get('homework/show/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'show'])->name('homework.show');
+    Route::post('homework/Attachments', [App\Http\Controllers\Admin\HomeworkController::class, 'attachments'])->name('homework.Attachments');
+
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
     Route::get('lectures/create', [App\Http\Controllers\Admin\LectureController::class, 'create'])->name('lecture.create');
     Route::post('lectures/store', [App\Http\Controllers\Admin\LectureController::class, 'store'])->name('lecture.store');

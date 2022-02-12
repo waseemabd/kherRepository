@@ -19,6 +19,9 @@
 
 @endsection
 
+
+
+
 @section('content')
 
 				<!-- breadcrumb -->
@@ -275,7 +278,7 @@
 
 		<!--Internal  Datepicker js -->
 		<script src="{{asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
-		
+
 		<!-- Internal Select2 js-->
 		<script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 
