@@ -252,6 +252,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
 
+    Route::get('homework', [App\Http\Controllers\Admin\HomeworkController::class, 'index'])->name('homework.index');
+    Route::get('homework/create', [App\Http\Controllers\Admin\HomeworkController::class, 'create'])->name('homework.create');
+    Route::post('homework/store', [App\Http\Controllers\Admin\HomeworkController::class, 'store'])->name('homework.store');
+    Route::get('homework/edit/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'edit'])->name('homework.edit');
+    Route::post('homework/update/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'update'])->name('homework.update');
+    Route::post('homework/delete/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy'])->name('homework.destroy');
+    Route::get('homework/show/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'show'])->name('homework.show');
+    Route::post('homework/Attachments', [App\Http\Controllers\Admin\HomeworkController::class, 'attachments'])->name('homework.Attachments');
+
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
     Route::get('lectures/create', [App\Http\Controllers\Admin\LectureController::class, 'create'])->name('lecture.create');
     Route::post('lectures/store', [App\Http\Controllers\Admin\LectureController::class, 'store'])->name('lecture.store');
@@ -260,6 +269,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('lectures/delete/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy'])->name('lecture.destroy');
 
     Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
+
+
+    //teachers///
+    Route::get('teachers', [App\Http\Controllers\Admin\TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('teacher/create', [App\Http\Controllers\Admin\TeacherController::class, 'create'])->name('teacher.create');
+    Route::post('teacher/store', [App\Http\Controllers\Admin\TeacherController::class, 'store'])->name('teacher.store');
+    Route::get('teacher/edit/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'edit'])->name('teacher.edit');
+    Route::post('teacher/update/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'update'])->name('teacher.update');
+    Route::post('teacher/delete/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'destroy'])->name('teacher.destroy');
+    Route::get('teacher/show/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'show'])->name('teacher.show');
+
+
+    //students///
+    Route::get('students', [App\Http\Controllers\Admin\StudentController::class, 'index'])->name('students.index');
+    Route::get('students/create', [App\Http\Controllers\Admin\StudentController::class, 'create'])->name('student.create');
+    Route::post('students/store', [App\Http\Controllers\Admin\StudentController::class, 'store'])->name('student.store');
+    Route::get('students/edit/{id}', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('student.edit');
+    Route::post('students/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('student.update');
+    Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
+    Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
+
 
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');

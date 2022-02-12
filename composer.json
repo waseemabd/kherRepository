@@ -30,7 +30,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+
+        },"files" : [
+            "app/Helpers/General.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
@@ -59,7 +62,7 @@
     },
     "config": {
         "github-oauth": {
-            "github.com": "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"
+            "github.com": "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"
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",

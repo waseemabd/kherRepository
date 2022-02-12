@@ -122,7 +122,7 @@
                                                         <div class="modal-body">
                                                             <p>? Do Yoy Want to Delete This Role </p><br>
 
-                                                            <input class="form-control" name="rolename" value="{{$role->name}}" id="rolename" type="text" readonly>
+                                                            <input class="form-control" hidden name="role_id" value="{{$role->name}}" id="role_id" type="text" readonly>
 
                                                         </div>
                                                         <div class="modal-footer">
@@ -178,5 +178,13 @@
 
     <!--Internal  Datatable js -->
     <script src="{{asset('assets/js/table-data.js')}}"></script>
+        <script>
+            $('#modaldemo1').on('show.bs.modal', function(event) {
+                var button = $(event.relatedTarget)
+                var role_id = button.data('role_id')
+                var modal = $(this)
+                modal.find('.modal-body #role_id').val(role_id);
+            })
 
+        </script>
 @endsection

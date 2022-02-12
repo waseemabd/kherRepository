@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Users</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Users Menu</span>
+                <h4 class="content-title mb-0 my-auto">Homework</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Homework Menu</span>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('user.create') }}">Add User</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('homework.create') }}">Add Homework</a>
                     </div>
 
                 </div>
@@ -86,50 +86,32 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">name</th>
-                                <th class="wd-20p border-bottom-0">email</th>
-                                <th class="wd-15p border-bottom-0">status</th>
-                                <th class="wd-15p border-bottom-0">user role</th>
+                                <th class="wd-15p border-bottom-0">title</th>
+                                <th class="wd-20p border-bottom-0">description</th>
+
                                 <th class="wd-10p border-bottom-0">methods</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($data as $key => $user)
+                            @foreach ($data as $key => $homework)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if ($user->status == 1)
-                                            <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>Active
-                                            </span>
-                                        @else
-                                            <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>Inactive
-                                            </span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $homework->title }}</td>
+                                    <td>{{ $homework->desc }}</td>
 
-                                    <td>
-                                        @if (!empty($user->getRoleNames()))
-                                            @foreach ($user->getRoleNames() as $v)
-                                                <label class="badge badge-success">{{ $v }}</label>
-                                            @endforeach
-                                        @endif
-                                    </td>
+
 
                                     <td>
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('user.edit', $user->id) }}"><i
+                                           href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                           data-user_id="{{ $homework->id }}" data-username="{{ $homework->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
 
@@ -141,13 +123,13 @@
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('user.destroy',$user->id) }}" method="post">
+                                                        <form action="{{ route('homework.destroy',$homework->id) }}" method="post">
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <p>? Do Yoy Want to Delete This User </p><br>
 
-                                                                <input class="form-control" hidden name="user_id" value="{{$user->name}}" id="user_id" type="text" readonly>
+                                                                <input class="form-control" hidden name="user_id" value="{{$homework->name}}" id="user_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">

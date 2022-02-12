@@ -29,7 +29,7 @@ class Homework extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'homework_students','homework_id', 'student_id');
+        return $this->belongsToMany(Student::class, 'homework_students');
     }
 
     public function user()

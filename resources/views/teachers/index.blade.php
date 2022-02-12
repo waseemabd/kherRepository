@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Users</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Users Menu</span>
+                <h4 class="content-title mb-0 my-auto">Teachers</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Teachers Menu</span>
             </div>
         </div>
 
@@ -74,12 +74,6 @@
         <div class="col-xl-12">
             <div class="card">
 
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('user.create') }}">Add User</a>
-                    </div>
-
-                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table text-md-nowrap" id="example1">
@@ -125,11 +119,11 @@
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('user.edit', $user->id) }}"><i
+                                           href="{{ route('teacher.edit', $user->id) }}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                           data-teacher_id="{{ $user->id }}" data-username="{{ $user->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
 
@@ -141,13 +135,13 @@
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('user.destroy',$user->id) }}" method="post">
+                                                        <form action="{{ route('teacher.destroy',$user->id) }}" method="post">
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
                                                                 <p>? Do Yoy Want to Delete This User </p><br>
 
-                                                                <input class="form-control" hidden name="user_id" value="{{$user->name}}" id="user_id" type="text" readonly>
+                                                                <input class="form-control" hidden name="teacher_id" value="{{$user->name}}" id="teacher_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
@@ -203,9 +197,9 @@
             <script>
                 $('#modaldemo1').on('show.bs.modal', function(event) {
                     var button = $(event.relatedTarget)
-                    var user_id = button.data('user_id')
+                    var student_id = button.data('student_id')
                     var modal = $(this)
-                    modal.find('.modal-body #user_id').val(user_id);
+                    modal.find('.modal-body #student_id').val(student_id);
                 })
 
             </script>
