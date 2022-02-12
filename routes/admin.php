@@ -268,6 +268,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('lectures/update/{id}', [App\Http\Controllers\Admin\LectureController::class, 'update'])->name('lecture.update');
     Route::post('lectures/delete/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy'])->name('lecture.destroy');
 
+    Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
 
 
     //teachers///
