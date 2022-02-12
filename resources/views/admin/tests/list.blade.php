@@ -20,8 +20,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.list')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('tests/tests.tests')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.list')}}</span>
             </div>
         </div>
 
@@ -32,7 +32,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: " lecture information has updated successfully",
+                    msg: " test information has updated successfully",
                     type: "success"
                 });
             }
@@ -44,7 +44,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "lecture has Deleted Successfully",
+                    msg: "test has Deleted Successfully",
                     type: "success"
                 });
             }
@@ -56,7 +56,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "lecture has Added Successfully",
+                    msg: "test has Added Successfully",
                     type: "success"
                 });
             }
@@ -74,7 +74,7 @@
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm"
-                           href="{{ route('lecture.create') }}">{{trans('general.Add')}}</a>
+                           href="{{ route('test.create') }}">{{trans('general.Add')}}</a>
                     </div>
 
                 </div>
@@ -84,49 +84,52 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('lectures/lectures.type')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('lectures/lectures.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('lectures/lectures.course')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('lectures/lectures.desc')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('lectures/lectures.link')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('lectures/lectures.start_date')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('lectures/lectures.end_date')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.title')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.course')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.desc')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.duration')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.date')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.status')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($lectures as $key => $lecture)
-                                <tr id="row-{{$lecture->id}}">
+                            @foreach ($tests as $key => $test)
+                                <tr id="row-{{$test->id}}">
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $lecture->type }}</td>
-                                    <td>{{ $lecture->title }}</td>
-                                    <td>{{ $lecture->course->title }}</td>
+                                    <td>{{ $test->title }}</td>
+                                    <td>{{ $test->course->title }}</td>
                                     <td>
                                         <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{$lecture->desc}}"
-                                           data-title="{{$lecture->title}}"
+                                           data-bs-target="#info-sub" data-desc="{{$test->desc}}"
+                                           data-title="{{$test->title}}"
                                         >
-                                            {!! substr($lecture->desc,0,25) !!}...
+                                            {!! substr($test->desc,0,25) !!}...
                                             <span style="color: blue">
-                                                {{trans('lectures/lectures.read_more')}}
+                                                {{trans('tests/tests.read_more')}}
                                             </span>
                                         </a>
                                     </td>
-                                    <td>{{ $lecture->link }}</td>
-                                    <td>{{ \Illuminate\Support\Carbon::parse($lecture->start_date)->format('d-m-Y H:i:s') }}</td>
-                                    <td>{{ \Illuminate\Support\Carbon::parse($lecture->end_date)->format('d-m-Y H:i:s') }}</td>
+                                    <td>{{ $test->duration }}</td>
+                                    <td>{{ \Illuminate\Support\Carbon::parse($test->date)->format('d-m-Y H:i:s')}}</td>
+                                    <td>
+                                        <span class="badge badge-{{ $test->status ? 'success' : 'secondary' }}">
+                                          {{ $test->status ? trans('tests/tests.done') : trans('tests/tests.not_done') }}
+                                        </span>
+
+                                    </td>
 
                                     <td>
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('lecture.edit', $lecture->id) }}"><i
+                                           href="{{ route('test.edit', $test->id) }}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $lecture->id }}"
+                                           data-id="{{ $test->id }}"
                                            data-bs-toggle="modal" href="#delete-sub"
                                            title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
@@ -176,7 +179,7 @@
                                         <div class="modal-header">
 
                                             <h4 class="modal-title"
-                                                id="myModalLabel22">{{trans('lectures/lectures.desc_for')}}<span
+                                                id="myModalLabel22">{{trans('tests/tests.desc_for')}}<span
                                                     id="d-title"></span></h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
@@ -223,7 +226,7 @@
 
             <!--Internal  Datatable js -->
             <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script src="{{asset('assets/js/admin-pages/lectures/list.js')}}"></script>
+            <script src="{{asset('assets/js/admin-pages/tests/list.js')}}"></script>
 
 @endsection
 

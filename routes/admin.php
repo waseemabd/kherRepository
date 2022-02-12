@@ -261,6 +261,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
 
+    Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
+    Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
+    Route::post('tests/store', [App\Http\Controllers\Admin\TestController::class, 'store'])->name('test.store');
+    Route::get('tests/edit/{id}', [App\Http\Controllers\Admin\TestController::class, 'edit'])->name('test.edit');
+    Route::post('tests/update/{id}', [App\Http\Controllers\Admin\TestController::class, 'update'])->name('test.update');
+    Route::post('tests/delete/{id}', [App\Http\Controllers\Admin\TestController::class, 'destroy'])->name('test.destroy');
+
 });
 
 Route::group(['middleware' => 'guest:admin'], function () {
