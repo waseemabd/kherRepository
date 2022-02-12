@@ -5,20 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
-use App\Http\IRepositories\ICertificateRepository;
-use App\Models\Certificate;
+use App\Http\IRepositories\ICourseRepository;
+use App\Http\IRepositories\ITestRepository;
+use App\Models\Test;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-class CertificateController extends Controller
+class TestController extends Controller
 {
-    protected $certificateRepository;
+    protected $courseRepository;
+    protected $testRepository;
     protected $requestData;
 
 
-    public function __construct(ICertificateRepository $certificateRepository)
+    public function __construct(ICourseRepository $courseRepository,
+                                ITestRepository $testRepository)
     {
-        $this->certificateRepository = $certificateRepository;
+        $this->courseRepository = $courseRepository;
+        $this->testRepository = $testRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:categories');
     }
@@ -30,17 +35,17 @@ class CertificateController extends Controller
     public function index()
     {
         //
+
         try {
 
-            $certificates = $this->certificateRepository->all();
-            return view('admin.certificates.list', compact('certificates'));
+            $tests = $this->testRepository->all();
+            return view('admin.tests.list', compact('tests'));
 
         } catch (\Exception $e) {
             return $e->getMessage();
         }
-
-
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -49,10 +54,14 @@ class CertificateController extends Controller
     public function create()
     {
         //
+        try {
 
-            return view('admin.certificates.add');
+            $courses = $this->courseRepository->all();
+            return view('admin.tests.add', compact('courses'));
 
-
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -67,25 +76,26 @@ class CertificateController extends Controller
         try {
 
             $data = $this->requestData;
-
-            $validator = Validator::make($data, $validator_rules = Certificate::create_update_rules);
+            $data['course_id'] = $this->requestData['course'];
+            $data['user_id'] = auth("admin")->user()->id;
+//            dd($data);
+            $validator = Validator::make($data, $validator_rules = Test::create_update_rules);
 
             if ($validator->passes()) {
 
 
-                $user = $this->certificateRepository->create($data);
+                $user = $this->testRepository->create($data);
 
 
-                return redirect()->route('certificate.index')->with('message', trans('certificates/certificates.Certificate_Added_Successfully'));
+                return redirect()->route('test.index')->with('message', trans('tests/tests.Test_Added_Successfully'));
 
             }
-            return redirect()->route('certificate.create')->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('test.create')->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('certificate.create')->with('error', $e->getMessage());
+            return redirect()->route('test.create')->with('error', $e->getMessage());
 
         }
-
     }
 
     /**
@@ -97,6 +107,8 @@ class CertificateController extends Controller
     public function show($id)
     {
         //
+
+
     }
 
     /**
@@ -108,10 +120,16 @@ class CertificateController extends Controller
     public function edit($id)
     {
         //
-        $certificate = $this->certificateRepository->find($id);
-        return view('admin.certificates.edit', compact('certificate'));
+        try {
 
+            $courses = $this->courseRepository->all();
+            $test = $this->testRepository->find($id);
 
+            return view('admin.tests.edit', compact('courses','test' ));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -124,26 +142,30 @@ class CertificateController extends Controller
     public function update(Request $request, $id)
     {
         //
-
         try {
 
             $data = $this->requestData;
+            $test = $this->testRepository->find($id);
 
-            $validator = Validator::make($data, $validator_rules = Certificate::create_update_rules);
+            $data['course_id'] = $this->requestData['course'];
+            $data['user_id'] = $test->user_id;
+
+//            dd($data);
+            $validator = Validator::make($data, $validator_rules = Test::create_update_rules);
 
             if ($validator->passes()) {
 
 
-                $user = $this->certificateRepository->update($data, $id);
+                $user = $this->testRepository->update($data, $id);
 
 
-                return redirect()->route('certificate.index')->with('message', trans('certificates/certificates.Certificate_Updated_Successfully'));
+                return redirect()->route('test.index')->with('message', trans('tests/tests.Test_Updated_Successfully'));
 
             }
-            return redirect()->route('certificate.edit', $id)->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('test.edit', $id)->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('certificate.edit', $id)->with('error', $e->getMessage());
+            return redirect()->route('test.edit', $id)->with('error', $e->getMessage());
 
         }
     }
@@ -157,14 +179,13 @@ class CertificateController extends Controller
     public function destroy($id)
     {
         //
+
         try {
 
-            $this->certificateRepository->delete($id);
+            $this->testRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
-
-
     }
 }

@@ -171,10 +171,10 @@ class LectureController extends Controller
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Updated_Successfully'));
 
             }
-            return redirect()->route('lecture.edit')->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('lecture.edit', $id)->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('lecture.edit')->with('error', $e->getMessage());
+            return redirect()->route('lecture.edit', $id)->with('error', $e->getMessage());
 
         }
     }

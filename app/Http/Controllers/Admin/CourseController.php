@@ -161,10 +161,10 @@ class CourseController extends Controller
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Updated_Successfully'));
 
             }
-            return redirect()->route('course.edit')->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('course.edit', $id)->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('course.edit')->with('error', $e->getMessage());
+            return redirect()->route('course.edit', $id)->with('error', $e->getMessage());
 
         }
     }

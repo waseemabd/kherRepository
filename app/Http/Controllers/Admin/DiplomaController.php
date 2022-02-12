@@ -136,10 +136,10 @@ class DiplomaController extends Controller
                 return redirect()->route('diploma.index')->with('message', trans('diplomas/diplomas.Diploma_Updated_Successfully'));
 
             }
-            return redirect()->route('diploma.edit')->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('diploma.edit', $id)->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('diploma.edit')->with('error', $e->getMessage());
+            return redirect()->route('diploma.edit', $id)->with('error', $e->getMessage());
 
         }
     }

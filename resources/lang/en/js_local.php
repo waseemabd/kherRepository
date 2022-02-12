@@ -44,6 +44,7 @@ return [
     'Course_Deleted_Successfully' => 'Course Deleted Successfully',
     'Lecture_Deleted_Successfully' => 'Lecture Deleted Successfully',
     'Homework_Deleted_Successfully' => 'Homework Deleted Successfully',
+    'Test_Deleted_Successfully' => 'Test Deleted Successfully',
     'Title' => 'Title',
     'Choose_one' => 'Choose One',
 
