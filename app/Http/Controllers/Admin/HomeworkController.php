@@ -4,20 +4,12 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
 use App\Http\IRepositories\IHomeworkRepository;
-use App\Http\IRepositories\ITeacherRepository;
-use App\Http\IRepositories\IUserRepository;
-use App\Http\Requests\LoginRequest;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use App\Http\Requests\UserUpdateRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
+use App\Http\Controllers\Controller;
+use App\Models\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Lang;
+
 
 class HomeworkController extends Controller
 {
@@ -86,13 +78,74 @@ class HomeworkController extends Controller
     public function attachments(Request $request)
     {
         try {
-           return $request;
 
-        return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-    } catch (\Exception $ex) {
-        return JsonResponse::respondError($ex->getMessage());
+            $image = $request->file('file');
+            $file_name = $image->getClientOriginalName();
+            $attachment = new File();
+            $attachment->path = $file_name;
+            $attachment->homework_id = $request->homework_id;
+            $attachment->name = $request->name;
+            $attachment->type = 1;
+            $attachment->save();
+            // move pic
+            $imageName = $request->file->getClientOriginalName();
+            $request->file->move(public_path('Homework/' . $request->name), $imageName);
+            $attachments = File::where('homework_id', $request->homework_id)->get();
+            $view = view('admin.homework._showlist')->with(['attachments' => $attachments, 'id' => $request->homework_id])
+                ->renderSections();
+
+            return response()->json([
+                'status' => true,
+                'content' => $view['main']
+            ]);
+
+
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
     }
+
+    public function get_file($path,$file_name)
+
+    {
+        try {
+        $contents= Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
+        return response()->download( $contents);
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
     }
+
+    public function open_file($path,$file_name)
+
+    {
+        try {
+            $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
+            return response()->file($files);
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+    public function destroy_file(Request $request)
+    {
+
+
+        try {
+            $attachment = File::findOrFail($request->attachment_id);
+            $file_name=$attachment->name;
+            $path=$attachment->path;
+            $attachment->delete();
+            Storage::disk('public_uploads')->delete($file_name.'/'.$path);
+            return redirect()->back()->with('delete','Attachment has Deleted Successfully');
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+
 
 
 }

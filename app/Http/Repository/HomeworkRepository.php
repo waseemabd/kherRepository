@@ -6,6 +6,7 @@ namespace App\Http\Repository;
 
 use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IHomeworkRepository;
+use App\Models\File;
 use App\Models\Homework;
 use App\Models\Lecture;
 use App\Models\Student;
@@ -32,11 +33,13 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
         $data['students'] = Student::all();
         $data['teachers']=User::where('role',2)->get();
         $data['lectures']=Lecture::all();
+
         return $data;
     }
     public function showHomework($id)
     {
         $data['homework']=Homework::find($id);
+        $data['attachments']=File::where('homework_id',$id)->get();
 
         if(!$data['homework'])
         {
