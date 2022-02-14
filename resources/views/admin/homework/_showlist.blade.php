@@ -3,7 +3,7 @@
 <?php $i = 0; ?>
     @foreach($attachments as $attachment)
     <?php $i++; ?>
-    <tr>
+    <tr id="row-{{$attachment->id}}">
         <td>{{ $i }}</td>
         <td>{{ $attachment->name }}</td>
         <td>{{ $attachment->created_at }}</td>
@@ -21,38 +21,35 @@
 
             {{--   @can('حذف المرفق')  --}}
             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-               data-attachment_id="{{ $attachment->id }}"
-            data-bs-toggle="modal"  href="#modaldemo1" title="delete"><i
-                class="las la-trash"></i></a>
+               data-id="{{ $attachment->id }}"
+               data-bs-toggle="modal" href="#delete-sub"
+               title="{{trans('general.Delete')}}"><i
+                    class="las la-trash"></i></a>
             {{--   @endcan  --}}
 
         </td>
     </tr>
     @endforeach
-<div class="modal" id="modaldemo1">
+<div class="modal" id="delete-sub">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">
-                <h6 class="modal-title">Delete User</h6>
-                <button aria-label="Close" class="close" data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title">{{trans('general.Delete')}}</h6>
+                <button aria-label="Close" class="close"
+                        data-bs-dismiss="modal" type="button"><span
+                        aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('homework.delete_file') }}" method="post">
-                    {{ method_field('post') }}
-                    @csrf
-                    <div class="modal-body">
-                        <p>? Do Yoy Want to Delete This attachment </p><br>
+                <div class="modal-body">
+                    <p>{{trans('general.delete_warning')}} </p><br>
 
-                        <input class="form-control" hidden name="attachment_id" value="" id="attachment_id" type="text" readonly>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn ripple btn-primary" type="submit">Delete</button>
-                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
-                    </div>
-
-
-                </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn ripple btn-danger" id="delete_btn"
+                            type="submit">{{trans('general.Delete')}}</button>
+                    <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                            type="button">{{trans('general.Cancel')}}</button>
+                </div>
 
             </div>
 
@@ -60,13 +57,9 @@
     </div>
 </div>
 
+
 <script>
-    $('#modaldemo1').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget)
-        var attachment_id = button.data('attachment_id')
-        var modal = $(this)
-        modal.find('.modal-body #attachment_id').val(attachment_id);
-    })
+    <script src="{{asset('assets/js/admin-pages/homework/delete_file.js')}}"></script>
 
 </script>
 

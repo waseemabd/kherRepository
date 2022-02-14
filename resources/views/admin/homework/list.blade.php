@@ -110,7 +110,9 @@
 
                                     <td>
 
-
+                                        <a class="btn btn-primary btn-sm"
+                                           href="{{ route('homework.add_files', $homework->id) }}"><i
+                                                class="far fa-file"></i></a>
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>

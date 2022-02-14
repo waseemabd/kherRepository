@@ -7,6 +7,7 @@ use App\Http\IRepositories\IHomeworkRepository;
 
 use App\Http\Controllers\Controller;
 use App\Models\File;
+use App\Models\Homework;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -127,23 +128,38 @@ class HomeworkController extends Controller
             return JsonResponse::respondError($ex->getMessage());
         }
     }
-    public function destroy_file(Request $request)
+    public function destroy_file(Request $request,$id)
     {
-
-
         try {
-            $attachment = File::findOrFail($request->attachment_id);
+            $attachment = File::findOrFail($id);
             $file_name=$attachment->name;
             $path=$attachment->path;
             $attachment->delete();
             Storage::disk('public_uploads')->delete($file_name.'/'.$path);
-            return redirect()->back()->with('delete','Attachment has Deleted Successfully');
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
 
     }
+
+    public function add_files(Request $request,$id)
+    {
+        try {
+            $homework=Homework::find($id);
+            $attachments=File::where('homework_id',$homework->id)->get();
+            return view('admin.homework.add_files',compact('attachments','homework'));
+
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+
 
 
 

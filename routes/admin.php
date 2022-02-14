@@ -262,7 +262,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('homework/Attachments', [App\Http\Controllers\Admin\HomeworkController::class, 'attachments'])->name('homework.Attachments');
     Route::get('homework/download/{path}/{file_name}', [App\Http\Controllers\Admin\HomeworkController::class, 'get_file'])->name('homework.download');
     Route::get('homework/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\HomeworkController::class, 'open_file'])->name('homework.View_file');
-    Route::post('homework/delete_file', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy_file'])->name('homework.delete_file');
+    Route::post('homework/delete_file/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy_file'])->name('homework.delete_file');
+    Route::get('homework/add_files/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'add_files'])->name('homework.add_files');
 
 
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
