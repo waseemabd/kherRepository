@@ -295,6 +295,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
     Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
 
+    ///blogs///
+    Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
+
 
 });
 

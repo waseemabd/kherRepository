@@ -37,7 +37,7 @@ return [
 
         'public_uploads' => [
             'driver' => 'local',
-            'root'   => public_path() . '\Homework',
+            'root'   => public_path() . '/Homework',
         ],
 
         'public' => [
