@@ -158,6 +158,7 @@
                             </div>
                         </div>
 
+
                         <div class="shown-event-ex">
                             <div
                                 class="modal fade text-start"

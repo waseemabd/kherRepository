@@ -24,7 +24,7 @@ class BlogSeeder extends Seeder
                 'id' => 1,
                 'title' =>'blog 1',
                 'desc' =>'blog 1 desc',
-
+                'status'=>1,
                 'image' => '',
                 'user_id' => 1,
                 'created_at' =>now(),
@@ -34,7 +34,7 @@ class BlogSeeder extends Seeder
                 'id' => 2,
                 'title' =>'blog 2',
                 'desc' =>'blog 2 desc',
-
+                'status'=>1,
                 'image' => '',
                 'user_id' => 2,
                 'created_at' =>now(),
@@ -44,7 +44,7 @@ class BlogSeeder extends Seeder
                 'id' => 3,
                 'title' =>'blog 3',
                 'desc' =>'blog 3 desc',
-
+                'status'=>1,
                 'image' => '',
                 'user_id' => 3,
                 'created_at' =>now(),
@@ -54,7 +54,7 @@ class BlogSeeder extends Seeder
                 'id' => 4,
                 'title' =>'blog 4',
                 'desc' =>'blog 4 desc',
-
+                'status'=>1,
                 'image' => '',
                 'user_id' => 1,
                 'created_at' =>now(),
