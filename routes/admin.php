@@ -221,6 +221,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
     Route::post('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
     Route::post('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
+    Route::post('user/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
 
     Route::get('roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('role/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('role.create');
@@ -260,6 +261,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('homework/delete/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy'])->name('homework.destroy');
     Route::get('homework/show/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'show'])->name('homework.show');
     Route::post('homework/Attachments', [App\Http\Controllers\Admin\HomeworkController::class, 'attachments'])->name('homework.Attachments');
+    Route::get('homework/download/{path}/{file_name}', [App\Http\Controllers\Admin\HomeworkController::class, 'get_file'])->name('homework.download');
+    Route::get('homework/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\HomeworkController::class, 'open_file'])->name('homework.View_file');
+    Route::post('homework/delete_file/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy_file'])->name('homework.delete_file');
+    Route::get('homework/add_files/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'add_files'])->name('homework.add_files');
+
 
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
     Route::get('lectures/create', [App\Http\Controllers\Admin\LectureController::class, 'create'])->name('lecture.create');
@@ -290,6 +296,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
     Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
 
+    ///blogs///
+    Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
+    Route::post('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('blog.destroy');
+    Route::post('blog/block/{id}', [App\Http\Controllers\Admin\BlogController::class, 'block'])->name('blog.block');
+    Route::get('blog/edit/{id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('blog.edit');
+    Route::post('blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blog.update');
+    Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
+    Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
 
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
