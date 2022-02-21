@@ -1,19 +1,16 @@
-
-
-
 @extends('layouts.app')
 
 @section('styles')
 
     <!-- Internal Data table css -->
-    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/plugins/datatable/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/responsive.bootstrap5.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/buttons.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet"/>
 
 @endsection
 
@@ -23,8 +20,13 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('courses/courses.courses')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('courses/courses.list')}}</span>
+                <h4 class="content-title mb-0 my-auto"><a href="{{route('test.index')}}">{{trans('tests/tests.tests')}}</a></h4>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ <a href="{{route('test.show', $test->id)}}">{{$test->title}}</a>
+                </span>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.questions')}}
+                </span>
             </div>
         </div>
 
@@ -33,9 +35,9 @@
 
     @if (session()->has('edit'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
-                    msg: " course information has updated successfully",
+                    msg: " questions information has updated successfully",
                     type: "success"
                 });
             }
@@ -45,9 +47,9 @@
 
     @if (session()->has('delete'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
-                    msg: "course has Deleted Successfully",
+                    msg: "questions has Deleted Successfully",
                     type: "success"
                 });
             }
@@ -57,9 +59,9 @@
 
     @if (session()->has('success'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
-                    msg: "course has Added Successfully",
+                    msg: "questions has Added Successfully",
                     type: "success"
                 });
             }
@@ -76,52 +78,58 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('course.create') }}">{{trans('general.Add')}}</a>
+                        <a class="btn btn-primary btn-sm"
+                           href="{{ route('test.question.create', $test->id) }}">{{trans('tests/tests.add_question')}}</a>
                     </div>
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0" >
+                        <table class="table table-striped table-vcenter text-nowrap mb-0">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.diploma')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('courses/courses.desc')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.title')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.desc')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.type')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.created_at')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($courses as $key => $course)
-                                <tr id="row-{{$course->id}}">
+                            @foreach ($questions as $key => $question)
+                                <tr id="row-{{$question->id}}">
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $course->title }}</td>
-                                    <td>{{ $course->diploma->title }}</td>
+                                    <td>{{ $question->title }}</td>
                                     <td>
-                                        <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{$course->desc}}" data-title="{{$course->title}}"
+                                        <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
+                                           data-bs-target="#info-sub" data-desc="{{$question->desc}}"
+                                           data-title="{{$question->title}}"
                                         >
-                                            {!! substr($course->desc,0,25) !!}...
+                                            {!! substr($question->desc,0,25) !!}...
                                             <span style="color: blue">
-                                                {{trans('courses/courses.read_more')}}
+                                                {{trans('tests/tests.read_more')}}
                                             </span>
-                                            </a>
+                                        </a>
                                     </td>
+                                    <td>{{trans('tests/tests.'.\App\Helpers\Constants::questionType[$question->questionType->type]) }}</td>
+                                    <td>{{ \Illuminate\Support\Carbon::parse($question->created_at)->format('d-m-Y H:i:s')}}</td>
 
                                     <td>
 
 
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('course.edit', $course->id) }}"><i
+                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
+                                           href="{{ route('question.edit', $question->id) }}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $course->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
+                                           data-id="{{ $question->id }}"
+                                           data-bs-toggle="modal" href="#delete-sub"
+                                           title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -132,18 +140,22 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content modal-content-demo">
                                     <div class="modal-header">
-                                        <h6 class="modal-title">{{trans('general.Delete')}}</h6><button aria-label="Close" class="close"
-                                                                                               data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                        <h6 class="modal-title">{{trans('general.Delete')}}</h6>
+                                        <button aria-label="Close" class="close"
+                                                data-bs-dismiss="modal" type="button"><span
+                                                aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                            <div class="modal-body">
-                                                <p>{{trans('general.delete_warning')}} </p><br>
+                                        <div class="modal-body">
+                                            <p>{{trans('general.delete_warning')}} </p><br>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn ripple btn-danger" id="delete_btn" type="submit">{{trans('general.Delete')}}</button>
-                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('general.Cancel')}}</button>
-                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn ripple btn-danger" id="delete_btn"
+                                                    type="submit">{{trans('general.Delete')}}</button>
+                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                                    type="button">{{trans('general.Cancel')}}</button>
+                                        </div>
 
                                     </div>
 
@@ -163,7 +175,9 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
 
-                                            <h4 class="modal-title" id="myModalLabel22">{{trans('courses/courses.desc_for')}}<span id="d-title"></span></h4>
+                                            <h4 class="modal-title"
+                                                id="myModalLabel22">{{trans('tests/tests.desc_for')}}<span
+                                                    id="d-title"></span></h4>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
@@ -186,9 +200,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 
     @endsection('content')
 
@@ -211,7 +223,7 @@
 
             <!--Internal  Datatable js -->
             <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script src="{{asset('assets/js/admin-pages/courses/list.js')}}"></script>
+            <script src="{{asset('assets/js/admin-pages/questions/list.js')}}"></script>
 
 @endsection
 

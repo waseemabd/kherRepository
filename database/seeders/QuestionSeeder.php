@@ -22,6 +22,7 @@ class QuestionSeeder extends Seeder
             [
 
                 'id' => 1,
+                'title' =>'first',
                 'desc' =>'question 1',
                 'image' =>'',
                 'mark' => 100,
@@ -32,6 +33,7 @@ class QuestionSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'title' =>'second',
                 'desc' =>'question 2',
                 'image' =>'',
                 'mark' => 100,
@@ -42,6 +44,7 @@ class QuestionSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'title' =>'first',
                 'desc' =>'question 3',
                 'image' =>'',
                 'mark' => 100,
@@ -52,6 +55,7 @@ class QuestionSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'title' =>'second',
                 'desc' =>'question 4',
                 'image' =>'',
                 'mark' => 100,

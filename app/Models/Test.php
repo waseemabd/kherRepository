@@ -43,7 +43,7 @@ class Test extends Model
 
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'student_tests','test_id', 'student_id');
+        return $this->belongsToMany(Student::class, 'student_tests','test_id', 'student_id')->withPivot('total_mark');
     }
 
 

@@ -81,8 +81,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive border-top userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" >
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -147,7 +147,7 @@
             </div>
         </div>
 
-
+    </div>
 
 
     @endsection('content')

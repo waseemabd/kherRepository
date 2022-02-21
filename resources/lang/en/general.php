@@ -13,6 +13,8 @@ return [
     'Add' => 'Add',
     'Edit' => 'Edit',
     'Delete' => 'Delete',
+    'Manage' => 'Manage',
+    'View' => 'View',
     'Block' => 'Block',
     'Close' => 'Close',
     'looks_good' => 'Looks good!',
