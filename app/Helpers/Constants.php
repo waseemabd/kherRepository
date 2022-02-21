@@ -81,12 +81,17 @@ class Constants
     const STATUS_EN = "status: ";
     const STATUS_KU = "cî: ";
 
+    const lectureType = [
+        0 => 'unsync',
+        1 => 'sync',
 
-    const product_status = [
-        0 => 'hidden',
-        1 => 'in_review',
-        2 => 'published',
-        3 => 'canceled',
+    ];
+
+    const questionType = [
+        1 => 'text',
+        2 => 'trueFalse',
+        3 => 'options',
+        4 => 'multiChoice',
 
     ];
 }

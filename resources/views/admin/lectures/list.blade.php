@@ -79,8 +79,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive border-top userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -100,7 +100,9 @@
                             @foreach ($lectures as $key => $lecture)
                                 <tr id="row-{{$lecture->id}}">
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $lecture->type }}</td>
+                                    <td>
+                                        {{ trans('lectures/lectures.'.\App\Helpers\Constants::lectureType[$lecture->type])  }}
+                                    </td>
                                     <td>{{ $lecture->title }}</td>
                                     <td>{{ $lecture->course->title }}</td>
                                     <td>
@@ -203,7 +205,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
     @endsection('content')
 

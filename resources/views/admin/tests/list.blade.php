@@ -79,8 +79,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive border-top userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -124,7 +124,7 @@
                                     <td>
 
 
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
                                            href="{{ route('test.edit', $test->id) }}"><i
                                                 class="las la-edit"></i></a>
 
@@ -133,6 +133,16 @@
                                            data-bs-toggle="modal" href="#delete-sub"
                                            title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
+
+                                        <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
+                                           href="{{ route('test.students', $test->id) }}"><i
+                                                class="las la-graduation-cap"></i></a>
+
+
+                                        <a class="btn btn-warning btn-sm" title="{{trans('tests/tests.manage_questions')}}"
+                                           href="{{ route('test.questions', $test->id) }}"><i
+                                                class="las la-tools"></i></a>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -203,7 +213,7 @@
                 </div>
             </div>
         </div>
-
+    </div>
 
     @endsection('content')
 

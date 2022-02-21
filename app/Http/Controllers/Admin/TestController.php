@@ -188,4 +188,37 @@ class TestController extends Controller
             return JsonResponse::respondError($ex->getMessage());
         }
     }
+
+    public function testQuestions($id)
+    {
+        //
+        try {
+
+            $test = $this->testRepository->find($id);
+            $questions = $test->questions;
+//            $qtypes = $this->qu
+            return view('admin.tests.questions', compact('test','questions'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+    public function testStudents($id)
+    {
+        //
+        try {
+
+            $test = $this->testRepository->find($id);
+            $students = $test->students;
+
+            return view('admin.tests.students', compact('test', 'students'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
 }

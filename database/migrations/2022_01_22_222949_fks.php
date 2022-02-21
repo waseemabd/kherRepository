@@ -118,7 +118,7 @@ class Fks extends Migration
 
         Schema::table('options', function (Blueprint $table) {
             // ******************
-            $table->foreignId('question_id')->constrained('questions')->onDelete('cascade');
+            $table->foreignId('question_id')->nullable()->constrained('questions')->nullOnDelete();
 
         });
 

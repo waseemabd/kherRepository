@@ -15,6 +15,8 @@ return [
     'Search..' => 'Search..',
     'User_Updated_Successfully' => 'Manager Updated Successfully',
     'Operation_Failed' => 'Operation Failed!',
+    'delete_warning' => 'Do you want to delete this item?',
+    'option_delete_warning' => 'Do you want to delete this Option?',
 
 
     'New' => 'New',
@@ -45,6 +47,8 @@ return [
     'Lecture_Deleted_Successfully' => 'Lecture Deleted Successfully',
     'Homework_Deleted_Successfully' => 'Homework Deleted Successfully',
     'Test_Deleted_Successfully' => 'Test Deleted Successfully',
+    'Question_Deleted_Successfully' => 'Question Deleted Successfully',
+
     'Title' => 'Title',
     'Choose_one' => 'Choose One',
 

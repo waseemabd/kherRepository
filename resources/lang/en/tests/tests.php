@@ -37,6 +37,21 @@ return [
     'read_more' => 'Read More',
     'desc_for' => 'Description For: ',
 
+    'add_question' => 'Add Question',
+    'manage_questions' => 'Manage Questions',
+    'students' => 'Students',
+    'created_at' => 'Created Date',
+    'text' => 'Text',
+    'trueFalse' => 'True False',
+    'options' => 'Options',
+    'multiChoice' => 'Multi-Choice',
+    'questions' => 'Questions',
+    'test_preview' => 'Test Preview',
+    'students_table' => 'Students Table',
+    'students_table_hint' => 'display all students who do this test and need to correct their answers.',
+    'student_name' => 'Student Name',
+    'student_email' => 'Student Email',
+    'student_mark' => 'Student Mark',
 
 
 
