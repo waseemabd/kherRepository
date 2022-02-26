@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
+use App\Http\IRepositories\IAnswerRepository;
 use App\Http\IRepositories\ICourseRepository;
+use App\Http\IRepositories\IStudentRepository;
 use App\Http\IRepositories\ITestRepository;
 use App\Models\Test;
 use Illuminate\Http\Request;
@@ -16,14 +18,20 @@ class TestController extends Controller
 {
     protected $courseRepository;
     protected $testRepository;
+    protected $studentRepository;
+    protected $answerRepository;
     protected $requestData;
 
 
     public function __construct(ICourseRepository $courseRepository,
-                                ITestRepository $testRepository)
+                                ITestRepository $testRepository,
+                                IStudentRepository $studentRepository,
+                                IAnswerRepository $answerRepository)
     {
         $this->courseRepository = $courseRepository;
         $this->testRepository = $testRepository;
+        $this->studentRepository = $studentRepository;
+        $this->answerRepository = $answerRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:categories');
     }
@@ -220,5 +228,56 @@ class TestController extends Controller
         }
     }
 
+    public function testStudentsAnswers($test_id, $stud_id)
+    {
+        //
+        try {
+
+            $test = $this->testRepository->find($test_id);
+            $student = $this->studentRepository->find($stud_id);
+
+
+
+            return view('admin.tests.studentAnswers', compact('test', 'student'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function correctStudentsAnswers($test_id, $stud_id)
+    {
+        //
+        try {
+
+            $answers_ids = $this->requestData; // key => val, answer_id => mark
+            $test = $this->testRepository->find($test_id);
+
+            $questions = $test->questions;
+
+            $total_mark = 0;
+            foreach ($questions as $question){
+                $student_answer_id = $question->student_answer($stud_id)->id; // get the answer of this question for this student
+
+                $total_mark = $total_mark + $answers_ids[$student_answer_id];
+
+                $data_answer['mark'] = $answers_ids[$student_answer_id];
+                $this->answerRepository->update($data_answer, $student_answer_id);
+            }
+            $updated_test = $test->students()->updateExistingPivot($stud_id, ['total_mark' => $total_mark]);
+
+            if($updated_test){
+                return redirect()->route('test.students', $test_id)->with('message', trans('tests/tests.Mark_Updated_Successfully'));
+
+            }else{
+                return redirect()->route('test.students.answers',[$test_id, $stud_id])->with('error', trans('tests/tests.Mark_NOT_Updated_Successfully'));
+
+            }
+
+        } catch (\Exception $e) {
+            return redirect()->route('test.students.answers',[$test_id, $stud_id])->with('error', $e->getMessage());
+
+        }
+    }
 
 }

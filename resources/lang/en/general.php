@@ -63,4 +63,9 @@ return [
     'canceled' => 'Canceled',
     'Update' => 'Update',
     'delete_category_warning' => 'Do you want to delete this Category, and all its Products?',
+
+    'add_mark' => 'Add Mark',
+
+
+
 ];

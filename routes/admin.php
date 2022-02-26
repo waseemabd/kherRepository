@@ -314,6 +314,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('tests/delete/{id}', [App\Http\Controllers\Admin\TestController::class, 'destroy'])->name('test.destroy');
     Route::get('tests/{id}/questions', [App\Http\Controllers\Admin\TestController::class, 'testQuestions'])->name('test.questions');
     Route::get('tests/{id}/students', [App\Http\Controllers\Admin\TestController::class, 'testStudents'])->name('test.students');
+    Route::get('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'testStudentsAnswers'])->name('test.students.answers');
+    Route::post('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'correctStudentsAnswers'])->name('test.students.correctAnswers');
 
 
 
