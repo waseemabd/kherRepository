@@ -22,7 +22,7 @@
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto"><a href="{{route('test.index')}}">{{trans('tests/tests.tests')}}</a></h4>
                 <span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ <a href="{{route('test.show', $test->id)}}">{{$test->title}}</a>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ <a href="{{route('test.students', $test->id)}}">{{$test->title}}</a>
                 </span>
                 <span
                     class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.questions')}}

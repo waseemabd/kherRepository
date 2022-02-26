@@ -52,6 +52,13 @@ return [
     'student_name' => 'Student Name',
     'student_email' => 'Student Email',
     'student_mark' => 'Student Mark',
+    'test' => 'Test',
+    'student' => 'Student',
+    'student_correct_answer' => 'Correct Answer for Student',
+
+    'Mark_Updated_Successfully' => 'Test Mark Updated Successfully',
+    'Mark_NOT_Updated_Successfully' => 'Couldn\'t Updated the Mark',
+
 
 
 

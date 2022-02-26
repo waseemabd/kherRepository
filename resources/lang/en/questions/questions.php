@@ -4,6 +4,8 @@ return [
 
     'questions' => 'Questions',
     'add_question' => 'Add Question',
+    'edit_question' => 'Edit Question',
+
     'title' => 'Title',
     'plc_title' => 'Enter Title',
     'desc' => 'Description',
@@ -26,8 +28,12 @@ return [
     'Question_Added_Successfully' => 'Question Added Successfully',
     'Question_Updated_Successfully' => 'Question Updated Successfully',
     'remove_image' => 'Remove Image',
-    'option' => 'Option',
-    'option' => 'Option',
+    'true' => 'True',
+    'false' => 'False',
+    'add_answer' => 'Add your Answer...',
+    'student_answer' => 'Student Answer',
+    'total_mark' => 'Total Mark',
+
 
 
 ];

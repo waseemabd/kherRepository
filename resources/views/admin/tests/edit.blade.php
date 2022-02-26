@@ -33,8 +33,13 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('tests/tests.tests')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.edit_test')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('tests/tests.tests')}}</h4>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{$test->title}}
+                </span>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.edit_test')}}
+                </span>
             </div>
         </div>
 

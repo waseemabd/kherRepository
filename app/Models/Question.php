@@ -44,6 +44,12 @@ class Question extends Model
         return $this->hasMany(Answer::class);
     }
 
+    public function student_answer($stud_id)
+    {
+        return $this->hasOne(Answer::class)->where('student_id', $stud_id)->first();
+    }
+
+
     public function options()
     {
         return $this->hasMany(Option::class);
