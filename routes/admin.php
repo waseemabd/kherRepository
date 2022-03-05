@@ -348,6 +348,26 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('questions/update/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'update'])->name('question.update');
     Route::post('questions/delete/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'destroy'])->name('question.destroy');
 
+    Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
+    Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
+    Route::post('tests/store', [App\Http\Controllers\Admin\TestController::class, 'store'])->name('test.store');
+    Route::get('tests/edit/{id}', [App\Http\Controllers\Admin\TestController::class, 'edit'])->name('test.edit');
+    Route::post('tests/update/{id}', [App\Http\Controllers\Admin\TestController::class, 'update'])->name('test.update');
+    Route::get('tests/show/{id}', [App\Http\Controllers\Admin\TestController::class, 'show'])->name('test.show');
+    Route::post('tests/delete/{id}', [App\Http\Controllers\Admin\TestController::class, 'destroy'])->name('test.destroy');
+    Route::get('tests/{id}/questions', [App\Http\Controllers\Admin\TestController::class, 'testQuestions'])->name('test.questions');
+    Route::get('tests/{id}/students', [App\Http\Controllers\Admin\TestController::class, 'testStudents'])->name('test.students');
+    Route::get('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'testStudentsAnswers'])->name('test.students.answers');
+    Route::post('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'correctStudentsAnswers'])->name('test.students.correctAnswers');
+
+
+
+    Route::get('tests/{id}/questions/create', [App\Http\Controllers\Admin\QuestionController::class, 'create'])->name('test.question.create');
+    Route::post('tests/{id}/questions/store', [App\Http\Controllers\Admin\QuestionController::class, 'store'])->name('test.question.store');
+    Route::get('questions/edit/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'edit'])->name('question.edit');
+    Route::post('questions/update/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'update'])->name('question.update');
+    Route::post('questions/delete/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'destroy'])->name('question.destroy');
+
 });
 
 Route::group(['middleware' => 'guest:admin'], function () {
