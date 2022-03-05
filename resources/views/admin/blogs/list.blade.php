@@ -71,10 +71,10 @@
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#delete-sub"
                                        title="{{trans('general.Delete')}}"><span style="color: orangered">Delete</span></a>
-                                    <a  class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                    <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#block-sub"
-                                       title="Block"><span style="color: red">Block</span></a>
+                                       title="Block"><span style="color: red">@if($one->status==1) UnBlock @else Block @endif</span></a>
 
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                     <div class="panel-body border">
 
                                         @foreach($one->comments as $comment)
-                                            <div class="card-body p-4">
+                                            <div id="row-{{$comment->id}}" class="card-body p-4">
                                                 <div class="d-flex flex-start">
                                                     @if($comment->user ===null)
                                                         @if($comment->student->profile->image===null)
@@ -162,11 +162,11 @@
                                                                {{$comment->created_at->diffforhumans()}}
 
                                                             </p>
-{{--                                                            <a href="#!" class="link-muted"--}}
-{{--                                                            ><i class="fas fa-trash ms-2"></i--}}
-{{--                                                                ></a>--}}
-{{--                                                            <a href="#!" class="link-muted"><i class="fas fa-redo-alt ms-2"></i></a>--}}
-{{--                                                            <a href="#!" class="link-muted"><i class="fas fa-heart ms-2"></i></a>--}}
+                                                            <a style="margin-right: 484px" class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                               data-id="{{ $comment->id }}"
+                                                               data-bs-toggle="modal" href="#comment-sub"
+                                                               title="{{trans('general.Delete')}}"><i
+                                                                    class="las la-trash"></i></a>
                                                         </div>
                                                         <p class="mb-0">
                                                             {{$comment->desc}}
@@ -174,6 +174,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <hr class="my-0" />
                                         @endforeach
                                     </div>
@@ -245,38 +246,35 @@
         </div>
     </div>
 
-    <div class="shown-event-ex">
-        <div
-            class="modal fade text-start"
-            id="info-sub"
-            tabindex="-1"
-            aria-labelledby="myModalLabel22"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h4 class="modal-title"
-                            id="myModalLabel22">{{trans('lectures/lectures.desc_for')}}<span
-                                id="d-title"></span></h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
+    <div class="modal" id="comment-sub">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 class="modal-title">{{trans('general.Delete')}}</h6>
+                    <button aria-label="Close" class="close"
+                            data-bs-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
                     <div class="modal-body">
+                        <p>{{trans('general.delete_warning')}} </p><br>
 
-                        {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
-                        <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
-                            id="d-desc"></h4>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
+                        <button class="btn ripple btn-danger" id="comment_btn"
+                                type="submit">{{trans('general.Delete')}}</button>
+                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                type="button">{{trans('general.Cancel')}}</button>
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
+
+
+
 
 @endsection('content')
 
@@ -287,5 +285,6 @@
     <script src="{{asset('assets/js/admin-pages/blog/list.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+
 
 @endsection

@@ -3,7 +3,7 @@
 @section('styles')
 
     <!--- Internal Select2 css-->
-{{--    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">--}}
+    {{--    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/katex.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/monokai-sublime.min.css')}}">
@@ -30,7 +30,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_lecture')}}</span>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.edit_lecture')}}</span>
             </div>
         </div>
 
@@ -42,15 +42,18 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-
-                    <form action="{{route('lecture.store')}}" method="POST"
+                    {{--                    <div class="main-content-label mg-b-5">--}}
+                    {{--                        Required Input Validation--}}
+                    {{--                    </div>--}}
+                    {{--                    <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>--}}
+                    <form action="{{route('lecture.update', $lecture->id)}}" method="POST"
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
                             <div class="col-6">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
+                                    <input class="form-control" name="title" value="{{$lecture->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
                             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
@@ -59,8 +62,8 @@
                                     <option label="{{trans('lectures/lectures.sel_type')}}">
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
-                                    <option value="0">{{trans('lectures/lectures.unsync')}}</option>
-                                    <option value="1">{{trans('lectures/lectures.sync')}}</option>
+                                    <option value="0" {{$lecture->type == 0 ? 'selected': ''}}>{{trans('lectures/lectures.unsync')}}</option>
+                                    <option value="1" {{$lecture->type == 1 ? 'selected': ''}}>{{trans('lectures/lectures.sync')}}</option>
 
                                 </select>
                                 @error('type')
@@ -77,7 +80,7 @@
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
                                     @foreach($courses as $course)
-                                        <option value="{{$course->id}}">
+                                        <option value="{{$course->id}}" {{$lecture->course->id == $course->id ? 'selected': ''}}>
                                             {{$course->title}}
                                         </option>
                                     @endforeach
@@ -90,7 +93,7 @@
                             <div class="col-6" id="link-div" hidden>
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="link" id="link" placeholder="www.example.com" type="text">
+                                    <input class="form-control" name="link" id="link" value="{{$lecture->link}}" placeholder="www.example.com" type="text">
                                 </div>
                             </div>
 
@@ -104,7 +107,7 @@
                                             <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                         </div>
                                     </div>
-                                    <input  class="start_date form-control date-input" id="datetimepicker" name="start_date" type="text" value="{{now()}}">
+                                    <input class="form-control date-input" id="datetimepicker" name="start_date" type="text" value="{{$lecture->start_date}}">
                                 </div>
                             </div>
 
@@ -116,49 +119,12 @@
                                             <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
                                         </div>
                                     </div>
-                                    <input   class="end_date form-control date-input" id="datetimepicker1" name="end_date" type="text" value="{{now()}}">
+                                    <input class="form-control date-input" id="datetimepicker1" name="end_date" type="text" value="{{$lecture->end_date}}">
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                         <div class="row row-sm mt-2">
-                            <div class="col-md-6">
-                            <p class="mg-b-10">students <span class="tx-danger">*</span></p>
-                            <select name="students[]" onclick="console.log($(this).val())"   required="" multiple class="form-control select2">
-                                <option >
-                                </option>
-                                @foreach($students as $student)
-                                    <option value="{{$student->id}}">
-                                        {{$student->getTranslatedName()}}
-                                    </option>
-                                @endforeach
-
-                            </select>
-                            </div>
-                           @if( auth('admin') -> user() ->role != 2)
-                            <div class="col-md-6">
-                                <p class="mg-b-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>
-                                <select id="teacher" name="teacher_id" required="" class="form-control select2">
-                                    <option >
-                                        {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
-                                    </option>
-                                    @foreach($teachers as $one)
-                                        <option value="{{$one->id}}">
-                                            {{$one->name}}
-                                        </option>
-                                    @endforeach
-
-                                </select>
-                                @error('course')
-                                <p class="validation_error">{{ $message }}</p>
-                                @enderror
-                            </div>
-                               @endif
-
-                        </div>
-
-
-                         <div class="row row-sm mt-2">
                             <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label
@@ -168,7 +134,7 @@
                                         <div id="blog-editor-container">
                                             <div class="editor" style="min-height: 200px">
 
-
+                                                {!! $lecture->desc !!}
                                             </div>
                                         </div>
                                     </div>
@@ -176,8 +142,7 @@
                             </div>
 
 
-
-                            <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Add')}}</button></div>
+                            <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Edit')}}</button></div>
                         </div>
                     </form>
                 </div>
@@ -191,7 +156,7 @@
 @section('scripts')
 
     <!--Internal  Select2 js -->
-{{--    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>--}}
+    {{--    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>--}}
 
     <script src="{{asset('assets/js/editors/quill/katex.min.js')}}"></script>
     <script src="{{asset('assets/js/editors/quill/highlight.min.js')}}"></script>
@@ -236,63 +201,7 @@
 
 
 
-    <script src="{{asset('assets/js/admin-pages/lectures/add.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/lectures/edit.js')}}"></script>
 
-    <script>
-        $(document).ready(function() {
-            $('select[name="students[]"]').on('change', function() {
 
-                var formData = new FormData()
-                var id = $(this).val();
-                var start_date=document.getElementsByClassName('start_date')[0].value;
-                var end_date=document.getElementsByClassName('end_date')[0].value;
-                if (id) {
-                    $.ajax({
-                        url: "{{ URL::to('admin/schedule/validate/student') }}/"+id ,
-                        type: "GET",
-                        dataType: "json",
-                        data: {
-                            id,start_date,end_date
-                        },
-                        success: function(data) {
-                            if(data.status==2)
-                            {
-                                alert(data.data)
-                            }
-                        },
-                    });
-
-                } else {
-                    console.log('AJAX load did not work');
-                }
-            });
-
-            $('select[name="teacher"]').on('change', function() {
-
-                var formData = new FormData()
-                var id = $(this).val();
-                if (id) {
-                    $.ajax({
-                        url: "{{ URL::to('admin/schedule/validate/teacher') }}/"+id ,
-                        type: "GET",
-                        dataType: "json",
-                        data: {
-                            id,start_date,end_date
-                        },
-                        success: function(data) {
-                            if(data.status==2)
-                            {
-                                alert(data.data)
-                            }
-                        },
-                    });
-
-                } else {
-                    console.log('AJAX load did not work');
-                }
-            });
-
-        });
-
-    </script>
 @endsection

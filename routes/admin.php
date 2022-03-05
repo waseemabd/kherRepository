@@ -273,8 +273,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('lectures/edit/{id}', [App\Http\Controllers\Admin\LectureController::class, 'edit'])->name('lecture.edit');
     Route::post('lectures/update/{id}', [App\Http\Controllers\Admin\LectureController::class, 'update'])->name('lecture.update');
     Route::post('lectures/delete/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy'])->name('lecture.destroy');
-
+    Route::get('lectures/add_files/{id}', [App\Http\Controllers\Admin\LectureController::class, 'add_files'])->name('lecture.add_files');
+    Route::post('lectures/Attachments', [App\Http\Controllers\Admin\LectureController::class, 'attachments'])->name('lecture.Attachments');
+    Route::get('lectures/download/{path}/{file_name}', [App\Http\Controllers\Admin\LectureController::class, 'get_file'])->name('lecture.download');
+    Route::get('lectures/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\LectureController::class, 'open_file'])->name('lecture.View_file');
+    Route::post('lectures/delete_file/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy_file'])->name('lecture.delete_file');
     Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
+
+
+    ///schedule/////
+    Route::get('schedules', [App\Http\Controllers\Admin\ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('schedule/create', [App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('schedule.create');
+    Route::get('schedule/store', [App\Http\Controllers\Admin\ScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('schedule/edit/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'edit'])->name('schedule.edit');
+    Route::post('schedule/update/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'update'])->name('schedule.update');
+
+    Route::get('schedule/validate/student/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDate'])->name('lecture.validate.student');
+    Route::get('schedule/validate/teacher/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDateTeacher'])->name('lecture.validate.teacher');
 
 
     //teachers///
@@ -304,6 +319,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blog.update');
     Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
     Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
+    Route::post('blog/delete_comment/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_comment'])->name('blog.delete_comment');
 
 });
 

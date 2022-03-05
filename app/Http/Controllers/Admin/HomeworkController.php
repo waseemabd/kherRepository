@@ -111,7 +111,7 @@ class HomeworkController extends Controller
 
     {
         try {
-        $contents= Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
+        $contents= Storage::disk('public_uploads_homework')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
         return response()->download( $contents);
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
@@ -122,7 +122,7 @@ class HomeworkController extends Controller
 
     {
         try {
-            $files = Storage::disk('public_uploads')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
+            $files = Storage::disk('public_uploads_homework')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
             return response()->file($files);
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
@@ -135,7 +135,7 @@ class HomeworkController extends Controller
             $file_name=$attachment->name;
             $path=$attachment->path;
             $attachment->delete();
-            Storage::disk('public_uploads')->delete($file_name.'/'.$path);
+            Storage::disk('public_uploads_homework')->delete($file_name.'/'.$path);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
 
         } catch (\Exception $ex) {

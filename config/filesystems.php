@@ -35,9 +35,13 @@ return [
             'root' => storage_path('app'),
         ],
 
-        'public_uploads' => [
+        'public_uploads_homework' => [
             'driver' => 'local',
             'root'   => public_path() . '/Homework',
+        ],
+        'public_uploads_lectures' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/Lecture',
         ],
 
         'public_uploads' => [
