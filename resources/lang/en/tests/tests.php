@@ -2,6 +2,7 @@
 
 return [
 
+
     'tests' => 'tests',
     'add_test' => 'Add test',
     'edit_test' => 'Edit test',
@@ -58,7 +59,6 @@ return [
 
     'Mark_Updated_Successfully' => 'Test Mark Updated Successfully',
     'Mark_NOT_Updated_Successfully' => 'Couldn\'t Updated the Mark',
-
 
 
 

@@ -42,7 +42,7 @@ return [
     'questions' => 'Questions',
     'survey_preview' => 'Survey Preview',
     'students_table' => 'Students Table',
-    'students_table_hint' => 'display all students who do this test and need to correct their answers.',
+    'students_table_hint' => 'display all students who do this Survey.',
     'student_name' => 'Student Name',
     'student_email' => 'Student Email',
     'student_mark' => 'Student Mark',
