@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
 use App\Models\Lecture;
+use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class LectureController extends Controller
+class ScheduleController extends Controller
 {
     protected $courseRepository;
     protected $lectureRepository;
@@ -63,10 +64,10 @@ class LectureController extends Controller
         //
         try {
 
-            $courses = $this->courseRepository->all();
+
             $students=Student::all();
             $teachers=user::where('role',2)->get();
-            return view('admin.lectures.add', compact('courses','students','teachers'));
+            return view('admin.schedules.add', compact('students','teachers'));
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -171,10 +172,10 @@ class LectureController extends Controller
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Updated_Successfully'));
 
             }
-            return redirect()->route('lecture.edit', $id)->with('error', trans('general.Operation_Failed'));
+            return redirect()->route('lecture.edit')->with('error', trans('general.Operation_Failed'));
 
         } catch (\Exception $e) {
-            return redirect()->route('lecture.edit', $id)->with('error', $e->getMessage());
+            return redirect()->route('lecture.edit')->with('error', $e->getMessage());
 
         }
     }
@@ -198,138 +199,26 @@ class LectureController extends Controller
     }
 
 
-    public function attachments(Request $request)
-    {
-        try {
-
-            $image = $request->file('file');
-            $file_name = $image->getClientOriginalName();
-            $attachment = new File();
-            $attachment->path = $file_name;
-            $attachment->lecture_id = $request->lecture_id;
-            $attachment->name = $request->name;
-            $attachment->type = 0;
-            $attachment->save();
-            // move pic
-            $imageName = $request->file->getClientOriginalName();
-            $request->file->move(public_path('Lecture/' . $request->name), $imageName);
-            $attachments = File::where('lecture_id', $request->lecture_id)->get();
-            $view = view('admin.lectures._showlist')->with(['attachments' => $attachments, 'id' => $request->lecture_id])
-                ->renderSections();
-
-            return response()->json([
-                'status' => true,
-                'content' => $view['main']
-            ]);
-
-
-        } catch (\Exception $ex) {
-            return JsonResponse::respondError($ex->getMessage());
-        }
-
-    }
-
-    public function uploadFile(Request $request)
-    {
-        //
-        try {
-
-
-            if($request->hasFile('files')){
-
-                $file = $request->file('files');
-                $filename = 'lecture_'.time() . '_' . $file->getClientOriginalName();
-                // File upload location
-                $location = public_path('files/lectures/');
-
-                // Upload file
-                $file->move($location, $filename);
-                $path = '/files/lectures/' . $filename;
-
-                return json_encode($path);;
-
-            }
-            return  json_encode(false);
-//            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
-            return json_encode($ex->getMessage());
-        }
-    }
-
-    public function add_files(Request $request,$id)
-    {
-        try {
-            $lecture=Lecture::find($id);
-            $attachments=File::where('lecture_id',$lecture->id)->get();
-            return view('admin.lectures.add_files',compact('attachments','lecture'));
-
-        } catch (\Exception $ex) {
-            return JsonResponse::respondError($ex->getMessage());
-        }
-
-
-    }
-
-    public function get_file($path,$file_name)
-
-    {
-        try {
-            $contents= Storage::disk('public_uploads_lectures')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
-            return response()->download( $contents);
-        } catch (\Exception $ex) {
-            return JsonResponse::respondError($ex->getMessage());
-        }
-    }
-
-    public function open_file($path,$file_name)
-
-    {
-        try {
-            $files = Storage::disk('public_uploads_lectures')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
-            return response()->file($files);
-        } catch (\Exception $ex) {
-            return JsonResponse::respondError($ex->getMessage());
-        }
-    }
-    public function destroy_file(Request $request,$id)
-    {
-        try {
-            $attachment = File::findOrFail($id);
-            $file_name=$attachment->name;
-            $path=$attachment->path;
-            $attachment->delete();
-            Storage::disk('public_uploads_lectures')->delete($file_name.'/'.$path);
-            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-
-        } catch (\Exception $ex) {
-            return JsonResponse::respondError($ex->getMessage());
-        }
-
-
-    }
 
     public function validateDate(Request $request,$id)
     {
         try {
-//             return response()->json([
-//                 'status'=>true,
-//                 'data'=>$id
-//             ]);
+
             $student=Student::find($id);
 
-             if($student->lectures->isEmpty())
+             if($student->schedules->isEmpty())
              {
                  $data='success';
                  $status=1;
              }
              else
              {
-                 $lectures_student=$student->lectures;
+                 $schedules_student=$student->schedules;
                  $start_at = date($request->start_date);
                  $end_at = date($request->end_date);
-                 foreach ($lectures_student as $one)
+                 foreach ($schedules_student as $one)
                  {
-                     $student = Lecture::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
+                     $student = Schedule::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
                          ->whereBetween('end_date',[$start_at,$end_at])
                          ->pluck('id');
                  }
@@ -339,7 +228,7 @@ class LectureController extends Controller
                      $status=1;
                  }
                  else{
-                     $data='this student has lecture in this date';
+                     $data='this student has schedule in this date';
                      $status=2;
                  }
 
@@ -364,13 +253,11 @@ class LectureController extends Controller
     public function validateDateTeacher(Request $request,$id)
     {
         try {
-//             return response()->json([
-//                 'status'=>true,
-//                 'data'=>$id
-//             ]);
+
             $teacher=User::find($id);
-            if($teacher->lectures->isEmpty())
+            if($teacher->schedules->isEmpty())
             {
+
                 $data='success';
                 $status=1;
             }
@@ -378,21 +265,23 @@ class LectureController extends Controller
             {
                 $start_at = date($request->start_date);
                 $end_at = date($request->end_date);
-                foreach ($teacher->lectures as $one)
+                foreach ($teacher->schedules as $one)
                 {
-                    $student = Lecture::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
+                    $teacher = Schedule::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
                         ->whereBetween('end_date',[$start_at,$end_at])
                         ->pluck('id');
                 }
-                if($student->isEmpty())
+                if($teacher->isEmpty())
                 {
                     $data='success';
                     $status=1;
                 }
                 else{
-                    $data='this student has lecture in this date';
+                    $data='this teacher has schedule in this date';
                     $status=2;
                 }
+
+
             }
             return response()->json([
                 'status'=>$status,

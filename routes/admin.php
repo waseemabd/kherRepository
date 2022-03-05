@@ -273,8 +273,30 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('lectures/edit/{id}', [App\Http\Controllers\Admin\LectureController::class, 'edit'])->name('lecture.edit');
     Route::post('lectures/update/{id}', [App\Http\Controllers\Admin\LectureController::class, 'update'])->name('lecture.update');
     Route::post('lectures/delete/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy'])->name('lecture.destroy');
-
+    Route::get('lectures/add_files/{id}', [App\Http\Controllers\Admin\LectureController::class, 'add_files'])->name('lecture.add_files');
+    Route::post('lectures/Attachments', [App\Http\Controllers\Admin\LectureController::class, 'attachments'])->name('lecture.Attachments');
+    Route::get('lectures/download/{path}/{file_name}', [App\Http\Controllers\Admin\LectureController::class, 'get_file'])->name('lecture.download');
+    Route::get('lectures/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\LectureController::class, 'open_file'])->name('lecture.View_file');
+    Route::post('lectures/delete_file/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy_file'])->name('lecture.delete_file');
     Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
+
+    Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
+    Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
+    Route::post('tests/store', [App\Http\Controllers\Admin\TestController::class, 'store'])->name('test.store');
+    Route::get('tests/edit/{id}', [App\Http\Controllers\Admin\TestController::class, 'edit'])->name('test.edit');
+    Route::post('tests/update/{id}', [App\Http\Controllers\Admin\TestController::class, 'update'])->name('test.update');
+    Route::post('tests/delete/{id}', [App\Http\Controllers\Admin\TestController::class, 'destroy'])->name('test.destroy');
+
+
+    ///schedule/////
+    Route::get('schedules', [App\Http\Controllers\Admin\ScheduleController::class, 'index'])->name('schedule.index');
+    Route::get('schedule/create', [App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('schedule.create');
+    Route::get('schedule/store', [App\Http\Controllers\Admin\ScheduleController::class, 'store'])->name('schedule.store');
+    Route::get('schedule/edit/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'edit'])->name('schedule.edit');
+    Route::post('schedule/update/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'update'])->name('schedule.update');
+
+    Route::get('schedule/validate/student/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDate'])->name('lecture.validate.student');
+    Route::get('schedule/validate/teacher/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDateTeacher'])->name('lecture.validate.teacher');
 
 
     //teachers///
@@ -304,6 +326,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blog.update');
     Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
     Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
+    Route::post('blog/delete_comment/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_comment'])->name('blog.delete_comment');
+
+    Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
+    Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
+    Route::post('tests/store', [App\Http\Controllers\Admin\TestController::class, 'store'])->name('test.store');
+    Route::get('tests/edit/{id}', [App\Http\Controllers\Admin\TestController::class, 'edit'])->name('test.edit');
+    Route::post('tests/update/{id}', [App\Http\Controllers\Admin\TestController::class, 'update'])->name('test.update');
+    Route::get('tests/show/{id}', [App\Http\Controllers\Admin\TestController::class, 'show'])->name('test.show');
+    Route::post('tests/delete/{id}', [App\Http\Controllers\Admin\TestController::class, 'destroy'])->name('test.destroy');
+    Route::get('tests/{id}/questions', [App\Http\Controllers\Admin\TestController::class, 'testQuestions'])->name('test.questions');
+    Route::get('tests/{id}/students', [App\Http\Controllers\Admin\TestController::class, 'testStudents'])->name('test.students');
+    Route::get('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'testStudentsAnswers'])->name('test.students.answers');
+    Route::post('tests/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\TestController::class, 'correctStudentsAnswers'])->name('test.students.correctAnswers');
+
+
+
+    Route::get('tests/{id}/questions/create', [App\Http\Controllers\Admin\QuestionController::class, 'create'])->name('test.question.create');
+    Route::post('tests/{id}/questions/store', [App\Http\Controllers\Admin\QuestionController::class, 'store'])->name('test.question.store');
+    Route::get('questions/edit/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'edit'])->name('question.edit');
+    Route::post('questions/update/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'update'])->name('question.update');
+    Route::post('questions/delete/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'destroy'])->name('question.destroy');
 
     ///test///
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');

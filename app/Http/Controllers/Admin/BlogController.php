@@ -6,6 +6,7 @@ use App\Helpers\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IBlogRepository;
 use App\Models\Blog;
+use App\Models\Comment;
 use App\Models\File;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -58,6 +59,7 @@ class BlogController extends Controller
 
     public function block($id)
     {
+
         try {
             $blog=Blog::find($id);
            if($blog->status ==1)
@@ -67,6 +69,9 @@ class BlogController extends Controller
            }else
                $blog->status=1;
                $blog->save();
+
+
+
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
@@ -115,4 +120,21 @@ class BlogController extends Controller
 
 
     }
+
+    public function destroy_comment(Request $request,$id)
+    {
+//        return  response()->json(['data'=>$id]);
+        try {
+            $comment = Comment::findOrFail($id);
+            $comment->delete();
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+
 }
