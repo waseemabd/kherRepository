@@ -13,11 +13,14 @@ class Survey extends Model
         'title',
         'desc',
         'status',
+        'user_id',
+        'course_id'
     ];
     public  const create_update_rules = [
 
         'desc' => 'required',
         'title' => 'required',
+        'user_id'=> 'required',
 
     ];
 

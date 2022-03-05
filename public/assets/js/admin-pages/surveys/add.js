@@ -92,11 +92,31 @@
 
     });
 
-    $('#test_form').on('submit', function () {
+    $('#survey_form').on('submit', function () {
         $('#desc').val(blogEditor.container.firstChild.innerHTML);
     });
 
-    $('#datetimepicker').datetimepicker();
+    setDisplay(0);
 
 
+    $("#type").on('change', function (e) {
+
+        var selected_val = $("#type").val();
+
+        // console.log(selected_val);
+        setDisplay(selected_val);
+    });
+
+    function setDisplay(selected_val){
+
+        if(selected_val == 1){
+            $('#course_div').attr('hidden', false);
+            $('#course_sel').attr('required', true);
+
+        }else{
+            $('#course_div').attr('hidden', true);
+            $('#course_sel').attr('required', false);
+
+        }
+    }
 })(window, document, jQuery);

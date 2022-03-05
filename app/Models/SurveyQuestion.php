@@ -34,6 +34,11 @@ class SurveyQuestion extends Model
 
     }
 
+    public function survey_student_answer($stud_id)
+    {
+        return $this->hasOne(SurveyAnswer::class)->where('student_id', $stud_id)->first();
+    }
+
     public function SurveyAnswers()
     {
         return $this->hasMany(SurveyAnswer::class);

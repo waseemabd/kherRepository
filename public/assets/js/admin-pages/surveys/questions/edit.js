@@ -92,11 +92,50 @@
 
     });
 
-    $('#test_form').on('submit', function () {
+    $('#question_form').on('submit', function () {
         $('#desc').val(blogEditor.container.firstChild.innerHTML);
     });
 
-    $('#datetimepicker').datetimepicker();
+    var selected_value = $("#type").val();
+    setDisplay(selected_value);
+
+
+    $("#type").on('change', function (e) {
+
+        var selected_val = $("#type").val();
+
+        // console.log(selected_val);
+        setDisplay(selected_val);
+    });
+
+    function setDisplay(selected_val){
+
+        if(selected_val == 3 || selected_val == 4){
+            $('#option_div').attr('hidden', false);
+            $('#itemname').attr('required', true);
+
+        }else{
+            $('#option_div').attr('hidden', true);
+            $('#itemname').attr('required', false);
+
+        }
+    }
+
+    $('.invoice-repeater, .repeater-default').repeater({
+        show: function () {
+            $(this).slideDown();
+            // Feather Icons
+            if (feather) {
+                feather.replace({width: 14, height: 14});
+            }
+        },
+        hide: function (deleteElement) {
+            if (confirm(Lang.get('js_local.option_delete_warning'))) {
+                $(this).slideUp(deleteElement);
+            }
+        }
+    });
+
 
 
 })(window, document, jQuery);

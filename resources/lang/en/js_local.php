@@ -48,6 +48,7 @@ return [
     'Homework_Deleted_Successfully' => 'Homework Deleted Successfully',
     'Test_Deleted_Successfully' => 'Test Deleted Successfully',
     'Question_Deleted_Successfully' => 'Question Deleted Successfully',
+    'Survey_Deleted_Successfully' => 'Survey Deleted Successfully',
 
     'Title' => 'Title',
     'Choose_one' => 'Choose One',
