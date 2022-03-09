@@ -36,14 +36,14 @@
                           id="course_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12 mt-5">
                                 <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('courses/courses.title')}}: <span class="tx-danger">*</span></label>
+                                    <label class="form-label fz-13">{{trans('courses/courses.title')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="title" placeholder="{{trans('courses/courses.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
                             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                <p class="mg-b-10">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
+                                <p class="mg-b-10 fz-13">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
                                 <select name="diploma" required="" class="form-control select2">
                                     <option >
 {{--                                        {{trans('courses/courses.sel_diploma')}}--}}

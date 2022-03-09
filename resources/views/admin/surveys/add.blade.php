@@ -46,13 +46,14 @@
                           id="survey_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-sm-12 col-md-12 col-lg-12 ">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('surveys/surveys.title')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="title" placeholder="{{trans('surveys/surveys.plc_title')}}" required="" type="text">
+                                    <input class="form-control mt-10" name="title" placeholder="{{trans('surveys/surveys.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            
+                            <div class=" col-sm-12 col-md-12 col-lg-12  mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('surveys/surveys.type')}} <span class="tx-danger">*</span></p>
                                 <select name="type" id="type" required="" class="form-control select2">
                                     <option></option>
@@ -72,8 +73,9 @@
                         </div>
 
                         <div class="row row-sm mt-2" id="course_div">
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            <div class=" col-sm-12 col-md-12 col-lg-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('surveys/surveys.course')}} <span class="tx-danger">*</span></p>
+                              
                                 <select name="course" id="course_sel" class="form-control select2">
                                     <option >
                                         {{--                                        {{trans('surveys/surveys.sel_diploma')}}--}}
@@ -83,11 +85,11 @@
                                             {{$course->title}}
                                         </option>
                                     @endforeach
-
-                                </select>
-                                @error('course')
+                                    @error('course')
                                 <p class="validation_error">{{ $message }}</p>
                                 @enderror
+                                </select>
+                               
                             </div><!-- col-4 -->
 
                         </div>

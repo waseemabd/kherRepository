@@ -45,8 +45,8 @@
             <div class="breadcrumb-header justify-content-between">
                 <div class="my-auto">
                     <div class="d-flex">
-                        <h4 class="content-title mb-0 my-auto">Users</h4><span
-                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ Users Menu</span>
+                        <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
+                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Users/user.users menu')}}</span>
                     </div>
                 </div>
 
@@ -54,9 +54,9 @@
 
         <div class="card">
             <div class="card-body">
-                <div class="col-lg-12 margin-tb">
+                <div class="col-lg-12 margin-tb p-0">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{trans('Users/user.Back')}}</a>
                     </div>
                 </div><br>
                 <form class="parsley-style-1" id="selectForm2" autocomplete="off" name="selectForm2"
@@ -66,14 +66,14 @@
                     <div class="">
 
                         <div class="row mg-b-20">
-                            <div class="parsley-input col-md-6" id="fnWrapper">
-                                <label>user name: <span class="tx-danger">*</span></label>
+                            <div class="parsley-input col-md-12 col-lg-6" id="fnWrapper">
+                                <label>{{trans('Users/user.user name')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
                                     data-parsley-class-handler="#lnWrapper"  name="name" required="" type="text">
                             </div>
 
-                            <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                                <label>email: <span class="tx-danger">*</span></label>
+                            <div class="parsley-input col-md-12 col-lg-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                                <label>{{trans('Users/user.email')}}: <span class="tx-danger">*</span></label>
                                 <input class="form-control form-control-sm mg-b-20"
                                     data-parsley-class-handler="#lnWrapper" name="email" required="" type="email">
                             </div>
@@ -82,44 +82,45 @@
                     </div>
 
                     <div class="row mg-b-20">
-                        <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>passowrd: <span class="tx-danger">*</span></label>
+                        <div class="parsley-input col-md-12 col-lg-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                            <label>{{trans('Users/user.passowrd')}}: <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="password" required="" type="password">
                         </div>
 
-                        <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label> confirm password: <span class="tx-danger">*</span></label>
+                        <div class="parsley-input col-md-12 col-lg-6 mg-t-20 mg-md-t-0" id="lnWrapper">
+                            <label>{{trans('Users/user.confirm password')}} : <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="confirm-password" required="" type="password">
                         </div>
                     </div>
 
-                    <div class="row row-sm mg-b-20">
-                        <div class="col-lg-6">
-                            <label class="form-label">status</label>
-                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select">
-                                <option value="1">Active</option>
-                                <option value="0">Inactive</option>
+                    <div class="row row-sm ">
+                        <div class="col-lg-6 col-md-12">
+                            <label class="form-label">{{trans('Users/user.status')}}</label>
+                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select mg-b-30">
+                                <option value="1">{{trans('Users/user.Active')}}</option>
+                                <option value="0">{{trans('Users/user.Inactive')}}</option>
                             </select>
                         </div>
-                    </div>
-
-                    <div class="row mg-b-20">
-                        <div class="col-xs-12 col-md-12">
+                        <div class="col-xs-12 col-md-12 col-lg-6 ">
                             <div class="form-group">
-                                <label class="form-label"> user role</label>
+                                <label class="form-label ">{{trans('Users/user.user role')}}</label>
                                 {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple')) !!}
                             </div>
                         </div>
                     </div>
 
+                    <!-- <div class="row mg-b-20">
+                      
+                    </div> -->
 
 
 
 
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button class="btn btn-main-primary pd-x-20" type="submit">Add</button>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center ">
+                        <button class="btn btn-main-primary pd-x-20 btn-right" type="submit">{{trans('Users/user.Add')}}</button>
                     </div>
                 </form>
             </div>

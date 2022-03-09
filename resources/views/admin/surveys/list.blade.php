@@ -72,8 +72,8 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm"
+                    <div class="d-flex justify-content-between fz-13">
+                        <a class="btn btn-primary btn-sm fz-13"
                            href="{{ route('survey.create') }}">{{trans('general.Add')}}</a>
                     </div>
 
@@ -84,12 +84,12 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('surveys/surveys.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('surveys/surveys.course')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('surveys/surveys.desc')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('surveys/surveys.createdBy')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('surveys/surveys.date')}}</th>
-                                <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
+                                <th class="wd-15p border-bottom-0 fz-13">{{trans('surveys/surveys.title')}}</th>
+                                <th class="wd-15p border-bottom-0 fz-13">{{trans('surveys/surveys.course')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('surveys/surveys.desc')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('surveys/surveys.createdBy')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('surveys/surveys.date')}}</th>
+                                <th class="wd-10p border-bottom-0 fz-13">{{trans('general.Actions')}}</th>
 
                             </tr>
                             </thead>

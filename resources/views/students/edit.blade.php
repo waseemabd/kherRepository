@@ -37,8 +37,8 @@
             <div class="breadcrumb-header justify-content-between">
                 <div class="my-auto">
                     <div class="d-flex">
-                        <h4 class="content-title mb-0 my-auto">Students</h4><span
-                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ Students Menu</span>
+                        <h4 class="content-title mb-0 my-auto">{{trans('students/students.Students')}}</h4><span
+                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('students/students.Students Menu')}}</span>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}">رجوع</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('students.index') }}">{{trans('students/students.Back')}}</a>
                     </div>
                 </div><br>
 
@@ -58,23 +58,23 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>Arabic Name: <span class="tx-danger">*</span></label>
+                            <label>{{trans('students/students.Arabic Name')}}: <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_ar}}"  name="username" required="" type="text">
                         </div>
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>English name: <span class="tx-danger">*</span></label>
+                            <label>{{trans('students/students.English name')}}: <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_en}}"  name="name_en" required="" type="text">
                         </div>
 
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>user name: <span class="tx-danger">*</span></label>
+                            <label>{{trans('students/students.user name')}}: <span class="tx-danger">*</span></label>
                             {!! Form::text('username', null, array('class' => 'form-control','required')) !!}
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>email: <span class="tx-danger">*</span></label>
+                            <label>{{trans('students/students.email')}}: <span class="tx-danger">*</span></label>
                             {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
                         </div>
                     </div>
@@ -83,19 +83,19 @@
 
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>password: <span class="tx-danger">*</span></label>
+                        <label>{{trans('students/students.password')}}: <span class="tx-danger">*</span></label>
                         {!! Form::password('password', array('class' => 'form-control',)) !!}
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>confirm password: <span class="tx-danger">*</span></label>
+                        <label>{{trans('students/students.confirm password')}}: <span class="tx-danger">*</span></label>
                         {!! Form::password('confirm-password', array('class' => 'form-control',)) !!}
                     </div>
                 </div>
 
                 <div class="row row-sm mg-b-20">
                     <div class="col-lg-6">
-                        <label class="form-label">certificate</label>
+                        <label class="form-label">{{trans('students/students.certificate')}}</label>
                         <select name="certificate_id" id="select-beast" class="form-control  nice-select  custom-select">
                             @foreach($certificate as $one)
                                 <option value="{{$one->id}}" @if($student->certificate_id==$one->id) selected @endif >{{$one->getTranslatedName()}}</option>
@@ -106,17 +106,17 @@
 
                 <div class="row row-sm mg-b-20">
                     <div class="col-lg-6">
-                        <label class="form-label">status</label>
+                        <label class="form-label">{{trans('students/students.status')}}</label>
                         <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                            <option value="0" @if($student->status==0) selected @endif>Inactive</option>
-                            <option value="1" @if($student->status==1) selected @endif>Active</option>
+                            <option value="0" @if($student->status==0) selected @endif>{{trans('students/students.Inactive')}}</option>
+                            <option value="1" @if($student->status==1) selected @endif>{{trans('students/students.Active')}}</option>
                         </select>
                     </div>
                 </div>
 
 
                 <div class="mg-t-30">
-                    <button class="btn btn-main-primary pd-x-20" type="submit">update</button>
+                    <button class="btn btn-main-primary pd-x-20" type="submit">{{trans('students/students.update')}}</button>
                 </div>
                 {!! Form::close() !!}
             </div>

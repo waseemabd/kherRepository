@@ -21,8 +21,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <a href="{{route('roles.index')}}" class="content-title mb-0 my-auto">Roles</a><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Roles Menu</span>
+                <a href="{{route('roles.index')}}" class="content-title mb-0 my-auto">{{trans('role/role.Roles')}}</a><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('role/role.Roles Menu')}} </span>
             </div>
         </div>
 
@@ -73,8 +73,8 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('role.create') }}">Add Role</a>
+                    <div class="d-flex justify-content-between ">
+                        <a class="btn btn-primary btn-sm mr-10" href="{{ route('role.create') }}">{{trans('role/role.Add Role')}}</a>
                     </div>
 
                 </div>
@@ -84,8 +84,8 @@
                             <thead>
                             <tr>
                                 <th  >#</th>
-                                <th >name</th>
-                                <th >methods</th>
+                                <th >{{trans('role/role.name')}}</th>
+                                <th >{{trans('role/role.methods')}}</th>
 
                             </tr>
                             </thead>
@@ -112,7 +112,7 @@
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content modal-content-demo">
                                                 <div class="modal-header">
-                                                    <h6 class="modal-title">Delete Role</h6><button aria-label="Close" class="close"
+                                                    <h6 class="modal-title">{{trans('role/role.Delete Role')}}</h6><button aria-label="Close" class="close"
                                                                                                     data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body">
@@ -120,14 +120,14 @@
                                                         {{ method_field('post') }}
                                                         @csrf
                                                         <div class="modal-body">
-                                                            <p>? Do Yoy Want to Delete This Role </p><br>
+                                                            <p>?{{trans('role/role.Do Yoy Want to Delete This Role')}}  </p><br>
 
                                                             <input class="form-control" hidden name="role_id" value="{{$role->name}}" id="role_id" type="text" readonly>
 
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                            <button class="btn ripple btn-primary" type="submit">{{trans('role/role.Delete')}}</button>
+                                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('role/role.Close')}}</button>
                                                         </div>
 
 
