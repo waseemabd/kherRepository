@@ -63,7 +63,7 @@
     },
     "config": {
         "github-oauth": {
-            "github.com": "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"
+
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",

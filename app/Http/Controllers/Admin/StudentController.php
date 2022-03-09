@@ -41,7 +41,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $user = $this->studentRepository->showStudet($id);
-        return view('users.show',compact('user'));
+        return view('students.show',compact('user'));
     }
 
     public function edit($id)
