@@ -96,12 +96,7 @@
         $('#desc').val(blogEditor.container.firstChild.innerHTML);
     });
 
-
-
-
     $('#datetimepicker').datetimepicker();
-
-    a
 
 
 })(window, document, jQuery);

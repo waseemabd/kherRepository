@@ -24,6 +24,10 @@ use App\Http\IRepositories\ISettingImageRepository;
 use App\Http\IRepositories\ISettingRepository;
 use App\Http\IRepositories\IStudentFileRepository;
 use App\Http\IRepositories\IStudentRepository;
+use App\Http\IRepositories\ISurveyAnswerRepository;
+use App\Http\IRepositories\ISurveyOptionRepository;
+use App\Http\IRepositories\ISurveyQuestionRepository;
+use App\Http\IRepositories\ISurveyRepository;
 use App\Http\IRepositories\ITeacherRepository;
 use App\Http\IRepositories\ITestRepository;
 use App\Http\IRepositories\IUserRepository;
@@ -49,6 +53,10 @@ use App\Http\Repository\SettingImageRepository;
 use App\Http\Repository\SettingRepository;
 use App\Http\Repository\StudentFileRepository;
 use App\Http\Repository\StudentRepository;
+use App\Http\Repository\SurveyAnswerRepository;
+use App\Http\Repository\SurveyOptionRepository;
+use App\Http\Repository\SurveyQuestionRepository;
+use App\Http\Repository\SurveyRepository;
 use App\Http\Repository\TeacherRepository;
 use App\Http\Repository\TestRepository;
 use App\Http\Repository\UserRepository;
@@ -90,6 +98,10 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(IRoleRepository::class, RoleRepository::class);
         $this->app->bind(ILoginRepository::class, LoginRepository::class);
         $this->app->bind(ITeacherRepository::class, TeacherRepository::class);
+        $this->app->bind(ISurveyRepository::class, SurveyRepository::class);
+        $this->app->bind(ISurveyQuestionRepository::class, SurveyQuestionRepository::class);
+        $this->app->bind(ISurveyAnswerRepository::class, SurveyAnswerRepository::class);
+        $this->app->bind(ISurveyOptionRepository::class, SurveyOptionRepository::class);
     }
 
     /**

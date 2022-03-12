@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Support\Facades\Auth;
 use Closure;
+use Illuminate\Support\Facades\Auth;
+
 class Authenticate extends Middleware
 {
     /**
@@ -20,9 +21,9 @@ class Authenticate extends Middleware
 //        }
 //    }
 
-    public function handle($request, Closure $next, $guard = 'web')
+   public function handle($request, Closure $next, ...$guard )
     {
-
+        $guard = 'web';
 
         if (Auth::guard($guard)->guest()) {
             switch ($guard) {

@@ -221,7 +221,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
     Route::post('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
     Route::post('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
-    Route::post('user/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
+    Route::get('user/show/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
 
     Route::get('roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('role/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('role.create');
@@ -349,6 +349,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('questions/update/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'update'])->name('question.update');
     Route::post('questions/delete/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'destroy'])->name('question.destroy');
 
+    ///test///
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
     Route::post('tests/store', [App\Http\Controllers\Admin\TestController::class, 'store'])->name('test.store');
@@ -368,6 +369,27 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('questions/edit/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'edit'])->name('question.edit');
     Route::post('questions/update/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'update'])->name('question.update');
     Route::post('questions/delete/{id}', [App\Http\Controllers\Admin\QuestionController::class, 'destroy'])->name('question.destroy');
+
+
+    Route::get('surveys', [App\Http\Controllers\Admin\SurveyController::class, 'index'])->name('survey.index');
+    Route::get('surveys/create', [App\Http\Controllers\Admin\SurveyController::class, 'create'])->name('survey.create');
+    Route::post('surveys/store', [App\Http\Controllers\Admin\SurveyController::class, 'store'])->name('survey.store');
+    Route::get('surveys/edit/{id}', [App\Http\Controllers\Admin\SurveyController::class, 'edit'])->name('survey.edit');
+    Route::post('surveys/update/{id}', [App\Http\Controllers\Admin\SurveyController::class, 'update'])->name('survey.update');
+    Route::get('surveys/show/{id}', [App\Http\Controllers\Admin\SurveyController::class, 'show'])->name('survey.show');
+    Route::post('surveys/delete/{id}', [App\Http\Controllers\Admin\SurveyController::class, 'destroy'])->name('survey.destroy');
+    Route::get('surveys/{id}/questions', [App\Http\Controllers\Admin\SurveyController::class, 'surveyQuestions'])->name('survey.questions');
+    Route::get('surveys/{id}/students', [App\Http\Controllers\Admin\SurveyController::class, 'surveyStudents'])->name('survey.students');
+    Route::get('surveys/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\SurveyController::class, 'surveyStudentsAnswers'])->name('survey.students.answers');
+
+
+
+    Route::get('surveys/{id}/questions/create', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'create'])->name('survey.question.create');
+    Route::post('surveys/{id}/questions/store', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'store'])->name('survey.question.store');
+    Route::get('surveys/questions/edit/{id}', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'edit'])->name('survey.question.edit');
+    Route::post('surveys/questions/update/{id}', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'update'])->name('survey.question.update');
+    Route::post('surveys/questions/delete/{id}', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'destroy'])->name('survey.question.destroy');
+
 
 });
 

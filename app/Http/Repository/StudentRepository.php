@@ -33,6 +33,7 @@ class StudentRepository extends BaseRepository implements IStudentRepository
     }
     public function showStudet($id)
     {
+        return  Student::find($id);
         // TODO: Implement showStudet() method.
     }
 

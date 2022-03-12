@@ -161,7 +161,7 @@ class Fks extends Migration
         Schema::table('surveys', function (Blueprint $table) {
             // ******************
             $table->foreignId('course_id')->nullable()->constrained('courses')->onDelete('cascade');
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
 
         });
 

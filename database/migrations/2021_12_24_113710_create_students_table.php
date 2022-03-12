@@ -17,8 +17,8 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('name_ar');
-            $table->string('username')->unique();
-            $table->string('email')->unique();
+            $table->string('username',191)->unique();
+            $table->string('email',191)->unique();
             $table->string('password');
             $table->boolean('is_confirmed')->default(0);
             $table->boolean('status')->default(0); // 0 not active, 1 => active
