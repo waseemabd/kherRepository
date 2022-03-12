@@ -21,11 +21,15 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">
-                    {{trans('tests/tests.tests')}}
+                    <a href="{{route('lecture.index')}}">
+                    {{trans('lectures/lectures.lectures')}}
+                    </a>
                 </h4>
                 <span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.list')}}
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{$lecture->title}}
                 </span>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.students')}}</span>
             </div>
         </div>
 
@@ -36,7 +40,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: " test information has updated successfully",
+                    msg: " students information has updated successfully",
                     type: "success"
                 });
             }
@@ -48,7 +52,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "test has Deleted Successfully",
+                    msg: "students has Deleted Successfully",
                     type: "success"
                 });
             }
@@ -60,7 +64,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "test has Added Successfully",
+                    msg: "lecture has Added Successfully",
                     type: "success"
                 });
             }
@@ -77,77 +81,43 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm"
-                           href="{{ route('test.create') }}">{{trans('general.Add')}}</a>
+                        <h4 class="card-title mg-b-0">{{trans('lectures/lectures.students_table')}}</h4>
+                        <i class="mdi mdi-dots-horizontal text-gray"></i>
                     </div>
+                    <p class="tx-12 tx-gray-500 mb-2">{{trans('lectures/lectures.students_present_table_hint')}}</p>
 
                 </div>
                 <div class="card-body">
                     <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0">
+                        <table
+                            class="table card-table table-striped table-vcenter text-nowrap mb-0">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.course')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.desc')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.duration')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.date')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.status')}}</th>
-                                <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('lectures/lectures.student_name')}}</th>
+                                <th class="wd-15p border-bottom-0"><span></span></th>
+                                <th class="wd-15p border-bottom-0">{{trans('lectures/lectures.student_email')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('lectures/lectures.status')}}</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($tests as $key => $test)
-                                <tr id="row-{{$test->id}}">
+                            @foreach ($course_students as $key => $student)
+                                <tr id="row-{{$student->id}}">
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $test->title }}</td>
-                                    <td>{{ $test->course->title }}</td>
                                     <td>
-                                        <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{$test->desc}}"
-                                           data-title="{{$test->title}}"
-                                        >
-                                            {!! substr($test->desc,0,25) !!}...
-                                            <span style="color: blue">
-                                                {{trans('tests/tests.read_more')}}
-                                            </span>
-                                        </a>
+                                        <img alt="avatar" class="rounded-circle avatar-md me-2"
+                                             src="{{ isset($student->profile->image) ? URL::asset($student->profile->image) : URL::asset('images/defaults/student.png')}}">
                                     </td>
-                                    <td>{{ $test->duration }}</td>
-                                    <td>{{ \Illuminate\Support\Carbon::parse($test->date)->format('d-m-Y H:i:s')}}</td>
+                                    <td>{{ $student->name_ar }}</td>
+                                    <td>{{ $student->email }}</td>
                                     <td>
-                                        <span class="badge badge-{{ $test->status ? 'success' : 'secondary' }}">
-                                          {{ $test->status ? trans('tests/tests.done') : trans('tests/tests.not_done') }}
+                                        <span class="badge rounded-pill bg-{{ in_array($student->id, $lecture_students_ids) ? 'success' : 'danger' }}">
+                                            {{ in_array($student->id, $lecture_students_ids) ? trans('lectures/lectures.present') : trans('lectures/lectures.absent') }}
                                         </span>
-
                                     </td>
 
-                                    <td>
-
-
-                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
-                                           href="{{ route('test.edit', $test->id) }}"><i
-                                                class="las la-edit"></i></a>
-
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $test->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub"
-                                           title="{{trans('general.Delete')}}"><i
-                                                class="las la-trash"></i></a>
-
-                                        <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
-                                           href="{{ route('test.students', $test->id) }}"><i
-                                                class="las la-graduation-cap"></i></a>
-
-
-                                        <a class="btn btn-warning btn-sm" title="{{trans('tests/tests.manage_questions')}}"
-                                           href="{{ route('test.questions', $test->id) }}"><i
-                                                class="las la-tools"></i></a>
-
-                                    </td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -168,9 +138,11 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn ripple btn-danger" id="delete_btn"
+                                            <button class="btn ripple btn-danger"
+                                                    id="delete_btn"
                                                     type="submit">{{trans('general.Delete')}}</button>
-                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                            <button class="btn ripple btn-secondary"
+                                                    data-bs-dismiss="modal"
                                                     type="button">{{trans('general.Cancel')}}</button>
                                         </div>
 
@@ -193,9 +165,11 @@
                                         <div class="modal-header">
 
                                             <h4 class="modal-title"
-                                                id="myModalLabel22">{{trans('tests/tests.desc_for')}}<span
+                                                id="myModalLabel22">{{trans('lectures/lectures.desc_for')}}
+                                                <span
                                                     id="d-title"></span></h4>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
@@ -205,7 +179,8 @@
                                                 id="d-desc"></h4>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary"
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary"
                                                     data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
                                         </div>
                                     </div>
@@ -216,31 +191,32 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 
-    @endsection('content')
+@endsection('content')
 
-    @section('scripts')
+@section('scripts')
 
-        <!-- Internal Data tables -->
-            <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+    <!-- Internal Data tables -->
+    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
-            <!--Internal  Datatable js -->
-            <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script src="{{asset('assets/js/admin-pages/tests/list.js')}}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/lectures/list.js')}}"></script>
 
 @endsection
 

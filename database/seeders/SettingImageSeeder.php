@@ -22,6 +22,7 @@ class SettingImageSeeder extends Seeder
             [
 
                 'id' => 1,
+                'type' =>'first',
                 'name' =>'image 1',
                 'path' =>'',
                 'created_at' =>now(),
@@ -29,6 +30,7 @@ class SettingImageSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'type' =>'second',
                 'name' =>'image 2',
                 'path' =>'',
                 'created_at' =>now(),
@@ -36,7 +38,7 @@ class SettingImageSeeder extends Seeder
             ],
             [
                 'id' => 3,
-
+                'type' =>'third',
                 'name' =>'image 2',
                 'path' =>'',
                 'created_at' =>now(),
@@ -44,6 +46,7 @@ class SettingImageSeeder extends Seeder
             ],
             [
                 'id' => 4,
+                'type' =>'forth',
                 'name' =>'image 4',
                 'path' =>'',
                 'created_at' =>now(),

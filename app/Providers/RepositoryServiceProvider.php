@@ -102,6 +102,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ISurveyQuestionRepository::class, SurveyQuestionRepository::class);
         $this->app->bind(ISurveyAnswerRepository::class, SurveyAnswerRepository::class);
         $this->app->bind(ISurveyOptionRepository::class, SurveyOptionRepository::class);
+
     }
 
     /**
