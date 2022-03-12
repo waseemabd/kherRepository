@@ -26,7 +26,15 @@ return [
     'read_more' => 'Read More',
     'desc_for' => 'Description For: ',
 
-
+    'students' => 'Students',
+    'students_present_table_hint' => 'display all students who present this lecture.',
+    'present' => 'Present',
+    'absent' => 'Absent',
+    'students_table' => 'Students Table',
+    'student_name' => 'Student Name',
+    'student_email' => 'Student Email',
+    'status' => 'Present Status',
+    'students' => 'Students',
 
 
 

@@ -47,7 +47,7 @@
 
             <div class="card">
             <div class="card-body">
-                <div class="col-lg-12 margin-tb">
+                <div class="col-lg-12 margin-tb pr">
                     <div class="pull-right">
                         <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">رجوع</a>
                     </div>

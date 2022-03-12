@@ -10,10 +10,12 @@ class SettingImage extends Model
     use HasFactory;
 
     protected $fillable = [
+        'type',
         'name',
         'path',
     ];
     public  const create_update_rules = [
+        'type' => 'required',
         'path' => 'required',
 
     ];

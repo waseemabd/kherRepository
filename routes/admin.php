@@ -279,6 +279,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('lectures/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\LectureController::class, 'open_file'])->name('lecture.View_file');
     Route::post('lectures/delete_file/{id}', [App\Http\Controllers\Admin\LectureController::class, 'destroy_file'])->name('lecture.delete_file');
     Route::post('uploadFile', [App\Http\Controllers\Admin\LectureController::class, 'uploadFile'])->name('lecture.uploadFile');
+    Route::get('lectures/{id}/students', [App\Http\Controllers\Admin\LectureController::class, 'studentsPresent'])->name('lecture.students_present');
+
+
 
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');
@@ -390,6 +393,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('surveys/questions/update/{id}', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'update'])->name('survey.question.update');
     Route::post('surveys/questions/delete/{id}', [App\Http\Controllers\Admin\SurveyQuestionController::class, 'destroy'])->name('survey.question.destroy');
 
+
+    Route::get('settings', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('settings');
+    Route::post('updateSettingAbout', [App\Http\Controllers\Admin\SettingController::class, 'updateAbout'])->name('settings.about.update');
+    Route::post('updateSettingContact', [App\Http\Controllers\Admin\SettingController::class, 'updateContacts'])->name('settings.contact.update');
+    Route::post('updateSettingImages', [App\Http\Controllers\Admin\SettingController::class, 'updateImages'])->name('settings.images.update');
 
 });
 

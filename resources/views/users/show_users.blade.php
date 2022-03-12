@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Users</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Users Menu</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Users/user.users menu')}}</span>
             </div>
         </div>
 
@@ -75,8 +75,8 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('user.create') }}">Add User</a>
+                    <div class="d-flex justify-content-between mr">
+                        <a class="btn btn-primary btn-sm" href="{{ route('user.create') }}">{{trans('Users/user.Add User')}}</a>
                     </div>
 
                 </div>
@@ -86,11 +86,11 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">name</th>
-                                <th class="wd-20p border-bottom-0">email</th>
-                                <th class="wd-15p border-bottom-0">status</th>
-                                <th class="wd-15p border-bottom-0">user role</th>
-                                <th class="wd-10p border-bottom-0">methods</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Users/user.name')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('Users/user.email')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Users/user.status')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Users/user.user role')}}</th>
+                                <th class="wd-10p border-bottom-0">{{trans('Users/user.methods')}}</th>
 
                             </tr>
                             </thead>

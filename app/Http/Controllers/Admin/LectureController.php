@@ -408,7 +408,24 @@ class LectureController extends Controller
     }
 
 
+    public function studentsPresent($id)
+    {
+        //
+        try {
 
+            $lecture = $this->lectureRepository->find($id);
+            $course = $lecture->course;
+            $course_students = $course->students;
+
+            $lecture_students_ids = $lecture->students->pluck('id')->toArray();
+//            dd($lecture_students_ids);
+
+            return view('admin.lectures.students', compact('lecture','course_students', 'lecture_students_ids'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 
 
 }

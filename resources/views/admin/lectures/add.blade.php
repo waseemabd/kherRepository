@@ -31,7 +31,11 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
+                <h4 class="content-title mb-0 my-auto">
+                    <a href="{{route('lecture.index')}}">
+                        {{trans('lectures/lectures.lectures')}}
+                    </a>
+                </h4>                <span
                     class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_lecture')}}</span>
             </div>
         </div>

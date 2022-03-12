@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Teachers</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Teachers Menu</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Teachers/Teachers.Teachers')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Teachers/Teachers.Teachers Menu')}}</span>
             </div>
         </div>
 
@@ -80,11 +80,11 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">name</th>
-                                <th class="wd-20p border-bottom-0">email</th>
-                                <th class="wd-15p border-bottom-0">status</th>
-                                <th class="wd-15p border-bottom-0">user role</th>
-                                <th class="wd-10p border-bottom-0">methods</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.name')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('Teachers/Teachers.email')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.status')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.user role')}}</th>
+                                <th class="wd-10p border-bottom-0">{{trans('Teachers/Teachers.methods')}}</th>
 
                             </tr>
                             </thead>
@@ -98,11 +98,11 @@
                                     <td>
                                         @if ($user->status == 1)
                                             <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>Active
+                                                <div class="dot-label bg-success ml-1"></div>{{trans('Teachers/Teachers.Active')}}
                                             </span>
                                         @else
                                             <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>Inactive
+                                                <div class="dot-label bg-danger ml-1"></div>
                                             </span>
                                         @endif
                                     </td>
@@ -134,7 +134,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
+                                                        <h6 class="modal-title">{{trans('Teachers/Teachers.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -142,14 +142,14 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>? Do Yoy Want to Delete This User </p><br>
+                                                                <p>?{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}}  </p><br>
 
                                                                 <input class="form-control" hidden name="teacher_id" value="{{$user->name}}" id="teacher_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                                <button class="btn ripple btn-primary" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
+                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Teachers/Teachers.Close')}}</button>
                                                             </div>
 
 

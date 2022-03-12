@@ -23,6 +23,7 @@
 		<link href="{{asset('assets/css-rtl/style-dark.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css-rtl/boxed.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css-rtl/dark-boxed.css')}}" rel="stylesheet">
+		<link href="{{asset('assets/css-rtl/style2.css')}}" rel="stylesheet">
 
 		<!---Skinmodes css-->
 		<link href="{{asset('assets/css-rtl/skin-modes.css')}}" rel="stylesheet" />
@@ -32,3 +33,5 @@
 
         <link rel="stylesheet" href="{{ asset('assets/css-rtl/toastr/toastr.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css-rtl/toastr/ext-component-toastr.css') }}">
+
+
