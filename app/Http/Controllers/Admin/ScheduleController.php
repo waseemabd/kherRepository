@@ -13,12 +13,13 @@ use App\Models\Homework;
 use App\Models\Lecture;
 use App\Models\Schedule;
 use App\Models\Student;
+use App\Models\Test;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-
+use Carbon\Carbon;
 class ScheduleController extends Controller
 {
     protected $courseRepository;
@@ -66,8 +67,10 @@ class ScheduleController extends Controller
 
 
             $students=Student::all();
+            $test=Test::all();
+            $lectures=Lecture::where('link',Null)->get();
             $teachers=user::where('role',2)->get();
-            return view('admin.schedules.add', compact('students','teachers'));
+            return view('admin.schedules.add', compact('students','teachers','lectures','test'));
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -82,30 +85,25 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
         try {
 
-            if($request->hasFile('files')){
-                dd();
-            }
-            $data = $this->requestData;
-            $data['course_id'] = $this->requestData['course'];
-//            dd($data);
-            $validator = Validator::make($data, $validator_rules = Lecture::create_update_rules);
+             $lecture=Lecture::find($request->lecture_id);
+              foreach ($request->students as $one)
+              {
+                  $schedule=new Schedule();
+                  $schedule->student_id=$one;
+                  $schedule->lecture_id=$request->lecture_id;
+                  $schedule->user_id=$request->teacher_id;
+                  $schedule->start_date=$lecture->start_date;
+                  $schedule->end_date=$lecture->end_date;
+                  $schedule->save();
+              }
 
-            if ($validator->passes()) {
-
-
-                $user = $this->lectureRepository->create($data);
-
-
-                return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Added_Successfully'));
-
-            }
-            return redirect()->route('lecture.create')->with('error', trans('general.Operation_Failed'));
+            return redirect()->back();
 
         } catch (\Exception $e) {
-            return redirect()->route('lecture.create')->with('error', $e->getMessage());
+            return redirect()->route('schedule.create')->with('error', $e->getMessage());
 
         }
     }
@@ -200,93 +198,147 @@ class ScheduleController extends Controller
 
 
 
-    public function validateDate(Request $request,$id)
+    public function getlectureId(Request $request)
+    {
+        return Lecture::find($request->lecture_id);
+
+    }
+
+        public function validateDate(Request $request,$id)
     {
         try {
 
-            $student=Student::find($id);
+           $ids=explode(',', $id);
+           $array=[];
+//            return response()->json([
+//                'status'=>1,
+//                'data'=> substr($id, -1)
+//            ]);
+            foreach( $ids as $one1)
+            {
 
-             if($student->schedules->isEmpty())
-             {
-                 $data='success';
-                 $status=1;
-             }
-             else
-             {
-                 $schedules_student=$student->schedules;
-                 $start_at = date($request->start_date);
-                 $end_at = date($request->end_date);
-                 foreach ($schedules_student as $one)
-                 {
-                     $student = Schedule::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
-                         ->whereBetween('end_date',[$start_at,$end_at])
-                         ->pluck('id');
-                 }
-                 if($student->isEmpty())
-                 {
-                     $data='success';
-                     $status=1;
-                 }
-                 else{
-                     $data='this student has schedule in this date';
-                     $status=2;
-                 }
+                $student=Student::find($one1);
+                $lecture=Lecture::find($request->lecture_id);
+                $schedule=Schedule::where('student_id',$student->id)->where('lecture_id',$lecture->id)->first();
+                foreach ($student->tests as $one)
+                {
+                    $test = Test::where('id',$one->id)->whereBetween('date',[$lecture->start_date,$lecture->end_date])
+                        ->first();
+                    if( $test)
+                    {
+
+                    }
+                    else
+                    {
+                        $data='this student has test in this date';
+                        $status=2;
+                        return response()->json([
+                            'status'=>$status,
+                            'data'=>$data
+                        ]);
+                    }
+                }
+                if($schedule == null)
+                {
+//                    return response()->json([
+//                        'status'=>1,
+//
+//                    ]);
+                }
+                else
+                {
+                    $schedules_student=$student->schedules;
+                    foreach ($schedules_student as  $one)
+                    {
+                        $student = Schedule::where('id',$one->id)->whereBetween('start_date',[$lecture->start_date,$lecture->end_date])
+                            ->whereBetween('end_date',[$lecture->start_date,$lecture->end_date])
+                            ->get();
+                    }
+                    if($student->isEmpty())
+                    {
+
+//                        return response()->json([
+//                            'status'=>1,
+//
+//                        ]);
+                    }
+                    else{
+                        $data='this student has anthor schedule';
+                        $status=2;
+                        return response()->json([
+                            'status'=>$status,
+                            'data'=>$data,
+
+                        ]);
+                    }
+                }
 
 
-             }
-             return response()->json([
-                 'status'=>$status,
-                 'data'=>$data
-             ]);
+            }
 
-            //$student = Student::whereBetween('invoice_Date',[$start_at,$end_at])->get();
+
 
 
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
-
-
     }
 
 
     public function validateDateTeacher(Request $request,$id)
     {
         try {
-
             $teacher=User::find($id);
-            if($teacher->schedules->isEmpty())
-            {
+            $lecture=Lecture::find($request->lecture_id);
+            $schedule=Schedule::where('user_id',$teacher->id)->where('lecture_id',$lecture->id)->first();
 
-                $data='success';
-                $status=1;
+             foreach ($teacher->tests as $one)
+                {
+                    $test = Test::where('id',$one->id)->whereBetween('date',[$lecture->start_date,$lecture->end_date])
+                        ->first();
+                    if( $test)
+                    {
+
+                    }
+                    else
+                    {
+                        $data='this teacher has test in this date';
+                        $status=2;
+                        return response()->json([
+                            'status'=>$status,
+                            'data'=>$data
+                        ]);
+                    }
+                }
+            if($schedule == null)
+            {
             }
             else
             {
-                $start_at = date($request->start_date);
-                $end_at = date($request->end_date);
                 foreach ($teacher->schedules as $one)
                 {
-                    $teacher = Schedule::where('id',$one->id)->whereBetween('start_date',[$start_at,$end_at])
-                        ->whereBetween('end_date',[$start_at,$end_at])
-                        ->pluck('id');
+                    $teacher = Schedule::where('id',$one->id)->whereBetween('start_date',[$lecture->start_date,$lecture->end_date])
+                        ->whereBetween('end_date',[$lecture->start_date,$lecture->end_date])
+                        ->get();
                 }
-                if($teacher->isEmpty())
+                if($teacher->isEmpty() )
                 {
-                    $data='success';
-                    $status=1;
+                        return response()->json([
+                            'status'=>1,
+                        ]);
                 }
                 else{
                     $data='this teacher has schedule in this date';
                     $status=2;
+                    return response()->json([
+                        'status'=>$status,
+                        'data'=>$data
+                    ]);
                 }
 
 
             }
-            return response()->json([
-                'status'=>$status,
-                'data'=>$data
-            ]);
+
 
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
@@ -294,6 +346,7 @@ class ScheduleController extends Controller
 
 
     }
+
 
 
 

@@ -97,6 +97,7 @@ class LectureController extends Controller
 
                 $user = $this->lectureRepository->create($data);
 
+                $user->students()->attach($data['students']);
 
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Added_Successfully'));
 

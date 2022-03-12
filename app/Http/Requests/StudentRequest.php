@@ -26,7 +26,8 @@ class StudentRequest extends FormRequest
         return [
             'name_ar' => 'required|max:100',
             'name_en' => 'required|max:100',
-            'password' => 'required|confirmed|min:6',
+            'password' => 'required|min:6',
+            'confirm-password' =>'required_with:password|same:password'
         ];
     }
 

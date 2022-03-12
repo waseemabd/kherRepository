@@ -7,7 +7,7 @@ namespace App\Http\IRepositories;
 interface IStudentRepository
 {
     public function getStudents();
-    public function showStudet($id);
+    public function ShowStudent($id);
     public function createStudent();
     public function storeStudent($input);
     public function editStudent($id);

@@ -291,12 +291,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     ///schedule/////
     Route::get('schedules', [App\Http\Controllers\Admin\ScheduleController::class, 'index'])->name('schedule.index');
     Route::get('schedule/create', [App\Http\Controllers\Admin\ScheduleController::class, 'create'])->name('schedule.create');
-    Route::get('schedule/store', [App\Http\Controllers\Admin\ScheduleController::class, 'store'])->name('schedule.store');
+    Route::post('schedule/store', [App\Http\Controllers\Admin\ScheduleController::class, 'store'])->name('schedule.store');
     Route::get('schedule/edit/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'edit'])->name('schedule.edit');
     Route::post('schedule/update/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'update'])->name('schedule.update');
 
     Route::get('schedule/validate/student/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDate'])->name('lecture.validate.student');
     Route::get('schedule/validate/teacher/{id}', [App\Http\Controllers\Admin\ScheduleController::class, 'validateDateTeacher'])->name('lecture.validate.teacher');
+    Route::get('schedule/validate/lecture', [App\Http\Controllers\Admin\ScheduleController::class, 'getlectureId']);
 
 
     //teachers///

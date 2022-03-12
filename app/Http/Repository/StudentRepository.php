@@ -6,9 +6,11 @@ namespace App\Http\Repository;
 
 use App\Http\IRepositories\IStudentRepository;
 use App\Models\Certificate;
+use App\Models\Lecture;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class StudentRepository extends BaseRepository implements IStudentRepository
 {
@@ -53,6 +55,18 @@ class StudentRepository extends BaseRepository implements IStudentRepository
 
     }
 
+    public function ShowStudent($id)
+    {
+        try {
+            $data=Student::find($id);
+            return  $data;
+
+        } catch (\Exception $exception) {
+            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        }
+
+
+    }
 
     public function editStudent($id)
     {
@@ -67,13 +81,26 @@ class StudentRepository extends BaseRepository implements IStudentRepository
 
 
     }
+
+
+
+
     public function updateStudent($input, $id)
     {
         try {
         $student = Student::find($id);
         $input = $input->all();
         if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
+
+            $validator = Validator::make($input, [
+                'password' => 'required|min:6',
+                'confirm-password' =>'required_with:password|same:password'
+            ]);
+
+            if($validator->passes()) {
+                $input['password'] = Hash::make($input['password']);
+            }
+
         }else{
             $input['password']=$student->password;
         }

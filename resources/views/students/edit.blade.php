@@ -58,18 +58,18 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>Arabic Name: <span class="tx-danger">*</span></label>
+                            <label>Arabic Name: </label>
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_ar}}"  name="username" required="" type="text">
                         </div>
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>English name: <span class="tx-danger">*</span></label>
+                            <label>English name: </label>
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_en}}"  name="name_en" required="" type="text">
                         </div>
 
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>user name: <span class="tx-danger">*</span></label>
+                            <label>user name: </label>
                             {!! Form::text('username', null, array('class' => 'form-control','required')) !!}
                         </div>
 
@@ -83,12 +83,12 @@
 
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>password: <span class="tx-danger">*</span></label>
+                        <label>password: </label>
                         {!! Form::password('password', array('class' => 'form-control',)) !!}
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>confirm password: <span class="tx-danger">*</span></label>
+                        <label>confirm password: </label>
                         {!! Form::password('confirm-password', array('class' => 'form-control',)) !!}
                     </div>
                 </div>
