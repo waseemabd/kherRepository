@@ -36,7 +36,7 @@
                           id="course_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('courses/courses.title')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" value="{{$course->title}}" name="title" placeholder="{{trans('courses/courses.plc_title')}}" required="" type="text">

@@ -54,13 +54,14 @@
                           id="test_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('tests/tests.title')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="title" placeholder="{{trans('tests/tests.plc_title')}}" required="" type="text">
+                                    <input class="form-control mt-12" name="title" placeholder="{{trans('tests/tests.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            
+                            <div class="col-12 mg-t-6 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('tests/tests.course')}} <span class="tx-danger">*</span></p>
                                 <select name="course" required="" class="form-control select2">
                                     <option >
@@ -77,12 +78,11 @@
                                 <p class="validation_error">{{ $message }}</p>
                                 @enderror
                             </div><!-- col-4 -->
-
                         </div>
 
                         <div class="row row-sm mt-2">
-                            <div class="col-md-6">
-                                <label class="form-label">{{trans('tests/tests.date')}}: <span class="tx-danger star-span">*</span></label>
+                            <div class="col-12 p-data">
+                                <label class="form-label mr-12">{{trans('tests/tests.date')}}: <span class="tx-danger star-span">*</span></label>
                                 <div class="input-group col-md-12">
                                     <div class="input-group-text">
                                         <div class="input-group-text">
@@ -92,8 +92,8 @@
                                     <input class="form-control date-input" id="datetimepicker" name="date" type="text" value="{{now()}}">
                                 </div>
                             </div>
-
-                            <div class="col-md-6">
+                                <br>
+                            <div class="col-12">
                                 <label class="form-label">{{trans('tests/tests.duration')}}: <span class="tx-danger star-span">*</span></label>
                                 <input class="form-control" name="duration" placeholder="{{trans('tests/tests.plc_duration')}}" required="" type="number">
 
@@ -102,7 +102,7 @@
                         </div>
                         <div class="row row-sm mt-2">
 
-                            <div class="col-md-6">
+                            <div class="col-12">
                                 <label class="form-label">{{trans('tests/tests.weight')}}: </label>
                                 <input class="form-control" name="weight" placeholder="{{trans('tests/tests.plc_weight')}}"  type="number">
 

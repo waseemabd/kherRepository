@@ -33,13 +33,13 @@
                     <form action="{{route('certificate.store')}}" method="POST" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12 mb-10">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('certificates/certificates.name_en')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="name_en" placeholder="{{trans('certificates/certificates.plc_name_en')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12 ">
                                 <div class="form-group">
                                     <label class="form-label">{{trans('certificates/certificates.name_ar')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="name_ar" placeholder="{{trans('certificates/certificates.plc_name_ar')}}" required="" type="text">

@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Students</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Students Menu</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('students/students.Students')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('students/students.Students Menu')}}</span>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('student.create') }}">Add Student</a>
+                        <a class="btn btn-primary btn-sm mr-10" href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>
                     </div>
 
                 </div>
@@ -86,11 +86,11 @@
                             <thead>
                             <tr>
                                 <th >#</th>
-                                <th >name</th>
-                                <th >email</th>
-                                <th>certificate</th>
-{{--                                <th >address</th>--}}
-                                <th >methods</th>
+                                <th >{{trans('students/students.name')}}</th>
+                                <th >{{trans('students/students.email')}}</th>
+                                <th>{{trans('students/students.certificate')}}</th>
+{{--                                <th>{{trans('students/students.address')}}</th>--}}
+                                <th>{{trans('students/students.methods')}}</th>
 
                             </tr>
                             </thead>
@@ -136,7 +136,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
+                        <h6 class="modal-title">{{trans('students/students.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
@@ -144,14 +144,14 @@
                             {{ method_field('post') }}
                             @csrf
                             <div class="modal-body">
-                                <p>? Do Yoy Want to Delete This Student </p><br>
+                                <p>{{trans('students/students.Do Yoy Want to Delete This Student')}}?  </p><br>
 
                                 <input class="form-control" hidden name="student_id" value="" id="student_id" type="text" readonly>
 
                             </div>
                             <div class="modal-footer">
-                                <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                <button class="btn ripple btn-primary" type="submit">{{trans('students/students.Delete')}}</button>
+                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('students/students.Close')}}</button>
                             </div>
 
 
