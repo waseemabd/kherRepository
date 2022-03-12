@@ -34,7 +34,8 @@ class TeacherController extends Controller
 
     public function show($id)
     {
-
+        $user = $this->userRepository->showUser($id);
+        return view('teachers.show',compact('user'));
     }
 
     public function edit($id)

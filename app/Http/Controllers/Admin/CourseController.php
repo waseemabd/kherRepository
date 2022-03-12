@@ -38,8 +38,12 @@ class CourseController extends Controller
     {
         //
         try {
-
-            $courses = $this->courseRepository->all();
+            if(auth('admin')->user()->role == 2 ){
+                $courses = auth('admin')->user()->courses;//$this->courseRepository->all();
+            }
+            else {
+                $courses = $this->courseRepository->all();
+            }
             return view('admin.courses.list', compact('courses'));
 
         } catch (\Exception $e) {

@@ -123,7 +123,10 @@
 
                                     <td>
 
-
+                                    <a class="btn btn-success btn-sm"
+                                           href="{{ route('user.show', $user->id) }}"><i
+                                                class="las la-eye"></i></a>
+                                                
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('user.edit', $user->id) }}"><i
                                                 class="las la-edit"></i></a>

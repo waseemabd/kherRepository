@@ -221,7 +221,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('user/edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('user.edit');
     Route::post('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
     Route::post('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
-    Route::post('user/show', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
+    Route::get('user/show/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
 
     Route::get('roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('role/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('role.create');

@@ -8,7 +8,7 @@
             <h2> Show User</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('users.index') }}">{{trans('students/students.Back')}} </a>
+            <a class="btn btn-primary" href="{{ route('students.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -17,8 +17,8 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>{{trans('students/students.name')}}:</strong>
-            {{ $user->name }}
+            <strong>Name:</strong>
+            {{ $user->username }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -35,7 +35,31 @@
             <label class="badge badge-success">{{ $v }}</label>
             @endforeach
             @endif
+            <strong>Eng Name:</strong>
+            {{ $user->name_en }}
         </div>
     </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Arb Name:</strong>
+            {{ $user->name_ar }}
+        </div>
+    </div>
+    @if ($user->status  == 1)
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Status:</strong>
+             Active
+        </div>
+    </div>
+    @else
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Status:</strong>
+             Inactive
+        </div>
+    </div>
+    @endif
+
 </div>
 @endsection

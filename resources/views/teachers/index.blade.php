@@ -117,6 +117,9 @@
 
                                     <td>
 
+                                    <a class="btn btn-success btn-sm"
+                                           href="{{ route('teacher.show', $user->id) }}"><i
+                                                class="las la-eye"></i></a>
 
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('teacher.edit', $user->id) }}"><i
