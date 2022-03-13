@@ -22,7 +22,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Roles</h4><span
+                <h4 class="content-title mb-0 my-auto">{{trans('role/role.Roles')}}</h4><span
                     class="text-muted mt-1 tx-13 ms-2 mb-0">/ Roles Menu</span>
             </div>
         </div>
@@ -34,7 +34,7 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('roles.index') }}">Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('roles.index') }}">{{trans('role/role.Back')}}</a>
                     </div>
 
                 </div>

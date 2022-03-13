@@ -40,8 +40,8 @@
 <div class="breadcrumb-header justify-content-between">
     <div class="my-auto">
         <div class="d-flex">
-            <a href="{{route('roles.index')}}" class="content-title mb-0 my-auto">Roles</a><span
-                class="text-muted mt-1 tx-13 ms-2 mb-0">/ Create Role</span>
+            <a href="{{route('roles.index')}}" class="content-title mb-0 my-auto">{{trans('role/role.Roles')}}</a><span
+                class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('role/role.Create Role')}}</span>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                 <div class="main-content-label mg-b-5">
                     <div class="col-xs-7 col-sm-7 col-md-7">
                         <div class="form-group">
-                            <p>Role name :</p>
+                            <p>{{trans('role/role.Role name')}}:</p>
                             {!! Form::text('name', null, array('class' => 'form-control')) !!}
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <!-- col -->
                     <div class="col-lg-4">
                         <ul id="treeview1">
-                            <li><a href="#">Permissions</a>
+                            <li><a href="#">{{trans('role/role.Permissions')}}</a>
                                 <ul>
                             </li>
                             @foreach($permission as $value)
@@ -78,8 +78,8 @@
                         </ul>
                     </div>
                     <!-- /col -->
-                    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                        <button type="submit" class="btn btn-main-primary">add</button>
+                    <div class="col-xs-12 col-sm-12 col-md-12 text-center mr-10">
+                        <button type="submit" class="btn btn-main-primary">{{trans('role/role.add')}}</button>
                     </div>
 
                 </div>

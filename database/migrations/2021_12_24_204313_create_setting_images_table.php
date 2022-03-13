@@ -15,6 +15,7 @@ class CreateSettingImagesTable extends Migration
     {
         Schema::create('setting_images', function (Blueprint $table) {
             $table->id();
+            $table->string('type');
             $table->string('name')->nullable();
             $table->string('path');
 

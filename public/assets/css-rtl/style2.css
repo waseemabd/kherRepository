@@ -1,0 +1,91 @@
+.mr-10{
+    margin-right: -10px;
+}
+/*------update User page -----*/
+.btn-sm{
+    padding: 10px 17px;
+    font-size: 13px;
+    
+}
+.form-control-sm
+{
+    float: right;
+}
+.form-select-sm
+{   
+    float: right;
+    
+}
+div.dataTables_wrapper div.dataTables_length select{
+    margin: 0 -3px;
+    text-align: center;
+    padding: 6px 24px;
+}
+div.dataTables_wrapper  {
+    margin-bottom: 25px;
+}
+.mr{
+    margin-right: 8px;
+}
+
+/*------update Add  User page -----*/
+.form-control-sm{
+    height: calc(1.5em + .5rem + 9px)
+} 
+.form-control{
+ height: calc(1.5em + .5rem + 10px)
+}
+.btn-right{
+    float: right;
+    margin-right: -12px;
+}
+.select2-container--default .select2-selection--multiple{
+    border-radius: 3px;
+}
+.mg-t-30{
+    margin-top: 30px;
+}
+/*------update Role  User page -----*/
+/*------update surveys page--- -----*/
+.fz-13{
+    font-size: 13px !important;
+}
+/*------update tests page--- -----*/
+.mt-12{
+    margin-top: 12px;
+}
+.mt-10{
+    margin-top: 10px;
+}
+.form-label{
+    margin-right: 3px;
+}
+.p-data{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.mr-12{
+    margin-right: 12px;
+}
+/* .mg-b-10 {
+    
+    margin-top: 10px;
+    margin-right: 3px
+} */
+/*------update Courses page--- -----*/
+
+/*------Add Courses page--- -----*/
+.mt-5{
+    margin-top: 5px !important;
+}
+
+.mb-10{
+    margin-bottom: 10px;
+}
+/*------Add Students page--- -----*/
+.mr-10{
+    margin-right: 10px;
+}
+.pr-0{
+    padding-right: 0;
+}

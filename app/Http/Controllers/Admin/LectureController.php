@@ -97,6 +97,7 @@ class LectureController extends Controller
 
                 $user = $this->lectureRepository->create($data);
 
+                $user->students()->attach($data['students']);
 
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Added_Successfully'));
 
@@ -407,7 +408,24 @@ class LectureController extends Controller
     }
 
 
+    public function studentsPresent($id)
+    {
+        //
+        try {
 
+            $lecture = $this->lectureRepository->find($id);
+            $course = $lecture->course;
+            $course_students = $course->students;
+
+            $lecture_students_ids = $lecture->students->pluck('id')->toArray();
+//            dd($lecture_students_ids);
+
+            return view('admin.lectures.students', compact('lecture','course_students', 'lecture_students_ids'));
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
 
 
 }

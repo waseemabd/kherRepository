@@ -20,8 +20,12 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('tests/tests.tests')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.list')}}</span>
+                <h4 class="content-title mb-0 my-auto">
+                    {{trans('tests/tests.tests')}}
+                </h4>
+                <span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('tests/tests.list')}}
+                </span>
             </div>
         </div>
 
@@ -72,7 +76,7 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-between fz-13">
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('test.create') }}">{{trans('general.Add')}}</a>
                     </div>
@@ -83,14 +87,14 @@
                         <table class="table table-striped table-vcenter text-nowrap mb-0">
                             <thead>
                             <tr>
-                                <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('tests/tests.course')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.desc')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.duration')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.date')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('tests/tests.status')}}</th>
-                                <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
+                                <th class="wd-10p border-bottom-0 fz-13">#</th>
+                                <th class="wd-15p border-bottom-0 fz-13">{{trans('tests/tests.title')}}</th>
+                                <th class="wd-15p border-bottom-0 fz-13">{{trans('tests/tests.course')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('tests/tests.desc')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('tests/tests.duration')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('tests/tests.date')}}</th>
+                                <th class="wd-20p border-bottom-0 fz-13">{{trans('tests/tests.status')}}</th>
+                                <th class="wd-10p border-bottom-0 fz-13">{{trans('general.Actions')}}</th>
 
                             </tr>
                             </thead>

@@ -17,6 +17,8 @@ return [
     'Operation_Failed' => 'Operation Failed!',
     'delete_warning' => 'Do you want to delete this item?',
     'option_delete_warning' => 'Do you want to delete this Option?',
+    'mobile_delete_warning' => 'Do you want to delete this Mobile Phone?',
+    'land_delete_warning' => 'Do you want to delete this Land Phone?',
 
 
     'New' => 'New',

@@ -5,7 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IStudentRepository;
 use App\Http\Requests\StudentRequest;
+use App\Http\Requests\StudentUpdateRequest;
+use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -40,8 +44,8 @@ class StudentController extends Controller
 
     public function show($id)
     {
-        $user = $this->studentRepository->showStudet($id);
-        return view('students.show',compact('user'));
+        $student = $this->studentRepository->ShowStudent($id);
+        return view('students.show',compact('student'));
     }
 
     public function edit($id)
@@ -51,10 +55,36 @@ class StudentController extends Controller
         return view('students.edit',$data);
     }
 
-    public function update(Request $request, $id)
+    public function update(StudentUpdateRequest $input, $id)
     {
+        try {
+            $student = Student::find($id);
+            $input = $input->all();
+            if(!empty($input['password'])){
 
-         $this->studentRepository->updateStudent( $request,$id);
+                $validator = Validator::make($input, [
+                    'password' => 'required|min:6',
+                    'confirm-password' =>'required_with:password|same:password'
+                ]);
+                if ($validator->fails()) {
+
+                    return redirect()->back()->withErrors($validator);
+                }
+
+                if($validator->passes()) {
+                    $input['password'] = Hash::make($input['password']);
+                }
+
+            }else{
+                $input['password']=$student->password;
+            }
+            $student->update($input);
+
+        } catch (\Exception $exception) {
+            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        }
+
+
         return redirect()->route('students.index')->with('edit','Student information has updated successfully');
 
 
