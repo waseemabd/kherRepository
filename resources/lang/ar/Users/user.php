@@ -14,8 +14,8 @@ return [
 'user name' => 'اسم المستخدم',
 'passowrd' => 'كلمة المرور',
 'confirm password' => 'تأكيد كلمة المرور',
-'Active' =>'نشط',
-'Inactive' =>'غير نشط',
+'Active' =>'فعال',
+'Inactive' =>'غير فعال',
 'Add'=> 'إضافة',
 'new' => 'تعديل'
 ];

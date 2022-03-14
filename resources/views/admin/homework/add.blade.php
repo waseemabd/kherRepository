@@ -29,8 +29,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_lecture')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homework')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_homework')}}</span>
             </div>
         </div>
 
@@ -50,7 +50,7 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-lg-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
@@ -61,27 +61,12 @@
                         </div>
 
 
-                         <div class="row row-sm mt-2">
-                            <div class="col-12">
-                                <div class="form-group mg-b-0">
-                                    <label
-                                        class="form-label">{{trans('lectures/lectures.desc')}} </label>
-                                    <input class="form-control" type="hidden" name="desc" id="desc">
-                                    <div id="blog-editor-wrapper">
-                                        <div id="blog-editor-container">
-                                            <div class="editor" style="min-height: 200px">
-
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                       
                              <div class="row row-sm mg-b-20">
-                                 <div class="col-lg-6">
-                                     <label class="form-label">teachers</label>
+                                 <div class="col-lg-12">
+                                     <label class="form-label">{{trans('Homework/Homework.teachers')}}</label>
                                      <select name="teacher_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">please select one teacher from this list</option>
+                                         <option value="">{{trans('Homework/Homework.please select one teacher from this list')}}</option>
                                          @foreach($teachers as $one)
                                              <option value="{{$one->id}}">{{$one->name}}</option>
                                          @endforeach
@@ -89,10 +74,10 @@
                                  </div>
                              </div>
                              <div class="row row-sm mg-b-20">
-                                 <div class="col-lg-6">
-                                     <label class="form-label">lectures</label>
+                                 <div class="col-lg-12">
+                                     <label class="form-label">{{trans('Homework/Homework.lectures')}}</label>
                                      <select name="lecture_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">please select one lecture from this list</option>
+                                         <option value="">{{trans('Homework/Homework.please select one lecture from this list')}}</option>
 
                                          @foreach($lectures as $one)
                                              <option value="{{$one->id}}">{{$one->title}}</option>
@@ -102,7 +87,7 @@
                              </div>
                              <div class="row mg-b-20">
                                  <div class="col-xs-12 col-md-12">
-                                     <p class="mg-b-10">students <span class="tx-danger">*</span></p>
+                                     <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
                                      <select name="students[]" required="" multiple class="form-control select2">
                                          <option >
                                          </option>
@@ -116,7 +101,23 @@
 
                                  </div><!-- col-4 -->
                              </div><!-- col-4 -->
+                            
+                             <div class="row row-sm mt-2">
+                            <div class="col-12">
+                                <div class="form-group mg-b-0">
+                                    <label
+                                        class="form-label">{{trans('Homework/Homework.Description')}} </label>
+                                    <input class="form-control" type="hidden" name="desc" id="desc">
+                                    <div id="blog-editor-wrapper">
+                                        <div id="blog-editor-container">
+                                            <div class="editor" style="min-height: 200px">
 
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Add')}}</button></div>
                         </div>

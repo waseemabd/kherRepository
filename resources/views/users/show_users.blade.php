@@ -24,7 +24,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Users/user.users menu')}}</span>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Users/user.users menu')}}</span>
             </div>
         </div>
 
@@ -104,11 +104,11 @@
                                     <td>
                                         @if ($user->status == 1)
                                             <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>Active
+                                                <div class="dot-label bg-success ml-1"></div>{{trans('Users/user.Active')}}
                                             </span>
                                         @else
                                             <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>Inactive
+                                                <div class="dot-label bg-danger ml-1"></div>{{trans('Users/user.Inactive')}}
                                             </span>
                                         @endif
                                     </td>

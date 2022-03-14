@@ -14,7 +14,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">{{trans('certificates/certificates.certificates')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('certificates/certificates.add_certificate')}}</span>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0 "> / {{trans('certificates/certificates.add_certificate')}}</span>
             </div>
         </div>
 

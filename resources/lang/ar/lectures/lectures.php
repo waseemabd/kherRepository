@@ -25,9 +25,10 @@ return [
     'Lecture_Updated_Successfully' => 'تم تعديل المحاضرة بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
-
-
-
-
-
+    'schedules' => 'الجداول',
+    'add_schedule' => 'إضافة جدول',
+    'lecture' => 'المحاضرة',
+    'teacher' => 'المدرس',
+    'sel_diploma' => 'اختر الدبلوم',
+    
 ];

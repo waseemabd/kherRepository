@@ -122,13 +122,13 @@
 
                                     <td>
                                         @if($lecture->link===null)
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('lecture.add_files', $lecture->id) }}"><i
                                                 class="far fa-file"></i></a>
                                         @endif
                                         <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                            href="{{ route('lecture.students_present', $lecture->id) }}"><i
-                                                class="las la-graduation-cap"></i></a>
+                                                class="las las la-eye"></i></a>
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('lecture.edit', $lecture->id) }}"><i
                                                 class="las la-edit"></i></a>

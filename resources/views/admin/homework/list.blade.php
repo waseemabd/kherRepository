@@ -20,8 +20,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Homework</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ List</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homework')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Homework/Homework.List')}} </span>
             </div>
         </div>
 
@@ -110,14 +110,16 @@
 
                                     <td>
 
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
+                                       
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('homework.show', $homework->id) }}"><i
+
+                                                <a class="btn btn-success btn-sm"
+                                            href="{{ route('homework.show', $homework->id) }}"><i
                                                 class="las la-eye"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"

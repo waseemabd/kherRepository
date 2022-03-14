@@ -1,12 +1,89 @@
+/*-------Style Sidebar------*/
+.app-sidebar .side-item.side-item-category{
+    letter-spacing: 0px;
+    font-size: 20px;
+
+}
+
+.side-menu__label{
+    color: #4a4949;
+    font-size: 17px;
+}
+
+.slide.is-expanded a {
+   color: #5b5d63;
+}
+
+/*------Update general text in  all page */
+.text-muted{
+    color: #4a4949 !important;
+    font-size: 15px !important;
+}
+
+.dropdown-item{
+    margin-top: -30px;
+}
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: none !important;
+}
+/* .form-label{
+    color: #4a4949;
+    
+} */
+.slide-item {
+    font-size: 15px;
+}
+.app-sidebar .slide-menu a::before{
+    font-size: 13px;
+}
 .mr-10{
     margin-right: -10px;
 }
+
+
+/*--------update general table -------*/
+
+
+/*------Design 1920px ----*/
+
+/*-----تعديل الجدول الخاص بالمستخدمين ---*/
+.table thead th{
+    letter-spacing: 0;
+    font-size: 15px !important;
+}
+
+table.dataTable thead .sorting::after {
+
+    top: 54%;
+
+}
+table.dataTable thead .sorting::after, table.dataTable thead .sorting::before {
+    font-size: 14px;
+    left: -17px;
+}
+.btn-sm {
+    font-size: 16px;
+ }
+ .text-success ,
+ .text-danger{
+    margin-right: 9px;
+    font-size: 15px;
+}
+.dot-label{
+    bottom: -7px;
+}
+
+/*---------Update role page ----*/
+.width-th{
+    width: 324.817px;
+}
 /*------update User page -----*/
 .btn-sm{
-    padding: 10px 17px;
-    font-size: 13px;
+    padding: 10px 17px !important;
+    font-size: 15px !important;
     
 }
+
 .form-control-sm
 {
     float: right;
@@ -61,9 +138,19 @@ div.dataTables_wrapper  {
     margin-right: 3px;
 }
 .p-data{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+ }
+ .padd-data{
     padding-left: 0px !important;
     padding-right: 0px !important;
-}
+ }
+ 
+ /*
+.input-padd{
+    padding-left: 0px !important;
+    padding-right: 99px !important;
+} */
 .mr-12{
     margin-right: 12px;
 }
@@ -89,3 +176,29 @@ div.dataTables_wrapper  {
 .pr-0{
     padding-right: 0;
 }
+
+
+@media  (min-width: 400px ) and (max-width: 1024px){
+    /*------update User page -----*/
+    .btn-sm{
+    padding: 10px 17px !important;
+    font-size: 12px !important;
+    
+}
+    
+}
+
+/*-------update lectcure page -----*/
+.mr-3{
+    margin-right: 3px;
+}
+.width-input{
+        width: 102.5%;
+        padding-right: 20px !important;
+        padding-left: -20px !important;
+}
+
+.width-in{
+    width: 98.5%;
+ }
+ 
