@@ -8,6 +8,11 @@ class Timeline extends Component
 {
     public function render()
     {
-        return view('livewire.timeline');
+        $courses = auth('admin')->user()->courses;
+        // foreach ($courses as $key => $course){
+        //     echo $course->lectures;
+        // }
+        // die();
+        return view('livewire.timeline', compact('courses'));
     }
 }
