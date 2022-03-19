@@ -198,7 +198,7 @@ $(function () {
     });
 
     $('#info-sub').on('show.bs.modal', function (e) {
-
+        console.log('xx')
         let title = $(e.relatedTarget).data('title');
         let desc = $(e.relatedTarget).data('desc');
 

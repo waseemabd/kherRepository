@@ -34,6 +34,7 @@ class RoleController extends Controller
 
     public function store(RoleRequest $request)
     {
+
         return $this->roleRepository->storeRole($request);
 
     }
@@ -48,8 +49,9 @@ class RoleController extends Controller
         return $this->roleRepository->editRole($id);
     }
 
-    public function update(RoleRequest $request, $id)
+    public function update(Request $request, $id)
     {
+
         return $this->roleRepository->updateRole($request,$id);
 
     }

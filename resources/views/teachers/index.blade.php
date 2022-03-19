@@ -116,20 +116,22 @@
                                     </td>
 
                                     <td>
-
+                                        @if(auth('admin') -> user() ->can('show teacher'))
                                     <a class="btn btn-success btn-sm"
                                            href="{{ route('teacher.show', $user->id) }}"><i
                                                 class="las la-eye"></i></a>
-
+                                        @endif
+                                            @if(auth('admin') -> user() ->can('update teacher'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('teacher.edit', $user->id) }}"><i
                                                 class="las la-edit"></i></a>
-
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('delete teacher'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-teacher_id="{{ $user->id }}" data-username="{{ $user->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
-
+                                            @endif
                                         <div class="modal" id="modaldemo1">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">

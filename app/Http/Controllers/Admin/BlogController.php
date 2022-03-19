@@ -18,6 +18,9 @@ class BlogController extends Controller
 
     public function __construct(IBlogRepository  $blogRepository)
     {
+        $this->middleware('permission:blogs');
+        $this->middleware('permission:list blogs');
+        $this->middleware('permission:update blog')->only(['edit']);
         $this->blogRepository = $blogRepository;
 
     }
@@ -32,6 +35,7 @@ class BlogController extends Controller
 
     public function edit($id)
     {
+       // $this->middleware('permission:update blog');
        $data= $this->blogRepository->editBlog($id);
         return view('admin.blogs.edit',compact('data'));
     }

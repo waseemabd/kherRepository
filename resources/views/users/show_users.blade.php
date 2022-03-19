@@ -75,9 +75,11 @@
             <div class="card">
 
                 <div class="card-header pb-0">
+                    @if(auth('admin') -> user() ->can('create user'))
                     <div class="d-flex justify-content-between mr">
                         <a class="btn btn-primary btn-sm" href="{{ route('user.create') }}">{{trans('Users/user.Add User')}}</a>
                     </div>
+                        @endif
 
                 </div>
                 <div class="card-body">
@@ -122,20 +124,22 @@
                                     </td>
 
                                     <td>
-
+                                        @if(auth('admin') -> user() ->can('show user'))
                                     <a class="btn btn-success btn-sm"
                                            href="{{ route('user.show', $user->id) }}"><i
                                                 class="las la-eye"></i></a>
-                                                
+                                        @endif
+                                            @if(auth('admin') -> user() ->can('update user'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('user.edit', $user->id) }}"><i
                                                 class="las la-edit"></i></a>
-
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('delete user'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
-
+                                            @endif
                                         <div class="modal" id="modaldemo1">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">

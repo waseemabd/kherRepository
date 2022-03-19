@@ -23,7 +23,7 @@ class Authenticate extends Middleware
 
    public function handle($request, Closure $next, ...$guard )
     {
-        $guard = 'web';
+        $guard = 'admin';
 
         if (Auth::guard($guard)->guest()) {
             switch ($guard) {

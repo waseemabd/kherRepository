@@ -72,10 +72,12 @@
             <div class="card">
 
                 <div class="card-header pb-0">
+                    @if(auth('admin') -> user() ->can('create Lecture'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('lecture.create') }}">{{trans('general.Add')}}</a>
                     </div>
+                        @endif
 
                 </div>
                 <div class="card-body">
@@ -121,23 +123,30 @@
                                     <td>{{ \Illuminate\Support\Carbon::parse($lecture->end_date)->format('d-m-Y H:i:s') }}</td>
 
                                     <td>
+                                        @if(auth('admin') -> user() ->can('add lecture files'))
                                         @if($lecture->link===null)
-                                        <a class="btn btn-secondary btn-sm"
+                                        <a class="btn btn-primary btn-sm"
                                            href="{{ route('lecture.add_files', $lecture->id) }}"><i
                                                 class="far fa-file"></i></a>
+                                            @endif
                                         @endif
+                                            @if(auth('admin') -> user() ->can('present students lecture'))
                                         <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                            href="{{ route('lecture.students_present', $lecture->id) }}"><i
-                                                class="las las la-eye"></i></a>
+                                                class="las la-graduation-cap"></i></a>
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('update Lecture'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('lecture.edit', $lecture->id) }}"><i
                                                 class="las la-edit"></i></a>
-
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('delete Lecture'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $lecture->id }}"
                                            data-bs-toggle="modal" href="#delete-sub"
                                            title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
+                                            @endif
                                     </td>
                                 </tr>
                             @endforeach

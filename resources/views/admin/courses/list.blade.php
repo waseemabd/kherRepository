@@ -75,9 +75,11 @@
             <div class="card">
 
                 <div class="card-header pb-0">
+                    @if(auth('admin') -> user() ->can('create courses'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm" href="{{ route('course.create') }}">{{trans('general.Add')}}</a>
                     </div>
+                        @endif
 
                 </div>
                 <div class="card-body">
@@ -113,15 +115,17 @@
 
                                     <td>
 
-
+                                        @if(auth('admin') -> user() ->can('update courses'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('course.edit', $course->id) }}"><i
                                                 class="las la-edit"></i></a>
-
+                                        @endif
+                                            @if(auth('admin') -> user() ->can('delete courses'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $course->id }}"
                                            data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
+                                            @endif
                                     </td>
                                 </tr>
                             @endforeach
