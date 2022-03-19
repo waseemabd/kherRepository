@@ -79,8 +79,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -113,7 +113,7 @@
                                         <a class="btn btn-secondary btn-sm"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
-                                       
+
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>

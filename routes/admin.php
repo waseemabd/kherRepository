@@ -210,7 +210,7 @@ Auth::routes();
 
 
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
 

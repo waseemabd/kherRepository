@@ -69,7 +69,7 @@
                                         <div class="card-body">
                                             <div class="table-responsive border-top userlist-table">
                                                 <table
-                                                    class="table card-table table-striped table-vcenter text-nowrap mb-0">
+                                                    class="table card-table table-striped table-vcenter text-nowrap mb-0" id="example1">
                                                     <thead>
                                                     <tr>
                                                         <th class="wd-10p border-bottom-0">#</th>

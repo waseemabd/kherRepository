@@ -66,6 +66,8 @@ return [
 
     'add_mark' => 'Add Mark',
     'Answers' => 'Answers',
+    'admin' => 'Admin',
+    'teacher' => 'Teacher',
 
 
 

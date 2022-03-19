@@ -39,7 +39,7 @@ return [
     'questions' => 'الاسئلة',
     'survey_preview' => 'استعراض الاستبيان',
     'students_table' => 'جدول الطلاب',
-    'students_table_hint' => 'استعراض كافة الاطلاب الذين نفذو هذا الاستبيان.',
+    'students_table_hint' => 'استعراض كافة الطلاب الذين نفذو هذا الاستبيان.',
     'student_name' => 'اسم الطالب',
     'student_email' => 'بريد الطالب الإلكتروني',
     'student_mark' => 'علامة الطالب',
