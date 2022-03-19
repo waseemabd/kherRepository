@@ -48,6 +48,9 @@ class DatabaseSeeder extends Seeder
             SurveyOptionSeeder::class,
             SurveyAnswerSeeder::class,
             PermissionTableSeeder::class,
+            RoleSeeder::class,
+            ModelHasRoleSeeder::class,
+            RolelHasPermissionsSeeder::class,
         ]);
     }
 }
