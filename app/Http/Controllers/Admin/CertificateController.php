@@ -18,9 +18,12 @@ class CertificateController extends Controller
 
     public function __construct(ICertificateRepository $certificateRepository)
     {
+        $this->middleware('permission:create Certificate');
+        $this->middleware('permission:Certificates');
         $this->certificateRepository = $certificateRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+
+
     }
     /**
      * Display a listing of the resource.
@@ -29,18 +32,21 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        //
-        try {
 
-            $certificates = $this->certificateRepository->all();
-            return view('admin.certificates.list', compact('certificates'));
+            try {
 
-        } catch (\Exception $e) {
-            return $e->getMessage();
+                $certificates = $this->certificateRepository->all();
+                return view('admin.certificates.list', compact('certificates'));
+
+            } catch (\Exception $e) {
+                return $e->getMessage();
+            }
         }
+        //
 
 
-    }
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -48,9 +54,9 @@ class CertificateController extends Controller
      */
     public function create()
     {
-        //
 
             return view('admin.certificates.add');
+
 
 
     }

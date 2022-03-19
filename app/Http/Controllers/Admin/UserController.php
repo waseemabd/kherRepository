@@ -22,6 +22,11 @@ class UserController extends Controller
     protected $userRepository;
     public function __construct(IUserRepository  $userRepository)
     {
+        $this->middleware('permission:list users')->only(['index']);
+        $this->middleware('permission:create user')->only(['create']);
+        $this->middleware('permission:update user')->only(['edit']);
+        $this->middleware('permission:show user')->only(['show']);
+        $this->middleware('permission:delete user')->only(['destroy']);
         $this->userRepository = $userRepository;
     }
 

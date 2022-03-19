@@ -59,6 +59,7 @@ class RoleRepository extends BaseRepository implements IRoleRepository
 
     public function editRole($id)
     {
+
         $role = Role::find($id);
         $permission = Permission::get();
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
@@ -68,9 +69,11 @@ class RoleRepository extends BaseRepository implements IRoleRepository
     }
     public function updateRole($request, $id)
     {
+
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
+
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')
             ->with('success','Role updated successfully');

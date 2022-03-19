@@ -75,10 +75,11 @@
             <div class="card">
 
                 <div class="card-header pb-0">
+                    @if(auth('admin') -> user() ->can('create Student'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm mr-10" href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>
                     </div>
-
+                    @endif
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -107,19 +108,22 @@
 
 
                                     <td>
+                                        @if(auth('admin') -> user() ->can('show Student'))
                                         <a class="btn btn-success btn-sm"
                                            href="{{ route('student.show', $student->id) }}"><i
                                                 class="las la-eye"></i></a>
-
+                                        @endif
+                                            @if(auth('admin') -> user() ->can('update Student'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('student.edit', $student->id) }}"><i
                                                 class="las la-edit"></i></a>
-
+                                            @endif
+                                                @if(auth('admin') -> user() ->can('delete Student'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-student_id="{{ $student->id }}"  data-username="{{ $student->username }}"
                                            data-bs-toggle="modal"  href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
-
+                                            @endif
 
                                     </td>
 
