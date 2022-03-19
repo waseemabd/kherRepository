@@ -20,16 +20,16 @@
     font-size: 15px !important;
 }
 
-.dropdown-item{
-    margin-top: -30px;
-}
+/*.dropdown-item{*/
+/*    margin-top: -30px;*/
+/*}*/
 .dropdown-item:focus, .dropdown-item:hover{
     background-color: none !important;
 }
-/* .form-label{
+.form-label{
     color: #4a4949;
-    
-} */
+
+}
 .slide-item {
     font-size: 15px;
 }
@@ -81,7 +81,7 @@ table.dataTable thead .sorting::after, table.dataTable thead .sorting::before {
 .btn-sm{
     padding: 10px 17px !important;
     font-size: 15px !important;
-    
+
 }
 
 .form-control-sm
@@ -89,9 +89,9 @@ table.dataTable thead .sorting::after, table.dataTable thead .sorting::before {
     float: right;
 }
 .form-select-sm
-{   
+{
     float: right;
-    
+
 }
 div.dataTables_wrapper div.dataTables_length select{
     margin: 0 -3px;
@@ -108,7 +108,7 @@ div.dataTables_wrapper  {
 /*------update Add  User page -----*/
 .form-control-sm{
     height: calc(1.5em + .5rem + 9px)
-} 
+}
 .form-control{
  height: calc(1.5em + .5rem + 10px)
 }
@@ -145,7 +145,7 @@ div.dataTables_wrapper  {
     padding-left: 0px !important;
     padding-right: 0px !important;
  }
- 
+
  /*
 .input-padd{
     padding-left: 0px !important;
@@ -155,7 +155,7 @@ div.dataTables_wrapper  {
     margin-right: 12px;
 }
 /* .mg-b-10 {
-    
+
     margin-top: 10px;
     margin-right: 3px
 } */
@@ -183,9 +183,9 @@ div.dataTables_wrapper  {
     .btn-sm{
     padding: 10px 17px !important;
     font-size: 12px !important;
-    
+
 }
-    
+
 }
 
 /*-------update lectcure page -----*/
@@ -201,4 +201,4 @@ div.dataTables_wrapper  {
 .width-in{
     width: 98.5%;
  }
- 
+
