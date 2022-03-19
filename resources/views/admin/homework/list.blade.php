@@ -72,10 +72,12 @@
             <div class="card">
 
                 <div class="card-header pb-0">
+                    @if(auth('admin') -> user() ->can('create Homework'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('homework.create') }}">{{trans('general.Add')}}</a>
                     </div>
+                    @endif
 
                 </div>
                 <div class="card-body">
@@ -109,24 +111,28 @@
                                     </td>
 
                                     <td>
-
-                                        <a class="btn btn-secondary btn-sm"
+                                        @if(auth('admin') -> user() ->can('add files'))
+                                        <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
-
+                                        @endif
+                                            @if(auth('admin') -> user() ->can('update Homework'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>
-
-                                                <a class="btn btn-success btn-sm"
-                                            href="{{ route('homework.show', $homework->id) }}"><i
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('show Homework'))
+                                        <a class="btn btn-primary btn-sm"
+                                           href="{{ route('homework.show', $homework->id) }}"><i
                                                 class="las la-eye"></i></a>
-
+                                            @endif
+                                            @if(auth('admin') -> user() ->can('delete Homework'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $homework->id }}"
                                            data-bs-toggle="modal" href="#delete-sub"
                                            title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
+                                            @endif
                                     </td>
                                 </tr>
                             @endforeach
