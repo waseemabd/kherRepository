@@ -25,3 +25,4 @@
 		
 		<!-- custom js -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>
+	

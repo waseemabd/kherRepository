@@ -27,8 +27,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto"> Lecture</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Add Files</span>
+                <h4 class="content-title mb-0 my-auto"> {{trans('lectures/lectures.Lecture')}} </h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/  {{trans('lectures/lectures.Add Files')}}</span>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('lecture.index') }}">Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('lecture.index') }}"> {{trans('lectures/lectures.Back')}}</a>
                     </div>
                         <form action="{{route('lecture.Attachments')}}" method="POST"
                           id="lecture_form" data-parsley-validate="">
@@ -49,12 +49,12 @@
                         <div class="tab-pane " id="files">
                             <div class="card-body">
                                 <p class="text-danger">* Form: pdf,jpeg ,jpg ,png,zip </p>
-                                <h5 class="card-title">Add Attachments</h5>
+                                <h5 class="card-title"> {{trans('lectures/lectures.Add Attachments')}}</h5>
                                 <form method="" action=""
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="RePassword">name</label>
+                                        <label for="RePassword"> {{trans('lectures/lectures.name')}}</label>
                                         <input id="name" name="name" type="text" value="" id="RePassword"
                                                class="form-control">
                                     </div>
@@ -68,7 +68,7 @@
                                            value="{{ $lecture->id }}">
                                     <br><br>
                                     <button  id="add" class="btn btn-primary btn-sm "
-                                             name="uploadedFile">Add</button>
+                                             name="uploadedFile"> {{trans('lectures/lectures.Add')}}</button>
                                 </form>
                             </div>
                             <br>
@@ -78,9 +78,9 @@
                                     <thead>
                                     <tr class="text-dark">
                                         <th scope="col">#</th>
-                                        <th scope="col">file name</th>
-                                        <th scope="col">created at</th>
-                                        <th scope="col">methods</th>
+                                        <th scope="col"> {{trans('lectures/lectures.file name')}}</th>
+                                        <th scope="col"> {{trans('lectures/lectures.created at')}}</th>
+                                        <th scope="col"> {{trans('lectures/lectures.methods')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="list">
@@ -92,12 +92,12 @@
                                             <td>{{ $attachment->name }}</td>
                                             <td>{{ $attachment->created_at }}</td>
                                             <td colspan="2">
-                                                <a class="btn btn-outline-success btn-sm"
+                                                <a class="btn btn-success btn-sm"
                                                    href="{{ route('lecture.View_file',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
                                                 </a>
 
-                                                <a class="btn btn-outline-info btn-sm"
+                                                <a class="btn btn-info btn-sm"
                                                    href="{{ route('lecture.download',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                    role="button"><i
                                                         class="fas fa-download"></i>&nbsp;

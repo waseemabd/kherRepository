@@ -38,6 +38,7 @@
 		<script src="{{asset('assets/plugins/eva-icons/eva-icons.min.js')}}"></script>
 
 <script src="{{asset('assets/plugins/toastr/toastr.min.js') }}"></script>
+
 <script>
     var isRtl =true;
 
@@ -74,3 +75,4 @@
 
 		<!-- custom js -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>
+		<script src="{{asset('assets/js/translate.js')}}"></script>

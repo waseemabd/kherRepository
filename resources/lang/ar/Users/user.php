@@ -17,5 +17,12 @@ return [
 'Active' =>'فعال',
 'Inactive' =>'غير فعال',
 'Add'=> 'إضافة',
-'new' => 'تعديل'
+'new' => 'تعديل',
+'update' => 'تحديث',
+'Delete User'=>'حذف المستخدم',
+'Do Yoy Want to Delete This User'=>'    هل تريد حذف هذا المستخدم',
+'Delete'=>'حذف',
+'Close'=>'إغلاق',
+'Roles' => 'الصلاحيات',
+'Show User' => 'اظهار المستخدم'
 ];
