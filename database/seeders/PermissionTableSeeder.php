@@ -23,6 +23,7 @@ $permissions = [
     'delete user',
 
     'Certificates',
+    'list Certificate',
     'create Certificate',
     'update Certificate',
     'delete Certificate',
