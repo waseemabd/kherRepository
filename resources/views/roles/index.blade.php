@@ -73,11 +73,9 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create role'))
                     <div class="d-flex justify-content-between ">
                         <a class="btn btn-primary btn-sm mr-10" href="{{ route('role.create') }}">{{trans('role/role.Add Role')}}</a>
                     </div>
-                    @endif
 
                 </div>
                 <div class="card-body">
@@ -97,22 +95,19 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    @if(auth('admin') -> user() ->can('show role'))
+
                                   <a class="btn btn-success btn-sm"
                                      href="{{ route('role.show', $role->id) }}"><i
                                           class="las la-eye"></i></a>
-                                    @endif
-                                        @if(auth('admin') -> user() ->can('update role'))
                                  <a class="btn btn-primary btn-sm"
                                      href="{{ route('role.edit', $role->id) }}"><i
                                          class="las la-edit"></i></a>
-                                        @endif
-                                        @if(auth('admin') -> user() ->can('delete role'))
+
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-role_id="{{ $role->id }}" data-rolename="{{ $role->name }}"
                                        data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                             class="las la-trash"></i></a>
-                                        @endif
+
                                     <div class="modal" id="modaldemo1">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content modal-content-demo">

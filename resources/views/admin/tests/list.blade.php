@@ -76,12 +76,10 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create Test'))
                     <div class="d-flex justify-content-between fz-13">
                         <a class="btn btn-primary btn-sm"
                            href="{{ route('test.create') }}">{{trans('general.Add')}}</a>
                     </div>
-                        @endif
 
                 </div>
                 <div class="card-body">
@@ -129,29 +127,26 @@
 
                                     <td>
 
-                                        @if(auth('admin') -> user() ->can('update Test'))
+
                                         <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
                                            href="{{ route('test.edit', $test->id) }}"><i
                                                 class="las la-edit"></i></a>
-                                        @endif
-                                            @if(auth('admin') -> user() ->can('delete Test'))
+
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $test->id }}"
                                            data-bs-toggle="modal" href="#delete-sub"
                                            title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
-                                            @endif
-                                            @if(auth('admin') -> user() ->can('students test'))
+
                                         <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                            href="{{ route('test.students', $test->id) }}"><i
                                                 class="las la-graduation-cap"></i></a>
 
-                                            @endif
-                                            @if(auth('admin') -> user() ->can('manage question'))
+
                                         <a class="btn btn-warning btn-sm" title="{{trans('tests/tests.manage_questions')}}"
                                            href="{{ route('test.questions', $test->id) }}"><i
                                                 class="las la-tools"></i></a>
-                                            @endif
+
                                     </td>
                                 </tr>
                             @endforeach

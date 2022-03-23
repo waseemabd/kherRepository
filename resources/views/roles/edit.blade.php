@@ -30,10 +30,8 @@
         </div>
 
     </div>
-
-
     {!! Form::model($role, ['method' => 'POST','route' => ['role.update', $role->id]]) !!}
-
+    <!-- row -->
     <div class="row">
     <div class="col-md-12">
         <div class="card mg-b-20">
@@ -41,7 +39,6 @@
                 <div class="main-content-label mg-b-5">
                     <div class="form-group">
                         <p> {{trans('role/role.name Role')}} :</p>
-
                         {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
                     </div>
                 </div>
@@ -72,13 +69,12 @@
         </div>
     </div>
     </div>
-0\4
+    <!-- row closed -->
     </div>
-
+    <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-        {!! Form::close() !!}
-
+    {!! Form::close() !!}
 
 
 
