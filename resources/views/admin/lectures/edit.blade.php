@@ -56,13 +56,13 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="title" value="{{$lecture->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            <div class="col-lg-6 col-md-12 col-sm-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></p>
                                 <select name="type" id="type" required="" class="form-control select2">
                                     <option label="{{trans('lectures/lectures.sel_type')}}">
@@ -79,7 +79,7 @@
 
                         </div>
                         <div class="row row-sm mt-2">
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            <div class="col-lg-6 col-md-12 col-sm-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
                                 <select name="course" required="" class="form-control select2">
                                     <option >
@@ -96,18 +96,18 @@
                                 <p class="validation_error">{{ $message }}</p>
                                 @enderror
                             </div><!-- col-4 -->
-                            <div class="col-6" id="link-div" hidden>
+                            <div class="col-lg-6 col-md-12 col-sm-12" id="link-div" hidden>
                                 <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
+                                    <label class="form-label mt-12">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="link" id="link" value="{{$lecture->link}}" placeholder="www.example.com" type="text">
                                 </div>
                             </div>
 
                         </div>
                         <div class="row row-sm mt-2">
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
                                 <label class="form-label">{{trans('lectures/lectures.start_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
-                                <div class="input-group col-md-12">
+                                <div class="input-group col-md-12 padd-data">
                                     <div class="input-group-text">
                                         <div class="input-group-text">
                                             <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
@@ -117,9 +117,9 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-lg-6 col-md-12 col-sm-12">
                                 <label class="form-label">{{trans('lectures/lectures.end_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
-                                <div class="input-group col-md-12">
+                                <div class="input-group col-md-12 padd-data">
                                     <div class="input-group-text">
                                         <div class="input-group-text">
                                             <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>

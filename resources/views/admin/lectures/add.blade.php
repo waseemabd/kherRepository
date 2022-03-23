@@ -53,13 +53,13 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
-                                <div class="form-group mg-b-0">
+                            <div class="col-sm-12 col-lg-6 col-md-12">
+                                <div class="form-group">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control mt-10 width-in" name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
+                                    <input class="form-control mt-10 " name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0 ">
+                            <div class="col-sm-12 col-lg-6 col-md-12">
                                 <p class="mg-b-10 mr-3">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></p>
                                 <select name="type" id="type" required="" class="form-control select2 ">
                                     <option label="{{trans('lectures/lectures.sel_type')}}">
@@ -75,9 +75,9 @@
                             </div><!-- col-4 -->
 
                         </div>
+                        <!-- <div class="row row-sm mt-2"> -->
                         <div class="row row-sm mt-2">
-                        <div class="row row-sm mt-2">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-lg-6 col-md-12">
                                         <p class="mg-b-10">{{trans('students/students.Students')}}</p>
                                         <select name="students[]" multiple="multiple" onchange="console.log($(this).children(':selected').length)" class="selectsum1">
                                             @foreach($students as $student)
@@ -88,63 +88,39 @@
 
                                         </select>
                                     </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0 width-input">
-                                <p class="mg-b-10 mr-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
-                                <select name="course" required="" class="form-control select2  ml-21 ">
-                                    <option >
-                                        {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
-                                    </option>
-                                    @foreach($courses as $course)
-                                        <option value="{{$course->id}}">
-                                            {{$course->title}}
-                                        </option>
-                                    @endforeach
+                                    <div class="col-sm-12 col-lg-6 col-md-12 mg-t-20 mg-lg-t-0 ">
+                                        <p class="mg-b-10 mr-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
+                                        <select name="course" required="" class="form-control select2  ml-21 ">
+                                            <option >
+                                                {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
+                                            </option>
+                                            @foreach($courses as $course)
+                                                <option value="{{$course->id}}">
+                                                    {{$course->title}}
+                                                </option>
+                                            @endforeach
 
-                                </select>
-                                @error('course')
-                                <p class="validation_error">{{ $message }}</p>
-                                @enderror
-                            </div><!-- col-4 -->
+                                        </select>
+                                        @error('course')
+                                        <p class="validation_error">{{ $message }}</p>
+                                        @enderror
+                                    </div><!-- col-4 -->
 
-                            <div class="col-6" id="link-div" hidden>
-                                <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="link" id="link" placeholder="www.example.com" type="text">
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row row-sm mt-2 ">
-                            <div class="col-md-6">
-                                <label class="form-label">{{trans('lectures/lectures.start_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
-                                <div class="input-group col-md-12 padd-data">
-                                    <div class="input-group-text">
-                                        <div class="input-group-text">
-                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                    <div class="col-6" id="link-div" hidden>
+                                        <div class="form-group mg-b-0">
+                                            <label class="form-label">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
+                                            <input class="form-control" name="link" id="link" placeholder="www.example.com" type="text">
                                         </div>
                                     </div>
-                                    <input  class="start_date form-control date-input" id="datetimepicker" name="start_date" type="text" value="{{now()}}">
-                                </div>
-                            </div>
 
-                            <div class="col-md-6 p-data">
-                                <label class="form-label mr-10">{{trans('lectures/lectures.end_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
-                                <div class="input-group col-md-12">
-                                    <div class="input-group-text">
-                                        <div class="input-group-text">
-                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
-                                        </div>
-                                    </div>
-                                    <input   class="end_date form-control date-input" id="datetimepicker1" name="end_date" type="text" value="{{now()}}">
-                                </div>
-                            </div>
-                        </div>
+                        <!-- </div> -->
+                       
 
                         
 
 
 {{--                           @if( auth('admin') -> user() ->role != 2)--}}
-{{--                            <div class="col-md-6">--}}
+{{--                            <div class="col-sm-12 col-lg-6 col-md-12">--}}
 {{--                                <p class="mg-b-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>--}}
 {{--                                <select id="teacher" name="teacher_id" required="" class="form-control select2">--}}
 {{--                                    <option >--}}
@@ -164,7 +140,31 @@
 {{--                               @endif--}}
 
                         </div>
+                        <div class="row row-sm mt-2 ">
+                            <div class="col-sm-12 col-lg-6 col-md-12">
+                                <label class="form-label">{{trans('lectures/lectures.start_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
+                                <div class="input-group col-md-12 padd-data">
+                                    <div class="input-group-text">
+                                        <div class="input-group-text">
+                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                        </div>
+                                    </div>
+                                    <input  class="start_date form-control date-input" id="datetimepicker" name="start_date" type="text" value="{{now()}}">
+                                </div>
+                            </div>
 
+                            <div class="col-sm-12 col-lg-6 col-md-12">
+                                <label class="form-label">{{trans('lectures/lectures.end_date')}}: <span class="tx-danger star-span" hidden>*</span></label>
+                                <div class="input-group col-md-12 padd-data">
+                                    <div class="input-group-text">
+                                        <div class="input-group-text">
+                                            <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>
+                                        </div>
+                                    </div>
+                                    <input   class="end_date form-control date-input" id="datetimepicker1" name="end_date" type="text" value="{{now()}}">
+                                </div>
+                            </div>
+                        </div>
 
                          <div class="row row-sm mt-2">
                             <div class="col-12">
@@ -175,8 +175,6 @@
                                     <div id="blog-editor-wrapper">
                                         <div id="blog-editor-container">
                                             <div class="editor" style="min-height: 200px">
-
-
                                             </div>
                                         </div>
                                     </div>

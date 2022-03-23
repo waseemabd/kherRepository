@@ -102,9 +102,9 @@
                                         <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$diploma->desc}}" data-title="{{$diploma->title}}"
                                         >
-                                            {!! substr($diploma->desc,0,25) !!}...
+                                            {!! substr($diploma->desc,0,25) !!}
                                             <span style="color: blue">
-                                                {{trans('diplomas/diplomas.read_more')}}
+                                                {{trans('diplomas/diplomas.read_more')}}...
                                             </span>
                                             </a>
                                     </td>

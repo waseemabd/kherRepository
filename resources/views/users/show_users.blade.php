@@ -144,7 +144,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
+                                                        <h6 class="modal-title">{{trans('Users/user.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -152,14 +152,14 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>? Do Yoy Want to Delete This User </p><br>
+                                                                <p>{{trans('Users/user.Do Yoy Want to Delete This User')}} ؟ </p><br>
 
                                                                 <input class="form-control" hidden name="user_id" value="{{$user->name}}" id="user_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Users/user.Delete')}}</button>
+                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Users/user.Close')}}</button>
                                                             </div>
 
 

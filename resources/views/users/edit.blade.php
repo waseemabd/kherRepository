@@ -37,8 +37,8 @@
             <div class="breadcrumb-header justify-content-between">
                 <div class="my-auto">
                     <div class="d-flex">
-                        <h4 class="content-title mb-0 my-auto">Users</h4><span
-                            class="text-muted mt-1 tx-13 ms-2 mb-0"> / Users Menu</span>
+                        <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
+                            class="text-muted mt-1 tx-13 ms-2 mb-0"> / {{trans('Users/user.users menu')}}</span>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
             <div class="card-body">
                 <div class="col-lg-12 margin-tb pr">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">رجوع</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('users.index') }}">{{trans('Users/user.Back')}}</a>
                     </div>
                 </div><br>
 
@@ -58,12 +58,12 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>user name: </label>
+                            <label>{{trans('Users/user.user name')}}: </label>
                             {!! Form::text('name', null, array('class' => 'form-control','required')) !!}
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>email: </label>
+                            <label>{{trans('Users/user.email')}}: </label>
                             {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
                         </div>
                     </div>
@@ -72,22 +72,22 @@
 
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>password: </label>
+                        <label>{{trans('Users/user.password')}}: </label>
                         {!! Form::password('password', array('class' => 'form-control',)) !!}
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                        <label>confirm password: </label>
+                        <label>{{trans('Users/user.confirm password')}}: </label>
                         {!! Form::password('confirm-password', array('class' => 'form-control',)) !!}
                     </div>
                 </div>
 
                 <div class="row row-sm mg-b-20">
-                    <div class="col-lg-6">
-                        <label class="form-label">status</label>
+                    <div class="col-lg-12">
+                        <label class="form-label">{{trans('Users/user.status')}}</label>
                         <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                            <option value="0" @if($user->status==0) selected @endif>Inactive</option>
-                            <option value="1" @if($user->status==1) selected @endif>Active</option>
+                            <option value="0" @if($user->status==0) selected @endif>{{trans('Users/user.Inactive')}}</option>
+                            <option value="1" @if($user->status==1) selected @endif>{{trans('Users/user.Active')}}</option>
                         </select>
                     </div>
                 </div>
@@ -95,14 +95,14 @@
                 <div class="row mg-b-20">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
-                            <strong>user role</strong>
+                            <strong>{{trans('Users/user.user role')}}</strong>
                             {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple'))
                             !!}
                         </div>
                     </div>
                 </div>
                 <div class="mg-t-30">
-                    <button class="btn btn-main-primary pd-x-20" type="submit">تحديث</button>
+                    <button class="btn btn-main-primary pd-x-20" type="submit">{{trans('Users/user.update')}}</button>
                 </div>
                 {!! Form::close() !!}
             </div>
