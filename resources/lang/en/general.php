@@ -69,6 +69,10 @@ return [
     'admin' => 'Admin',
     'teacher' => 'Teacher',
 
+    'logout' => 'Logout',
 
+    'Files' => 'Files',
+    'edu_content' => 'Educational Content',
+    'general' => 'general',
 
 ];

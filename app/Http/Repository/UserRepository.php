@@ -37,6 +37,13 @@ class UserRepository extends BaseRepository implements IUserRepository
     public function storeUser($request)
     {
         $input = $request->all();
+        if($input['is_teacher'] == "on"){
+            $input['role'] = 2; // teacher
+        }else{
+            $input['role'] = 1; // admin
+
+        }
+
         $input['password'] = Hash::make($input['password']);
         $user = User::create($input);
         $user->assignRole($request->input('roles_name'));
@@ -82,5 +89,16 @@ class UserRepository extends BaseRepository implements IUserRepository
 
     }
 
+    public function getUsersByRole($role)
+    {
+        try {
+            $users= $this->model->where('role', $role)
+                ->get();
+
+            return $users;
+        } catch (\Exception $exception) {
+            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        }
+    }
 
 }

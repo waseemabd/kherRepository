@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "apility/laravel-fcm": "^1.4",
         "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -63,6 +64,8 @@
     },
     "config": {
         "github-oauth": {
+
+            "github.com": "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"
 
         },
         "optimize-autoloader": true,

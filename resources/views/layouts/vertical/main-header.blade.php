@@ -23,56 +23,56 @@
 					</div>
 					<div class="main-header-right">
 						<ul class="nav nav-item  navbar-nav-right ms-auto">
-							<li class="nav-link">
-									<div class="dropdown  nav-itemd-none d-md-flex">
-										<a href="#" class="d-flex  nav-item country-flag1"
-											data-bs-toggle="dropdown" aria-expanded="false">
-											<span class="avatar country-Flag me-0 align-self-center bg-transparent"><img
-													src="{{asset('assets/img/flags/us_flag.jpg')}}" alt="img"></span>
-											<div class="my-auto">
-												<strong class="me-2 ms-2 my-auto">English</strong>
-											</div>
-										</a>
-										<div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow"
-											x-placement="bottom-end">
-											<a href="#" class="dropdown-item d-flex ">
-												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img
-														src="{{asset('assets/img/flags/french_flag.jpg')}}" alt="img"></span>
-												<div class="d-flex">
-													<span class="mt-2">French</span>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img
-														src="{{asset('assets/img/flags/germany_flag.jpg')}}" alt="img"></span>
-												<div class="d-flex">
-													<span class="mt-2">Germany</span>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img
-														src="{{asset('assets/img/flags/italy_flag.jpg')}}" alt="img"></span>
-												<div class="d-flex">
-													<span class="mt-2">Italy</span>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img
-														src="{{asset('assets/img/flags/russia_flag.jpg')}}" alt="img"></span>
-												<div class="d-flex">
-													<span class="mt-2">Russia</span>
-												</div>
-											</a>
-											<a href="#" class="dropdown-item d-flex">
-												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img
-														src="{{asset('assets/img/flags/spain_flag.jpg')}}" alt="img"></span>
-												<div class="d-flex">
-													<span class="mt-2">spain</span>
-												</div>
-											</a>
-										</div>
-									</div>
-							</li>
+{{--							<li class="nav-link">--}}
+{{--									<div class="dropdown  nav-itemd-none d-md-flex">--}}
+{{--										<a href="#" class="d-flex  nav-item country-flag1"--}}
+{{--											data-bs-toggle="dropdown" aria-expanded="false">--}}
+{{--											<span class="avatar country-Flag me-0 align-self-center bg-transparent"><img--}}
+{{--													src="{{asset('assets/img/flags/us_flag.jpg')}}" alt="img"></span>--}}
+{{--											<div class="my-auto">--}}
+{{--												<strong class="me-2 ms-2 my-auto">English</strong>--}}
+{{--											</div>--}}
+{{--										</a>--}}
+{{--										<div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow"--}}
+{{--											x-placement="bottom-end">--}}
+{{--											<a href="#" class="dropdown-item d-flex ">--}}
+{{--												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img--}}
+{{--														src="{{asset('assets/img/flags/french_flag.jpg')}}" alt="img"></span>--}}
+{{--												<div class="d-flex">--}}
+{{--													<span class="mt-2">French</span>--}}
+{{--												</div>--}}
+{{--											</a>--}}
+{{--											<a href="#" class="dropdown-item d-flex">--}}
+{{--												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img--}}
+{{--														src="{{asset('assets/img/flags/germany_flag.jpg')}}" alt="img"></span>--}}
+{{--												<div class="d-flex">--}}
+{{--													<span class="mt-2">Germany</span>--}}
+{{--												</div>--}}
+{{--											</a>--}}
+{{--											<a href="#" class="dropdown-item d-flex">--}}
+{{--												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img--}}
+{{--														src="{{asset('assets/img/flags/italy_flag.jpg')}}" alt="img"></span>--}}
+{{--												<div class="d-flex">--}}
+{{--													<span class="mt-2">Italy</span>--}}
+{{--												</div>--}}
+{{--											</a>--}}
+{{--											<a href="#" class="dropdown-item d-flex">--}}
+{{--												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img--}}
+{{--														src="{{asset('assets/img/flags/russia_flag.jpg')}}" alt="img"></span>--}}
+{{--												<div class="d-flex">--}}
+{{--													<span class="mt-2">Russia</span>--}}
+{{--												</div>--}}
+{{--											</a>--}}
+{{--											<a href="#" class="dropdown-item d-flex">--}}
+{{--												<span class="avatar  m-e-c-3 align-self-center bg-transparent"><img--}}
+{{--														src="{{asset('assets/img/flags/spain_flag.jpg')}}" alt="img"></span>--}}
+{{--												<div class="d-flex">--}}
+{{--													<span class="mt-2">spain</span>--}}
+{{--												</div>--}}
+{{--											</a>--}}
+{{--										</div>--}}
+{{--									</div>--}}
+{{--							</li>--}}
 							<li class="nav-link" id="bs-example-navbar-collapse-1">
 								<form class="navbar-form" role="search">
 									<div class="input-group">
@@ -311,14 +311,15 @@
 											</div>
 										</div>
 									</div>
-									<a class="dropdown-item" href="{{url('profile')}}"><i class="bx bx-user-circle"></i>Profile</a>
-									<a class="dropdown-item" href="{{url('editprofile')}}"><i class="bx bx-cog"></i> Edit Profile</a>
-									<a class="dropdown-item" href="{{url('mail')}}"><i class="bx bxs-inbox"></i>Inbox</a>
-									<a class="dropdown-item" href="{{url('mail-compose')}}"><i class="bx bx-envelope"></i>Messages</a>
-									<a class="dropdown-item" href="{{url('mail-settings')}}"><i class="bx bx-slider-alt"></i> Account
-										Settings</a>
-									<a class="dropdown-item" href="{{route('admin.logout')}}"><i class="bx bx-log-out"></i> Sign
-										Out</a>
+{{--									<a class="dropdown-item" href="{{url('profile')}}"><i class="bx bx-user-circle"></i>Profile</a>--}}
+{{--									<a class="dropdown-item" href="{{url('editprofile')}}"><i class="bx bx-cog"></i> Edit Profile</a>--}}
+{{--									<a class="dropdown-item" href="{{url('mail')}}"><i class="bx bxs-inbox"></i>Inbox</a>--}}
+{{--									<a class="dropdown-item" href="{{url('mail-compose')}}"><i class="bx bx-envelope"></i>Messages</a>--}}
+									<a class="dropdown-item" href="{{route('settings')}}"><i class="bx bx-slider-alt"></i>
+                                        {{trans('settings/settings.Settings')}}
+                                    </a>
+									<a class="dropdown-item" href="{{route('admin.logout')}}"><i class="bx bx-log-out"></i>
+                                        {{trans('general.logout')}}</a>
 								</div>
 							</li>
 							<li class="dropdown main-header-message right-toggle">

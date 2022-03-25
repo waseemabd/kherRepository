@@ -88,6 +88,7 @@
                                 <th class="wd-10p border-bottom-0">#</th>
                                 <th class="wd-15p border-bottom-0">{{trans('courses/courses.title')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('courses/courses.diploma')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.teachers')}}</th>
                                 <th class="wd-20p border-bottom-0">{{trans('courses/courses.desc')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
@@ -100,6 +101,15 @@
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $course->title }}</td>
                                     <td>{{ $course->diploma->title }}</td>
+                                    <td>
+
+                                        <ul>
+                                            @foreach ($course->users as $key => $teacher)
+                                                <li>{{$teacher->name}}</li>
+                                            @endforeach
+                                        </ul>
+
+                                    </td>
                                     <td>
                                         <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$course->desc}}" data-title="{{$course->title}}"
@@ -115,8 +125,8 @@
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('course.edit', $course->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                           href="{{ route('course.edit', $course->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $course->id }}"

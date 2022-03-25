@@ -16,6 +16,7 @@ return [
     'Course_Updated_Successfully' => 'تم تعديل الكورس بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
+    'teachers' => 'المدرسون',
 
 
 

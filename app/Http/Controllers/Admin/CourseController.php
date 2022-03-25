@@ -7,6 +7,7 @@ use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\IDiplomaRepository;
+use App\Http\IRepositories\IUserRepository;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -15,14 +16,17 @@ class CourseController extends Controller
 {
 
     protected $courseRepository;
+    protected $userRepository;
     protected $diplomaRepository;
     protected $requestData;
 
 
     public function __construct(ICourseRepository $courseRepository,
+                                IUserRepository $userRepository,
                                 IDiplomaRepository $diplomaRepository)
     {
         $this->courseRepository = $courseRepository;
+        $this->userRepository = $userRepository;
         $this->diplomaRepository = $diplomaRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:categories');
@@ -62,7 +66,8 @@ class CourseController extends Controller
         try {
 
             $diplomas = $this->diplomaRepository->all();
-            return view('admin.courses.add', compact('diplomas'));
+            $teachers = $this->userRepository->getUsersByRole(2); // teachers
+            return view('admin.courses.add', compact('diplomas', 'teachers'));
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -83,6 +88,7 @@ class CourseController extends Controller
         try {
 
             $data = $this->requestData;
+            $teachers = $data['teachers'];
             $data['diploma_id'] = $this->requestData['diploma'];
 //            dd($data);
             $validator = Validator::make($data, $validator_rules = Course::create_update_rules);
@@ -90,8 +96,9 @@ class CourseController extends Controller
             if ($validator->passes()) {
 
 
-                $user = $this->courseRepository->create($data);
+                $course = $this->courseRepository->create($data);
 
+                $course->users()->attach($teachers);
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Added_Successfully'));
 
@@ -129,8 +136,11 @@ class CourseController extends Controller
 
             $diplomas = $this->diplomaRepository->all();
             $course = $this->courseRepository->find($id);
+            $teachers = $this->userRepository->getUsersByRole(2); // teachers
 
-            return view('admin.courses.edit', compact('course','diplomas' ));
+            $selectedTeachers = $course->users->pluck('id')->toArray();
+
+            return view('admin.courses.edit', compact('course','diplomas', 'teachers', 'selectedTeachers' ));
 
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -152,15 +162,19 @@ class CourseController extends Controller
         try {
 
             $data = $this->requestData;
+            $teachers = $data['teachers'];
+
             $data['diploma_id'] = $this->requestData['diploma'];
 
             $validator = Validator::make($data, $validator_rules = Course::create_update_rules);
 
             if ($validator->passes()) {
 
-
+                $course = $this->courseRepository->find($id);
                 $user = $this->courseRepository->update($data, $id);
 
+
+                $course->users()->sync($teachers);
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Updated_Successfully'));
 

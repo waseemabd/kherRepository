@@ -126,18 +126,18 @@
                                     <td>
                                         @if(auth('admin') -> user() ->can('show user'))
                                     <a class="btn btn-success btn-sm"
-                                           href="{{ route('user.show', $user->id) }}"><i
-                                                class="las la-eye"></i></a>
+                                           href="{{ route('user.show', $user->id) }}" title="{{trans('general.View')}}"><i
+                                                class="las la-eye" ></i></a>
                                         @endif
                                             @if(auth('admin') -> user() ->can('update user'))
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('user.edit', $user->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                           href="{{ route('user.edit', $user->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('delete user'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                           data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
+                                           data-bs-toggle="modal" href="#modaldemo1" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
                                             @endif
                                         <div class="modal" id="modaldemo1">

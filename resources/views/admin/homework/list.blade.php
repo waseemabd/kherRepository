@@ -112,20 +112,22 @@
 
                                     <td>
                                         @if(auth('admin') -> user() ->can('add files'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-warning btn-sm" title="{{trans('general.Files')}}"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
                                         @endif
+                                            @if(auth('admin') -> user() ->can('show Homework'))
+                                                <a class="btn btn-success btn-sm" title="{{trans('general.View')}}"
+                                                   href="{{ route('homework.show', $homework->id) }}"><i
+                                                        class="las la-eye"></i></a>
+                                            @endif
+
                                             @if(auth('admin') -> user() ->can('update Homework'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
                                            href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>
                                             @endif
-                                            @if(auth('admin') -> user() ->can('show Homework'))
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('homework.show', $homework->id) }}"><i
-                                                class="las la-eye"></i></a>
-                                            @endif
+
                                             @if(auth('admin') -> user() ->can('delete Homework'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $homework->id }}"

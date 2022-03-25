@@ -125,8 +125,8 @@
                                     <td>
                                         @if(auth('admin') -> user() ->can('add lecture files'))
                                         @if($lecture->link===null)
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('lecture.add_files', $lecture->id) }}"><i
+                                        <a class="btn btn-warning btn-sm"
+                                           href="{{ route('lecture.add_files', $lecture->id) }}" title="{{trans('general.Files')}}"><i
                                                 class="far fa-file"></i></a>
                                             @endif
                                         @endif
@@ -136,9 +136,9 @@
                                                 class="las la-graduation-cap"></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('update Lecture'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
                                            href="{{ route('lecture.edit', $lecture->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                                class="las la-edit" ></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('delete Lecture'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"

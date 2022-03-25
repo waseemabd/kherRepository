@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder
             PermissionTableSeeder::class,
             RolelHasPermissionsSeeder::class,
             ModelHasRoleSeeder::class,
+            NotificationSeeder::class,
         ]);
     }
 }

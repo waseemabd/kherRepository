@@ -25,6 +25,6 @@ return [
 'Close'=>'إغلاق',
 'Roles' => 'الصلاحيات',
 'Show User' => 'اظهار المستخدم',
-    'teacher' => 'مدرس؟',
+    'teacher' => 'Teacher?',
 
 ];

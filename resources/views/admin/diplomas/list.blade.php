@@ -113,8 +113,8 @@
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('diploma.edit', $diploma->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                           href="{{ route('diploma.edit', $diploma->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $diploma->id }}"

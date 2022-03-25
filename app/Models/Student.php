@@ -104,4 +104,9 @@ class Student extends Model
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
 }

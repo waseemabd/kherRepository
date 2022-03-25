@@ -97,15 +97,15 @@
                                 <td>
 
                                   <a class="btn btn-success btn-sm"
-                                     href="{{ route('role.show', $role->id) }}"><i
-                                          class="las la-eye"></i></a>
+                                     href="{{ route('role.show', $role->id) }}" title="{{trans('general.View')}}"><i
+                                          class="las la-eye" ></i></a>
                                  <a class="btn btn-primary btn-sm"
-                                     href="{{ route('role.edit', $role->id) }}"><i
-                                         class="las la-edit"></i></a>
+                                     href="{{ route('role.edit', $role->id) }}" title="{{trans('general.Edit')}}"><i
+                                         class="las la-edit" ></i></a>
 
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-role_id="{{ $role->id }}" data-rolename="{{ $role->name }}"
-                                       data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
+                                       data-bs-toggle="modal" href="#modaldemo1" title="{{trans('general.Delete')}}"><i
                                             class="las la-trash"></i></a>
 
                                     <div class="modal" id="modaldemo1">

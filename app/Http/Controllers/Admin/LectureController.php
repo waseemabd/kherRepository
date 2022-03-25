@@ -84,9 +84,6 @@ class LectureController extends Controller
         //
         try {
 
-            if($request->hasFile('files')){
-                dd();
-            }
             $data = $this->requestData;
             $data['course_id'] = $this->requestData['course'];
 //            dd($data);

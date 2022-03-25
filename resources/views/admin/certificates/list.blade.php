@@ -104,7 +104,7 @@
 
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('certificate.edit', $certificate->id) }}"><i
+                                           href="{{ route('certificate.edit', $certificate->id) }}" title="{{trans('general.Edit')}}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"

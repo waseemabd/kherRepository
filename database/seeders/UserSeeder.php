@@ -72,6 +72,19 @@ class UserSeeder extends Seeder
                 'created_at' =>now(),
                 'updated_at' =>now(),
             ],
+            [
+                'id' => 5,
+                'name' =>'teacher2',
+                'email' =>'teacher2@gmail.com',
+
+                'password' => bcrypt('123'),
+                'role' => '2',
+                'roleIds' => json_encode([3]),
+                'status' => 1,
+                'fcm_token' => '1',
+                'created_at' =>now(),
+                'updated_at' =>now(),
+            ],
 
         ]);
     }

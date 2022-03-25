@@ -13,5 +13,5 @@ interface IUserRepository
     public function editUser($id);
     public function updateUser($input,$id);
     public function deleteUser($id);
-
+    public function getUsersByRole($role);
 }
