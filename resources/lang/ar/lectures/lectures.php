@@ -25,6 +25,9 @@ return [
     'Lecture_Updated_Successfully' => 'تم تعديل المحاضرة بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
+    'Has'=>'لديه',
+    'from'=>'من',
+    'to'=>'الى',
 
 
 

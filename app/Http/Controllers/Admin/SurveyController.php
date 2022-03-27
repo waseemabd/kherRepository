@@ -10,7 +10,9 @@ use App\Http\IRepositories\IStudentRepository;
 use App\Http\IRepositories\ISurveyAnswerRepository;
 use App\Http\IRepositories\ISurveyRepository;
 use App\Models\Survey;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class SurveyController extends Controller
@@ -33,12 +35,17 @@ class SurveyController extends Controller
         $this->studentRepository = $studentRepository;
         $this->surveyAnswerRepository = $surveyAnswerRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+        $this->middleware('permission:Survey');
+        $this->middleware('permission:list Survey')->only(['index']);
+        $this->middleware('permission:create Survey')->only(['create']);
+        $this->middleware('permission:update Survey')->only(['edit']);
+        $this->middleware('permission:show students Survey')->only(['show']);
+        $this->middleware('permission:questions Survey')->only(['surveyQuestions']);
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -49,7 +56,7 @@ class SurveyController extends Controller
 
             return view('admin.surveys.list', compact('surveys'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -57,7 +64,7 @@ class SurveyController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -67,7 +74,7 @@ class SurveyController extends Controller
             $courses = $this->courseRepository->all();
             return view('admin.surveys.add', compact('courses'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -75,8 +82,8 @@ class SurveyController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -106,7 +113,7 @@ class SurveyController extends Controller
             }
             return redirect()->route('survey.create')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
             return redirect()->route('survey.create')->with('error', $e->getMessage());
 
@@ -117,7 +124,7 @@ class SurveyController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -128,7 +135,7 @@ class SurveyController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -141,7 +148,7 @@ class SurveyController extends Controller
 
             return view('admin.surveys.edit', compact('courses','survey' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -149,9 +156,9 @@ class SurveyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -189,7 +196,7 @@ class SurveyController extends Controller
             }
             return redirect()->route('survey.edit', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('survey.edit', $id)->with('error', $e->getMessage());
 
         }
@@ -199,7 +206,7 @@ class SurveyController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -209,7 +216,7 @@ class SurveyController extends Controller
 
             $this->surveyRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -224,7 +231,7 @@ class SurveyController extends Controller
 //            $qtypes = $this->qu
             return view('admin.surveys.questions', compact('survey','questions'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -239,7 +246,7 @@ class SurveyController extends Controller
 
             return view('admin.surveys.students', compact('survey', 'students'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -256,7 +263,7 @@ class SurveyController extends Controller
 
             return view('admin.surveys.studentAnswers', compact('survey', 'student'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }

@@ -15,8 +15,10 @@ use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\Test;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
@@ -33,14 +35,16 @@ class ScheduleController extends Controller
         $this->courseRepository = $courseRepository;
         $this->lectureRepository = $lectureRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+        $this->middleware('permission:Schedule')->only(['index']);
+        $this->middleware('permission:create Schedule')->only(['create']);
+
     }
 
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -50,7 +54,7 @@ class ScheduleController extends Controller
             $lectures = $this->lectureRepository->all();
             return view('admin.lectures.list', compact('lectures'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -58,7 +62,7 @@ class ScheduleController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -72,7 +76,7 @@ class ScheduleController extends Controller
             $teachers=user::where('role',2)->get();
             return view('admin.schedules.add', compact('students','teachers','lectures','test'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -80,8 +84,8 @@ class ScheduleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -102,7 +106,7 @@ class ScheduleController extends Controller
 
             return redirect()->back();
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('schedule.create')->with('error', $e->getMessage());
 
         }
@@ -112,7 +116,7 @@ class ScheduleController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -123,7 +127,7 @@ class ScheduleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -135,7 +139,7 @@ class ScheduleController extends Controller
 
             return view('admin.lectures.edit', compact('lecture','courses' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -143,9 +147,9 @@ class ScheduleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -172,7 +176,7 @@ class ScheduleController extends Controller
             }
             return redirect()->route('lecture.edit')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('lecture.edit')->with('error', $e->getMessage());
 
         }
@@ -182,7 +186,7 @@ class ScheduleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -191,7 +195,7 @@ class ScheduleController extends Controller
 
             $this->lectureRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -279,7 +283,7 @@ class ScheduleController extends Controller
 
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -340,7 +344,7 @@ class ScheduleController extends Controller
             }
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 

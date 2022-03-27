@@ -78,7 +78,7 @@
                         <div class="row row-sm mt-2">
                             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
-                                <select name="course" required="" class="form-control select2">
+                                <select id="course_seclection" name="course" required="" class="form-control select2">
                                     <option >
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
@@ -128,7 +128,7 @@
                         </div>
 
                         <div class="row row-sm mt-2">
-                            <div class="col-md-6">
+                            <div class="col-md-6" id="students-div" hidden>
                                 <p class="mg-b-10">students</p>
                                 <select name="students[]" multiple="multiple" onchange="console.log($(this).children(':selected').length)" class="selectsum1">
                                     @foreach($students as $student)
@@ -258,7 +258,6 @@
 
     <!--Internal Sumoselect js-->
     <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
-
 
 
 @endsection

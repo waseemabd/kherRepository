@@ -8,6 +8,7 @@ use App\Http\IRepositories\IBlogRepository;
 use App\Models\Blog;
 use App\Models\Comment;
 use App\Models\File;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -19,7 +20,7 @@ class BlogController extends Controller
     public function __construct(IBlogRepository  $blogRepository)
     {
         $this->middleware('permission:blogs');
-        $this->middleware('permission:list blogs');
+        $this->middleware('permission:list blogs')->only(['index']);
         $this->middleware('permission:update blog')->only(['edit']);
         $this->blogRepository = $blogRepository;
 
@@ -55,7 +56,7 @@ class BlogController extends Controller
             $blog=Blog::find($id);
             $blog->delete();
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -77,7 +78,7 @@ class BlogController extends Controller
 
 
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -102,7 +103,7 @@ class BlogController extends Controller
             ]);
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -118,7 +119,7 @@ class BlogController extends Controller
             Storage::disk('public_uploads')->delete($blog->id.'/'.$path);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -133,7 +134,7 @@ class BlogController extends Controller
             $comment->delete();
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 

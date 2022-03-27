@@ -11,10 +11,13 @@ use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
 use App\Models\Lecture;
+use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,14 +34,20 @@ class LectureController extends Controller
         $this->courseRepository = $courseRepository;
         $this->lectureRepository = $lectureRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+        $this->middleware('permission:Lectures');
+        $this->middleware('permission:list Lecture')->only(['index']);
+        $this->middleware('permission:add lecture files')->only(['add_files']);
+        $this->middleware('permission:create Lecture')->only(['create']);
+        $this->middleware('permission:update Lecture')->only(['edit']);
+        $this->middleware('permission:present students lecture')->only(['studentsPresent']);
+        $this->middleware('permission:delete Lecture')->only(['destroy']);
     }
 
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -48,7 +57,7 @@ class LectureController extends Controller
             $lectures = $this->lectureRepository->all();
             return view('admin.lectures.list', compact('lectures'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -56,7 +65,7 @@ class LectureController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -68,7 +77,7 @@ class LectureController extends Controller
             $teachers=user::where('role',2)->get();
             return view('admin.lectures.add', compact('courses','students','teachers'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -76,35 +85,54 @@ class LectureController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        //
         try {
+            if($request->course){
+               $course=Course::where('id',$request->course)->first();
+               $lectures_course=$course->lectures;
+               $students_course=$course->students;
 
-            if($request->hasFile('files')){
-                dd();
+                $schedule=[];
+               foreach ($students_course as $student)
+               {
+                   if ($student->schedules)
+                   {
+                       foreach ($lectures_course as $lecture)
+                       {
+                           if($lecture->schedules)
+                           {
+                             $schedule[]=Schedule::where('student_id',$student->id)->where('lecture_id',$lecture->id)
+                                 ->whereBetween('start_date',[$request->start_date,$request->end_date])
+                                 ->whereBetween('end_date',[$request->start_date,$request->end_date])
+                                  ->first();
+                           }
+                       }
+                   }
+               }
+
+               foreach ($schedule as $one)
+               {
+                   if($one !==null)
+                   {
+                       return view('admin.lectures.error',compact('schedule'));
+                   }
+               }
             }
             $data = $this->requestData;
             $data['course_id'] = $this->requestData['course'];
-//            dd($data);
             $validator = Validator::make($data, $validator_rules = Lecture::create_update_rules);
-
             if ($validator->passes()) {
-
-
                 $user = $this->lectureRepository->create($data);
-
-                $user->students()->attach($data['students']);
-
+              //  $user->students()->attach($data['students']);
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Added_Successfully'));
-
             }
             return redirect()->route('lecture.create')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('lecture.create')->with('error', $e->getMessage());
 
         }
@@ -114,7 +142,7 @@ class LectureController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -125,7 +153,7 @@ class LectureController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -137,7 +165,7 @@ class LectureController extends Controller
 
             return view('admin.lectures.edit', compact('lecture','courses' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -145,9 +173,9 @@ class LectureController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -174,7 +202,7 @@ class LectureController extends Controller
             }
             return redirect()->route('lecture.edit', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('lecture.edit', $id)->with('error', $e->getMessage());
 
         }
@@ -184,7 +212,7 @@ class LectureController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -193,7 +221,7 @@ class LectureController extends Controller
 
             $this->lectureRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -224,7 +252,7 @@ class LectureController extends Controller
             ]);
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -247,12 +275,12 @@ class LectureController extends Controller
                 $file->move($location, $filename);
                 $path = '/files/lectures/' . $filename;
 
-                return json_encode($path);;
+                return json_encode($path);
 
             }
             return  json_encode(false);
 //            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return json_encode($ex->getMessage());
         }
     }
@@ -264,7 +292,7 @@ class LectureController extends Controller
             $attachments=File::where('lecture_id',$lecture->id)->get();
             return view('admin.lectures.add_files',compact('attachments','lecture'));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -277,7 +305,7 @@ class LectureController extends Controller
         try {
             $contents= Storage::disk('public_uploads_lectures')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
             return response()->download( $contents);
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -288,7 +316,7 @@ class LectureController extends Controller
         try {
             $files = Storage::disk('public_uploads_lectures')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
             return response()->file($files);
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -302,7 +330,7 @@ class LectureController extends Controller
             Storage::disk('public_uploads_lectures')->delete($file_name.'/'.$path);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -354,7 +382,7 @@ class LectureController extends Controller
             //$student = Student::whereBetween('invoice_Date',[$start_at,$end_at])->get();
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -400,7 +428,7 @@ class LectureController extends Controller
                 'data'=>$data
             ]);
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -422,7 +450,7 @@ class LectureController extends Controller
 
             return view('admin.lectures.students', compact('lecture','course_students', 'lecture_students_ids'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }

@@ -106,12 +106,14 @@
         console.log(selected_val);
         if(selected_val == 1){
             $('#link-div').attr('hidden', false);
+            $('#students-div').attr('hidden', false);
             $('#link').attr('required', true);
             $('.star-span').attr('hidden', true);
             $('.date-input').attr('required', false);
 
         }else{
             $('#link-div').attr('hidden', true);
+            $('#students-div').attr('hidden', true);
             $('#link').attr('required', false);
             $('.star-span').attr('hidden', false);
             $('.date-input').attr('required', true);

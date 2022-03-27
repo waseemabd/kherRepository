@@ -1,5 +1,7 @@
 <?php
 
+use App\Providers\RepositoryServiceProvider;
+
 return [
 
     /*
@@ -80,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ar',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,7 +180,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // custom provider
-        \App\Providers\RepositoryServiceProvider::class,
+        RepositoryServiceProvider::class,
 
         Mariuzzo\LaravelJsLocalization\LaravelJsLocalizationServiceProvider::class
 

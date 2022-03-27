@@ -88,8 +88,6 @@ $permissions = [
     'manage question',
     'students test',
 
-    'Schedule',
-    'create Schedule',
 
     'blogs',
     'list blogs',

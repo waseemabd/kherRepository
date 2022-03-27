@@ -10,7 +10,9 @@ use App\Http\IRepositories\IQuestionRepository;
 use App\Http\IRepositories\IQuestionTypeRepository;
 use App\Http\IRepositories\ITestRepository;
 use App\Models\Question;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class QuestionController extends Controller
@@ -32,14 +34,16 @@ class QuestionController extends Controller
         $this->questionTypeRepository = $questionTypeRepository;
         $this->testRepository = $testRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+        $this->middleware('permission:create Question')->only(['create']);
+        $this->middleware('permission:update Question')->only(['edit']);
+        $this->middleware('permission:delete Question')->only(['destroy']);
     }
 
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -49,7 +53,7 @@ class QuestionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create($id)
     {
@@ -60,7 +64,7 @@ class QuestionController extends Controller
 
             return view('admin.questions.add', compact('test' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
@@ -70,8 +74,8 @@ class QuestionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request, $id)
     {
@@ -125,7 +129,7 @@ class QuestionController extends Controller
             }
             return redirect()->route('test.question.create', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             return redirect()->route('test.question.create', $id)->with('error', $e->getMessage());
 
@@ -136,7 +140,7 @@ class QuestionController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -147,7 +151,7 @@ class QuestionController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -158,7 +162,7 @@ class QuestionController extends Controller
 
             return view('admin.questions.edit', compact('question' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
@@ -167,9 +171,9 @@ class QuestionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $Q_id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $Q_id)
     {
@@ -238,7 +242,7 @@ class QuestionController extends Controller
             }
             return redirect()->route('question.edit', $Q_id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             dd($e->getMessage());
             return redirect()->route('question.edit', $Q_id)->with('error', $e->getMessage());
 
@@ -250,7 +254,7 @@ class QuestionController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -270,7 +274,7 @@ class QuestionController extends Controller
             $this->questionRepository->delete($id);
 
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
