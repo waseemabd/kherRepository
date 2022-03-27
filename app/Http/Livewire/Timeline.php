@@ -13,6 +13,6 @@ class Timeline extends Component
         //     echo $course->lectures;
         // }
         // die();
-        return view('livewire.timeline', compact('courses'));
+        return view('teacherTimeLine.timeline', compact('courses'));
     }
 }
