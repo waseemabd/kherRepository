@@ -23,7 +23,7 @@ class StudentRepository extends BaseRepository implements IStudentRepository
     public function getStudents()
     {
         try {
-            $students= $this->model
+            $students= $this->model->where('status', '!=' , 0)
                 ->get();
 
             return $students;
@@ -123,6 +123,20 @@ class StudentRepository extends BaseRepository implements IStudentRepository
             throw new \Exception('common_msg.' . trans($exception->getMessage()));
         }
     }
+
+    public function getStudentByStatus($status)
+    {
+        try {
+
+            $students = $this->model->where('status', $status)
+                ->orderBy('created_at', 'desc')->get();
+
+            return $students;
+        } catch (\Exception $exception) {
+            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        }
+    }
+
 
 
 

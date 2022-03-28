@@ -53,6 +53,10 @@ return [
     'Title' => 'العنوان',
     'Choose_one' => 'اختر',
 
+    'Student_Account_Deleted_Successfully' => 'تم حذف الطالب بنجاح',
+    'Student_Account_Accepted_Successfully' => 'تم قبول الطالب بنجاح',
+
+
 
 
 

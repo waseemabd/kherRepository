@@ -75,4 +75,5 @@ return [
     'edu_content' => 'Educational Content',
     'general' => 'general',
 
+
 ];

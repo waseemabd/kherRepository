@@ -321,6 +321,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('students/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('student.update');
     Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
     Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
+    Route::get('students/registration_request', [App\Http\Controllers\Admin\StudentController::class, 'pending_registration_request'])->name('students.pending_registration_request');
+    Route::post('students/registration_request/accept/{id}', [App\Http\Controllers\Admin\StudentController::class, 'acceptStudent'])->name('students.accept');
+    Route::post('students/delete/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
 
     ///blogs///
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');

@@ -13,5 +13,5 @@ interface IStudentRepository
     public function editStudent($id);
     public function updateStudent($input,$id);
     public function deleteStudent($input);
-
+    public function getStudentByStatus($status);
 }

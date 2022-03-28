@@ -56,6 +56,7 @@ return [
     'Choose_one' => 'Choose One',
 
 
-
+    'Student_Account_Deleted_Successfully' => 'Student Account Deleted Successfully',
+    'Student_Account_Accepted_Successfully' => 'Student Account Accepted Successfully',
 
 ];
