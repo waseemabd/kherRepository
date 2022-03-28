@@ -77,28 +77,17 @@
                         </div>
                         <!-- <div class="row row-sm mt-2"> -->
                         <div class="row row-sm mt-2">
-                                    <div class="col-sm-12 col-lg-6 col-md-12">
-                                        <p class="mg-b-10">{{trans('students/students.Students')}}</p>
-                                        <select name="students[]" multiple="multiple" onchange="console.log($(this).children(':selected').length)" class="selectsum1">
-                                            @foreach($students as $student)
-                                                <option value="{{$student->id}}">
-                                                    {{$student->getTranslatedName()}}
-                                                </option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-                                    <div class="col-sm-12 col-lg-6 col-md-12 mg-t-20 mg-lg-t-0 ">
-                                        <p class="mg-b-10 mr-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
-                                        <select name="course" required="" class="form-control select2  ml-21 ">
-                                            <option >
-                                                {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
-                                            </option>
-                                            @foreach($courses as $course)
-                                                <option value="{{$course->id}}">
-                                                    {{$course->title}}
-                                                </option>
-                                            @endforeach
+                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                <p class="mg-b-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
+                                <select id="course_seclection" name="course" required="" class="form-control select2">
+                                    <option >
+                                        {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
+                                    </option>
+                                    @foreach($courses as $course)
+                                        <option value="{{$course->id}}">
+                                            {{$course->title}}
+                                        </option>
+                                    @endforeach
 
                                         </select>
                                         @error('course')
@@ -114,9 +103,9 @@
                                     </div>
 
                         <!-- </div> -->
-                       
 
-                        
+
+
 
 
 {{--                           @if( auth('admin') -> user() ->role != 2)--}}
@@ -165,6 +154,43 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row row-sm mt-2">
+                            <div class="col-md-6" id="students-div" hidden>
+                                <p class="mg-b-10">students</p>
+                                <select name="students[]" multiple="multiple" onchange="console.log($(this).children(':selected').length)" class="selectsum1">
+                                    @foreach($students as $student)
+                                        <option value="{{$student->id}}">
+                                            {{$student->getTranslatedName()}}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                            </div>
+
+
+{{--                           @if( auth('admin') -> user() ->role != 2)--}}
+{{--                            <div class="col-md-6">--}}
+{{--                                <p class="mg-b-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>--}}
+{{--                                <select id="teacher" name="teacher_id" required="" class="form-control select2">--}}
+{{--                                    <option >--}}
+{{--                                        --}}{{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
+{{--                                    </option>--}}
+{{--                                    @foreach($teachers as $one)--}}
+{{--                                        <option value="{{$one->id}}">--}}
+{{--                                            {{$one->name}}--}}
+{{--                                        </option>--}}
+{{--                                    @endforeach--}}
+
+{{--                                </select>--}}
+{{--                                @error('course')--}}
+{{--                                <p class="validation_error">{{ $message }}</p>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
+{{--                               @endif--}}
+
+                        </div>
+
 
                          <div class="row row-sm mt-2">
                             <div class="col-12">

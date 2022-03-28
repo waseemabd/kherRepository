@@ -7,7 +7,9 @@ use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\ICertificateRepository;
 use App\Models\Certificate;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class CertificateController extends Controller
@@ -18,14 +20,17 @@ class CertificateController extends Controller
 
     public function __construct(ICertificateRepository $certificateRepository)
     {
+        $this->middleware('permission:create Certificate')->only(['create']);
+        $this->middleware('permission:Certificates')->only(['index']);
         $this->certificateRepository = $certificateRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+
+
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -35,22 +40,25 @@ class CertificateController extends Controller
             $certificates = $this->certificateRepository->all();
             return view('admin.certificates.list', compact('certificates'));
 
-        } catch (\Exception $e) {
-            return $e->getMessage();
+            } catch (Exception $e) {
+                return $e->getMessage();
+            }
         }
+        //
 
 
-    }
+
+
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
-        //
 
             return view('admin.certificates.add');
+
 
 
     }
@@ -58,8 +66,8 @@ class CertificateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -81,7 +89,7 @@ class CertificateController extends Controller
             }
             return redirect()->route('certificate.create')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('certificate.create')->with('error', $e->getMessage());
 
         }
@@ -92,7 +100,7 @@ class CertificateController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -103,7 +111,7 @@ class CertificateController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -117,9 +125,9 @@ class CertificateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -142,7 +150,7 @@ class CertificateController extends Controller
             }
             return redirect()->route('certificate.edit', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('certificate.edit', $id)->with('error', $e->getMessage());
 
         }
@@ -152,7 +160,7 @@ class CertificateController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -161,7 +169,7 @@ class CertificateController extends Controller
 
             $this->certificateRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 

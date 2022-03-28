@@ -9,6 +9,7 @@ use App\Http\IRepositories\IContactRepository;
 use App\Http\IRepositories\ISettingImageRepository;
 use App\Http\IRepositories\ISettingRepository;
 use App\Models\Setting;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -29,8 +30,8 @@ class SettingController extends Controller
         $this->settingImageRepository = $settingImageRepository;
         $this->contactRepository = $contactRepository;
         $this->requestData = Mapper::toUnderScore(\Request()->all());
+        $this->middleware('permission:Setting');
 
-//        $this->middleware('permission:settings');
 
     }
 
@@ -46,7 +47,7 @@ class SettingController extends Controller
 //            dd($contacts);
             return view('admin.settings.list', compact('settings', 'contacts', 'images'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
 
@@ -87,7 +88,7 @@ class SettingController extends Controller
             }
             return redirect()->route('settings')->with('error', trans('general.Operation_Failed'));
 
-        }catch (\Exception $e){
+        }catch (Exception $e){
             return redirect()->route('admin-settings')->with('error', $e->getMessage());
 
         }
@@ -147,7 +148,7 @@ class SettingController extends Controller
             }
             return redirect()->route('settings')->with('error', trans('general.Operation_Failed'));
 
-        }catch (\Exception $e){
+        }catch (Exception $e){
             return redirect()->route('admin-settings')->with('error', $e->getMessage());
 
         }
@@ -161,7 +162,7 @@ class SettingController extends Controller
             //TODO
             return redirect()->route('settings')->with('message', trans('settings/settings.images_updated_successfully') );
 
-        }catch (\Exception $e){
+        }catch (Exception $e){
             return redirect()->route('settings')->with('error', $e->getMessage());
 
         }

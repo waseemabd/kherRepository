@@ -7,7 +7,9 @@ use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IDiplomaRepository;
 use App\Models\Diploma;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
 class DiplomaController extends Controller
@@ -20,13 +22,18 @@ class DiplomaController extends Controller
     {
         $this->diplomaRepository = $diplomaRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
+        $this->middleware('permission:list diplomas')->only(['index']);
+        $this->middleware('permission:diplomas');
+        $this->middleware('permission:create diplomas')->only(['create']);
+        $this->middleware('permission:update diplomas')->only(['edit']);
+        $this->middleware('permission:delete diplomas')->only(['destroy']);
 //        $this->middleware('permission:categories');
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -36,7 +43,7 @@ class DiplomaController extends Controller
             $diplomas = $this->diplomaRepository->all();
             return view('admin.diplomas.list', compact('diplomas'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -44,7 +51,7 @@ class DiplomaController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -57,8 +64,8 @@ class DiplomaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -80,7 +87,7 @@ class DiplomaController extends Controller
             }
             return redirect()->route('diploma.create')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('diploma.create')->with('error', $e->getMessage());
 
         }
@@ -90,7 +97,7 @@ class DiplomaController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -101,7 +108,7 @@ class DiplomaController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -114,9 +121,9 @@ class DiplomaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -138,7 +145,7 @@ class DiplomaController extends Controller
             }
             return redirect()->route('diploma.edit', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('diploma.edit', $id)->with('error', $e->getMessage());
 
         }
@@ -148,7 +155,7 @@ class DiplomaController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -157,7 +164,7 @@ class DiplomaController extends Controller
 
             $this->diplomaRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }

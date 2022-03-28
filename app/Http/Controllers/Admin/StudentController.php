@@ -8,6 +8,7 @@ use App\Http\IRepositories\IStudentRepository;
 use App\Http\Requests\StudentRequest;
 use App\Http\Requests\StudentUpdateRequest;
 use App\Models\Student;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -20,6 +21,12 @@ class StudentController extends Controller
     public function __construct(IStudentRepository  $studentRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->middleware('permission:Students');
+        $this->middleware('permission:list Students')->only(['index']);
+        $this->middleware('permission:create Student')->only(['create']);
+        $this->middleware('permission:update Student')->only(['edit']);
+        $this->middleware('permission:show Student')->only(['show']);
+        $this->middleware('permission:delete Student')->only(['destroy']);
     }
 
     public function index()
@@ -81,8 +88,8 @@ class StudentController extends Controller
             }
             $student->update($input);
 
-        } catch (\Exception $exception) {
-            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        } catch (Exception $exception) {
+            throw new Exception('common_msg.' . trans($exception->getMessage()));
         }
 
 

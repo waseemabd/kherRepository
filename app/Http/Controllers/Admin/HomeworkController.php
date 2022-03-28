@@ -8,6 +8,7 @@ use App\Http\IRepositories\IHomeworkRepository;
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\Homework;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -21,6 +22,13 @@ class HomeworkController extends Controller
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
+        $this->middleware('permission:Homework');
+        $this->middleware('permission:list Homework')->only(['index']);
+        $this->middleware('permission:add files')->only(['add_files']);
+        $this->middleware('permission:create Homework')->only(['create']);
+        $this->middleware('permission:update Homework')->only(['edit']);
+        $this->middleware('permission:show Homework')->only(['show']);
+        $this->middleware('permission:delete Homework')->only(['destroy']);
     }
 
     public function index(Request $request)
@@ -71,7 +79,7 @@ class HomeworkController extends Controller
 
         $this->homeworkRepository->delete($id);
         return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-    } catch (\Exception $ex) {
+    } catch (Exception $ex) {
         return JsonResponse::respondError($ex->getMessage());
     }
     }
@@ -101,7 +109,7 @@ class HomeworkController extends Controller
             ]);
 
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -113,7 +121,7 @@ class HomeworkController extends Controller
         try {
         $contents= Storage::disk('public_uploads_homework')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
         return response()->download( $contents);
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -124,7 +132,7 @@ class HomeworkController extends Controller
         try {
             $files = Storage::disk('public_uploads_homework')->getDriver()->getAdapter()->applyPathPrefix($file_name.'/'.$path);
             return response()->file($files);
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -138,7 +146,7 @@ class HomeworkController extends Controller
             Storage::disk('public_uploads_homework')->delete($file_name.'/'.$path);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -152,7 +160,7 @@ class HomeworkController extends Controller
             $attachments=File::where('homework_id',$homework->id)->get();
             return view('admin.homework.add_files',compact('attachments','homework'));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 

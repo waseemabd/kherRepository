@@ -9,8 +9,13 @@ use App\Http\IRepositories\IAnswerRepository;
 use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\IStudentRepository;
 use App\Http\IRepositories\ITestRepository;
+use App\Models\Course;
+use App\Models\Schedule;
 use App\Models\Test;
+use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -33,12 +38,18 @@ class TestController extends Controller
         $this->studentRepository = $studentRepository;
         $this->answerRepository = $answerRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+        $this->middleware('permission:Tests');
+        $this->middleware('permission:list Test')->only(['index']);
+        $this->middleware('permission:create Test')->only(['create']);
+        $this->middleware('permission:update Test')->only(['edit']);
+        $this->middleware('permission:delete Test')->only(['destroy']);
+        $this->middleware('permission:manage question')->only(['testQuestions']);
+        $this->middleware('permission:students test')->only(['testStudents']);
     }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -49,7 +60,7 @@ class TestController extends Controller
             $tests = $this->testRepository->all();
             return view('admin.tests.list', compact('tests'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -57,7 +68,7 @@ class TestController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -67,7 +78,7 @@ class TestController extends Controller
             $courses = $this->courseRepository->all();
             return view('admin.tests.add', compact('courses'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -75,18 +86,46 @@ class TestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
+
         //
         try {
 
             $data = $this->requestData;
+
             $data['course_id'] = $this->requestData['course'];
             $data['user_id'] = auth("admin")->user()->id;
-//            dd($data);
+            if($data['course_id']){
+                $course=Course::where('id',$data['course_id'])->first();
+                $students_course=$course->students;
+                $schedule=[];
+                $start_date=$this->requestData['date'];
+                $end_date=$this->requestData['duration'];
+                $end_date = Carbon::createFromFormat('Y-m-d H:i', $start_date)->addMinute($end_date);
+
+                foreach ($students_course as $student)
+                {
+                    if ($student->schedules)
+                    {
+                      $schedule[]=Schedule::where('student_id',$student->id)
+                                    ->whereBetween('start_date',[$request->date,date($end_date)])
+                                   ->whereBetween('end_date',[$request->date,date($end_date)])
+                                    ->first();
+
+                    }
+                }
+                foreach ($schedule as $one)
+                {
+                    if($one !==null)
+                    {
+                        return view('admin.lectures.error',compact('schedule'));
+                    }
+                }
+            }
             $validator = Validator::make($data, $validator_rules = Test::create_update_rules);
 
             if ($validator->passes()) {
@@ -100,7 +139,7 @@ class TestController extends Controller
             }
             return redirect()->route('test.create')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('test.create')->with('error', $e->getMessage());
 
         }
@@ -110,7 +149,7 @@ class TestController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function show($id)
     {
@@ -123,7 +162,7 @@ class TestController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function edit($id)
     {
@@ -135,7 +174,7 @@ class TestController extends Controller
 
             return view('admin.tests.edit', compact('courses','test' ));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -143,9 +182,9 @@ class TestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -172,7 +211,7 @@ class TestController extends Controller
             }
             return redirect()->route('test.edit', $id)->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('test.edit', $id)->with('error', $e->getMessage());
 
         }
@@ -182,7 +221,7 @@ class TestController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy($id)
     {
@@ -192,7 +231,7 @@ class TestController extends Controller
 
             $this->testRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
     }
@@ -207,7 +246,7 @@ class TestController extends Controller
 //            $qtypes = $this->qu
             return view('admin.tests.questions', compact('test','questions'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -223,7 +262,7 @@ class TestController extends Controller
 
             return view('admin.tests.students', compact('test', 'students'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -240,7 +279,7 @@ class TestController extends Controller
 
             return view('admin.tests.studentAnswers', compact('test', 'student'));
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return $e->getMessage();
         }
     }
@@ -274,7 +313,7 @@ class TestController extends Controller
 
             }
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('test.students.answers',[$test_id, $stud_id])->with('error', $e->getMessage());
 
         }
