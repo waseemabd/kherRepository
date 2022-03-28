@@ -21,12 +21,12 @@ class StudentController extends Controller
     public function __construct(IStudentRepository  $studentRepository)
     {
         $this->studentRepository = $studentRepository;
-        $this->middleware('permission:Students');
-        $this->middleware('permission:list Students')->only(['index']);
-        $this->middleware('permission:create Student')->only(['create']);
-        $this->middleware('permission:update Student')->only(['edit']);
-        $this->middleware('permission:show Student')->only(['show']);
-        $this->middleware('permission:delete Student')->only(['destroy']);
+//        $this->middleware('permission:Students');
+//        $this->middleware('permission:list Students')->only(['index']);
+//        $this->middleware('permission:create Student')->only(['create']);
+//        $this->middleware('permission:update Student')->only(['edit']);
+//        $this->middleware('permission:show Student')->only(['show']);
+//        $this->middleware('permission:delete Student')->only(['destroy']);
     }
 
     public function index()

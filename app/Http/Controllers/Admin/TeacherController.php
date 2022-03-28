@@ -25,12 +25,12 @@ class TeacherController extends Controller
     {
         $this->teacherRepository = $teacherRepository;
         $this->userRepository = $userRepository;
-        $this->middleware('permission:teachers');
-        $this->middleware('permission:list teachers')->only(['index']);
-        $this->middleware('permission:create teacher')->only(['create']);
-        $this->middleware('permission:update teacher')->only(['edit']);
-        $this->middleware('permission:show teacher')->only(['show']);
-        $this->middleware('permission:delete teacher')->only(['destroy']);
+//        $this->middleware('permission:teachers');
+//        $this->middleware('permission:list teachers')->only(['index']);
+//        $this->middleware('permission:create teacher')->only(['create']);
+//        $this->middleware('permission:update teacher')->only(['edit']);
+//        $this->middleware('permission:show teacher')->only(['show']);
+//        $this->middleware('permission:delete teacher')->only(['destroy']);
     }
 
     public function index(Request $request)

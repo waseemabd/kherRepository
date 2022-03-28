@@ -35,12 +35,12 @@ class SurveyController extends Controller
         $this->studentRepository = $studentRepository;
         $this->surveyAnswerRepository = $surveyAnswerRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:Survey');
-        $this->middleware('permission:list Survey')->only(['index']);
-        $this->middleware('permission:create Survey')->only(['create']);
-        $this->middleware('permission:update Survey')->only(['edit']);
-        $this->middleware('permission:show students Survey')->only(['show']);
-        $this->middleware('permission:questions Survey')->only(['surveyQuestions']);
+//        $this->middleware('permission:Survey');
+//        $this->middleware('permission:list Survey')->only(['index']);
+//        $this->middleware('permission:create Survey')->only(['create']);
+//        $this->middleware('permission:update Survey')->only(['edit']);
+//        $this->middleware('permission:show students Survey')->only(['show']);
+//        $this->middleware('permission:questions Survey')->only(['surveyQuestions']);
     }
     /**
      * Display a listing of the resource.

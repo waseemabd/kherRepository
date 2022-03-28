@@ -35,8 +35,8 @@ class ScheduleController extends Controller
         $this->courseRepository = $courseRepository;
         $this->lectureRepository = $lectureRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:Schedule')->only(['index']);
-        $this->middleware('permission:create Schedule')->only(['create']);
+//        $this->middleware('permission:Schedule')->only(['index']);
+//        $this->middleware('permission:create Schedule')->only(['create']);
 
     }
 
