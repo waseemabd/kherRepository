@@ -94,7 +94,8 @@ use App\Http\Livewire\WidgetNotification;
 use App\Http\Livewire\Widgets;
 use App\Http\Livewire\Width;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\FullCalenderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -118,7 +119,7 @@ Route::get('blog', Blog::class);
 Route::get('border', Border::class);
 Route::get('breadcrumbs', Breadcrumbs::class);
 Route::get('buttons', Buttons::class);
-Route::get('calendar', Calendar::class);
+// Route::get('calendar', Calendar::class)->name('calendar');
 Route::get('cards', Cards::class);
 Route::get('carousel', Carousel::class);
 Route::get('chart-chartjs', ChartChartjs::class);
@@ -215,3 +216,14 @@ Route::group(['middleware' => 'guest:admin'], function () {
     Route::post('admin/login',  [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 
 });
+
+// Route::get('/show-event-calendar', [EventController::class, 'index']);
+// Route::post('/manage-events', [EventController::class, 'manageEvents']);
+// Route::get('calendar',  [EventController::class, 'render']);
+Route::get('calendar/index', [CalendarController::class, 'index'])->name('calendar.index');
+Route::post('calendar', [CalendarController::class, 'store'])->name('calendar.store');
+Route::patch('calendar/update/{id}', [CalendarController::class, 'update'])->name('calendar.update');
+Route::delete('calendar/destroy/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
+Route::get('full_calender', [FullCalenderController::class, 'index']);
+
+Route::post('full_calender/action', [FullCalenderController::class, 'action']);

@@ -75,8 +75,8 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="calendar">calendar</a>
-											</div>
+												<a class="btn ripple btn-primary text-white mb-3" href="calendar/index">calendar</a>
+											</div>															
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
 												<span>{{count($course->lectures)}}</span>
@@ -95,7 +95,7 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="calendar">calendar</a>
+												<a class="btn ripple btn-primary text-white mb-3" href="calendar/index">calendar</a>
 											</div>
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
