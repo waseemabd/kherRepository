@@ -8,6 +8,7 @@ use App\Http\IRepositories\ICertificateRepository;
 use App\Http\IRepositories\ICommentRepository;
 use App\Http\IRepositories\IContactRepository;
 use App\Http\IRepositories\ICourseRepository;
+use App\Http\IRepositories\ICourseStudentRepository;
 use App\Http\IRepositories\IDiplomaRepository;
 use App\Http\IRepositories\IFileRepository;
 use App\Http\IRepositories\IHomeworkRepository;
@@ -37,6 +38,7 @@ use App\Http\Repository\CertificateRepository;
 use App\Http\Repository\CommentRepository;
 use App\Http\Repository\ContactRepository;
 use App\Http\Repository\CourseRepository;
+use App\Http\Repository\CourseStudentRepository;
 use App\Http\Repository\DiplomaRepository;
 use App\Http\Repository\FileRepository;
 use App\Http\Repository\HomeworkRepository;
@@ -102,6 +104,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ISurveyQuestionRepository::class, SurveyQuestionRepository::class);
         $this->app->bind(ISurveyAnswerRepository::class, SurveyAnswerRepository::class);
         $this->app->bind(ISurveyOptionRepository::class, SurveyOptionRepository::class);
+        $this->app->bind(ICourseStudentRepository::class, CourseStudentRepository::class);
+
 
     }
 

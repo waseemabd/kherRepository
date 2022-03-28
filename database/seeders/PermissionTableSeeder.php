@@ -68,6 +68,7 @@ $permissions = [
     'update Student',
     'show Student',
     'delete Student',
+    'list pending Students',
 
     'teachers',
     'list teachers',

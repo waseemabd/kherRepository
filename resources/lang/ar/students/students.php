@@ -20,11 +20,14 @@ return [
     'Add Student' => 'إضافة طالب',
     // 'Delete User' => '',
     'Do Yoy Want to Delete This Student' => 'هل تريد حذف هذا الطالب',
-    'Delete' => 'حذف', 
+    'Delete' => 'حذف',
     'Close' => 'إغلاق',
     'roles' => ' السماحيات',
     'name' => 'الاسم',
     'address' => 'الشهادة' ,
     'methods' => ' الطريقة',
 
+    'pending' => 'معلق',
+    'active' => 'نشط',
+    'deactivate' => 'غير مفعل',
 ];

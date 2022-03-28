@@ -109,14 +109,17 @@
                                    href="{{route('students.index')}}">{{trans('Update.Students menu')}}</a></li>
                         @endif
 
+                        @if(auth('admin') -> user() ->can('list pending Students'))
+                            <li><a class="slide-item"
+                                   href="{{route('students.pending_registration_request')}}">{{trans('Update.pending_list')}}</a></li>
+                        @endif
+
                     </ul>
                 </li>
             @endif
 
 
             <li class="side-item side-item-category">{{trans('general.edu_content')}}</li>
-
-
 
 
             {{--                        @endcan--}}
@@ -266,9 +269,6 @@
                     </ul>
                 </li>
             @endif
-
-
-
 
 
             <li class="side-item side-item-category">{{trans('general.general')}}</li>

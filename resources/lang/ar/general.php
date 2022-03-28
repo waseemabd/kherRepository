@@ -20,6 +20,9 @@ return [
     'Activate' => 'تفعيل',
     'Actions' => 'الإجراءات',
 
+    'Accept' => 'قبول',
+    'accept_warning' => 'هل تريد قبول هذا العنصر؟',
+
 
     'Theme_Customizer' => 'Theme Customizer',
     'Direct_Changes' => 'Customize & Preview in Real Time',
@@ -71,4 +74,6 @@ return [
     'edu_content' => 'المحتوى التعليمي',
 
     'general' => 'عام',
+
+
 ];

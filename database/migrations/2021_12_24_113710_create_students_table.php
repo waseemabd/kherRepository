@@ -21,7 +21,7 @@ class CreateStudentsTable extends Migration
             $table->string('email',191)->unique();
             $table->string('password');
             $table->boolean('is_confirmed')->default(0);
-            $table->boolean('status')->default(0); // 0 not active, 1 => active
+            $table->boolean('status')->default(0)->comment('0 => pending , 1 => active, 2 => deactivate'); // 0 not active, 1 => active
             $table->string('fcm_token')->nullable();
 
             $table->timestamps();

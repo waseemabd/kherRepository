@@ -94,4 +94,10 @@ class Constants
         4 => 'multiChoice',
 
     ];
+
+    const studentStatus = [
+        0 => 'pending',
+        1 => 'active',
+        2 => 'deactivate',
+    ];
 }
