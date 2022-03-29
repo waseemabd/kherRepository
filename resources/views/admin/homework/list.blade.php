@@ -20,7 +20,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homework')}}</h4><span
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homeworks')}}</h4><span
                     class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Homework/Homework.List')}} </span>
             </div>
         </div>
@@ -103,16 +103,16 @@
                                            data-bs-target="#info-sub" data-desc="{{$homework->desc}}"
                                            data-title="{{$homework->title}}"
                                         >
-                                            {!! substr($homework->desc,0,25) !!}...
+                                            {!! substr($homework->desc,0,25) !!}
                                             <span style="color: blue">
-                                                {{trans('lectures/lectures.read_more')}}
+                                                {{trans('lectures/lectures.read_more')}}...
                                             </span>
                                         </a>
                                     </td>
 
                                     <td>
                                         @if(auth('admin') -> user() ->can('add files'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
                                         @endif
@@ -122,7 +122,7 @@
                                                 class="las la-edit"></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('show Homework'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-success btn-sm"
                                            href="{{ route('homework.show', $homework->id) }}"><i
                                                 class="las la-eye"></i></a>
                                             @endif

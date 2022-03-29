@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Homework</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Homework Menu</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Roles')}}Homework</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Homework/Homework.Roles')}} Homework Menu</span>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
 
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('homework.create') }}">Add Homework</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('homework.create') }}"> {{trans('Homework/Homework.Add Homework')}}</a>
                     </div>
 
                 </div>
@@ -86,10 +86,10 @@
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">title</th>
-                                <th class="wd-20p border-bottom-0">description</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Homework/Homework.title')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('Homework/Homework.description')}}</th>
 
-                                <th class="wd-10p border-bottom-0">methods</th>
+                                <th class="wd-10p border-bottom-0">{{trans('Homework/Homework.methods')}}</th>
 
                             </tr>
                             </thead>
@@ -119,7 +119,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
+                                                        <h6 class="modal-title">{{trans('Homework/Homework.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -127,14 +127,14 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>? Do Yoy Want to Delete This User </p><br>
+                                                                <p>? {{trans('Homework/Homework.Do Yoy Want to Delete This User')}} </p><br>
 
                                                                 <input class="form-control" hidden name="user_id" value="{{$homework->name}}" id="user_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Homework/Homework.Delete')}} </button>
+                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Homework/Homework.Close')}} </button>
                                                             </div>
 
 

@@ -142,13 +142,13 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>?{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}}  </p><br>
+                                                                <p>{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}} ? </p><br>
 
                                                                 <input class="form-control" hidden name="teacher_id" value="{{$user->name}}" id="teacher_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
                                                                 <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Teachers/Teachers.Close')}}</button>
                                                             </div>
 

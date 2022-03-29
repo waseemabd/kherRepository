@@ -150,7 +150,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button class="btn ripple btn-primary" type="submit">{{trans('students/students.Delete')}}</button>
+                                <button class="btn ripple btn-danger" type="submit">{{trans('students/students.Delete')}}</button>
                                 <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('students/students.Close')}}</button>
                             </div>
 

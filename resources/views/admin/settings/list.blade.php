@@ -50,13 +50,13 @@
                             </li>
                             <li class="">
                                 <a href="#contact" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
+                                        class="visible-xs"><i class="fas fa-address-card tx-15 me-1"></i></span>
                                     <span class="hidden-xs">{{trans('settings/settings.contact')}}</span> </a>
                             </li>
 
                             <li class="">
                                 <a href="#images" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
+                                        class="visible-xs"><i class="fas fa-photo-video tx-15 me-1"></i></span>
                                     <span class="hidden-xs">{{trans('settings/settings.site_images')}}</span> </a>
                             </li>
 

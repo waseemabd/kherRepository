@@ -125,7 +125,7 @@
                                     <td>
                                         @if(auth('admin') -> user() ->can('add lecture files'))
                                         @if($lecture->link===null)
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('lecture.add_files', $lecture->id) }}"><i
                                                 class="far fa-file"></i></a>
                                             @endif

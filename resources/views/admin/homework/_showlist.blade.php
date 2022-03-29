@@ -8,12 +8,12 @@
         <td>{{ $attachment->name }}</td>
         <td>{{ $attachment->created_at }}</td>
         <td colspan="2">
-            <a class="btn btn-outline-success btn-sm"
+            <a class="btn btn-success btn-sm"
                href="{{ route('homework.View_file',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                role="button"><i class="fas fa-eye"></i>&nbsp;
                 </a>
 
-            <a class="btn btn-outline-info btn-sm"
+            <a class="btn btn-info btn-sm"
                href="{{route('homework.download',['path'=>$attachment->path,'file_name'=>$attachment->name]) }}"
                role="button"><i
                     class="fas fa-download"></i>&nbsp;

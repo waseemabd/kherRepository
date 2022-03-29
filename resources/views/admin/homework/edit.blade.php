@@ -77,7 +77,7 @@
 
                             <div class="row row-sm mt-2">
                                 <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">teachers</p>
+                                    <p class="mg-b-10">{{trans('Homework/Homework.teachers')}}</p>
                                     <select name="teacher_id" required="" class="form-control select2">
 
                                         @foreach($teachers as $one)
@@ -91,7 +91,7 @@
 
                             <div class="row row-sm mt-2">
                                 <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">lectures</p>
+                                    <p class="mg-b-10">{{trans('Homework/Homework.lectures')}}</p>
                                     <select name="lecture_id"  class="form-control select2">
                                         <option></option>
                                         @foreach($lectures as $one)
@@ -105,7 +105,7 @@
 
                             <div class="row mg-b-20">
                                 <div class="col-xs-12 col-md-12">
-                                    <p class="mg-b-10">students <span class="tx-danger">*</span></p>
+                                    <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
                                     <select name="students[]"  multiple class="form-control select2">
 
                                         @foreach($students as $student)

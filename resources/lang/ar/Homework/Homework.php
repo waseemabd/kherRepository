@@ -1,6 +1,7 @@
 <?php
 
 return[
+    'Homeworks' => 'الوظائف',
     'Homework' => 'الوظيفة',
     'Show' => 'إظهار',
     'lecture' => 'المحاضرة',
@@ -11,6 +12,7 @@ return[
     'Description'  =>'الوصف',
     'link'  =>'الرابط',
     'start_date'  =>'تاريخ البدء',
+    'end_date' => 'تاريخ الإنتهاء',
     'course title'  =>'عنوان الكورس',
     'course description'  =>'وصف الكورس',
     'diploma title'  =>'عنوان الدبلوم',
@@ -33,5 +35,15 @@ return[
     'created at' => 'إنشاء بواسطة',
     'methods' => 'الطريقة',
     'List' => 'القائمة',
-    'add_homework' => 'إضافة وظيفة'
+    'add_homework' => 'إضافة وظيفة',
+    'Show User' => 'إظهار المستخدم',
+    'Roles' => 'الصلاحيات',
+    'Close' =>'إغلاق',
+    'Delete' => 'حذف',
+    'Do Yoy Want to Delete This User' => 'هل تريد حذف هذا المستخدم',
+    'Delete User' => 'حذف المستخدم',
+    'methods' => 'الطريق',
+    'Add Homework' => 'إضافة وظيفة',
+    'Profile Image' => 'الصورة الشخصية',
+    'students details' => 'تفاصيل الطلاب'
 ];

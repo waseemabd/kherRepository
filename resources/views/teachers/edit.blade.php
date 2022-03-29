@@ -83,7 +83,7 @@
                     </div>
 
                     <div class="row row-sm mg-b-20">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <label class="form-label">{{trans('Teachers/Teachers.status')}}</label>
                             <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
                                 <option value="0" @if($user->status==0) selected @endif>{{trans('Teachers/Teachers.Inactive')}}</option>
