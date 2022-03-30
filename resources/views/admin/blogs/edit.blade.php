@@ -33,8 +33,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Blog</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Edit</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Blog/Blog.Blog')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Blog/Blog.Edit')}} </span>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12 ">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
                                     <input class="form-control" name="title" value="{{$data->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
@@ -87,7 +87,7 @@
 
                         <div class="tab-pane " id="files">
                             <div class="card-body">
-                                <h5 class="card-title">Add Image</h5>
+                                <h5 class="card-title">{{trans('Blog/Blog.Add Image')}}</h5>
                                 <form method="" action=""
                                       enctype="multipart/form-data">
                                     @csrf
@@ -101,7 +101,7 @@
                                            value="{{ $data->id }}">
                                     <br><br>
                                     <button  id="add" class="btn btn-primary btn-sm "
-                                             name="uploadedFile">Add</button>
+                                             name="uploadedFile">{{trans('Blog/Blog.Add')}}</button>
                                 </form>
                             </div>
                             <br>
@@ -111,8 +111,8 @@
                                     <thead>
                                     <tr class="text-dark">
                                         <th scope="col">#</th>
-                                        <th scope="col">Image</th>
-                                        <th scope="col">Methods</th>
+                                        <th scope="col">{{trans('Blog/Blog.Image')}}</th>
+                                        <th scope="col">{{trans('Blog/Blog.Methods')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="list">

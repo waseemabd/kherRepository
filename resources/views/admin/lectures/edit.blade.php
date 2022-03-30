@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-12 col-sm-12 mg-t-20 mg-lg-t-0">
-                                <p class="mg-b-10">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></p>
+                                <label class="form-label">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></label>
                                 <select name="type" id="type" required="" class="form-control select2">
                                     <option label="{{trans('lectures/lectures.sel_type')}}">
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
@@ -80,7 +80,7 @@
                         </div>
                         <div class="row row-sm mt-2">
                             <div class="col-lg-6 col-md-12 col-sm-12 mg-t-20 mg-lg-t-0">
-                                <p class="mg-b-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
+                            <label class="form-label">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></label>
                                 <select name="course" required="" class="form-control select2">
                                     <option >
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
@@ -98,7 +98,7 @@
                             </div><!-- col-4 -->
                             <div class="col-lg-6 col-md-12 col-sm-12" id="link-div" hidden>
                                 <div class="form-group mg-b-0">
-                                    <label class="form-label mt-12">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
+                                    <label class="form-label">{{trans('lectures/lectures.link')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="link" id="link" value="{{$lecture->link}}" placeholder="www.example.com" type="text">
                                 </div>
                             </div>

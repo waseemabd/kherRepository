@@ -29,7 +29,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.schedules')}}</h4><span
+                <h4><a href="{{route('schedule.index')}}" class="content-title mb-0 my-auto">{{trans('lectures/lectures.schedules')}}</a></h4><span
                     class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_schedule')}}</span>
             </div>
         </div>
@@ -50,7 +50,7 @@
 
 
                         <div id="lecture" class="row row-sm mt-2">
-                            <div class="col-md-6">
+                            <div class="col-12">
 
                                 <p class="mg-b-10">{{trans('lectures/lectures.lecture')}} <span class="tx-danger">*</span></p>
                                 <select  name="lecture_id" required="" class="form-control select2">
@@ -77,23 +77,24 @@
 
                         <div class="row row-sm mt-2">
                             <div class="col-md-6">
-                            <p class="mg-b-10">students <span class="tx-danger">*</span></p>
-                            <select name="students[]" onclick="console.log($(this).val())"   required="" multiple class="form-control select2">
-                                <option >
-                                    select form list
-                                </option>
-                                @foreach($students as $student)
-                                    <option value="{{$student->id}}">
-                                        {{$student->getTranslatedName()}}
+                                <p class="mg-b-10 mt-10">{{trans('lectures/lectures.students')}} <span class="tx-danger">*</span></p>
+                                <select name="students[]" onclick="console.log($(this).val())"   required="" multiple class="form-control select2">
+                                    <option >
+                                        select form list
                                     </option>
-                                @endforeach
+                                    @foreach($students as $student)
+                                        <option value="{{$student->id}}">
+                                            {{$student->getTranslatedName()}}
+                                        </option>
+                                    @endforeach
 
-                            </select>
+                                </select>
                             </div>
                            @if( auth('admin') -> user() ->role != 2)
+                
                             <div class="col-md-6">
-                                <p class="mg-b-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>
-                                <select id="teacher" name="teacher_id" required="" class="form-control select2">
+                                <p class="mg-b-10 mt-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>
+                                <select name="teacher"  name="teacher_id"  required=""  class="form-control select2">
                                     <option >
                                         select form list
                                     </option>
@@ -102,7 +103,6 @@
                                             {{$one->name}}
                                         </option>
                                     @endforeach
-
                                 </select>
                                 @error('course')
                                 <p class="validation_error">{{ $message }}</p>

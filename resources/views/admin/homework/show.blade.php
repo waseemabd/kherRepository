@@ -40,8 +40,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <a href="{{route('homework.index')}}" class="content-title mb-0 my-auto">Homework</a><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Show</span>
+                <h4><a href="{{route('homework.index')}}" class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homeworks')}}</a></h4>
+                <span class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Homework/Homework.Show')}}</span>
             </div>
         </div>
 
@@ -60,40 +60,40 @@
                         <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                             <li class="">
                                 <a href="#home" data-bs-toggle="tab" aria-expanded="true" class="active"> <span
-                                        class="visible-xs"><i
-                                            class="las la-user-circle tx-16 me-1"></i></span> <span
-                                        class="hidden-xs">Homework</span> </a>
+                                        class="visible-xs">
+                                        <i class="fas fa-file-signature tx-16 me-1"></i></span> <span
+                                        class="hidden-xs">{{trans('Homework/Homework.Homework')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#profile" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
-                                    <span class="hidden-xs">lecture</span> </a>
+                                        class="visible-xs"><i class="fas fa-book-open tx-16 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Homework/Homework.lecture')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#settings" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">teacher</span> </a>
+                                        class="visible-xs"> <i class="fas fa-user tx-16 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Homework/Homework.teacher')}}</span> </a>
                             </li>
 
                             <li class="">
                                 <a href="#students" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">students</span> </a>
+                                        class="visible-xs"><i class="fas fa-user-graduate tx-16 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Homework/Homework.students')}}</span> </a>
                             </li>
 
                             <li class="">
                                 <a href="#files" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">files</span> </a>
+                                        class="visible-xs"><i class="fas fa-copy tx-16 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Homework/Homework.files')}}</span> </a>
                             </li>
                         </ul>
                     </div>
                     <div class="tab-content border-start border-bottom border-right border-top-0 p-4">
                         <div class="tab-pane active" id="home">
-                            <h4 class="tx-15 text-uppercase mb-3">title</h4>
+                            <h4 class="tx-15 text-uppercase mb-3">{{trans('Homework/Homework.title')}}</h4>
                             <p class="m-b-5">{{$homework->title}}</p>
                             <div class="m-t-30">
-                                <h4 class="tx-15 text-uppercase mt-3">Description</h4>
+                                <h4 class="tx-15 text-uppercase mt-3">{{trans('Homework/Homework.Description')}}</h4>
                                 <div class=" p-t-10">
                                     <p class="text-muted tx-13 m-b-0">{!! $homework->desc !!}</p>
                                 </div>
@@ -106,7 +106,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">title</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.title')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->title}}</small></p>
                                     </div>
@@ -114,7 +114,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">link</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.link')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->link}}</small></p>
                                     </div>
@@ -125,7 +125,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">end_date</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.end_date')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->end_date}}</small></p>
                                     </div>
@@ -133,7 +133,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">start_date</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.start_date')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->start_date}}</small></p>
                                     </div>
@@ -144,7 +144,7 @@
                                 <div class="col-sm-8">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">description</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.Description')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->desc}}</small></p>
                                     </div>
@@ -156,7 +156,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">course title</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.course title')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->course->title}}</small></p>
                                     </div>
@@ -164,7 +164,7 @@
                                 <div class="col-sm-8">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">course description</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.course description')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->course->desc}}</small></p>
                                     </div>
@@ -175,7 +175,7 @@
                                 <div class="col-sm-4">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">diploma title</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.diploma title')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->course->diploma->title}}</small></p>
                                     </div>
@@ -183,7 +183,7 @@
                                 <div class="col-sm-8">
                                     <div class="border p-1 card thumb">
 
-                                        <h4 class="text-center tx-14 mt-3 mb-0">diploma description</h4>
+                                        <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.diploma description')}}</h4>
                                         <div class="ga-border"></div>
                                         <p class="text-muted text-center"><small>{{$homework->lecture->course->diploma->desc}}</small></p>
                                     </div>
@@ -194,36 +194,36 @@
                         <div class="tab-pane" id="settings">
                             <form role="form">
                                 <div class="form-group">
-                                    <label for="FullName">Full Name</label>
+                                    <label for="FullName">{{trans('Homework/Homework.Full Name')}}</label>
                                     <input readonly type="text" value="{{$teacher->name}}" id="FullName" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email">Email</label>
+                                    <label for="Email">{{trans('Homework/Homework.Email')}}</label>
                                     <input readonly  type="email" value="{{$teacher->email}}" id="Email"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Username">address</label>
+                                    <label for="Username">{{trans('Homework/Homework.address')}}</label>
                                     <input readonly type="text" value="{{$teacher->profile->address}}" id="Username" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Password">phone</label>
+                                    <label for="Password">{{trans('Homework/Homework.phone')}}</label>
                                     <input readonly type="text" value="{{$teacher->profile->phone}}"  id="Password"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="RePassword">birthday</label>
+                                    <label for="RePassword">{{trans('Homework/Homework.birthday')}}</label>
                                     <input readonly  type="text" value="{{$teacher->profile->birthday}}" id="RePassword"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="AboutMe">Profile Image</label>
+                                    <label for="AboutMe">{{trans('Homework/Homework.Profile Image')}}</label>
                                     <div class="col-sm-4">
                                         <div class=" border p-1 card thumb">
                                             <a href="#" class="image-popup" title="Screenshot-2"> <img
                                                     src="{{asset('assets/img/photos/9.jpg')}}" class="thumb-img"
                                                     alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Profile Image</h4>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.Profile Image')}}</h4>
                                             <div class="ga-border"></div>
 
                                         </div>
@@ -237,7 +237,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">students details</h3>
+                                            <h3 class="card-title">{{trans('Homework/Homework.students details')}}</h3>
 
                                         </div>
                                         <div class="card-body">
@@ -256,36 +256,36 @@
                                                         <div class="panel-body border">
                                                             <form role="form">
                                                                 <div class="form-group">
-                                                                    <label for="FullName">Full Name</label>
+                                                                    <label for="FullName">{{trans('Homework/Homework.Full Name')}}</label>
                                                                     <input readonly type="text" value="{{$student->getTranslatedName()}}" id="FullName" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Email">Email</label>
+                                                                    <label for="Email">{{trans('Homework/Homework.Email')}}</label>
                                                                     <input readonly type="email" value="{{$student->email}}" id="Email"
                                                                            class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Username">Address</label>
+                                                                    <label for="Username">{{trans('Homework/Homework.address')}}</label>
                                                                     <input readonly type="text" value="{{$student->profile->address}}" id="Username" class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="Password">Phone</label>
+                                                                    <label for="Password">{{trans('Homework/Homework.phone')}}</label>
                                                                     <input readonly type="text" value="{{$student->profile->phone}}"  id="Password"
                                                                            class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="RePassword">Birthday</label>
+                                                                    <label for="RePassword">{{trans('Homework/Homework.birthday')}}</label>
                                                                     <input readonly type="text" value="{{$student->profile->birthday}}" id="RePassword"
                                                                            class="form-control">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label for="AboutMe">Profile Image</label>
+                                                                    <label for="AboutMe">{{trans('Homework/Homework.Profile Image')}}</label>
                                                                     <div class="col-sm-4">
                                                                         <div class=" border p-1 card thumb">
                                                                             <a href="#" class="image-popup" title="Screenshot-2"> <img
                                                                                     src="{{asset('assets/img/photos/9.jpg')}}" class="thumb-img"
                                                                                     alt="work-thumbnail"> </a>
-                                                                            <h4 class="text-center tx-14 mt-3 mb-0">Profile Image</h4>
+                                                                            <h4 class="text-center tx-14 mt-3 mb-0">{{trans('Homework/Homework.Profile Image')}}</h4>
                                                                             <div class="ga-border"></div>
 
                                                                         </div>
@@ -306,12 +306,12 @@
                         <div class="tab-pane " id="files">
                             <div class="card-body">
                                 <p class="text-danger">* Form: pdf,jpeg ,jpg ,png,zip </p>
-                                <h5 class="card-title">Add Attachments</h5>
+                                <h5 class="card-title">{{trans('Homework/Homework.Add Attachments')}}</h5>
                                 <form method="{{route('homework.Attachments',)}}" action="post"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="RePassword">name</label>
+                                        <label for="RePassword">{{trans('Homework/Homework.name')}}</label>
                                         <input id="name" name="name" type="text" value="" id="RePassword"
                                                class="form-control">
                                     </div>
@@ -325,7 +325,7 @@
                                            value="{{ $homework->id }}">
                                     <br><br>
                                     <button  id="add" class="btn btn-primary btn-sm "
-                                            name="uploadedFile">Add</button>
+                                            name="uploadedFile">{{trans('Homework/Homework.Add')}}</button>
                                 </form>
                             </div>
                             <br>
@@ -335,9 +335,9 @@
                                     <thead>
                                     <tr class="text-dark">
                                         <th scope="col">#</th>
-                                        <th scope="col">file name</th>
-                                        <th scope="col">created at</th>
-                                        <th scope="col">methods</th>
+                                        <th scope="col">{{trans('Homework/Homework.file name')}}</th>
+                                        <th scope="col">{{trans('Homework/Homework.created at')}}</th>
+                                        <th scope="col">{{trans('Homework/Homework.methods')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="list">
@@ -349,12 +349,12 @@
                                             <td>{{ $attachment->name }}</td>
                                             <td>{{ $attachment->created_at }}</td>
                                             <td colspan="2">
-                                                <a class="btn btn-outline-success btn-sm"
+                                                <a class="btn btn-success btn-sm"
                                                    href="{{ route('homework.View_file',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
                                                     </a>
 
-                                                <a class="btn btn-outline-info btn-sm"
+                                                <a class="btn btn-info btn-sm"
                                                    href="{{ route('homework.download',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                    role="button"><i
                                                         class="fas fa-download"></i>&nbsp;

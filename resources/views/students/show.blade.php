@@ -50,8 +50,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <a href="{{route('students.index')}}" class="content-title mb-0 my-auto">Student</a><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Show</span>
+                <a href="{{route('students.index')}}" class="content-title mb-0 my-auto">{{trans('students/students.Student')}}</a><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('students/students.Show')}}</span>
             </div>
         </div>
 
@@ -72,28 +72,28 @@
                                 <a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="active"> <span
                                         class="visible-xs"><i
                                             class="las la-user-circle tx-16 me-1"></i></span> <span
-                                        class="hidden-xs">information</span> </a>
+                                        class="hidden-xs">{{trans('students/students.information')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#courses" data-bs-toggle="tab" aria-expanded="false"> <span
                                         class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">courses</span> </a>
+                                    <span class="hidden-xs">{{trans('students/students.courses')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#schedules" data-bs-toggle="tab" aria-expanded="false"> <span
                                         class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
-                                    <span class="hidden-xs">schedules</span> </a>
+                                    <span class="hidden-xs">{{trans('students/students.schedules')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#homeworks" data-bs-toggle="tab" aria-expanded="false"> <span
                                         class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">homeworks</span> </a>
+                                    <span class="hidden-xs">{{trans('students/students.homeworks')}}</span> </a>
                             </li>
 
                             <li class="">
                                 <a href="#surveys" data-bs-toggle="tab" aria-expanded="false"> <span
                                         class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">surveys</span> </a>
+                                    <span class="hidden-xs">{{trans('students/students.surveys')}}</span> </a>
                             </li>
                         </ul>
                     </div>
@@ -101,44 +101,44 @@
                         <div class="tab-pane active" id="profile">
                             <form role="form">
                                 <div class="form-group">
-                                    <label for="FullName">Full Name</label>
+                                    <label for="FullName">{{trans('students/students.Full Name')}}</label>
                                     <input readonly type="text" value="{{$student->getTranslatedName()}}" id="FullName" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email">Email</label>
+                                    <label for="Email">{{trans('students/students.email')}}</label>
                                     <input readonly  type="email" value="{{$student->email}}" id="Email"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Username">address</label>
+                                    <label for="Username">{{trans('students/students.address')}}</label>
                                     <input readonly type="text" value="{{$student->profile->address}}" id="Username" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Password">phone</label>
+                                    <label for="Password">{{trans('students/students.phone')}}</label>
                                     <input readonly type="text" value="{{$student->profile->phone}}"  id="Password"
                                            class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="RePassword">birthday</label>
+                                    <label for="RePassword">{{trans('students/students.birthday')}}</label>
                                     <input readonly  type="text" value="{{$student->profile->birthday}}" id="RePassword"
                                            class="form-control">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="RePassword">certificate</label>
+                                    <label for="RePassword">{{trans('students/students.certificate')}}</label>
                                     <input readonly  type="text" value="{{$student -> certificate -> getTranslatedName()}}" id="RePassword"
                                            class="form-control">
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="AboutMe">Profile Image</label>
+                                    <label for="AboutMe">{{trans('students/students.Profile Image')}}</label>
                                     <div class="col-sm-4">
                                         <div class=" border p-1 card thumb">
                                             <a href="#" class="image-popup" title="Screenshot-2"> <img
                                                     src="{{asset('assets/img/photos/9.jpg')}}" class="thumb-img"
                                                     alt="work-thumbnail"> </a>
-                                            <h4 class="text-center tx-14 mt-3 mb-0">Profile Image</h4>
+                                            <h4 class="text-center tx-14 mt-3 mb-0">{{trans('students/students.Profile Image')}}</h4>
                                             <div class="ga-border"></div>
 
                                         </div>
@@ -153,7 +153,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">courses details</h3>
+                                            <h3 class="card-title">{{trans('students/students.courses details')}} </h3>
 
                                         </div>
                                         <div class="card-body">
@@ -174,17 +174,17 @@
 
 
                                                                     <div class="form-group">
-                                                                        <label for="FullName">description</label>
+                                                                        <label for="FullName">{{trans('students/students.description')}}</label>
                                                                         <textarea readonly type="text"  id="FullName" class="form-control">{{ $one->desc }}</textarea>
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="Email">Diploma title</label>
+                                                                        <label for="Email">{{trans('students/students.Diploma title')}}</label>
                                                                         <input readonly type="email" value="{{$one->diploma->title}}" id="Email"
                                                                                class="form-control">
                                                                     </div>
                                                                     <div class="form-group">
-                                                                        <label for="FullName">Diploma description</label>
+                                                                        <label for="FullName">{{trans('students/students.Diploma description')}}</label>
                                                                         <textarea readonly type="text"  id="FullName" class="form-control">{{ $one->diploma->desc }}</textarea>
                                                                     </div>
 
@@ -206,7 +206,7 @@
                                 <div class="col-lg-12">
                                     <div class="card custom-card">
                                         <div class="card-header custom-card-header">
-                                            <h6 class="card-title mb-0">schedules Timeline</h6>
+                                            <h6 class="card-title mb-0">{{trans('students/students.schedules Timeline')}}</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="vtimeline">
@@ -225,10 +225,10 @@
                                                         <div class="timeline-footer d-flex align-items-center flex-wrap">
 
                                                             <span ><i class="fe fe-calendar text-muted me-1"></i>{{$one->lecture->start_date}}</span>
-                                                            start
+                                                            {{trans('students/students.start')}}
 
                                                             <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->lecture->end_date}}</span>
-                                                            end
+                                                            {{trans('students/students.end')}}  
                                                         </div>
                                                     </div>
                                                 </div>
@@ -252,10 +252,10 @@
                                                                   <div class="timeline-footer d-flex align-items-center flex-wrap">
 
                                                                       <span ><i class="fe fe-calendar text-muted me-1"></i>{{$one->date}}</span>
-                                                                      start
+                                                                      {{trans('students/students.start')}} 
 
-                                                                      <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->duration}} minute</span>
-                                                                      duration
+                                                                      <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->duration}}{{trans('students/students.minute')}} </span>
+                                                                      {{trans('students/students.duration')}} 
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -275,7 +275,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">student homeworks</h3>
+                                            <h3 class="card-title">{{trans('students/students.student homeworks')}}</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="panel-group1" id="accordion11">
@@ -293,13 +293,13 @@
                                                             <div class="panel-body border">
                                                                 <form role="form">
                                                                     <div class="form-group">
-                                                                        <label for="FullName">description</label>
+                                                                        <label for="FullName">{{trans('students/students.description')}}</label>
                                                                         <input readonly type="text" value="{{$one->desc}}" id="FullName" class="form-control">
                                                                     </div>
 
 
                                                                     <div class="form-group">
-                                                                        <label for="AboutMe">File</label>
+                                                                        <label for="AboutMe">{{trans('students/students.File')}}</label>
 
                                                                         <?php $i = 0; ?>
                                                                         <div class="table-responsive mt-15">
@@ -308,9 +308,9 @@
                                                                                 <thead>
                                                                                 <tr class="text-dark">
                                                                                     <th scope="col">#</th>
-                                                                                    <th scope="col">file name</th>
-                                                                                    <th scope="col">created at</th>
-                                                                                    <th scope="col">methods</th>
+                                                                                    <th scope="col">{{trans('students/students.file name')}}</th>
+                                                                                    <th scope="col">{{trans('students/students.created at')}}</th>
+                                                                                    <th scope="col">{{trans('students/students.methods')}}</th>
                                                                                 </tr>
                                                                                 </thead>
                                                                                 <tbody id="list">
@@ -322,12 +322,12 @@
                                                                                         <td>{{ $attachment->name }}</td>
                                                                                         <td>{{ $attachment->created_at }}</td>
                                                                                         <td colspan="2">
-                                                                                            <a class="btn btn-outline-success btn-sm"
+                                                                                            <a class="btn btn-success btn-sm"
                                                                                                href="{{ route('homework.View_file',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                                                                role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                                             </a>
 
-                                                                                            <a class="btn btn-outline-info btn-sm"
+                                                                                            <a class="btn btn-info btn-sm"
                                                                                                href="{{ route('homework.download',['path'=>$attachment->path,'file_name'=>$attachment->name])  }}"
                                                                                                role="button"><i
                                                                                                     class="fas fa-download"></i>&nbsp;
@@ -394,7 +394,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">surveys details</h3>
+                                            <h3 class="card-title">{{trans('students/students.surveys details')}}</h3>
 
                                         </div>
                                         <div class="card-body">
@@ -415,7 +415,7 @@
 
 
                                                                     <div class="form-group">
-                                                                        <label for="FullName">description</label>
+                                                                        <label for="FullName">{{trans('students/students.description')}}</label>
                                                                         <textarea readonly type="text"  id="FullName" class="form-control">{{ $one->desc }}</textarea>
                                                                     </div>
                                                                     <div class="row">
@@ -423,7 +423,7 @@
                                                                             <div class="card mg-b-20">
                                                                                 <div class="card-body">
                                                                                     <div class="main-content-label mg-b-5">
-                                                                                       questions
+                                                                                    {{trans('students/students.description')}}  
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <!-- col -->

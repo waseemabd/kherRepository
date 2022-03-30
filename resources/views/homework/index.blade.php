@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('Teachers/Teachers.Teachers')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Teachers/Teachers.Teachers Menu')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Roles')}}Homework</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Homework/Homework.Roles')}} Homework Menu</span>
             </div>
         </div>
 
@@ -74,59 +74,44 @@
         <div class="col-xl-12">
             <div class="card">
 
+                <div class="card-header pb-0">
+                    <div class="d-flex justify-content-between">
+                        <a class="btn btn-primary btn-sm" href="{{ route('homework.create') }}"> {{trans('Homework/Homework.Add Homework')}}</a>
+                    </div>
+
+                </div>
                 <div class="card-body">
-                    <div class="table-responsive userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
+                    <div class="table-responsive">
+                        <table class="table text-md-nowrap" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.name')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('Teachers/Teachers.email')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.status')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('Teachers/Teachers.user role')}}</th>
-                                <th class="wd-10p border-bottom-0">{{trans('Teachers/Teachers.methods')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('Homework/Homework.title')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('Homework/Homework.description')}}</th>
+
+                                <th class="wd-10p border-bottom-0">{{trans('Homework/Homework.methods')}}</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($data as $key => $user)
+                            @foreach ($data as $key => $homework)
                                 <tr>
                                     <td>{{ ++$i }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if ($user->status == 1)
-                                            <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>{{trans('Teachers/Teachers.Active')}}
-                                            </span>
-                                        @else
-                                            <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>
-                                            </span>
-                                        @endif
-                                    </td>
+                                    <td>{{ $homework->title }}</td>
+                                    <td>{{ $homework->desc }}</td>
 
-                                    <td>
-                                        @if (!empty($user->getRoleNames()))
-                                            @foreach ($user->getRoleNames() as $v)
-                                                <label class="badge badge-success">{{ $v }}</label>
-                                            @endforeach
-                                        @endif
-                                    </td>
+
 
                                     <td>
 
-                                    <a class="btn btn-success btn-sm"
-                                           href="{{ route('teacher.show', $user->id) }}"><i
-                                                class="las la-eye"></i></a>
 
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('teacher.edit', $user->id) }}"><i
+                                           href="{{ route('homework.edit', $homework->id) }}"><i
                                                 class="las la-edit"></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-teacher_id="{{ $user->id }}" data-username="{{ $user->name }}"
+                                           data-user_id="{{ $homework->id }}" data-username="{{ $homework->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
 
@@ -134,22 +119,22 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <h6 class="modal-title">{{trans('Teachers/Teachers.Delete User')}}</h6><button aria-label="Close" class="close"
+                                                        <h6 class="modal-title">{{trans('Homework/Homework.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ route('teacher.destroy',$user->id) }}" method="post">
+                                                        <form action="{{ route('homework.destroy',$homework->id) }}" method="post">
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}} ? </p><br>
+                                                                <p>? {{trans('Homework/Homework.Do Yoy Want to Delete This User')}} </p><br>
 
-                                                                <input class="form-control" hidden name="teacher_id" value="{{$user->name}}" id="teacher_id" type="text" readonly>
+                                                                <input class="form-control" hidden name="user_id" value="{{$homework->name}}" id="user_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
-                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Teachers/Teachers.Close')}}</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Homework/Homework.Delete')}} </button>
+                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Homework/Homework.Close')}} </button>
                                                             </div>
 
 
@@ -200,9 +185,9 @@
             <script>
                 $('#modaldemo1').on('show.bs.modal', function(event) {
                     var button = $(event.relatedTarget)
-                    var student_id = button.data('student_id')
+                    var user_id = button.data('user_id')
                     var modal = $(this)
-                    modal.find('.modal-body #student_id').val(student_id);
+                    modal.find('.modal-body #user_id').val(user_id);
                 })
 
             </script>

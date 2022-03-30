@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>>{{trans('Users/user.Show User')}}</h2>
+            <h2>{{trans('Users/user.Show User')}}</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('users.index') }}"> {{trans('Users/user.Back')}}</a>

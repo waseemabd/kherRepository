@@ -83,7 +83,7 @@
                         <div class="row row-sm mt-2">
                             <div class="col-12 p-data">
                                 <label class="form-label mr-12">{{trans('tests/tests.date')}}: <span class="tx-danger star-span">*</span></label>
-                                <div class="input-group col-md-12">
+                                <div class="input-group col-md-12 padd-data">
                                     <div class="input-group-text">
                                         <div class="input-group-text">
                                             <i class="typcn typcn-calendar-outline tx-24 lh--9 op-6"></i>

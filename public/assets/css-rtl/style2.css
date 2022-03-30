@@ -207,3 +207,19 @@ div.dataTables_wrapper  {
 .width-in{
     width: 98.5%;
  }
+/*------style icons-----*/
+.side-menu .side-menu__icon {
+    fill: #6ba9ff !important;
+}
+/*------Update homework page---- */
+.profile.navtab-custom li a{
+    background-color: #0f6ff2 !important;
+    color: #fff;
+}
+.profile.navtab-custom a.active {
+    background: #ecf0fa !important;
+    color: #0f6ff2 !important;
+}
+.select2-selection--single{
+    height: 41px !important;
+}

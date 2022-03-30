@@ -12,7 +12,7 @@ return [
 'methods' => 'الطريقة',
 'Back' => 'رجوع',
 'user name' => 'اسم المستخدم',
-'passowrd' => 'كلمة المرور',
+'password' => 'كلمة المرور',
 'confirm password' => 'تأكيد كلمة المرور',
 'Active' =>'فعال',
 'Inactive' =>'غير فعال',

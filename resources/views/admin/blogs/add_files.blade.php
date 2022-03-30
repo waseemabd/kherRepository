@@ -28,7 +28,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto"> Homework</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Add Files</span>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans(Blog/Blog.Add Files)}} </span>
             </div>
         </div>
 
@@ -41,7 +41,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-sm" href="{{ route('homework.index') }}">Back</a>
+                        <a class="btn btn-primary btn-sm" href="{{ route('homework.index') }}">{{trans(Blog/Blog.Back)}}</a>
                     </div>
                         <form action="{{route('homework.Attachments')}}" method="POST"
                           id="lecture_form" data-parsley-validate="">
@@ -49,12 +49,12 @@
                         <div class="tab-pane " id="files">
                             <div class="card-body">
                                 <p class="text-danger">* Form: pdf,jpeg ,jpg ,png,zip </p>
-                                <h5 class="card-title">Add Attachments</h5>
+                                <h5 class="card-title">{{trans(Blog/Blog.Add Attachments)}}</h5>
                                 <form method="" action=""
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="RePassword">name</label>
+                                        <label for="RePassword">{{trans(Blog/Blog.name)}}</label>
                                         <input id="name" name="name" type="text" value="" id="RePassword"
                                                class="form-control">
                                     </div>
@@ -68,7 +68,7 @@
                                            value="{{ $homework->id }}">
                                     <br><br>
                                     <button  id="add" class="btn btn-primary btn-sm "
-                                             name="uploadedFile">Add</button>
+                                             name="uploadedFile">{{trans(Blog/Blog.file Add)}}</button>
                                 </form>
                             </div>
                             <br>
@@ -78,9 +78,9 @@
                                     <thead>
                                     <tr class="text-dark">
                                         <th scope="col">#</th>
-                                        <th scope="col">file name</th>
-                                        <th scope="col">created at</th>
-                                        <th scope="col">methods</th>
+                                        <th scope="col">{{trans(Blog/Blog.file name)}}</th>
+                                        <th scope="col">{{trans(Blog/Blog.created at)}}</th>
+                                        <th scope="col">{{trans(Blog/Blog.methods)}}</th>
                                     </tr>
                                     </thead>
                                     <tbody id="list">
