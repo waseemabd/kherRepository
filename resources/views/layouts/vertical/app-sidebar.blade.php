@@ -141,10 +141,10 @@
                         </i>
                     </a>
                     <ul class="slide-menu">
-                        @if(auth('admin') -> user() ->can('list courses'))
+                       @if(auth('admin') -> user() ->can('list courses'))
                             <li><a class="slide-item" href="{{route('course.index')}}">{{trans('general.List')}}</a>
                             </li>
-                        @endif
+                        @endif 
                         @if(auth('admin') -> user() ->can('create courses'))
                             <li><a class="slide-item" href="{{route('course.create')}}">{{trans('general.Add')}}</a>
                             </li>
@@ -179,14 +179,14 @@
                 </li>
             @endif
 
-            @if(auth('admin') -> user() ->can('Homework'))
+             @if(auth('admin') -> user() ->can('Homework'))
                 {{--                            <li class="side-item side-item-category">homework</li>--}}
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#">
                     <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 384 512"><path d="M224 136V0H24C10.7 0 0 10.7 0 24v464c0 13.3 10.7 24 24 24h336c13.3 0 24-10.7 24-24V160H248c-13.2 0-24-10.8-24-24zm65.18 216.01H224v80c0 8.84-7.16 16-16 16h-32c-8.84 0-16-7.16-16-16v-80H94.82c-14.28 0-21.41-17.29-11.27-27.36l96.42-95.7c6.65-6.61 17.39-6.61 24.04 0l96.42 95.7c10.15 10.07 3.03 27.36-11.25 27.36zM377 105L279.1 7c-4.5-4.5-10.6-7-17-7H256v128h128v-6.1c0-6.3-2.5-12.4-7-16.9z"/></svg>                        <span class="side-menu__label">{{trans('Update.Homework')}}</span><i
                             class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        @if(auth('admin') -> user() ->can('list Homework'))
+                         @if(auth('admin') -> user() ->can('list Homework'))
                             <li><a class="slide-item" href="{{route('homework.index')}}">
                                     {{--                                                {{trans('Update.Homework menu')}}--}}
                                     {{trans('general.List')}}
@@ -201,7 +201,7 @@
 
                     </ul>
                 </li>
-            @endif
+             @endif 
 
             @if(auth('admin') -> user() ->can('Tests'))
                 <li class="slide">
@@ -276,8 +276,9 @@
                             <a class="side-menu__item" data-bs-toggle="slide" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 640 512"><path d="M208 352c-2.39 0-4.78.35-7.06 1.09C187.98 357.3 174.35 360 160 360c-14.35 0-27.98-2.7-40.95-6.91-2.28-.74-4.66-1.09-7.05-1.09C49.94 352-.33 402.48 0 464.62.14 490.88 21.73 512 48 512h224c26.27 0 47.86-21.12 48-47.38.33-62.14-49.94-112.62-112-112.62zm-48-32c53.02 0 96-42.98 96-96s-42.98-96-96-96-96 42.98-96 96 42.98 96 96 96zM592 0H208c-26.47 0-48 22.25-48 49.59V96c23.42 0 45.1 6.78 64 17.8V64h352v288h-64v-64H384v64h-76.24c19.1 16.69 33.12 38.73 39.69 64H592c26.47 0 48-22.25 48-49.59V49.59C640 22.25 618.47 0 592 0z"/></svg><span class="side-menu__label">{{trans('Update.Teachers')}}</span><i class="angle fe fe-chevron-down"></i></a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('teachers.index')}}">{{trans('Update.Teachers menu')}}</a></li>
+                               {{-- @if(auth('admin') -> user() ->can('TimeLine')) --}}
                                 <li><a class="slide-item" href="{{url('timeline')}}">Timeline</a></li>
-
+                               {{-- @endif --}}
                             </ul>
                         </li>
 

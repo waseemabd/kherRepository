@@ -107,7 +107,7 @@ $permissions = [
     'questions Survey',
 
     'Setting',
-
+    'TimeLine',
 
 ];
 

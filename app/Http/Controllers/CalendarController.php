@@ -3,14 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Lecture;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use Session;
 
 class CalendarController extends Controller
 {
-    public function index()
+    public function index($id)
     {
+        // print_r(Course::where('id', $id)->first()->lectures);
+        // foreach(Session::get('lectures') as $test) {
+            // echo $id;
+
+        // }
+        // die();
         $events = array();
-        $bookings = Lecture::all();
+        $bookings = Course::where('id', $id)->first()->lectures;
         foreach($bookings as $booking) {
             $color = null;
             if($booking->title == 'lecture 1') {
