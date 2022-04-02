@@ -30,7 +30,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             switch ($guard) {
                 case 'admin':
-                    return redirect("/admin/login");
+                    return redirect("/admin");
             }
         }
 
