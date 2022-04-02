@@ -26,7 +26,7 @@ class LoginRepository extends BaseRepository implements ILoginRepository
     }
     public function Login($request)
     {
-        if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password") ,'status'=>'1'])) {
+        if (auth()->guard('admin')->attempt(['email' => $request->input("email"), 'password' => $request->input("password")])) {
             return redirect() -> route('home');
         }
         return redirect()->back()->with(['error' => Lang::get('auth.something wrong in data input',[],Config::get('app.locale'))]);

@@ -24,7 +24,7 @@
         <div class="my-auto">
             <div class="d-flex">
                 <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('Users/user.users menu')}}</span>
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Users/user.users menu')}}</span>
             </div>
         </div>
 
@@ -83,8 +83,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -106,11 +106,11 @@
                                     <td>
                                         @if ($user->status == 1)
                                             <span class="label text-success d-flex">
-                                                <div class="dot-label bg-success ml-1"></div>Active
+                                                <div class="dot-label bg-success ml-1"></div>{{trans('Users/user.Active')}}
                                             </span>
                                         @else
                                             <span class="label text-danger d-flex">
-                                                <div class="dot-label bg-danger ml-1"></div>Inactive
+                                                <div class="dot-label bg-danger ml-1"></div>{{trans('Users/user.Inactive')}}
                                             </span>
                                         @endif
                                     </td>
@@ -126,25 +126,25 @@
                                     <td>
                                         @if(auth('admin') -> user() ->can('show user'))
                                     <a class="btn btn-success btn-sm"
-                                           href="{{ route('user.show', $user->id) }}"><i
-                                                class="las la-eye"></i></a>
+                                           href="{{ route('user.show', $user->id) }}" title="{{trans('general.View')}}"><i
+                                                class="las la-eye" ></i></a>
                                         @endif
                                             @if(auth('admin') -> user() ->can('update user'))
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('user.edit', $user->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                           href="{{ route('user.edit', $user->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('delete user'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-user_id="{{ $user->id }}" data-username="{{ $user->name }}"
-                                           data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
+                                           data-bs-toggle="modal" href="#modaldemo1" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
                                             @endif
                                         <div class="modal" id="modaldemo1">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
                                                     <div class="modal-header">
-                                                        <h6 class="modal-title">Delete User</h6><button aria-label="Close" class="close"
+                                                        <h6 class="modal-title">{{trans('Users/user.Delete User')}}</h6><button aria-label="Close" class="close"
                                                                                                         data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                                                     </div>
                                                     <div class="modal-body">
@@ -152,14 +152,14 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>? Do Yoy Want to Delete This User </p><br>
+                                                                <p>{{trans('Users/user.Do Yoy Want to Delete This User')}} ؟ </p><br>
 
                                                                 <input class="form-control" hidden name="user_id" value="{{$user->name}}" id="user_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">Delete</button>
-                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Users/user.Delete')}}</button>
+                                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Users/user.Close')}}</button>
                                                             </div>
 
 

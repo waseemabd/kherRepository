@@ -12,8 +12,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">Home</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Blog</span>
+                <h4 class="content-title mb-0 my-auto"> {{trans('Blog/Blog.Home')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Blog/Blog.Blog')}}</span>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
 
                             </div>
 
-                            <a class="dropdown-item" href="{{route('user.show',$one->user->id)}}">view</a>
+                            <a class="dropdown-item" href="{{route('user.show',$one->user->id)}}">{{trans('Blog/Blog.view')}}</a>
                         </div>
 
                         <a style="margin-top: 14px;margin-right: 12px" class="drop-down-profile" >{{$one->user->name}}</a>
@@ -64,23 +64,17 @@
                                 <a class="p-2 text-muted" data-bs-toggle="dropdown"><i
                                         class="fas fa-ellipsis-v"></i></a>
                                 <div class="dropdown-menu tx-13 dropleft">
-                                    @if(auth('admin') -> user() ->can('update blog'))
                                     <a class="dropdown-item  btn btn-sm btn-danger"
                                        href="{{route('blog.edit',$one->id)}}"
-                                       title="Edit"><span style="color: blue">Edit</span></a>
-                                    @endif
-                                        @if(auth('admin') -> user() ->can('delete blog'))
+                                       title="Edit"><span style="color: blue">{{trans('Blog/Blog.Edit')}}</span></a>
                                     <a class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#delete-sub"
-                                       title="{{trans('general.Delete')}}"><span style="color: orangered">Delete</span></a>
-                                        @endif
-                                        @if(auth('admin') -> user() ->can('block blog'))
+                                       title="{{trans('general.Delete')}}"><span style="color: orangered">{{trans('Blog/Blog.Delete')}}</span></a>
                                     <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#block-sub"
                                        title="Block"><span style="color: red">@if($one->status==1) UnBlock @else Block @endif</span></a>
-                                        @endif
 
                                 </div>
                             </div>
@@ -96,10 +90,10 @@
                        data-bs-target="#info-sub" data-desc="{{$one->desc}}"
                        data-title="{{$one->title}}"
                     >
-                        {!! substr($one->desc,0,25) !!}...
+                        {!! substr($one->desc,0,25) !!}
                         <span style="color: blue">
-                                                {{trans('lectures/lectures.read_more')}}
-                                            </span>
+                            {{trans('lectures/lectures.read_more')}}...
+                        </span>
                     </a>
                 </div>
                 <hr>
@@ -111,7 +105,7 @@
                                     <h4 class="panel-title1">
                                         <a class="accordion-toggle collapsed" data-bs-toggle="collapse"
                                            data-bs-parent="#accordion11" href="#collapse{{$one->id}}"
-                                           aria-expanded="false">Comments<i class="fe fe-arrow-left me-2"></i></a>
+                                           aria-expanded="false">{{trans('Blog/Blog.Comments')}}<i class="fe fe-arrow-left me-2"></i></a>
                                     </h4>
                                 </div>
                                 <div id="collapse{{$one->id}}" class="panel-collapse collapse" role="tabpanel"
@@ -168,13 +162,11 @@
                                                                {{$comment->created_at->diffforhumans()}}
 
                                                             </p>
-                                                            @if(auth('admin') -> user() ->can('delete comment'))
                                                             <a style="margin-right: 484px" class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                                data-id="{{ $comment->id }}"
                                                                data-bs-toggle="modal" href="#comment-sub"
                                                                title="{{trans('general.Delete')}}"><i
                                                                     class="las la-trash"></i></a>
-                                                            @endif
                                                         </div>
                                                         <p class="mb-0">
                                                             {{$comment->desc}}
@@ -250,38 +242,6 @@
 
                 </div>
 
-            </div>
-        </div>
-    </div>
-    <div class="shown-event-ex">
-        <div
-            class="modal fade text-start"
-            id="info-sub"
-            tabindex="-1"
-            aria-labelledby="myModalLabel22"
-            aria-hidden="true"
-        >
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-
-                        <h4 class="modal-title"
-                            id="myModalLabel22">{{trans('lectures/lectures.desc_for')}}<span
-                                id="d-title"></span></h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-
-                        {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
-                        <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
-                            id="d-desc"></h4>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-secondary"
-                                data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

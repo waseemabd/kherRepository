@@ -22,12 +22,11 @@ class DiplomaController extends Controller
     {
         $this->diplomaRepository = $diplomaRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:list diplomas')->only(['index']);
-        $this->middleware('permission:diplomas');
-        $this->middleware('permission:create diplomas')->only(['create']);
-        $this->middleware('permission:update diplomas')->only(['edit']);
-        $this->middleware('permission:delete diplomas')->only(['destroy']);
-//        $this->middleware('permission:categories');
+
+//        $this->middleware('permission:diplomas');
+//        $this->middleware('permission:create diplomas')->only(['create']);
+//        $this->middleware('permission:update diplomas')->only(['edit']);
+//        $this->middleware('permission:delete diplomas')->only(['destroy']);
     }
 
     /**

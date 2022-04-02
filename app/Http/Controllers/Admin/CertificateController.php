@@ -20,8 +20,8 @@ class CertificateController extends Controller
 
     public function __construct(ICertificateRepository $certificateRepository)
     {
-        $this->middleware('permission:create Certificate')->only(['create']);
-        $this->middleware('permission:Certificates')->only(['index']);
+//        $this->middleware('permission:create Certificate')->only(['create']);
+//        $this->middleware('permission:Certificates')->only(['index']);
         $this->certificateRepository = $certificateRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 
@@ -34,11 +34,11 @@ class CertificateController extends Controller
      */
     public function index()
     {
+        //
+        try {
 
-            try {
-
-                $certificates = $this->certificateRepository->all();
-                return view('admin.certificates.list', compact('certificates'));
+            $certificates = $this->certificateRepository->all();
+            return view('admin.certificates.list', compact('certificates'));
 
             } catch (Exception $e) {
                 return $e->getMessage();

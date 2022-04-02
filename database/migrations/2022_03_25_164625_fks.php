@@ -191,6 +191,13 @@ class Fks extends Migration
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
 
         });
+
+        Schema::table('notifications', function (Blueprint $table) {
+            // ******************
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('student_id')->nullable()->constrained('students')->onDelete('cascade');
+
+        });
     }
 
     /**

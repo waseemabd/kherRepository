@@ -22,6 +22,6 @@
 		<script src="{{asset('assets/plugins/rating/jquery.barrating.js')}}"></script>
 
 		@yield('scripts')
-		
+
 		<!-- custom js -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>

@@ -20,6 +20,9 @@ return [
     'Activate' => 'تفعيل',
     'Actions' => 'الإجراءات',
 
+    'Accept' => 'قبول',
+    'accept_warning' => 'هل تريد قبول هذا العنصر؟',
+
 
     'Theme_Customizer' => 'Theme Customizer',
     'Direct_Changes' => 'Customize & Preview in Real Time',
@@ -63,6 +66,15 @@ return [
 
     'add_mark' => 'إضافة علامة',
     'Answers' => 'الإجابات',
-    'addMark'=>'اضافة العلامة'
+    'addMark'=>'اضافة العلامة',
+    'admin' => 'مدير',
+    'teacher' => 'مدرس',
+
+    'logout' => 'تسجيل الخروج',
+    'Files' => 'الملفات',
+    'edu_content' => 'المحتوى التعليمي',
+
+    'general' => 'عام',
+
 
 ];

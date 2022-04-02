@@ -54,11 +54,11 @@
                 </div><br>
 
                 {!! Form::model($student, ['method' => 'POST','route' => ['student.update', $student->id]]) !!}
-                <div class="">
+                
 
-                    <div class="row mg-b-20">
+                <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
-                            <label>{{trans('students/students.Arabic Name')}}: <span class="tx-danger">*</span></label>
+                            <label>{{trans('students/students.Arabic name')}}: <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_ar}}"  name="username" required="" type="text">
                         </div>
@@ -67,7 +67,9 @@
                             <input class="form-control form-control-sm mg-b-20"
                                    data-parsley-class-handler="#lnWrapper" value="{{$student->name_en}}"  name="name_en" required="" type="text">
                         </div>
+                </div>
 
+                <div class="row row-sm mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
                             <label>{{trans('students/students.user name')}}: <span class="tx-danger">*</span></label>
                             {!! Form::text('username', null, array('class' => 'form-control','required')) !!}
@@ -77,11 +79,8 @@
                             <label>{{trans('students/students.email')}}: <span class="tx-danger">*</span></label>
                             {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
                         </div>
-                    </div>
-
                 </div>
-
-                <div class="row mg-b-20">
+                <div class="row row-sm mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                         <label>{{trans('students/students.password')}}: <span class="tx-danger">*</span></label>
                         {!! Form::password('password', array('class' => 'form-control',)) !!}
@@ -102,9 +101,6 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
-
-                <div class="row row-sm mg-b-20">
                     <div class="col-lg-6">
                         <label class="form-label">{{trans('students/students.status')}}</label>
                         <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
@@ -113,7 +109,6 @@
                         </select>
                     </div>
                 </div>
-
 
                 <div class="mg-t-30">
                     <button class="btn btn-main-primary pd-x-20" type="submit">{{trans('students/students.update')}}</button>

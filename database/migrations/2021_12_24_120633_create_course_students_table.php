@@ -18,6 +18,8 @@ class CreateCourseStudentsTable extends Migration
             $table->double('rating')->nullable();
             $table->double('resultant')->nullable();
 
+            $table->boolean('status')->default(0); // 0 not active, 1 => active
+
             $table->timestamps();
         });
     }

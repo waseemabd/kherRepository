@@ -82,6 +82,28 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row row-sm mt-2">
+
+                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                <p class="mg-b-10 fz-13">{{trans('courses/courses.teachers')}} <span class="tx-danger">*</span></p>
+                                <select name="teachers[]" required="" class="form-control select2" multiple>
+                                    <option >
+                                        {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
+                                    </option>
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{$teacher->id}}" {{in_array($teacher->id, $selectedTeachers) ? 'selected' : ''}}>
+                                            {{$teacher->name}}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+                                @error('diploma')
+                                <p class="validation_error">{{ $message }}</p>
+                                @enderror
+                            </div><!-- col-4 -->
+                        </div>
+
                         <div class="row row-sm mt-2">
                             <div class="col-12">
                                 <div class="form-group mg-b-0">

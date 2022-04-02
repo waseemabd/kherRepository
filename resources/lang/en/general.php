@@ -66,7 +66,14 @@ return [
 
     'add_mark' => 'Add Mark',
     'Answers' => 'Answers',
+    'admin' => 'Admin',
+    'teacher' => 'Teacher',
 
+    'logout' => 'Logout',
+
+    'Files' => 'Files',
+    'edu_content' => 'Educational Content',
+    'general' => 'general',
 
 
 ];

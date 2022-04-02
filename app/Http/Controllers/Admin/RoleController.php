@@ -20,11 +20,11 @@ class RoleController extends Controller
     public function __construct(IRoleRepository  $roleRepository)
     {
         $this->roleRepository = $roleRepository;
-        $this->middleware('permission:list roles')->only(['index']);
-        $this->middleware('permission:create role')->only(['create']);
-        $this->middleware('permission:update role')->only(['edit']);
-        $this->middleware('permission:show role')->only(['show']);
-        $this->middleware('permission:delete role')->only(['destroy']);
+//        $this->middleware('permission:list roles')->only(['index']);
+//        $this->middleware('permission:create role')->only(['create']);
+//        $this->middleware('permission:update role')->only(['edit']);
+//        $this->middleware('permission:show role')->only(['show']);
+//        $this->middleware('permission:delete role')->only(['destroy']);
 
     }
 
@@ -40,7 +40,6 @@ class RoleController extends Controller
 
     public function store(RoleRequest $request)
     {
-
         return $this->roleRepository->storeRole($request);
 
     }
@@ -55,9 +54,8 @@ class RoleController extends Controller
         return $this->roleRepository->editRole($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(RoleRequest $request, $id)
     {
-
         return $this->roleRepository->updateRole($request,$id);
 
     }

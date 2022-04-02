@@ -19,6 +19,7 @@ return [
     'test_percentage'=>'النسبة المئوية للاختبارات',
     'homework_percentage'=>'النسبة الئوية للوظائف',
     'presence_percentage'=>'النسبة الئوية للحضور'
+    'teachers' => 'المدرسون',
 
 
 

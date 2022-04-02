@@ -46,7 +46,7 @@
                 <div class="my-auto">
                     <div class="d-flex">
                         <h4 class="content-title mb-0 my-auto">{{trans('Users/user.Users')}}</h4><span
-                            class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Users/user.users menu')}}</span>
+                            class="text-muted mt-1 tx-13 ms-2 mb-0"> / {{trans('Users/user.users menu')}}</span>
                     </div>
                 </div>
 
@@ -83,7 +83,7 @@
 
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-12 col-lg-6 mg-t-20 mg-md-t-0" id="lnWrapper">
-                            <label>{{trans('Users/user.passowrd')}}: <span class="tx-danger">*</span></label>
+                            <label>{{trans('Users/user.password')}}: <span class="tx-danger">*</span></label>
                             <input class="form-control form-control-sm mg-b-20" data-parsley-class-handler="#lnWrapper"
                                 name="password" required="" type="password">
                         </div>
@@ -95,24 +95,35 @@
                         </div>
                     </div>
 
-                    <div class="row row-sm ">
+                    <div class="row row-sm mg-b-20">
                         <div class="col-lg-6 col-md-12">
                             <label class="form-label">{{trans('Users/user.status')}}</label>
-                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select mg-b-30">
+                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select mg-b-30 select2">
                                 <option value="1">{{trans('Users/user.Active')}}</option>
                                 <option value="0">{{trans('Users/user.Inactive')}}</option>
                             </select>
                         </div>
                         <div class="col-xs-12 col-md-12 col-lg-6 ">
                             <div class="form-group">
-                                <label class="form-label ">{{trans('Users/user.user role')}}</label>
-                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple')) !!}
+                                <label class="form-label ">{{trans('Users/user.user role')}}  <span class="tx-danger">*</span></label>
+                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple', 'required' )) !!}
                             </div>
                         </div>
                     </div>
 
+                    <div class="row row-sm mg-b-20">
+                        <div class="col-lg-6 col-md-12">
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="is_teacher" required>
+                                <label class="form-check-label" for="flexSwitchCheckChecked">{{trans('Users/user.teacher')}}  <span class="tx-danger">*</span></label>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <!-- <div class="row mg-b-20">
-                      
+
                     </div> -->
 
 

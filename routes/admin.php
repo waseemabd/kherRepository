@@ -210,7 +210,7 @@ Auth::routes();
 
 
 Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
     Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
@@ -234,12 +234,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('role/delete/{id}', [App\Http\Controllers\Admin\RoleController::class, 'destroy'])->name('role.destroy');
 
 
-        Route::get('certificates', [App\Http\Controllers\Admin\CertificateController::class, 'index'])->name('certificate.index');
-        Route::get('certificates/create', [App\Http\Controllers\Admin\CertificateController::class, 'create'])->name('certificate.create');
-        Route::post('certificates/store', [App\Http\Controllers\Admin\CertificateController::class, 'store'])->name('certificate.store');
-        Route::get('certificates/edit/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'edit'])->name('certificate.edit');
-        Route::post('certificates/update/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'update'])->name('certificate.update');
-        Route::post('certificates/delete/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'destroy'])->name('certificate.destroy');
+    Route::get('certificates', [App\Http\Controllers\Admin\CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('certificates/create', [App\Http\Controllers\Admin\CertificateController::class, 'create'])->name('certificate.create');
+    Route::post('certificates/store', [App\Http\Controllers\Admin\CertificateController::class, 'store'])->name('certificate.store');
+    Route::get('certificates/edit/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'edit'])->name('certificate.edit');
+    Route::post('certificates/update/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'update'])->name('certificate.update');
+    Route::post('certificates/delete/{id}', [App\Http\Controllers\Admin\CertificateController::class, 'destroy'])->name('certificate.destroy');
 
     Route::get('diplomas', [App\Http\Controllers\Admin\DiplomaController::class, 'index'])->name('diploma.index');
     Route::get('diplomas/create', [App\Http\Controllers\Admin\DiplomaController::class, 'create'])->name('diploma.create');
@@ -328,13 +328,16 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::post('students/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('student.update');
     Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
     Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
+    Route::get('students/registration_request', [App\Http\Controllers\Admin\StudentController::class, 'pending_registration_request'])->name('students.pending_registration_request');
+    Route::post('students/registration_request/accept/{id}', [App\Http\Controllers\Admin\StudentController::class, 'acceptStudent'])->name('students.accept');
+    Route::post('students/delete/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
 
     ///blogs///
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
     Route::post('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('blog.destroy');
     Route::post('blog/block/{id}', [App\Http\Controllers\Admin\BlogController::class, 'block'])->name('blog.block');
     Route::get('blog/edit/{id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('blog.edit');
-    Route::post('blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blog.update')->middleware('permission:update blog');
+    Route::post('blog/update/{id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('blog.update');
     Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
     Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
     Route::post('blog/delete_comment/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_comment'])->name('blog.delete_comment');

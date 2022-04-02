@@ -79,9 +79,9 @@
                             </div>
                              <div class="row row-sm mg-b-20">
                                  <div class="col-lg-6">
-                                     <label class="form-label">teachers</label>
+                                     <label class="form-label">{{trans(Teachers/Teachers.teachers)}}</label>
                                      <select name="teacher_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">please select one teacher from this list</option>
+                                         <option value="">{{trans(Homework/Homework.please select one teacher from this list)}}</option>
                                          @foreach($teachers as $one)
                                              <option value="{{$one->id}}">{{$one->name}}</option>
                                          @endforeach
@@ -90,9 +90,9 @@
                              </div>
                              <div class="row row-sm mg-b-20">
                                  <div class="col-lg-6">
-                                     <label class="form-label">lectures</label>
+                                     <label class="form-label">{trans{(lectures/lectures.lectures)}}></label>
                                      <select name="lecture_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">please select one lecture from this list</option>
+                                         <option value="">{{trans(Homework/Homework.please select one lecture from this list)}}</option>
 
                                          @foreach($lectures as $one)
                                              <option value="{{$one->id}}">{{$one->title}}</option>
@@ -102,7 +102,7 @@
                              </div>
                              <div class="row mg-b-20">
                                  <div class="col-xs-12 col-md-12">
-                                     <p class="mg-b-10">students <span class="tx-danger">*</span></p>
+                                     <p class="mg-b-10">trans{{(students/students.students)}} <span class="tx-danger">*</span></p>
                                      <select name="students[]" required="" multiple class="form-control select2">
                                          <option >
                                          </option>

@@ -79,8 +79,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -108,9 +108,9 @@
                                            data-bs-target="#info-sub" data-desc="{{$lecture->desc}}"
                                            data-title="{{$lecture->title}}"
                                         >
-                                            {!! substr($lecture->desc,0,25) !!}...
+                                            {!! substr($lecture->desc,0,25) !!}
                                             <span style="color: blue">
-                                                {{trans('lectures/lectures.read_more')}}
+                                                {{trans('lectures/lectures.read_more')}}...
                                             </span>
                                         </a>
                                     </td>
@@ -120,7 +120,7 @@
 
                                     <td>
                                         @if($lecture->link===null)
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-secondary btn-sm"
                                            href="{{ route('lecture.add_files', $lecture->id) }}"><i
                                                 class="far fa-file"></i></a>
                                         @endif

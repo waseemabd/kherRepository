@@ -16,6 +16,7 @@ return [
     'Course_Updated_Successfully' => 'Course Updated Successfully',
     'read_more' => 'Read More',
     'desc_for' => 'Description For: ',
+    'teachers' => 'Teachers',
 
 
 

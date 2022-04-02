@@ -75,16 +75,14 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create diplomas'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm" href="{{ route('diploma.create') }}">{{trans('general.Add')}}</a>
                     </div>
-                        @endif
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0" >
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -104,26 +102,24 @@
                                         <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$diploma->desc}}" data-title="{{$diploma->title}}"
                                         >
-                                            {!! substr($diploma->desc,0,25) !!}...
+                                            {!! substr($diploma->desc,0,25) !!}
                                             <span style="color: blue">
-                                                {{trans('diplomas/diplomas.read_more')}}
+                                                {{trans('diplomas/diplomas.read_more')}}...
                                             </span>
                                             </a>
                                     </td>
 
                                     <td>
 
-                                        @if(auth('admin') -> user() ->can('update diplomas'))
+
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('diploma.edit', $diploma->id) }}"><i
-                                                class="las la-edit"></i></a>
-                                        @endif
-                                            @if(auth('admin') -> user() ->can('delete diplomas'))
+                                           href="{{ route('diploma.edit', $diploma->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
+
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $diploma->id }}"
                                            data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
-                                            @endif
                                     </td>
                                 </tr>
                             @endforeach

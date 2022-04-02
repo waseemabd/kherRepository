@@ -75,21 +75,20 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create courses'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm" href="{{ route('course.create') }}">{{trans('general.Add')}}</a>
                     </div>
-                        @endif
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0" >
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
                                 <th class="wd-15p border-bottom-0">{{trans('courses/courses.title')}}</th>
                                 <th class="wd-15p border-bottom-0">{{trans('courses/courses.diploma')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.teachers')}}</th>
                                 <th class="wd-20p border-bottom-0">{{trans('courses/courses.desc')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
@@ -103,6 +102,15 @@
                                     <td>{{ $course->title }}</td>
                                     <td>{{ $course->diploma->title }}</td>
                                     <td>
+
+                                        <ul>
+                                            @foreach ($course->users as $key => $teacher)
+                                                <li>{{$teacher->name}}</li>
+                                            @endforeach
+                                        </ul>
+
+                                    </td>
+                                    <td>
                                         <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$course->desc}}" data-title="{{$course->title}}"
                                         >
@@ -115,17 +123,15 @@
 
                                     <td>
 
-                                        @if(auth('admin') -> user() ->can('update courses'))
+
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('course.edit', $course->id) }}"><i
-                                                class="las la-edit"></i></a>
-                                        @endif
-                                            @if(auth('admin') -> user() ->can('delete courses'))
+                                           href="{{ route('course.edit', $course->id) }}" title="{{trans('general.Edit')}}"><i
+                                                class="las la-edit" ></i></a>
+
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $course->id }}"
                                            data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
-                                            @endif
                                     </td>
                                 </tr>
                             @endforeach

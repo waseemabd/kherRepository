@@ -24,13 +24,13 @@ class HomeworkController extends Controller
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:Homework');
-        $this->middleware('permission:list Homework')->only(['index']);
-        $this->middleware('permission:add files')->only(['add_files']);
-        $this->middleware('permission:create Homework')->only(['create']);
-        $this->middleware('permission:update Homework')->only(['edit']);
-        $this->middleware('permission:show Homework')->only(['show']);
-        $this->middleware('permission:delete Homework')->only(['destroy']);
+//        $this->middleware('permission:Homework');
+//        $this->middleware('permission:list Homework')->only(['index']);
+//        $this->middleware('permission:add files')->only(['add_files']);
+//        $this->middleware('permission:create Homework')->only(['create']);
+//        $this->middleware('permission:update Homework')->only(['edit']);
+//        $this->middleware('permission:show Homework')->only(['show']);
+//        $this->middleware('permission:delete Homework')->only(['destroy']);
     }
 
     public function index(Request $request)

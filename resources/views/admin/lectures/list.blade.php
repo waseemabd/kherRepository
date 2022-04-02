@@ -81,8 +81,8 @@
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -108,7 +108,7 @@
                                     <td>{{ $lecture->title }}</td>
                                     <td>{{ $lecture->course->title }}</td>
                                     <td>
-                                        <a href="javascript:" class="dropdown-item" data-bs-toggle="modal"
+                                        <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$lecture->desc}}"
                                            data-title="{{$lecture->title}}"
                                         >
@@ -124,10 +124,10 @@
 
                                     <td>
                                         @if(auth('admin') -> user() ->can('add lecture files'))
-                                            @if($lecture->link===null)
-                                                <a class="btn btn-primary btn-sm title="{{trans('tests/tests.add files')}}"
-                                                   href="{{ route('lecture.add_files', $lecture->id) }}"><i
-                                                        class="far fa-file"></i></a>
+                                        @if($lecture->link===null)
+                                        <a class="btn btn-secondary btn-sm"
+                                           href="{{ route('lecture.add_files', $lecture->id) }}"><i
+                                                class="far fa-file"></i></a>
                                             @endif
                                         @endif
 
@@ -145,9 +145,9 @@
                                                 class="las la-graduation-cap"></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('update Lecture'))
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
                                            href="{{ route('lecture.edit', $lecture->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                                class="las la-edit" ></i></a>
                                             @endif
                                             @if(auth('admin') -> user() ->can('delete Lecture'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"

@@ -75,8 +75,8 @@
             <div class="card">
 
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -116,22 +116,20 @@
                                     </td>
 
                                     <td>
-                                        @if(auth('admin') -> user() ->can('show teacher'))
+
                                     <a class="btn btn-success btn-sm"
                                            href="{{ route('teacher.show', $user->id) }}"><i
                                                 class="las la-eye"></i></a>
-                                        @endif
-                                            @if(auth('admin') -> user() ->can('update teacher'))
+
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('teacher.edit', $user->id) }}"><i
                                                 class="las la-edit"></i></a>
-                                            @endif
-                                            @if(auth('admin') -> user() ->can('delete teacher'))
+
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-teacher_id="{{ $user->id }}" data-username="{{ $user->name }}"
                                            data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>
-                                            @endif
+
                                         <div class="modal" id="modaldemo1">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content modal-content-demo">
@@ -144,13 +142,13 @@
                                                             {{ method_field('post') }}
                                                             @csrf
                                                             <div class="modal-body">
-                                                                <p>?{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}}  </p><br>
+                                                                <p>{{trans('Teachers/Teachers.Do Yoy Want to Delete This User')}} ? </p><br>
 
                                                                 <input class="form-control" hidden name="teacher_id" value="{{$user->name}}" id="teacher_id" type="text" readonly>
 
                                                             </div>
                                                             <div class="modal-footer">
-                                                                <button class="btn ripple btn-primary" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
+                                                                <button class="btn ripple btn-danger" type="submit">{{trans('Teachers/Teachers.Delete')}}</button>
                                                                 <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('Teachers/Teachers.Close')}}</button>
                                                             </div>
 

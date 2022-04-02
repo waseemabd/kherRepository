@@ -75,15 +75,14 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create Certificate'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm" href="{{ route('certificate.create') }}">{{trans('general.Add')}}</a>
                     </div>
-                    @endif
+
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive border-top userlist-table">
-                        <table class="table table-striped table-vcenter text-nowrap mb-0" >
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
@@ -103,17 +102,15 @@
 
                                     <td>
 
-                                        @if(auth('admin') -> user() ->can('update Certificate'))
+
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('certificate.edit', $certificate->id) }}"><i
+                                           href="{{ route('certificate.edit', $certificate->id) }}" title="{{trans('general.Edit')}}"><i
                                                 class="las la-edit"></i></a>
-                                        @endif
-                                            @if(auth('admin') -> user() ->can('delete Certificate'))
+
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $certificate->id }}"
                                            data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
                                                 class="las la-trash"></i></a>
-                                            @endif
                                     </td>
                                 </tr>
                             @endforeach

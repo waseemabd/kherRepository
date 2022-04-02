@@ -16,4 +16,15 @@ class CourseStudent extends Model
     ];
 
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'course_id','id');
+
+    }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class,'student_id','id');
+
+    }
 }

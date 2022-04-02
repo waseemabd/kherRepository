@@ -21,8 +21,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <a href="{{route('roles.index')}}" class="content-title mb-0 my-auto">{{trans('role/role.Roles')}}</a><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/{{trans('role/role.Roles Menu')}} </span>
+                <h4 class="content-title mb-0 my-auto">{{trans('role/role.Roles')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0"> / {{trans('role/role.Roles Menu')}} </span>
             </div>
         </div>
 
@@ -73,21 +73,19 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    @if(auth('admin') -> user() ->can('create role'))
                     <div class="d-flex justify-content-between ">
                         <a class="btn btn-primary btn-sm mr-10" href="{{ route('role.create') }}">{{trans('role/role.Add Role')}}</a>
                     </div>
-                    @endif
 
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table text-md-nowrap" id="example1">
+                    <div class="table-responsive userlist-table">
+                        <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
-                                <th  >#</th>
-                                <th >{{trans('role/role.name')}}</th>
-                                <th >{{trans('role/role.methods')}}</th>
+                                <th  class="width-th">#</th>
+                                <th class="width-th" >{{trans('role/role.name')}}</th>
+                                <th  class="width-th">{{trans('role/role.methods')}}</th>
 
                             </tr>
                             </thead>
@@ -97,22 +95,19 @@
                                 <td>{{ ++$i }}</td>
                                 <td>{{ $role->name }}</td>
                                 <td>
-                                    @if(auth('admin') -> user() ->can('show role'))
+
                                   <a class="btn btn-success btn-sm"
-                                     href="{{ route('role.show', $role->id) }}"><i
-                                          class="las la-eye"></i></a>
-                                    @endif
-                                        @if(auth('admin') -> user() ->can('update role'))
+                                     href="{{ route('role.show', $role->id) }}" title="{{trans('general.View')}}"><i
+                                          class="las la-eye" ></i></a>
                                  <a class="btn btn-primary btn-sm"
-                                     href="{{ route('role.edit', $role->id) }}"><i
-                                         class="las la-edit"></i></a>
-                                        @endif
-                                        @if(auth('admin') -> user() ->can('delete role'))
+                                     href="{{ route('role.edit', $role->id) }}" title="{{trans('general.Edit')}}"><i
+                                         class="las la-edit" ></i></a>
+
                                     <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-role_id="{{ $role->id }}" data-rolename="{{ $role->name }}"
-                                       data-bs-toggle="modal" href="#modaldemo1" title="delete"><i
+                                       data-bs-toggle="modal" href="#modaldemo1" title="{{trans('general.Delete')}}"><i
                                             class="las la-trash"></i></a>
-                                        @endif
+
                                     <div class="modal" id="modaldemo1">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content modal-content-demo">

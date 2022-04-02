@@ -23,6 +23,7 @@ $permissions = [
     'delete user',
 
     'Certificates',
+    'list Certificate',
     'create Certificate',
     'update Certificate',
     'delete Certificate',
@@ -67,6 +68,7 @@ $permissions = [
     'update Student',
     'show Student',
     'delete Student',
+    'list pending Students',
 
     'teachers',
     'list teachers',
