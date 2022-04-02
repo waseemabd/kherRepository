@@ -188,6 +188,54 @@
                                                                         <textarea readonly type="text"  id="FullName" class="form-control">{{ $one->diploma->desc }}</textarea>
                                                                     </div>
 
+                                                                    <div class="form-group">
+                                                                        <label for="Email">course results</label>
+                                                                        <div class="row">
+                                                                            @foreach($one->tests as $index=>$test)
+
+                                                                            <div class="col-lg-3 col-md-12">
+                                                                                <label for="Email">test:{{$test->title}} result</label>
+                                                                            <input readonly type="email" value="{{\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first()->total_mark}}" id="Email"
+                                                                                   class="form-control">
+                                                                            </div>
+
+                                                                            @endforeach
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            @foreach($one->lectures as $index=>$lecture)
+                                                                                <div class="col-lg-3 col-md-12">
+                                                                                    <label for="Email">homework:{{$index+1}} result</label>
+                                                                                    <input readonly type="email" value="{{\App\Models\StudentFile::where('homework_id',$lecture->homework->id)->where('student_id',$student->id)->first()->mark ??'غير مصححة بعد'}}" id="Email"
+                                                                                           class="form-control">
+                                                                                </div>
+
+                                                                            @endforeach
+                                                                        </div>
+
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-12">
+                                                                                <label for="Email">present result</label>
+                                                                                <input readonly type="email" value="{{$one->diploma->title}}" id="Email"
+                                                                                       class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-lg-4 col-md-12">
+                                                                                <label for="Email">result as value</label>
+                                                                                <input readonly type="email" value="{{App\Helpers\General::studentResult($one,$student->id)}}" id="Email"
+                                                                                       class="form-control">
+                                                                            </div>
+                                                                        </div>
+                                                                            <div class="row">
+                                                                            <div class="col-lg-4 col-md-12">
+                                                                                <label for="Email">result as text</label>
+                                                                                <input readonly type="email" value="{{App\Helpers\General::resultStudentText($one,$student->id)}}" id="Email"
+                                                                                       class="form-control">
+                                                                            </div>
+                                                                            </div>
+                                                                    </div>
+
                                                                 </form>
                                                             </div>
                                                         </div>

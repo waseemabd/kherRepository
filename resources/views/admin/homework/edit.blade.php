@@ -29,8 +29,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.edit_lecture')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('homeworks/homeworks.homework')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('homeworks/homeworks.edit_homework')}}</span>
             </div>
         </div>
 
@@ -56,7 +56,17 @@
 
 
                         </div>
+                        <br>
 
+                        <div class="row row-sm">
+                            <div class="col-6">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label">{{trans('homeworks/homeworks.mark')}}: </label>
+                                    <input class="form-control" value="{{$homework->mark}}" name="mark"  required="" type="text">
+                                </div>
+                            </div>
+                        </div>
+                             <br>
 
                         <div class="row row-sm mt-2">
                             <div class="col-12">
@@ -74,10 +84,10 @@
                                     </div>
                                 </div>
                             </div>
-
+                                   <br>
                             <div class="row row-sm mt-2">
                                 <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">teachers</p>
+                                    <p class="mg-b-10">teachers:</p>
                                     <select name="teacher_id" required="" class="form-control select2">
 
                                         @foreach($teachers as $one)
@@ -88,10 +98,10 @@
                                 </div><!-- col-4 -->
 
                             </div>
-
+                                 <br>
                             <div class="row row-sm mt-2">
                                 <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">lectures</p>
+                                    <p class="mg-b-10">lectures:</p>
                                     <select name="lecture_id"  class="form-control select2">
                                         <option></option>
                                         @foreach($lectures as $one)
@@ -102,10 +112,10 @@
                                 </div><!-- col-4 -->
 
                             </div>
-
+                                 <br>
                             <div class="row mg-b-20">
                                 <div class="col-xs-12 col-md-12">
-                                    <p class="mg-b-10">students <span class="tx-danger">*</span></p>
+                                    <p class="mg-b-10">students:</p>
                                     <select name="students[]"  multiple class="form-control select2">
 
                                         @foreach($students as $student)

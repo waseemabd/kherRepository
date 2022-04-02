@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/katex.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/monokai-sublime.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/quill.snow.css')}}">
+    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -60,6 +62,29 @@
                                 @enderror
                             </div><!-- col-4 -->
                         </div>
+
+                        <div class="row row-sm">
+                            <div class="col-lg-3 col-sm-12 mt-5">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label fz-13">{{trans('courses/courses.test_percentage')}}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="testPercentage" placeholder="{{trans('courses/courses.test_percentage')}} مثلا 60" required type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-12 mt-5">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label fz-13">{{trans('courses/courses.homework_percentage')}}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="homeworkPercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 30" required type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-12 mt-5">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label fz-13">{{trans('courses/courses.presence_percentage')}}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="presencePercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 10" required type="text">
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="row row-sm mt-2">
                             <div class="col-12">
                                 <div class="form-group mg-b-0">
@@ -110,6 +135,8 @@
     <script src="{{asset('assets/js/form-elements.js')}}"></script>
 
     <script src="{{asset('assets/js/admin-pages/courses/add.js')}}"></script>
+        <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+        <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
 
 @endsection

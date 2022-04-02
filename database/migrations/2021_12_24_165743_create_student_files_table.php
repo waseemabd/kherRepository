@@ -16,6 +16,7 @@ class CreateStudentFilesTable extends Migration
         Schema::create('student_files', function (Blueprint $table) {
             $table->id();
             $table->string('path');
+            $table->string('mark')->nullable();
             $table->timestamps();
         });
     }

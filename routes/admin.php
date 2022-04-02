@@ -213,6 +213,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
+    Route::get('profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('admin.profile');
+    Route::post('profile/update/{id}', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
 
 
     Route::get('users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
@@ -265,6 +267,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('homework/View_file/{path}/{file_name}', [App\Http\Controllers\Admin\HomeworkController::class, 'open_file'])->name('homework.View_file');
     Route::post('homework/delete_file/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'destroy_file'])->name('homework.delete_file');
     Route::get('homework/add_files/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'add_files'])->name('homework.add_files');
+    Route::get('homework/{id}/students', [App\Http\Controllers\Admin\HomeworkController::class, 'homeworkStudents'])->name('homework.students');
+    Route::get('homework/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\HomeworkController::class, 'homeworkStudentsAnswers'])->name('homework.students.answers');
+    Route::post('homework/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\HomeworkController::class, 'correctStudentsAnswers'])->name('homework.students.correctAnswers');
+    Route::get('homework/View_file_student/{path}/{file_id}', [App\Http\Controllers\Admin\HomeworkController::class, 'open_file_student'])->name('homework.View_file_student');
+    Route::get('homework/download_student/{path}/{file_id}', [App\Http\Controllers\Admin\HomeworkController::class, 'get_file_student'])->name('homework.download_student');
 
 
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');

@@ -29,12 +29,12 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_lecture')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('homeworks/homeworks.homework')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('homeworks/homeworks.add_homework')}}</span>
             </div>
         </div>
 
-    </div>    <!-- breadcrumb -->
+    </div>
 
     <!-- row -->
     <div class="row">
@@ -56,8 +56,15 @@
                                     <input class="form-control" name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
+                        </div>
 
-
+                        <div class="row row-sm">
+                            <div class="col-6">
+                                <div class="form-group mg-b-0">
+                                    <label class="form-label">{{trans('homeworks/homeworks.mark')}}: <span class="tx-danger">*</span></label>
+                                    <input class="form-control" name="mark" placeholder="{{trans('homeworks/homeworks.mark')}}" required="" type="text">
+                                </div>
+                            </div>
                         </div>
 
 

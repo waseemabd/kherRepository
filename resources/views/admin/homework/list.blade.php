@@ -99,7 +99,7 @@
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $homework->title }}</td>
                                     <td>
-                                        <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
+                                        <a href="javascript:" class="dropdown-item" data-bs-toggle="modal"
                                            data-bs-target="#info-sub" data-desc="{{$homework->desc}}"
                                            data-title="{{$homework->title}}"
                                         >
@@ -126,7 +126,11 @@
                                            href="{{ route('homework.show', $homework->id) }}"><i
                                                 class="las la-eye"></i></a>
                                             @endif
-                                            @if(auth('admin') -> user() ->can('delete Homework'))
+                                            <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
+                                               href="{{ route('homework.students', $homework->id) }}"><i
+                                                    class="las la-graduation-cap"></i></a>
+
+                                        @if(auth('admin') -> user() ->can('delete Homework'))
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $homework->id }}"
                                            data-bs-toggle="modal" href="#delete-sub"

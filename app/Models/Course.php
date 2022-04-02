@@ -12,12 +12,19 @@ class Course extends Model
     protected $fillable = [
         'title',
         'desc',
-        'diploma_id'
+        'diploma_id',
+        'testPercentage',
+        'homeworkPercentage',
+        'presencePercentage',
+
     ];
+   // protected $guarded=[];
     public  const create_update_rules = [
 
         'title' => 'required',
         'diploma_id' => 'required',
+
+
 
     ];
 

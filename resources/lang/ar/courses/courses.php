@@ -16,6 +16,9 @@ return [
     'Course_Updated_Successfully' => 'تم تعديل الكورس بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
+    'test_percentage'=>'النسبة المئوية للاختبارات',
+    'homework_percentage'=>'النسبة الئوية للوظائف',
+    'presence_percentage'=>'النسبة الئوية للحضور'
 
 
 

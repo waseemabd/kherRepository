@@ -88,14 +88,30 @@ class CourseController extends Controller
         try {
 
             $data = $this->requestData;
+
             $data['diploma_id'] = $this->requestData['diploma'];
-//            dd($data);
+
             $validator = Validator::make($data, $validator_rules = Course::create_update_rules);
 
+            if($request->testPercentage +$request->homeworkPercentage +$request->presencePercentage !==100 )
+            {
+                return redirect()->route('course.create')->with('error', 'مجموع النسب المئوية لا يساوي 100');
+
+            }
+
             if ($validator->passes()) {
+                Course::create([
+                    'diploma_id'=>$request->diploma,
+                    'title'=>$request->title,
+                    'desc'=>$request->desc,
+                    'testPercentage'=>$request->testPercentage,
+                    'homeworkPercentage'=>$request->homeworkPercentage,
+                    'presencePercentage'=>$request->presencePercentage,
+
+                ]);
 
 
-                $user = $this->courseRepository->create($data);
+                //$user = $this->courseRepository->create($data);
 
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Added_Successfully'));
@@ -160,11 +176,23 @@ class CourseController extends Controller
             $data['diploma_id'] = $this->requestData['diploma'];
 
             $validator = Validator::make($data, $validator_rules = Course::create_update_rules);
+            if($request->testPercentage +$request->homeworkPercentage +$request->presencePercentage !==100 )
+            {
+                return redirect()->route('course.index')->with('error', 'مجموع النسب المئوية لا يساوي 100');
 
+            }
             if ($validator->passes()) {
+                Course::where('id',$id)->update([
+                    'diploma_id'=>$request->diploma,
+                    'title'=>$request->title,
+                    'desc'=>$request->desc,
+                    'testPercentage'=>$request->testPercentage,
+                    'homeworkPercentage'=>$request->homeworkPercentage,
+                    'presencePercentage'=>$request->presencePercentage,
 
+                ]);
 
-                $user = $this->courseRepository->update($data, $id);
+                //$user = $this->courseRepository->update($data, $id);
 
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Updated_Successfully'));

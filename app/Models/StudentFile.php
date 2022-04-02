@@ -13,6 +13,7 @@ class StudentFile extends Model
         'path',
         'homework_id',
         'student_id',
+        'mark',
     ];
     public  const create_update_rules = [
 

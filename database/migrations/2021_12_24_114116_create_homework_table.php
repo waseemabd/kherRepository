@@ -17,6 +17,7 @@ class CreateHomeworkTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc')->nullable();
+            $table->string('mark')->nullable();
 
             $table->timestamps();
         });

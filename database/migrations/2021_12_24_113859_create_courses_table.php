@@ -17,6 +17,9 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc')->nullable();
+            $table->string('testPercentage');
+            $table->string('homeworkPercentage');
+            $table->string('presencePercentage');
             $table->timestamps();
         });
     }

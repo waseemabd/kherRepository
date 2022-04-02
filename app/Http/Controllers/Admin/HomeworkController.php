@@ -8,6 +8,8 @@ use App\Http\IRepositories\IHomeworkRepository;
 use App\Http\Controllers\Controller;
 use App\Models\File;
 use App\Models\Homework;
+use App\Models\Student;
+use App\Models\StudentFile;
 use Exception;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -166,6 +168,98 @@ class HomeworkController extends Controller
 
 
     }
+
+    public function homeworkStudents($id)
+    {
+        //
+        try {
+
+            $homework=Homework::find($id);
+            $students_homework = $homework->students;
+
+            $ids=[];
+            foreach ($students_homework as $one) {
+                if (!$one->studentFiles->isEmpty())
+                {
+
+                    $ids[] = StudentFile::where('homework_id', $homework->id)->where('student_id', $one->id)->pluck('student_id');
+                }
+            }
+
+            $students=Student::whereIn('id',$ids)->get();
+
+            //$students_file=StudentFile::where('')
+
+            return view('admin.homework.students', compact('homework', 'students'));
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+
+    public function homeworkStudentsAnswers($id, $stud_id)
+    {
+        //
+        try {
+
+            $homework=Homework::find($id);
+            $student = Student::find($stud_id);
+
+
+
+            return view('admin.homework.studentAnswers', compact('homework', 'student'));
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function correctStudentsAnswers($id, $stud_id,Request $request)
+    {
+        //
+
+        try {
+            $homework=Homework::find($id);
+            $students = $homework->students;
+            $mark=$request->mark;
+            $student_file=StudentFile::where('homework_id',$id)->where('student_id',$stud_id)->first();
+            $student_file->mark=$mark;
+            $student_file->save();
+            return view('admin.homework.students')->with(['edit','User has Deleted Successfully','students'=>$students,'homework'=>$homework]);
+
+
+
+        } catch (Exception $e) {
+            return redirect()->route('homework.students.answers',[$id, $stud_id])->with('error', $e->getMessage());
+
+        }
+    }
+
+    public function get_file_student($path,$file_id)
+
+    {
+        try {
+            $contents= Storage::disk('public_uploads_homework_student_file')->getDriver()->getAdapter()->applyPathPrefix($file_id.'/'.$path);
+            return response()->download( $contents);
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+
+    public function open_file_student($path,$file_id)
+
+    {
+        try {
+            $files = Storage::disk('public_uploads_homework_student_file')->getDriver()->getAdapter()->applyPathPrefix($file_id.'/'.$path);
+            return response()->file($files);
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+
+
+
 
 
 

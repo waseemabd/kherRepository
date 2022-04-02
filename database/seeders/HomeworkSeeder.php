@@ -24,6 +24,7 @@ class HomeworkSeeder extends Seeder
                 'id' => 1,
                 'title' =>'HW 1',
                 'desc' =>'HW 1 desc',
+                'mark'=>50,
                 'user_id' => 3,
                 'lecture_id' => 1,
 
@@ -34,6 +35,7 @@ class HomeworkSeeder extends Seeder
                 'id' => 2,
                 'title' =>'HW 2',
                 'desc' =>'HW 2 desc',
+                'mark'=>50,
                 'user_id' => 1,
                 'lecture_id' => 1,
 
@@ -44,6 +46,7 @@ class HomeworkSeeder extends Seeder
                 'id' => 3,
                 'title' =>'HW 3',
                 'desc' =>'HW 3 desc',
+                'mark'=>50,
                 'user_id' => 2,
                 'lecture_id' => 2,
 
@@ -54,6 +57,7 @@ class HomeworkSeeder extends Seeder
                 'id' => 4,
                 'title' =>'HW 4',
                 'desc' =>'HW 4 desc',
+                'mark'=>50,
                 'user_id' => 3,
                 'lecture_id' => 3,
 

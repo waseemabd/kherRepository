@@ -16,6 +16,8 @@ class CreateCourseStudentsTable extends Migration
         Schema::create('course_students', function (Blueprint $table) {
             $table->id();
             $table->double('rating')->nullable();
+            $table->double('resultant')->nullable();
+
             $table->timestamps();
         });
     }

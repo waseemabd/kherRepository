@@ -23,6 +23,7 @@ class StudentFilesSeeder extends Seeder
 
                 'id' => 1,
                 'path' =>'',
+                'mark'=>50,
                 'homework_id' =>1,
                 'student_id' =>1,
                 'created_at' =>now(),
@@ -31,6 +32,7 @@ class StudentFilesSeeder extends Seeder
             [
                 'id' => 2,
                 'path' =>'',
+                'mark'=>50,
                 'homework_id' =>1,
                 'student_id' =>2,
                 'created_at' =>now(),
@@ -39,6 +41,7 @@ class StudentFilesSeeder extends Seeder
             [
                 'id' => 3,
                 'path' =>'',
+                'mark'=>50,
                 'homework_id' =>2,
                 'student_id' =>3,
                 'created_at' =>now(),
@@ -47,6 +50,7 @@ class StudentFilesSeeder extends Seeder
             [
                 'id' => 4,
                 'path' =>'',
+                'mark'=>50,
                 'homework_id' =>2,
                 'student_id' =>4,
                 'created_at' =>now(),

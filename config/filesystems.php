@@ -39,10 +39,22 @@ return [
             'driver' => 'local',
             'root'   => public_path() . '/Homework',
         ],
+
+        'public_uploads_homework_student_file' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/StudentFiles',
+        ],
         'public_uploads_lectures' => [
             'driver' => 'local',
             'root'   => public_path() . '/Lecture',
         ],
+
+        'public_uploads_Profile' => [
+            'driver' => 'local',
+            'root'   => public_path() . '/Profile',
+        ],
+
+
 
         'public_uploads' => [
             'driver' => 'local',

@@ -11,6 +11,7 @@ use App\Models\Homework;
 use App\Models\Lecture;
 use App\Models\Student;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -61,13 +62,14 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
 
             $homework->title=$request['title'];
             $homework-> desc=$request['desc'];
+            $homework-> mark=$request['mark'];
              $homework->lecture_id=$request['lecture_id'];
             $homework-> user_id=$request['teacher_id'];
             $homework->save();
 
             $homework->students()->attach($request['students']);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('homework.create')->with('error', $e->getMessage());
 
         }
@@ -104,12 +106,13 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
             $homework->update([
                 'title'=>$input['title'],
                 'desc'=>$input['desc'],
+                'mark'=>$input['mark'],
                 'lecture_id'=>$input['lecture_id'],
                 'teacher_id'=>$input['teacher_id'],
             ]);
             $homework->students()->sync($input['students']);
 
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
 
             return redirect()->route('homework.index')->with('error', $e->getMessage());
 
