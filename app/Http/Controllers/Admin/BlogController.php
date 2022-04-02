@@ -19,9 +19,9 @@ class BlogController extends Controller
 
     public function __construct(IBlogRepository  $blogRepository)
     {
-        $this->middleware('permission:blogs');
-        $this->middleware('permission:list blogs')->only(['index']);
-        $this->middleware('permission:update blog')->only(['edit']);
+//        $this->middleware('permission:blogs');
+//        $this->middleware('permission:list blogs')->only(['index']);
+//        $this->middleware('permission:update blog')->only(['edit']);
         $this->blogRepository = $blogRepository;
 
     }
