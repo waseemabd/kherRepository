@@ -30,7 +30,7 @@ class SettingController extends Controller
         $this->settingImageRepository = $settingImageRepository;
         $this->contactRepository = $contactRepository;
         $this->requestData = Mapper::toUnderScore(\Request()->all());
-//        $this->middleware('permission:Setting');
+        $this->middleware('permission:Setting');
 
 
     }

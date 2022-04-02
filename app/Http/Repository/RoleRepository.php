@@ -71,6 +71,7 @@ class RoleRepository extends BaseRepository implements IRoleRepository
         $role = Role::find($id);
         $role->name = $request->input('name');
         $role->save();
+
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')
             ->with('success','Role updated successfully');

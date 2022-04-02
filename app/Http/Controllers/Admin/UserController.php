@@ -72,6 +72,7 @@ class UserController extends Controller
             }
 
             if($validator->passes()) {
+
                 $input['password'] = Hash::make($input['password']);
             }
 

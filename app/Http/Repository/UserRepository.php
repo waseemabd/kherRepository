@@ -7,6 +7,7 @@ namespace App\Http\Repository;
 use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IUserRepository;
 use App\Models\User;
+use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -73,6 +74,7 @@ class UserRepository extends BaseRepository implements IUserRepository
         $user = User::find($id);
         $input = $request->all();
         if(!empty($input['password'])){
+            dd('xx');
             $input['password'] = Hash::make($input['password']);
         }else{
             $input['password']=$user->password;
@@ -96,8 +98,8 @@ class UserRepository extends BaseRepository implements IUserRepository
                 ->get();
 
             return $users;
-        } catch (\Exception $exception) {
-            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        } catch (Exception $exception) {
+            throw new Exception('common_msg.' . trans($exception->getMessage()));
         }
     }
 

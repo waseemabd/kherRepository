@@ -128,7 +128,7 @@
                                                 class="las la-edit"></i></a>
                                             @endif
 
-                                            @if(auth('admin') -> user() ->can('delete Homework'))
+
                                             @if(auth('admin') -> user() ->can('show Homework'))
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('homework.show', $homework->id) }}"><i
