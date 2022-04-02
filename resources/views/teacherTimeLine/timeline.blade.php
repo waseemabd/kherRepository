@@ -63,7 +63,7 @@
 							<div class="card-header custom-card-header">
 								<h6 class="card-title mb-0">Vertical Timeline</h6>
 							</div>
-							@if (session()->has('message'))
+							@if (!empty('message'))
 							<div class="card-header custom-card-header">
 								<h6 class="card-title mb-0">you have no courses</h6>
 							</div>

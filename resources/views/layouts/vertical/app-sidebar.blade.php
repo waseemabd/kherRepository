@@ -153,7 +153,7 @@
                 </li>
             @endif
 
-           {{-- @if(auth('admin') -> user() ->can('Lectures'))--}}
+            @if(auth('admin') -> user() ->can('Lectures'))
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24">
@@ -170,17 +170,17 @@
                         </i>
                     </a>
                     <ul class="slide-menu">
-                       {{-- @if(auth('admin') -> user() ->can('list courses'))--}}
+                       @if(auth('admin') -> user() ->can('list courses'))
                             <li><a class="slide-item" href="{{route('course.index')}}">{{trans('general.List')}}</a>
                             </li>
-                        {{-- @endif --}}
+                        @endif 
                         @if(auth('admin') -> user() ->can('create courses'))
                             <li><a class="slide-item" href="{{route('course.create')}}">{{trans('general.Add')}}</a>
                             </li>
                         @endif
                     </ul>
                 </li>
-            {{--@endif--}}
+            @endif
             @if(auth('admin') -> user() ->can('Lectures'))
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#">
@@ -213,7 +213,7 @@
                 </li>
             @endif
 
-            {{-- @if(auth('admin') -> user() ->can('Homework')) --}}
+             @if(auth('admin') -> user() ->can('Homework'))
                 {{--                            <li class="side-item side-item-category">homework</li>--}}
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#">
@@ -226,12 +226,12 @@
                         <span class="side-menu__label">{{trans('Update.Homework')}}</span><i
                             class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
-                        {{-- @if(auth('admin') -> user() ->can('list Homework')) --}}
+                         @if(auth('admin') -> user() ->can('list Homework'))
                             <li><a class="slide-item" href="{{route('homework.index')}}">
                                     {{--                                                {{trans('Update.Homework menu')}}--}}
                                     {{trans('general.List')}}
                                 </a></li>
-                        {{-- @endif --}}
+                        @endif
                         @if(auth('admin') -> user() ->can('create Homework'))
 
                             <li><a class="slide-item" href="{{route('homework.create')}}">{{trans('general.Add')}}</a>
@@ -241,7 +241,7 @@
 
                     </ul>
                 </li>
-            {{-- @endif --}}
+             @endif 
 
             @if(auth('admin') -> user() ->can('Tests'))
                 <li class="slide">
@@ -331,9 +331,9 @@
                             <a class="side-menu__item" data-bs-toggle="slide" href="#"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 5H5v14h14V5zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" opacity=".3"/><path d="M3 5v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2zm2 0h14v14H5V5zm2 5h2v7H7zm4-3h2v10h-2zm4 6h2v4h-2z"/></svg><span class="side-menu__label">{{trans('Update.Teachers')}}</span><i class="angle fe fe-chevron-down"></i></a>
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('teachers.index')}}">{{trans('Update.Teachers menu')}}</a></li>
-                               @if(auth('admin') -> user() ->can('TimeLine'))
+                               {{-- @if(auth('admin') -> user() ->can('TimeLine')) --}}
                                 <li><a class="slide-item" href="{{url('timeline')}}">Timeline</a></li>
-                               @endif
+                               {{-- @endif --}}
                             </ul>
                         </li>
 

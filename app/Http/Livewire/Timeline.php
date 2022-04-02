@@ -19,10 +19,8 @@ class Timeline extends Component
             return view('teacherTimeLine.timeline', compact('courses'));
         }
         else{
-            // return view('teacherTimeLine.timeline')->with('message','you have no courses');;
             $courses=[];
             return view('teacherTimeLine.timeline', compact('courses'))->with('message','you have no courses');
         }
-        // return view('teacherTimeLine.timeline', compact('courses'));
     }
 }
