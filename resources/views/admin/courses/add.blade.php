@@ -65,7 +65,7 @@
 
                         <div class="row row-sm mt-2">
 
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10 fz-13">{{trans('courses/courses.teachers')}} <span class="tx-danger">*</span></p>
                                 <select name="teachers[]" required="" class="form-control select2" multiple>
                                     <option >
