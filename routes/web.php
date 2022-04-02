@@ -220,7 +220,7 @@ Route::group(['middleware' => 'guest:admin'], function () {
 // Route::get('/show-event-calendar', [EventController::class, 'index']);
 // Route::post('/manage-events', [EventController::class, 'manageEvents']);
 // Route::get('calendar',  [EventController::class, 'render']);
-Route::get('calendar/index', [CalendarController::class, 'index'])->name('calendar.index');
+Route::get('calendar/index/{id}', [CalendarController::class, 'index'])->name('calendar.index');
 Route::post('calendar', [CalendarController::class, 'store'])->name('calendar.store');
 Route::patch('calendar/update/{id}', [CalendarController::class, 'update'])->name('calendar.update');
 Route::delete('calendar/destroy/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');

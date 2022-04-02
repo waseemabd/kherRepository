@@ -63,4 +63,10 @@ class TeacherController extends Controller
          $this->userRepository->deleteUser($id);
         return redirect()->route('teachers.index')->with('delete','Teacher has Deleted Successfully');
     }
+
+    public function create()
+    {
+        $certificate= $this->userRepository->cre();
+        return view('students.create',compact('certificate'));
+    }
 }

@@ -33,9 +33,22 @@ class HomeworkController extends Controller
 
     public function index(Request $request)
     {
-        $data= $this->homeworkRepository->getAllHomework($request);
+        try {
+            if(auth('admin')->user()->role == 2 ){
+                $data= auth('admin')->user()->homeworks;
+                // $courses = auth('admin')->user()->homeworks;//$this->courseRepository->all();
+            }
+            else {
+                $data= $this->homeworkRepository->getAllHomework($request);
+            }
+           
         return view('admin.homework.list',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+       
     }
 
     public function create()

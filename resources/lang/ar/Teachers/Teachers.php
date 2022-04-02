@@ -17,7 +17,7 @@ return[
     'Do Yoy Want to Delete This User' => 'هل تريد حذف هذا المستخدم',
     'Delete' => 'حذف',
     'Close' => 'إغلاق',
-    'Add' => 'إضافة',
+    'Add' => 'إضافة أستاذ',
     'English name' => 'الاسم باللغة الأنجليزية',
     'Arabic name' => 'الاسم باللغة العربية',
     'Roles' => 'الصلاحيات',

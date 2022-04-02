@@ -65,8 +65,6 @@
     "config": {
         "github-oauth": {
 
-            "github.com": "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"
-
         },
         "optimize-autoloader": true,
         "preferred-install": "dist",
