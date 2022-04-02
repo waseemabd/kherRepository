@@ -12,8 +12,8 @@ class RedirectIfAuthenticated
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param Request $request
+     * @param Closure $next
      * @param  string|null  ...$guards
      * @return mixed
      */
@@ -30,7 +30,7 @@ class RedirectIfAuthenticated
         if (Auth::guard($guard)->check()) {
             switch ($guard) {
                 case 'admin':
-                    return redirect("/admin");
+                    return redirect("/admin/login");
             }
         }
 

@@ -105,18 +105,19 @@ class CourseController extends Controller
             }
 
             if ($validator->passes()) {
-                Course::create([
+                $course=  Course::create([
                     'diploma_id'=>$request->diploma,
                     'title'=>$request->title,
                     'desc'=>$request->desc,
                     'testPercentage'=>$request->testPercentage,
                     'homeworkPercentage'=>$request->homeworkPercentage,
                     'presencePercentage'=>$request->presencePercentage,
+               ]);
 
 
                // $course = $this->courseRepository->create($data);
 
-               // $course->users()->attach($teachers);
+                $course->users()->attach($teachers);
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Added_Successfully'));
 

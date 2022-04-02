@@ -27,7 +27,6 @@ class UserUpdateRequest extends FormRequest
 
             'email' => "unique:users,email,$this->id,id",
             'name'=>'required',
-            'password'=>'confirmed',
 
         ];
     }

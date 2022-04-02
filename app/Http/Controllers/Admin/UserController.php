@@ -56,11 +56,12 @@ class UserController extends Controller
 
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $user = User::find($id);
         $input = $request->all();
-        if(!empty($input['password'])){
+        if(!empty($input['password']))
+        {
             $validator = Validator::make($input, [
                 'password' => 'required|min:6',
                 'confirm-password' =>'required_with:password|same:password'
@@ -74,6 +75,9 @@ class UserController extends Controller
             if($validator->passes()) {
 
                 $input['password'] = Hash::make($input['password']);
+                $user->update($input);
+                DB::table('model_has_roles')->where('model_id',$id)->delete();
+                $user->assignRole($request->input('roles'));
             }
 
         }else{
