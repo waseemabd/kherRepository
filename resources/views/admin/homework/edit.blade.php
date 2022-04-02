@@ -113,16 +113,16 @@
                             </div>
                                  <br>
                             <div class="row mg-b-20">
-                                    <div class="col-lg-6 col-sm-12 col-md-12">
-                                    <label class="form-label mt-12">{{trans('Homework/Homework.teachers')}}</label>
-                                        <select name="teacher_id" required="" class="form-control select2">
+{{--                                    <div class="col-lg-6 col-sm-12 col-md-12">--}}
+{{--                                    <label class="form-label mt-12">{{trans('Homework/Homework.teachers')}}</label>--}}
+{{--                                        <select name="teacher_id" required="" class="form-control select2">--}}
 
-                                            @foreach($teachers as $one)
-                                                <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>
-                                            @endforeach
-                                        </select>
+{{--                                            @foreach($teachers as $one)--}}
+{{--                                                <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
 
-                                    </div><!-- col-4 -->
+{{--                                    </div><!-- col-4 -->--}}
                                     <div class="col-lg-6 col-sm-12 col-md-12">
                                         <label class="form-label mt-12">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></label>
                                         <select name="students[]"  multiple class="form-control select2">
