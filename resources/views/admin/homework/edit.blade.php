@@ -29,8 +29,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.edit_lecture')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Homework/Homework.Homework')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Homework/Homework.edit-homework')}}</span>
             </div>
         </div>
 
@@ -46,78 +46,71 @@
                     <form action="{{route('homework.update', $homework->id)}}" method="POST"
                           id="lecture_form" data-parsley-validate="">
                         @csrf
-                        <div class="row row-sm">
-                            <div class="col-6">
-                                <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
-                                    <input class="form-control" name="title" value="{{$homework->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
+                            <div class="row row-sm">
+                                <div class="col-lg-6 col-sm-12 col-md-12">
+                                    <div class="form-group mg-b-0">
+                                        <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
+                                        <input class="form-control" name="title" value="{{$homework->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
+                                    </div>
                                 </div>
+                
+
+                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                    <label class="form-label">{{trans('Homework/Homework.lectures')}}</label>
+                                        <select name="lecture_id"  class="form-control select2">
+                                            <option></option>
+                                            @foreach($lectures as $one)
+                                                <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
+                                            @endforeach
+                                        </select>
+
+                                    </div><!-- col-4 -->
                             </div>
 
+                            <div class="row mg-b-20">
+                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                    <label class="form-label mt-12">{{trans('Homework/Homework.teachers')}}</label>
+                                        <select name="teacher_id" required="" class="form-control select2">
 
-                        </div>
+                                            @foreach($teachers as $one)
+                                                <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>
+                                            @endforeach
+                                        </select>
 
+                                    </div><!-- col-4 -->
+                                    <div class="col-lg-6 col-sm-12 col-md-12">
+                                        <label class="form-label mt-12">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></label>
+                                        <select name="students[]"  multiple class="form-control select2">
 
-                        <div class="row row-sm mt-2">
-                            <div class="col-12">
-                                <div class="form-group mg-b-0">
-                                    <label
-                                        class="form-label">{{trans('lectures/lectures.desc')}} </label>
-                                    <input class="form-control" type="hidden" name="desc" id="desc">
-                                    <div id="blog-editor-wrapper">
-                                        <div id="blog-editor-container">
-                                            <div class="editor" style="min-height: 200px">
+                                            @foreach($students as $student)
+                                                <option value="{{$student->id}}" {{in_array($student->id, $ids_students) ? 'selected':''}}>
+                                                    {{$student->getTranslatedName()}}
+                                                </option>
+                                            @endforeach
 
-                                                {!! $homework->desc !!}
+                                        </select>
+
+                                    </div><!-- col-4 -->
+                            </div>
+
+                            <div class="row row-sm mt-2">
+                                <div class="col-12">
+                                    <div class="form-group mg-b-0">
+                                        <label
+                                            class="form-label">{{trans('lectures/lectures.desc')}} </label>
+                                        <input class="form-control" type="hidden" name="desc" id="desc">
+                                        <div id="blog-editor-wrapper">
+                                            <div id="blog-editor-container">
+                                                <div class="editor" style="min-height: 200px">
+
+                                                    {!! $homework->desc !!}
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row row-sm mt-2">
-                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.teachers')}}</p>
-                                    <select name="teacher_id" required="" class="form-control select2">
-
-                                        @foreach($teachers as $one)
-                                            <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div><!-- col-4 -->
-
-                            </div>
-
-                            <div class="row row-sm mt-2">
-                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.lectures')}}</p>
-                                    <select name="lecture_id"  class="form-control select2">
-                                        <option></option>
-                                        @foreach($lectures as $one)
-                                            <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div><!-- col-4 -->
-
-                            </div>
-
-                            <div class="row mg-b-20">
-                                <div class="col-xs-12 col-md-12">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
-                                    <select name="students[]"  multiple class="form-control select2">
-
-                                        @foreach($students as $student)
-                                            <option value="{{$student->id}}" {{in_array($student->id, $ids_students) ? 'selected':''}}>
-                                                {{$student->getTranslatedName()}}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
-
-                                </div><!-- col-4 -->
-                            </div><!-- col-4 -->
+                            
 
 
                             <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Edit')}}</button></div>

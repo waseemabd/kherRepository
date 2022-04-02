@@ -45,5 +45,6 @@ return[
     'methods' => 'الطريق',
     'Add Homework' => 'إضافة وظيفة',
     'Profile Image' => 'الصورة الشخصية',
-    'students details' => 'تفاصيل الطلاب'
+    'students details' => 'تفاصيل الطلاب',
+    'edit-homework'=> 'تعديل الوظيفة'
 ];
