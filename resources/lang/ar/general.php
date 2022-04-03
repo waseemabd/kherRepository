@@ -75,6 +75,7 @@ return [
     'edu_content' => 'المحتوى التعليمي',
 
     'general' => 'عام',
+    'add_files'=>'اضافة ملفات'
 
 
 ];

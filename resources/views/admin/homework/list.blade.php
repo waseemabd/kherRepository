@@ -112,7 +112,7 @@
 
                                     <td>
                                         @if(auth('admin') -> user() ->can('add files'))
-                                        <a class="btn btn-secondary btn-sm"
+                                        <a class="btn btn-secondary btn-sm" title="{{trans('general.add_files')}}"
                                            href="{{ route('homework.add_files', $homework->id) }}"><i
                                                 class="far fa-file"></i></a>
                                         @endif
@@ -129,11 +129,7 @@
                                             @endif
 
 
-                                            @if(auth('admin') -> user() ->can('show Homework'))
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('homework.show', $homework->id) }}"><i
-                                                class="las la-eye"></i></a>
-                                            @endif
+
                                             <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                                href="{{ route('homework.students', $homework->id) }}"><i
                                                     class="las la-graduation-cap"></i></a>
