@@ -14,6 +14,7 @@ use App\Http\IRepositories\IFileRepository;
 use App\Http\IRepositories\IHomeworkRepository;
 use App\Http\IRepositories\ILectureRepository;
 use App\Http\IRepositories\ILoginRepository;
+use App\Http\IRepositories\INotificationRepository;
 use App\Http\IRepositories\IOptionRepository;
 use App\Http\IRepositories\IProfileRepository;
 use App\Http\IRepositories\IProgressRepository;
@@ -44,6 +45,7 @@ use App\Http\Repository\FileRepository;
 use App\Http\Repository\HomeworkRepository;
 use App\Http\Repository\LectureRepository;
 use App\Http\Repository\LoginRepository;
+use App\Http\Repository\NotificationRepository;
 use App\Http\Repository\OptionRepository;
 use App\Http\Repository\ProfileRepository;
 use App\Http\Repository\ProgressRepository;
@@ -105,6 +107,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ISurveyAnswerRepository::class, SurveyAnswerRepository::class);
         $this->app->bind(ISurveyOptionRepository::class, SurveyOptionRepository::class);
         $this->app->bind(ICourseStudentRepository::class, CourseStudentRepository::class);
+        $this->app->bind(INotificationRepository::class, NotificationRepository::class);
 
 
     }

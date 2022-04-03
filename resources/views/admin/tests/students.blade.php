@@ -100,7 +100,7 @@
                                                                 <a class="btn btn-primary btn-sm"
                                                                    title="{{trans('general.Answers')}}"
                                                                    href="{{ route('test.students.answers', [$test->id, $student->id]) }}"><i
-                                                                        class="las la-edit"></i></a>
+                                                                        class="las la-school"></i></a>
 
                                                             </td>
                                                         </tr>

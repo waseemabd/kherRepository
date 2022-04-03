@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Helpers\Constants;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
+use App\Helpers\Notifications;
 use App\Http\IRepositories\IHomeworkRepository;
 
 use App\Http\Controllers\Controller;
+use App\Http\IRepositories\INotificationRepository;
 use App\Models\File;
 use App\Models\Homework;
 use App\Models\Student;
@@ -19,10 +22,13 @@ class HomeworkController extends Controller
 {
 
     protected $homeworkRepository;
+    protected $notificationRepository;
     protected $requestData;
-    public function __construct(IHomeworkRepository  $homeworkRepository)
+    public function __construct(IHomeworkRepository  $homeworkRepository,
+                                INotificationRepository $notificationRepository)
     {
         $this->homeworkRepository = $homeworkRepository;
+        $this->notificationRepository = $notificationRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:Homework');
 //        $this->middleware('permission:list Homework')->only(['index']);
@@ -63,9 +69,48 @@ class HomeworkController extends Controller
     {
         $data = $this->requestData;
 
-        $this->homeworkRepository->storeHomework($data);
+
+        $homework = $this->homeworkRepository->storeHomework($data);
+
+        $fcm_data = [
+            'homework_id' => $homework->id,
+
+
+        ];
+        $fcm_message = Constants::NEW_HOMEWORK_MSG_AR . $homework->title;
+        $fcm_title = Constants::NEW_HOMEWORK_TITLE_AR;
+
+        $students = $homework->lecture->course->students;
+
+        $student_tokens = [];
+        foreach ($students as $student) {
+            if ($student->fcm_token != '0') {
+                array_push($student_tokens, $student->fcm_token); // (logged in) just get a valid fcm_token for admin
+            }
+        }
+
+        if (!empty($student_tokens)) {
+            $notification = Notifications::addNotification($student_tokens, $fcm_title, $fcm_message, $fcm_data);
+
+        }
+
+        $not_data['type'] = 'new_homework';
+        $not_data['fcm_message_en'] = Constants::NEW_HOMEWORK_MSG_EN . $homework->title;
+        $not_data['fcm_title_en'] = Constants::NEW_HOMEWORK_TITLE_EN;
+        $not_data['fcm_message_ar'] = Constants::NEW_HOMEWORK_MSG_AR . $homework->title;
+        $not_data['fcm_title_ar'] = Constants::NEW_HOMEWORK_TITLE_AR;
+        $not_data['fcm_data'] = json_encode($fcm_data);
+        $not_data['user_type'] = 'student';
+        $not_data['user_id'] = null;
+
+
+        foreach ($students as $student) {
+            $not_data['student_id'] = $student->id;
+            $this->notificationRepository->create($not_data);
+        }
+
         return redirect()->route('homework.index')
-            ->with('success','Homework has Added Successfully');
+            ->with('message',trans('Homework/Homework.homework_Added_Successfully'));
     }
 
     public function show($id)
@@ -85,7 +130,7 @@ class HomeworkController extends Controller
 
         $this->homeworkRepository->updateHomework($request,$id);
         return redirect()->route('homework.index')
-            ->with('edit','Homeowork information has updated successfully');
+            ->with('message',trans('Homework/Homework.homework_Updated_Successfully'));
 
     }
 

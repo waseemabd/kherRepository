@@ -98,7 +98,7 @@
                                                                 <a class="btn btn-primary btn-sm"
                                                                    title="{{trans('general.Answers')}}"
                                                                    href="{{ route('survey.students.answers', [$survey->id, $student->id]) }}"><i
-                                                                        class="las la-edit"></i></a>
+                                                                        class="las la-school"></i></a>
 
                                                             </td>
                                                         </tr>

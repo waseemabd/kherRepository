@@ -69,6 +69,8 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
 
             $homework->students()->attach($request['students']);
 
+            return $homework;
+
         } catch (Exception $e) {
             return redirect()->route('homework.create')->with('error', $e->getMessage());
 

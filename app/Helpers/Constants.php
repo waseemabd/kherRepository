@@ -20,66 +20,59 @@ class Constants
     const FILTERS = "filters";
     const PER_PAGE = "per_page";
 
-    const NEW_PRODUCT_TITLE_EN = "New Product";
-    const NEW_PRODUCT_TITLE_AR = "منتج جديد";
-    const NEW_PRODUCT_TITLE_KU = "Berhema Nû";
-    const NEW_PRODUCT_MSG_EN = "new product has been added with name: ";
-    const NEW_PRODUCT_MSG_AR = "نم إضافة منتج جديد باسم: ";
-    const NEW_PRODUCT_MSG_KU = "hilbera nû bi navê: ";
+    const NEW_DIPLOMA_TITLE_EN = "New Diploma";
+    const NEW_DIPLOMA_TITLE_AR = "دبلوم جديد";
+    const NEW_DIPLOMA_MSG_EN = "new diploma has been added with name: ";
+    const NEW_DIPLOMA_MSG_AR = "نم إضافة دبلوم جديد باسم: ";
 
-    const UPDATE_PRODUCT_TITLE_EN = "Update Product";
-    const UPDATE_PRODUCT_TITLE_AR = "تعديل منتج";
-    const UPDATE_PRODUCT_TITLE_KU = "Nûvekirina Hilberê";
-    const UPDATE_PRODUCT_MSG_EN = "product has been updated, product name: ";
-    const UPDATE_PRODUCT_MSG_AR = "نم تعديل المنتج ذو الاسم: ";
-    const UPDATE_PRODUCT_MSG_KU = "hilber hate nûve kirin, navê hilberê: ";
+    const NEW_COURSE_TITLE_EN = "New Course";
+    const NEW_COURSE_TITLE_AR = "كورس جديد";
+    const NEW_COURSE_MSG_EN = "new course has been added with name: ";
+    const NEW_COURSE_MSG_AR = "نم إضافة كورس جديد باسم: ";
 
-
-    const UPDATE_PRODUCT_STATUS_MSG_EN = "product status has been updated, product name: ";
-    const UPDATE_PRODUCT_STATUS_MSG_AR = "نم تعديل حالة المنتج ذو الاسم: ";
-    const UPDATE_PRODUCT_STATUS_MSG_KU = "rewşa hilberê hate nûve kirin, navê hilberê:";
+//    const UPDATE_COURSE_TITLE_EN = "Update Course";
+//    const UPDATE_COURSE_TITLE_AR = "تعديل كورس";
+//    const UPDATE_COURSE_MSG_EN = "course has been updated, course name: ";
+//    const UPDATE_COURSE_MSG_AR = "نم تعديل الكورس ذو الاسم: ";
 
 
+    const NEW_LECTURE_TITLE_EN = "New Lecture";
+    const NEW_LECTURE_TITLE_AR = "محاضرة جديدة";
+    const NEW_LECTURE_MSG_EN = "new lecture has been added with name: ";
+    const NEW_LECTURE_MSG_AR = "نم إضافة محاضرة جديدة باسم: ";
 
-    const PRODUCT_ADD_SPECIAL_FURNITURE_MSG_AR = "تم إضافة المنتج الى قائمة الأثاث الخاص، اسم المنتج:";
-    const PRODUCT_ADD_SPECIAL_FURNITURE_MSG_EN = "product has been added to special furniture list, product name: ";
-    const PRODUCT_ADD_SPECIAL_FURNITURE_MSG_KU = "hilber li navnîşa mobîlya taybetî, navê hilberê hatî zêdekirin: ";
 
-    const PRODUCT_REMOVE_SPECIAL_FURNITURE_MSG_AR = "تم إزالة المنتج من قائمة الأثاث الخاص، اسم المنتج:";
-    const PRODUCT_REMOVE_SPECIAL_FURNITURE_MSG_EN = "product has been deleted from special furniture list, product name: ";
-    const PRODUCT_REMOVE_SPECIAL_FURNITURE_MSG_KU = "hilber ji navnîşa mobîlya taybetî hate jêbirin, navê hilberê: ";
+    const NEW_TEST_TITLE_EN = "New Test";
+    const NEW_TEST_TITLE_AR = "امتحان جديد";
+    const NEW_TEST_MSG_EN = "new test has been added with name: ";
+    const NEW_TEST_MSG_AR = "نم إضافة امتحان جديد باسم: ";
 
-    const PRODUCT_ADD_SPECIAL_OFFER_MSG_AR = "تم إضافة المنتج الى قائمة العروض الخاصة، اسم المنتج:";
-    const PRODUCT_ADD_SPECIAL_OFFER_MSG_EN = "product has been added to special offers list, product name: ";
-    const PRODUCT_ADD_SPECIAL_OFFER_MSG_KU = "hilber li navnîşa pêşniyarên taybetî, navê hilberê hatî zêdekirin: ";
 
-    const PRODUCT_REMOVE_SPECIAL_OFFER_MSG_AR = "تم إزالة المنتج من قائمة العروض الخاصة، اسم المنتج:";
-    const PRODUCT_REMOVE_SPECIAL_OFFER_MSG_EN = "product has been deleted from special offers list, product name: ";
-    const PRODUCT_REMOVE_SPECIAL_OFFER_MSG_KU = "hilber ji navnîşa pêşniyarên taybetî hate jêbirin, navê hilberê: ";
+    const NEW_HOMEWORK_TITLE_EN = "New HomeWork";
+    const NEW_HOMEWORK_TITLE_AR = "وظيفة جديدة";
+    const NEW_HOMEWORK_MSG_EN = "new homework has been added with name: ";
+    const NEW_HOMEWORK_MSG_AR = "نم إضافة وظيفة جديدة باسم: ";
 
-    const PRODUCT_ADD_BEST_OFFER_MSG_AR = "تم إضافة المنتج الى قائمة أفضل العروض، اسم المنتج:";
-    const PRODUCT_ADD_BEST_OFFER_MSG_EN = "product has been added to the best offers list, product name: ";
-    const PRODUCT_ADD_BEST_OFFER_MSG_KU = "hilber li navnîşa pêşniyarên çêtirîn, navê hilberê hatî zêdekirin: ";
+    const NEW_HOMEWORK_MARK_TITLE_EN = "New HomeWork Mark";
+    const NEW_HOMEWORK_MARK_TITLE_AR = "علامة وظيفة";
+    const NEW_HOMEWORK_MARK_MSG_EN = "new mark has been added to the homeWork with name: ";
+    const NEW_HOMEWORK_MARK_MSG_AR = "نم إضافة علامة جديدة للوظيفة باسم: ";
 
-    const PRODUCT_REMOVE_BEST_OFFER_MSG_AR = "تم إزالة المنتج من قائمة قائمة أفضل العروض، اسم المنتج:";
-    const PRODUCT_REMOVE_BEST_OFFER_MSG_EN = "product has been deleted from the best offers list, product name: ";
-    const PRODUCT_REMOVE_BEST_OFFER_MSG_KU = "hilber ji navnîşa pêşniyarên çêtirîn hate jêbirin, navê hilberê: ";
+    const NEW_TEST_MARK_TITLE_EN = "New Test Mark";
+    const NEW_TEST_MARK_TITLE_AR = "علامة امتحان";
+    const NEW_TEST_MARK_MSG_EN = "new mark has been added to the test with name: ";
+    const NEW_TEST_MARK_MSG_AR = "نم إضافة علامة جديدة للامتحان باسم: ";
 
-    const PRODUCT_ADD_ADS_MSG_AR = "تم إضافة المنتج الى قائمة الإعلانات، اسم المنتج:";
-    const PRODUCT_ADD_ADS_MSG_EN = "product has been added to the ads list, product name: ";
-    const PRODUCT_ADD_ADS_MSG_KU = "hilber li navnîşa reklaman hate zêdekirin, navê hilberê: ";
+    const NEW_SURVEY_TITLE_EN = "New Survey";
+    const NEW_SURVEY_TITLE_AR = "استبيان جديد";
+    const NEW_SURVEY_MSG_EN = "new Survey has been added with name: ";
+    const NEW_SURVEY_MSG_AR = "نم إضافة استبيان جديد باسم: ";
 
-    const PRODUCT_REMOVE_ADS_MSG_AR = "تم إزالة المنتج من قائمة قائمة أفضل العروض، اسم المنتج:";
-    const PRODUCT_REMOVE_ADS_MSG_EN = "product has been deleted from the ads list, product name: ";
-    const PRODUCT_REMOVE_ADS_MSG_KU = "hilber ji navnîşa reklaman hate jêbirin, navê hilberê: ";
 
-    const DISCOUNT_AR = "الخصم: ";
-    const DISCOUNT_EN = "discount: ";
-    const DISCOUNT_KU = "kêmkirinî: ";
-
-    const STATUS_AR = "الحالة: ";
-    const STATUS_EN = "status: ";
-    const STATUS_KU = "cî: ";
+//    const NEW_COURSE_TITLE_EN = "New Course";
+//    const NEW_COURSE_TITLE_AR = "كورس جديد";
+//    const NEW_COURSE_MSG_EN = "new course has been added with name: ";
+//    const NEW_COURSE_MSG_AR = "نم إضافة كورس جديد باسم: ";
 
     const lectureType = [
         0 => 'unsync',

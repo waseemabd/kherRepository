@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Constants;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
+use App\Helpers\Notifications;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\ILectureRepository;
+use App\Http\IRepositories\INotificationRepository;
+use App\Http\IRepositories\IStudentRepository;
 use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
@@ -25,14 +29,17 @@ class LectureController extends Controller
 {
     protected $courseRepository;
     protected $lectureRepository;
+    protected $notificationRepository;
     protected $requestData;
 
 
     public function __construct(ILectureRepository $lectureRepository,
-                                ICourseRepository $courseRepository)
+                                ICourseRepository $courseRepository,
+                                INotificationRepository $notificationRepository)
     {
         $this->courseRepository = $courseRepository;
         $this->lectureRepository = $lectureRepository;
+        $this->notificationRepository = $notificationRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:Lectures');
 //        $this->middleware('permission:list Lecture')->only(['index']);
@@ -69,7 +76,7 @@ class LectureController extends Controller
                 $lectures = $this->lectureRepository->all();
             }
 
-            
+
             return view('admin.lectures.list', compact('lectures'));
 
         } catch (Exception $e) {
@@ -141,7 +148,44 @@ class LectureController extends Controller
             $data['course_id'] = $this->requestData['course'];
             $validator = Validator::make($data, $validator_rules = Lecture::create_update_rules);
             if ($validator->passes()) {
-                $user = $this->lectureRepository->create($data);
+                $lecture = $this->lectureRepository->create($data);
+
+                $fcm_data = [
+                    'lecture_id' => $lecture->id,
+
+
+                ];
+                $fcm_message = Constants::NEW_LECTURE_MSG_AR . $lecture->title;
+                $fcm_title = Constants::NEW_LECTURE_TITLE_AR;
+
+                $students = $lecture->course->students;
+
+                $student_tokens = [];
+                foreach ($students as $student) {
+                    if ($student->fcm_token != '0') {
+                        array_push($student_tokens, $student->fcm_token); // (logged in) just get a valid fcm_token for admin
+                    }
+                }
+
+                if (!empty($student_tokens)) {
+                    $notification = Notifications::addNotification($student_tokens, $fcm_title, $fcm_message, $fcm_data);
+
+                }
+
+                $not_data['type'] = 'new_lecture';
+                $not_data['fcm_message_en'] = Constants::NEW_LECTURE_MSG_EN . $lecture->title;
+                $not_data['fcm_title_en'] = Constants::NEW_LECTURE_TITLE_EN;
+                $not_data['fcm_message_ar'] = Constants::NEW_LECTURE_MSG_AR . $lecture->title;
+                $not_data['fcm_title_ar'] = Constants::NEW_LECTURE_TITLE_AR;
+                $not_data['fcm_data'] = json_encode($fcm_data);
+                $not_data['user_type'] = 'student';
+                $not_data['user_id'] = null;
+
+
+                foreach ($students as $student) {
+                    $not_data['student_id'] = $student->id;
+                    $this->notificationRepository->create($not_data);
+                }
               //  $user->students()->attach($data['students']);
                 return redirect()->route('lecture.index')->with('message', trans('lectures/lectures.Lecture_Added_Successfully'));
             }

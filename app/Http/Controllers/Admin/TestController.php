@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Constants;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
+use App\Helpers\Notifications;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IAnswerRepository;
 use App\Http\IRepositories\ICourseRepository;
+use App\Http\IRepositories\INotificationRepository;
 use App\Http\IRepositories\IStudentRepository;
 use App\Http\IRepositories\ITestRepository;
 use App\Models\Course;
@@ -25,18 +28,22 @@ class TestController extends Controller
     protected $testRepository;
     protected $studentRepository;
     protected $answerRepository;
+    protected $notificationRepository;
     protected $requestData;
 
 
     public function __construct(ICourseRepository $courseRepository,
                                 ITestRepository $testRepository,
                                 IStudentRepository $studentRepository,
-                                IAnswerRepository $answerRepository)
+                                IAnswerRepository $answerRepository,
+                                INotificationRepository $notificationRepository)
+
     {
         $this->courseRepository = $courseRepository;
         $this->testRepository = $testRepository;
         $this->studentRepository = $studentRepository;
         $this->answerRepository = $answerRepository;
+        $this->notificationRepository = $notificationRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:Tests');
 //        $this->middleware('permission:list Test')->only(['index']);
@@ -46,6 +53,7 @@ class TestController extends Controller
 //        $this->middleware('permission:manage question')->only(['testQuestions']);
 //        $this->middleware('permission:students test')->only(['testStudents']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -99,30 +107,26 @@ class TestController extends Controller
 
             $data['course_id'] = $this->requestData['course'];
             $data['user_id'] = auth("admin")->user()->id;
-            if($data['course_id']){
-                $course=Course::where('id',$data['course_id'])->first();
-                $students_course=$course->students;
-                $schedule=[];
-                $start_date=$this->requestData['date'];
-                $end_date=$this->requestData['duration'];
+            if ($data['course_id']) {
+                $course = Course::where('id', $data['course_id'])->first();
+                $students_course = $course->students;
+                $schedule = [];
+                $start_date = $this->requestData['date'];
+                $end_date = $this->requestData['duration'];
                 $end_date = Carbon::createFromFormat('Y-m-d H:i', $start_date)->addMinute($end_date);
 
-                foreach ($students_course as $student)
-                {
-                    if ($student->schedules)
-                    {
-                      $schedule[]=Schedule::where('student_id',$student->id)
-                                    ->whereBetween('start_date',[$request->date,date($end_date)])
-                                   ->whereBetween('end_date',[$request->date,date($end_date)])
-                                    ->first();
+                foreach ($students_course as $student) {
+                    if ($student->schedules) {
+                        $schedule[] = Schedule::where('student_id', $student->id)
+                            ->whereBetween('start_date', [$request->date, date($end_date)])
+                            ->whereBetween('end_date', [$request->date, date($end_date)])
+                            ->first();
 
                     }
                 }
-                foreach ($schedule as $one)
-                {
-                    if($one !==null)
-                    {
-                        return view('admin.lectures.error',compact('schedule'));
+                foreach ($schedule as $one) {
+                    if ($one !== null) {
+                        return view('admin.lectures.error', compact('schedule'));
                     }
                 }
             }
@@ -131,7 +135,45 @@ class TestController extends Controller
             if ($validator->passes()) {
 
 
-                $user = $this->testRepository->create($data);
+                $test = $this->testRepository->create($data);
+
+
+                $fcm_data = [
+                    'test_id' => $test->id,
+
+
+                ];
+                $fcm_message = Constants::NEW_TEST_MSG_AR . $test->title;
+                $fcm_title = Constants::NEW_TEST_TITLE_AR;
+
+                $students = $test->course->students;
+
+                $student_tokens = [];
+                foreach ($students as $student) {
+                    if ($student->fcm_token != '0') {
+                        array_push($student_tokens, $student->fcm_token); // (logged in) just get a valid fcm_token for admin
+                    }
+                }
+
+                if (!empty($student_tokens)) {
+                    $notification = Notifications::addNotification($student_tokens, $fcm_title, $fcm_message, $fcm_data);
+
+                }
+
+                $not_data['type'] = 'new_test';
+                $not_data['fcm_message_en'] = Constants::NEW_TEST_MSG_EN . $test->title;
+                $not_data['fcm_title_en'] = Constants::NEW_TEST_TITLE_EN;
+                $not_data['fcm_message_ar'] = Constants::NEW_TEST_MSG_AR . $test->title;
+                $not_data['fcm_title_ar'] = Constants::NEW_TEST_TITLE_AR;
+                $not_data['fcm_data'] = json_encode($fcm_data);
+                $not_data['user_type'] = 'student';
+                $not_data['user_id'] = null;
+
+
+                foreach ($students as $student) {
+                    $not_data['student_id'] = $student->id;
+                    $this->notificationRepository->create($not_data);
+                }
 
 
                 return redirect()->route('test.index')->with('message', trans('tests/tests.Test_Added_Successfully'));
@@ -148,7 +190,7 @@ class TestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function show($id)
@@ -161,7 +203,7 @@ class TestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function edit($id)
@@ -172,7 +214,7 @@ class TestController extends Controller
             $courses = $this->courseRepository->all();
             $test = $this->testRepository->find($id);
 
-            return view('admin.tests.edit', compact('courses','test' ));
+            return view('admin.tests.edit', compact('courses', 'test'));
 
         } catch (Exception $e) {
             return $e->getMessage();
@@ -183,7 +225,7 @@ class TestController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function update(Request $request, $id)
@@ -220,7 +262,7 @@ class TestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return Response
      */
     public function destroy($id)
@@ -244,7 +286,7 @@ class TestController extends Controller
             $test = $this->testRepository->find($id);
             $questions = $test->questions;
 //            $qtypes = $this->qu
-            return view('admin.tests.questions', compact('test','questions'));
+            return view('admin.tests.questions', compact('test', 'questions'));
 
         } catch (Exception $e) {
             return $e->getMessage();
@@ -276,7 +318,6 @@ class TestController extends Controller
             $student = $this->studentRepository->find($stud_id);
 
 
-
             return view('admin.tests.studentAnswers', compact('test', 'student'));
 
         } catch (Exception $e) {
@@ -295,7 +336,7 @@ class TestController extends Controller
             $questions = $test->questions;
 
             $total_mark = 0;
-            foreach ($questions as $question){
+            foreach ($questions as $question) {
                 $student_answer_id = $question->student_answer($stud_id)->id; // get the answer of this question for this student
 
                 $total_mark = $total_mark + $answers_ids[$student_answer_id];
@@ -305,16 +346,48 @@ class TestController extends Controller
             }
             $updated_test = $test->students()->updateExistingPivot($stud_id, ['total_mark' => $total_mark]);
 
-            if($updated_test){
+            if ($updated_test) {
+
+                $fcm_data = [
+                    'test_id' => $test_id,
+                    'mark' => $total_mark,
+
+
+                ];
+                $fcm_message = Constants::NEW_TEST_MARK_MSG_AR . $test->title;
+                $fcm_title = Constants::NEW_TEST_MARK_TITLE_AR;
+
+                $student = $this->studentRepository->find($stud_id);
+
+
+                if ($student->fcm_token != '0') {
+                    $notification = Notifications::addNotification($student->fcm_token, $fcm_title, $fcm_message, $fcm_data);
+                }
+
+
+                $not_data['type'] = 'test_mark';
+                $not_data['fcm_message_en'] = Constants::NEW_TEST_MARK_MSG_EN . $test->title;
+                $not_data['fcm_title_en'] = Constants::NEW_TEST_MARK_TITLE_EN;
+                $not_data['fcm_message_ar'] = Constants::NEW_TEST_MARK_MSG_AR . $test->title;
+                $not_data['fcm_title_ar'] = Constants::NEW_TEST_MARK_TITLE_AR;
+                $not_data['fcm_data'] = json_encode($fcm_data);
+                $not_data['user_type'] = 'student';
+                $not_data['user_id'] = null;
+
+
+                $not_data['student_id'] = $stud_id;
+                $this->notificationRepository->create($not_data);
+
+
                 return redirect()->route('test.students', $test_id)->with('message', trans('tests/tests.Mark_Updated_Successfully'));
 
-            }else{
-                return redirect()->route('test.students.answers',[$test_id, $stud_id])->with('error', trans('tests/tests.Mark_NOT_Updated_Successfully'));
+            } else {
+                return redirect()->route('test.students.answers', [$test_id, $stud_id])->with('error', trans('tests/tests.Mark_NOT_Updated_Successfully'));
 
             }
 
         } catch (Exception $e) {
-            return redirect()->route('test.students.answers',[$test_id, $stud_id])->with('error', $e->getMessage());
+            return redirect()->route('test.students.answers', [$test_id, $stud_id])->with('error', $e->getMessage());
 
         }
     }

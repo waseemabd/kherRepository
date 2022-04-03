@@ -52,7 +52,7 @@ return [
 
 
 
-    'general' => 'إلغاء',
+    'general' => 'عام',
     'createdBy' => 'تم الاإنشاء بواسطة',
 
 

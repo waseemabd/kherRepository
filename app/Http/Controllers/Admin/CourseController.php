@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Constants;
 use App\Helpers\JsonResponse;
 use App\Helpers\Mapper;
+use App\Helpers\Notifications;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\IDiplomaRepository;
+use App\Http\IRepositories\INotificationRepository;
+use App\Http\IRepositories\IStudentRepository;
 use App\Http\IRepositories\IUserRepository;
 use App\Models\Course;
 use Exception;
@@ -20,16 +24,22 @@ class CourseController extends Controller
     protected $courseRepository;
     protected $userRepository;
     protected $diplomaRepository;
+    protected $studentRepository;
+    protected $notificationRepository;
     protected $requestData;
 
 
     public function __construct(ICourseRepository $courseRepository,
                                 IUserRepository $userRepository,
-                                IDiplomaRepository $diplomaRepository)
+                                IDiplomaRepository $diplomaRepository,
+                                IStudentRepository $studentRepository,
+                                INotificationRepository $notificationRepository)
     {
         $this->courseRepository = $courseRepository;
         $this->userRepository = $userRepository;
         $this->diplomaRepository = $diplomaRepository;
+        $this->studentRepository = $studentRepository;
+        $this->notificationRepository = $notificationRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:courses')->only(['index']);
 //        $this->middleware('permission:create courses')->only(['create']);
@@ -119,6 +129,43 @@ class CourseController extends Controller
 
                 $course->users()->attach($teachers);
 
+                $fcm_data = [
+                    'course_id' => $course->id,
+
+
+                ];
+                $fcm_message = Constants::NEW_COURSE_MSG_AR . $course->title;
+                $fcm_title = Constants::NEW_COURSE_TITLE_AR;
+
+                $students = $this->studentRepository->getStudentByStatus(1);
+
+                $student_tokens = [];
+                foreach ($students as $student) {
+                    if ($student->fcm_token != '0') {
+                        array_push($student_tokens, $student->fcm_token); // (logged in) just get a valid fcm_token for admin
+                    }
+                }
+
+                if (!empty($student_tokens)) {
+                    $notification = Notifications::addNotification($student_tokens, $fcm_title, $fcm_message, $fcm_data);
+
+                }
+
+                $not_data['type'] = 'new_course';
+                $not_data['fcm_message_en'] = Constants::NEW_COURSE_MSG_EN . $course->title;
+                $not_data['fcm_title_en'] = Constants::NEW_COURSE_TITLE_EN;
+                $not_data['fcm_message_ar'] = Constants::NEW_COURSE_MSG_AR . $course->title;
+                $not_data['fcm_title_ar'] = Constants::NEW_COURSE_TITLE_AR;
+                $not_data['fcm_data'] = json_encode($fcm_data);
+                $not_data['user_type'] = 'student';
+                $not_data['user_id'] = null;
+
+
+                foreach ($students as $student) {
+                    $not_data['student_id'] = $student->id;
+                    $this->notificationRepository->create($not_data);
+                }
+
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Added_Successfully'));
 
             }
@@ -201,13 +248,14 @@ class CourseController extends Controller
                     'presencePercentage'=>$request->presencePercentage,
                 ]);
                 $course = $this->courseRepository->find($id);
-                $user = $this->courseRepository->update($data, $id);
+//                $user = $this->courseRepository->update($data, $id);
 
 
                 //$user = $this->courseRepository->update($data, $id);
 
 
                 $course->users()->sync($teachers);
+
 
                 return redirect()->route('course.index')->with('message', trans('courses/courses.Course_Updated_Successfully'));
 
