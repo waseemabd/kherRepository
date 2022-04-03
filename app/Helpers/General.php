@@ -31,7 +31,7 @@ class General
         return $path;
     }
 
-    function roleUser($role)
+    static function roleUser($role)
     {
 
         if ($role == 1) {
