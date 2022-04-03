@@ -3,11 +3,14 @@
 namespace App\Helpers;
 
 use App\Models\Language;
+use App\Models\Lecture;
+use App\Models\LectureStudent;
 use App\Models\Student;
 use App\Models\StudentFile;
 use App\Models\StudentTest;
 use Illuminate\Support\Facades\Config;
 use app\Helpers;
+use Spatie\Permission\Models\Permission;
 
 class General
 {
@@ -51,33 +54,90 @@ class General
         }
     }
 
+    public function studentPresent($course,$student_id)
+    {
+        $lecture_student_present_array=[];
+        $lectures=$course->lectures;
+        $lectures_present_count=Lecture::where('course_id',$course->id)->count();
+        foreach ($lectures as $lecture)
+        {
+            if (LectureStudent::where('lecture_id', $lecture->id)->where('student_id', $student_id)->first()) {
+                $lecture_student_present_array[] = LectureStudent::where('lecture_id', $lecture->id)->where('student_id', $student_id)->pluck('id');
+            }
+        }
+        if ($lectures_present_count != 0)
+        {
+            $student_present_lecture=(count($lecture_student_present_array)*100)/$lectures_present_count;
+        }else{
+            $student_present_lecture=0;
+        }
 
+       return $student_present_lecture;
+    }
     public function studentResult($course,$student_id)
     {
+        $student=Student::find($student_id);
+        $student_files=$student->studentFiles;
         $tests=$course->tests;
+        $lectures_present_count=Lecture::where('course_id',$course->id)->count();
+        $lectures=$course->lectures;
+        $homeworks=$course->homeworks;
         $tests_mark_array=[];
         $tests_mark=0;
         $homeworks_mark_array=[];
+        $lecture_student_present_array=[];
         $homeworks_mark=0;
+            foreach ($tests as $test)
+            {
+                if (StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first())
+                {
+                    $tests_mark_array[]=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->pluck('total_mark');
+                    $tests_mark+=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first()->total_mark;
 
-        foreach ($tests as $test)
-        {
-            $tests_mark_array[]=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->pluck('total_mark');
-            $tests_mark+=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first()->total_mark;
+                }
         }
-        $average_test=$tests_mark/count($tests_mark_array);
-        $lectures=$course->lectures;
+
+        if(count($tests_mark_array) !=0)
+        {
+            $average_test=$tests_mark/count($tests_mark_array);
+        }else{
+            $average_test=0;
+        }
+        foreach ($homeworks as $homework)
+        {
+            if($homework_mark=StudentFile::where('homework_id',$homework->id)->where('student_id',$student_id)->first())
+            {
+                $homeworks_mark_array[]=StudentFile::where('homework_id',$homework->id)->where('student_id',$student_id)->pluck('mark');
+                $homeworks_mark+=$homework_mark->mark;
+            }
+        }
         foreach ($lectures as $lecture)
         {
-            if($homework=StudentFile::where('homework_id',$lecture->homework->id)->where('student_id',$student_id)->first())
+
+            if(LectureStudent::where('lecture_id',$lecture->id)->where('student_id',$student_id)->first())
             {
-            $homeworks_mark_array[]=StudentFile::where('homework_id',$lecture->homework->id)->where('student_id',$student_id)->pluck('mark');
-            $homeworks_mark+=$homework->mark;
+                $lecture_student_present_array[]=LectureStudent::where('lecture_id',$lecture->id)->where('student_id',$student_id)->pluck('id');
+
             }
+        }
+        if($lectures_present_count !=0)
+        {
+            $student_present_lecture=(count($lecture_student_present_array)*100)/$lectures_present_count;
 
         }
-        $average_homeworks=$homeworks_mark/count($homeworks_mark_array);
-        $result=($average_test*$course->testPercentage/100) +($average_homeworks*$course->homeworkPercentage/100) + (60*$course->presencePercentage/100 );
+        else
+        {
+            $student_present_lecture=0;
+        }
+        if(count($homeworks_mark_array) !=0)
+        {
+            $average_homeworks=$homeworks_mark/count($homeworks_mark_array);
+        }else
+        {
+            $average_homeworks=0;
+        }
+
+        $result=($average_test*$course->testPercentage/100) +($average_homeworks*$course->homeworkPercentage/100) + ($student_present_lecture*$course->presencePercentage/100 );
         return $result;
     }
 
@@ -91,6 +151,13 @@ class General
        {
            return 'راسب';
        }
+    }
+    function getPermissionsRole($role_id)
+    {
+        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+            ->where("role_has_permissions.role_id",$role_id)
+            ->get();
+        return $rolePermissions;
     }
 
 

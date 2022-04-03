@@ -45,5 +45,7 @@ return[
     'methods' => 'الطريق',
     'Add Homework' => 'إضافة وظيفة',
     'Profile Image' => 'الصورة الشخصية',
-    'students details' => 'تفاصيل الطلاب'
+    'students details' => 'تفاصيل الطلاب',
+    'course'=>'الكورس',
+    'please select one course from this list'=>'من فضلك اختر كورس لهذه الوظيفة',
 ];

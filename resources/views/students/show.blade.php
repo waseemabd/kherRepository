@@ -111,7 +111,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Username">{{trans('students/students.address')}}</label>
-                                    <input readonly type="text" value="{{$student->profile->address}}" id="Username" class="form-control">
+                                    <input readonly type="text" value="{{$student -> profile -> address}}" id="Username" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="Password">{{trans('students/students.phone')}}</label>
@@ -189,51 +189,100 @@
                                                                     </div>
 
                                                                     <div class="form-group">
-                                                                        <label for="Email">course results</label>
+                                                                        <label for="Email">{{trans('students/students.course results')}}</label>
+
+                                                                        <p><strong>1- اختبارات هذا الكورس</strong></p>
                                                                         <div class="row">
-                                                                            @foreach($one->tests as $index=>$test)
+                                                                            @if(!$one->tests->isEmpty())
+                                                                                @foreach($one->tests as $index=>$test)
+                                                                                    @if(\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first())
+                                                                                        <div class="col-lg-3 col-md-12">
+                                                                                            <label for="Email">test {{$test->title}} </label>
+                                                                                            <input readonly type="email" value="
+                                                                            @if(\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first())
+                                                                                            @if(\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first()->total_mark !==null)
+                                                                                            {{\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first()->total_mark}}
+                                                                                            @else
+                                                                                                لم يتم تصحيح الاختبار بعد
+@endif
+                                                                                            @else
+                                                                                                لم يتم تقديم الاختبار بعد
+@endif
 
-                                                                            <div class="col-lg-3 col-md-12">
-                                                                                <label for="Email">test:{{$test->title}} result</label>
-                                                                            <input readonly type="email" value="{{\App\Models\StudentTest::where('test_id',$test->id)->where('student_id',$student->id)->first()->total_mark}}" id="Email"
-                                                                                   class="form-control">
-                                                                            </div>
-
-                                                                            @endforeach
-                                                                        </div>
-
-                                                                        <div class="row">
-                                                                            @foreach($one->lectures as $index=>$lecture)
+                                                                                                " id="Email"
+                                                                                                   class="form-control">
+                                                                                        </div>
+                                                                                    @else
+                                                                                        <div class="col-lg-3 col-md-12">
+                                                                                            <label for="Email">test:{{$test->title}} result</label>
+                                                                                            <input readonly type="email" value="لم يقدم هذا الطالب هذا الاحتبار بعد" id="Email"
+                                                                                                   class="form-control">
+                                                                                        </div>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            @else
                                                                                 <div class="col-lg-3 col-md-12">
-                                                                                    <label for="Email">homework:{{$index+1}} result</label>
-                                                                                    <input readonly type="email" value="{{\App\Models\StudentFile::where('homework_id',$lecture->homework->id)->where('student_id',$student->id)->first()->mark ??'غير مصححة بعد'}}" id="Email"
+                                                                                    <label for="Email">{{trans('students/students.homework result')}}</label>
+                                                                                    <input readonly type="email" value="لم يوجد اختبارات في هذا الكورس بعد" id="Email"
                                                                                            class="form-control">
                                                                                 </div>
-
-                                                                            @endforeach
+                                                                            @endif
                                                                         </div>
+                                                                        <br>
+                                                                        <p><strong>2- وظائف هذا الكورس</strong></p>
+                                                                        <div class="row">
+                                                                            @if(!$one->homeworks->isEmpty())
+                                                                                @foreach($one->homeworks as $index=>$homework)
 
+                                                                                    <div class="col-lg-3 col-md-12">
+                                                                                        <label for="Email">homework {{$homework->title}}</label>
+                                                                                        <input readonly type="email" value="
+                                                                                      @if(\App\Models\StudentFile::where('homework_id',$homework->id)->where('student_id',$student->id)->first())
+                                                                                        @if(\App\Models\StudentFile::where('homework_id',$homework->id)->where('student_id',$student->id)->first()->mark !==null)
+                                                                                        {{\App\Models\StudentFile::where('homework_id',$homework->id)->where('student_id',$student->id)->first()->mark}}
+                                                                                        @else
+                                                                                            لم يتم تصحيح الوظيفة بعد
+@endif
+                                                                                        @else
+                                                                                            لم يتم تقديم ملف الوظيفة بعد
+@endif
+                                                                                            " id="Email"
+                                                                                               class="form-control">
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            @else
+                                                                                <div class="col-lg-3 col-md-12">
+                                                                                    <label for="Email">{{trans('students/students.homework result')}}</label>
+                                                                                    <input readonly type="email" value="لم يوجد وظائف في هذا الكورس بعد" id="Email"
+                                                                                           class="form-control">
+                                                                                </div>
+                                                                            @endif
+                                                                        </div>
+                                                                        <br>
+                                                                        <p><strong>3- علامة الحضور هذا الكورس</strong></p>
                                                                         <div class="row">
                                                                             <div class="col-lg-4 col-md-12">
-                                                                                <label for="Email">present result</label>
-                                                                                <input readonly type="email" value="{{$one->diploma->title}}" id="Email"
+                                                                                <label for="Email">{{trans('students/students.present result')}}</label>
+                                                                                <input readonly type="email" value="{{App\Helpers\General::studentPresent($one,$student->id)}}" id="Email"
                                                                                        class="form-control">
                                                                             </div>
                                                                         </div>
+                                                                        <br>
                                                                         <div class="row">
                                                                             <div class="col-lg-4 col-md-12">
-                                                                                <label for="Email">result as value</label>
+                                                                                <label for="Email">{{trans('students/students.result as value')}}</label>
                                                                                 <input readonly type="email" value="{{App\Helpers\General::studentResult($one,$student->id)}}" id="Email"
                                                                                        class="form-control">
                                                                             </div>
                                                                         </div>
-                                                                            <div class="row">
+                                                                        <br>
+                                                                        <div class="row">
                                                                             <div class="col-lg-4 col-md-12">
-                                                                                <label for="Email">result as text</label>
+                                                                                <label for="Email">{{trans('students/students.result as text')}}</label>
                                                                                 <input readonly type="email" value="{{App\Helpers\General::resultStudentText($one,$student->id)}}" id="Email"
                                                                                        class="form-control">
                                                                             </div>
-                                                                            </div>
+                                                                        </div>
                                                                     </div>
 
                                                                 </form>
@@ -276,7 +325,7 @@
                                                             {{trans('students/students.start')}}
 
                                                             <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->lecture->end_date}}</span>
-                                                            {{trans('students/students.end')}}  
+                                                            {{trans('students/students.end')}}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -300,10 +349,10 @@
                                                                   <div class="timeline-footer d-flex align-items-center flex-wrap">
 
                                                                       <span ><i class="fe fe-calendar text-muted me-1"></i>{{$one->date}}</span>
-                                                                      {{trans('students/students.start')}} 
+                                                                      {{trans('students/students.start')}}
 
                                                                       <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->duration}}{{trans('students/students.minute')}} </span>
-                                                                      {{trans('students/students.duration')}} 
+                                                                      {{trans('students/students.duration')}}
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -471,7 +520,7 @@
                                                                             <div class="card mg-b-20">
                                                                                 <div class="card-body">
                                                                                     <div class="main-content-label mg-b-5">
-                                                                                    {{trans('students/students.description')}}  
+                                                                                    {{trans('students/students.description')}}
                                                                                     </div>
                                                                                     <div class="row">
                                                                                         <!-- col -->

@@ -32,7 +32,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: " lecture information has updated successfully",
+                    msg: " homework information has updated successfully",
                     type: "success"
                 });
             }
@@ -44,7 +44,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "lecture has Deleted Successfully",
+                    msg: "homework has Deleted Successfully",
                     type: "success"
                 });
             }
@@ -56,7 +56,7 @@
         <script>
             window.onload = function () {
                 notif({
-                    msg: "lecture has Added Successfully",
+                    msg: "homework has Added Successfully",
                     type: "success"
                 });
             }

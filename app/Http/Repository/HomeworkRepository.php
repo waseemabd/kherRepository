@@ -6,6 +6,7 @@ namespace App\Http\Repository;
 
 use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IHomeworkRepository;
+use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
 use App\Models\Lecture;
@@ -34,6 +35,7 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
         $data['students'] = Student::all();
         $data['teachers']=User::where('role',2)->get();
         $data['lectures']=Lecture::all();
+        $data['courses']=Course::all();
 
         return $data;
     }
@@ -49,6 +51,7 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
 
         $data['students']= $data['homework'] -> students;
         $data['lectures']=Lecture::all();
+
         //$data['students'] = Student::all();
         $data['teacher']=$data['homework'] ->user;
 
@@ -65,6 +68,7 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
             $homework-> mark=$request['mark'];
              $homework->lecture_id=$request['lecture_id'];
             $homework-> user_id=$request['teacher_id'];
+            $homework-> course_id=$request['course_id'];
             $homework->save();
 
             $homework->students()->attach($request['students']);
@@ -90,6 +94,7 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
         $data['ids_students']= $data['homework'] -> students -> pluck('id')->toArray();
         $data['lectures']=Lecture::all();
         $data['students'] = Student::all();
+        $data['courses']=Course::all();
         $data['teachers']=User::where('role',2)->get();
 
         return $data;
@@ -109,6 +114,7 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
                 'mark'=>$input['mark'],
                 'lecture_id'=>$input['lecture_id'],
                 'teacher_id'=>$input['teacher_id'],
+                'course_id'=>$input['course_id'],
             ]);
             $homework->students()->sync($input['students']);
 

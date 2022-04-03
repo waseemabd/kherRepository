@@ -23,6 +23,11 @@ class UserController extends Controller
     public function __construct(IUserRepository  $userRepository)
     {
         $this->userRepository = $userRepository;
+//        $this->middleware('permission:list users')->only(['index']);
+//        $this->middleware('permission:create role')->only(['create']);
+//        $this->middleware('permission:update role')->only(['edit']);
+//        $this->middleware('permission:show role')->only(['show']);
+//        $this->middleware('permission:delete role')->only(['destroy']);
     }
 
     public function index(Request $request)
@@ -45,6 +50,7 @@ class UserController extends Controller
 
     public function show($id)
     {
+
         $user = $this->userRepository->showUser($id);
         return view('users.show',compact('user'));
     }

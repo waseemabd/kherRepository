@@ -49,6 +49,10 @@ class Course extends Model
     {
         return $this->hasMany(Lecture::class);
     }
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
+    }
 
     public function tests()
     {

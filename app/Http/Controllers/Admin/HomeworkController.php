@@ -6,6 +6,7 @@ use App\Helpers\Mapper;
 use App\Http\IRepositories\IHomeworkRepository;
 
 use App\Http\Controllers\Controller;
+use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
 use App\Models\Student;
@@ -49,6 +50,7 @@ class HomeworkController extends Controller
     public function store(Request $request)
     {
         $data = $this->requestData;
+
 
         $this->homeworkRepository->storeHomework($data);
         return redirect()->route('homework.index')
@@ -257,6 +259,49 @@ class HomeworkController extends Controller
             return JsonResponse::respondError($ex->getMessage());
         }
     }
+
+    public function selectLectures($id)
+
+    {
+        try {
+          $course=Course::where('id',$id)->first();
+            $lectures=$course->lectures;
+
+
+          return $lectures;
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+
+    public function selectStudents($id)
+
+    {
+        try {
+            $course=Course::where('id',$id)->first();
+
+            $students=$course->students;
+
+            return $students;
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+    public function selectTeachers($id)
+
+    {
+        try {
+            $course=Course::where('id',$id)->first();
+
+            $teachers=$course->users;
+
+            return $teachers;
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+    }
+
+
 
 
 

@@ -107,15 +107,19 @@
 
 
                                     <td>
-                                        <a class="btn btn-success btn-sm"
+                                        <a class="btn btn-success btn-sm" title="تفاصيل الطالب"
                                            href="{{ route('student.show', $student->id) }}"><i
                                                 class="las la-eye"></i></a>
 
-                                        <a class="btn btn-primary btn-sm"
+                                        <a class="btn btn-primary btn-sm" title="تعديل بيانات الطالب"
                                            href="{{ route('student.edit', $student->id) }}"><i
                                                 class="las la-edit"></i></a>
 
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                        <a class="btn btn-primary btn-sm" title="اظهار نتائج الطالب"
+                                           href="{{ route('student.result', $student->id) }}"><i
+                                                class="fa fa-outdent"></i></a>
+
+                                        <a class="modal-effect btn btn-sm btn-danger" title="حذف الطالب" data-effect="effect-scale"
                                            data-student_id="{{ $student->id }}"  data-username="{{ $student->username }}"
                                            data-bs-toggle="modal"  href="#modaldemo1" title="delete"><i
                                                 class="las la-trash"></i></a>

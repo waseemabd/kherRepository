@@ -112,8 +112,8 @@ class StudentController extends Controller
             $students= $this->studentRepository->getStudentByStatus(0);
             return view('students.pending_students',compact('students'));
 
-        } catch (\Exception $exception) {
-            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        } catch (Exception $exception) {
+            throw new Exception('common_msg.' . trans($exception->getMessage()));
         }
 
 
@@ -145,7 +145,7 @@ class StudentController extends Controller
             }
             return JsonResponse::respondError($validator->errors()->all());
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -160,11 +160,27 @@ class StudentController extends Controller
 
             $this->studentRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
 
     }
+
+    public function resultStudent($id)
+    {
+        //
+        try {
+
+            $student=$this->studentRepository->find($id);
+            return view('students.result',compact('student'));
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+
 
 }

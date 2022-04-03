@@ -33,7 +33,7 @@ return [
     'schedules' =>'الجداول',
     'homeworks' =>'الوظائف',
     'surveys' => 'الاستبيانات',
-    'Full Name'=>'الاسم الكامل', 
+    'Full Name'=>'الاسم الكامل',
     'address'=>'العنوان',
     'phone'=>'رقم الهاتف',
     'birthday' =>'تاريخ الميلاد',
@@ -55,12 +55,20 @@ return [
     'methods' => 'الطريقة',
     'surveys details' => 'تفاصيل الاستبيان',
     'questions' => 'الاسئلة',
-    
-    
+    'Roles'=>'السماحيات',
+
+
 
 
 
     'pending' => 'معلق',
     'active' => 'نشط',
     'deactivate' => 'غير مفعل',
+    'roles details'=>'تفاصيل السماحيات للمستخدم',
+    'User'=>'المستخدم',
+    'course results'=>'نتائج الطالب في هذا الكورس',
+    'homework result'=>'نتائج الوظائف',
+    'present result'=>'نتيجة الحضور والغياب',
+    'result as value'=>'النتيجة النهائية قيمتاً',
+    'result as text'=>'النتيجة النهائية كتابتاً',
 ];

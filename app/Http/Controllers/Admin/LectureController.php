@@ -34,13 +34,13 @@ class LectureController extends Controller
         $this->courseRepository = $courseRepository;
         $this->lectureRepository = $lectureRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:Lectures');
-        $this->middleware('permission:list Lecture')->only(['index']);
-        $this->middleware('permission:add lecture files')->only(['add_files']);
+//        $this->middleware('permission:Lectures');
+//        $this->middleware('permission:list Lecture')->only(['index']);
+//        $this->middleware('permission:add lecture files')->only(['add_files']);
         $this->middleware('permission:create Lecture')->only(['create']);
-        $this->middleware('permission:update Lecture')->only(['edit']);
-        $this->middleware('permission:present students lecture')->only(['studentsPresent']);
-        $this->middleware('permission:delete Lecture')->only(['destroy']);
+//        $this->middleware('permission:update Lecture')->only(['edit']);
+//        $this->middleware('permission:present students lecture')->only(['studentsPresent']);
+//        $this->middleware('permission:delete Lecture')->only(['destroy']);
     }
 
 

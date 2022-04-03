@@ -300,15 +300,20 @@
 							</li>
 							<li class="dropdown main-profile-menu nav nav-item nav-link">
 								<a class="profile-user d-flex" href=""><img alt=""
-										src="{{asset('assets/img/faces/6.jpg')}}"></a>
+										src="{{URL::to('/') . '/Profile/' . auth('admin') -> user() ->name.'/'.auth('admin') -> user() -> profile->image}}"></a>
 								<div class="dropdown-menu">
 									<div class="main-header-profile bg-primary p-3">
 										<div class="d-flex wd-100p">
-											<div class="main-img-user"><img alt="" src="{{asset('assets/img/faces/6.jpg')}}"
-													class=""></div>
+											<div class="main-img-user">
+                                                <img
+
+                                                <img alt="" src="{{URL::to('/') . '/Profile/' . auth('admin') -> user() ->name.'/'.auth('admin') -> user() -> profile->image}}"
+													class="">
+                                            </div>
 											<div class="ms-3 my-auto">
 												<h6>{{auth('admin') -> user() -> name}}</h6><span>{{App\Helpers\General::roleUser(auth('admin') -> user() -> role) }}</span>
 											</div>
+
 										</div>
 									</div>
 									<a class="dropdown-item" href="{{url('admin/profile')}}"><i class="bx bx-user-circle"></i>Profile</a>

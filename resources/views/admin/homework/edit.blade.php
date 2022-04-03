@@ -47,7 +47,7 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
                                     <input class="form-control" name="title" value="{{$homework->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
@@ -59,7 +59,7 @@
                         <br>
 
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('homeworks/homeworks.mark')}}: </label>
                                     <input class="form-control" value="{{$homework->mark}}" name="mark"  required="" type="text">
@@ -67,6 +67,63 @@
                             </div>
                         </div>
                              <br>
+                        <div class="row row-sm mt-2">
+                            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                                <p class="mg-b-10">{{trans('Homework/Homework.course')}}</p>
+                                <select name="course_id" required="" class="form-control select2">
+
+                                    @foreach($courses as $one)
+                                        <option value="{{$one->id}}" {{$homework->course->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div><!-- col-4 -->
+
+                        </div>
+                        <br>
+                        <div class="row row-sm mt-2">
+                            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                                <p class="mg-b-10">{{trans('Homework/Homework.teachers')}}</p>
+                                <select name="teacher_id" required="" class="form-control select2">
+
+                                    @foreach($teachers as $one)
+                                        <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div><!-- col-4 -->
+
+                        </div>
+                        <br>
+                        <div class="row row-sm mt-2">
+                            <div class="col-lg-12 mg-t-20 mg-lg-t-0">
+                                <p class="mg-b-10">{{trans('Homework/Homework.lectures')}}</p>
+                                <select name="lecture_id"  class="form-control select2">
+                                    <option></option>
+                                    @foreach($lectures as $one)
+                                        <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
+                                    @endforeach
+                                </select>
+
+                            </div><!-- col-4 -->
+
+                        </div>
+                        <br>
+                        <div class="row mg-b-20">
+                            <div class="col-xs-12 col-md-12">
+                                <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
+                                <select name="students[]"  multiple class="form-control select2">
+
+                                    @foreach($students as $student)
+                                        <option value="{{$student->id}}" {{in_array($student->id, $ids_students) ? 'selected':''}}>
+                                            {{$student->getTranslatedName()}}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                            </div><!-- col-4 -->
+                        </div><!-- col-4 -->
 
                         <div class="row row-sm mt-2">
                             <div class="col-12">
@@ -84,50 +141,7 @@
                                     </div>
                                 </div>
                             </div>
-                                   <br>
-                            <div class="row row-sm mt-2">
-                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.teachers')}}</p>
-                                    <select name="teacher_id" required="" class="form-control select2">
 
-                                        @foreach($teachers as $one)
-                                            <option value="{{$one->id}}" {{$homework->user->id == $one->id ? 'selected': ''}}>{{$one->name}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div><!-- col-4 -->
-
-                            </div>
-                                 <br>
-                            <div class="row row-sm mt-2">
-                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.lectures')}}</p>
-                                    <select name="lecture_id"  class="form-control select2">
-                                        <option></option>
-                                        @foreach($lectures as $one)
-                                            <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
-                                        @endforeach
-                                    </select>
-
-                                </div><!-- col-4 -->
-
-                            </div>
-                                 <br>
-                            <div class="row mg-b-20">
-                                <div class="col-xs-12 col-md-12">
-                                    <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
-                                    <select name="students[]"  multiple class="form-control select2">
-
-                                        @foreach($students as $student)
-                                            <option value="{{$student->id}}" {{in_array($student->id, $ids_students) ? 'selected':''}}>
-                                                {{$student->getTranslatedName()}}
-                                            </option>
-                                        @endforeach
-
-                                    </select>
-
-                                </div><!-- col-4 -->
-                            </div><!-- col-4 -->
 
 
                             <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Edit')}}</button></div>
@@ -190,6 +204,68 @@
 
 
     <script src="{{asset('assets/js/admin-pages/lectures/edit.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('select[name="course_id"]').on('change', function () {
+                var course_id = $(this).val();
+                if (course_id) {
+                    $.ajax({
+                        url: "{{ URL::to('admin/homework/selectLectures') }}/" + course_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="lecture_id"]').empty();
+                            $.each(data, function (key, value) {
+
+                                $('select[name="lecture_id"]').append('<option value="' + value.id + '">' + value.title + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+
+            $('select[name="course_id"]').on('change', function () {
+                var course_id = $(this).val();
+                if (course_id) {
+                    $.ajax({
+                        url: "{{ URL::to('admin/homework/selectStudents') }}/" + course_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="students[]"]').empty();
+                            $.each(data, function (key, value) {
+                                $('select[name="students[]"]').append('<option value="' + value.id + '">' + value.name_ar + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+
+            $('select[name="course_id"]').on('change', function () {
+                var course_id = $(this).val();
+                if (course_id) {
+                    $.ajax({
+                        url: "{{ URL::to('admin/homework/selectTeachers') }}/" + course_id,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $('select[name="teacher_id"]').empty();
+                            $.each(data, function (key, value) {
+                                $('select[name="teacher_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    console.log('AJAX load did not work');
+                }
+            });
+        });
+
+    </script>
 
 
 @endsection
