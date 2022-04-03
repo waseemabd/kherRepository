@@ -25,20 +25,33 @@ class HomeworkController extends Controller
     {
         $this->homeworkRepository = $homeworkRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-        $this->middleware('permission:Homework');
-        $this->middleware('permission:list Homework')->only(['index']);
-        $this->middleware('permission:add files')->only(['add_files']);
-        $this->middleware('permission:create Homework')->only(['create']);
-        $this->middleware('permission:update Homework')->only(['edit']);
-        $this->middleware('permission:show Homework')->only(['show']);
-        $this->middleware('permission:delete Homework')->only(['destroy']);
+//        $this->middleware('permission:Homework');
+//        $this->middleware('permission:list Homework')->only(['index']);
+//        $this->middleware('permission:add files')->only(['add_files']);
+//        $this->middleware('permission:create Homework')->only(['create']);
+//        $this->middleware('permission:update Homework')->only(['edit']);
+//        $this->middleware('permission:show Homework')->only(['show']);
+//        $this->middleware('permission:delete Homework')->only(['destroy']);
     }
 
     public function index(Request $request)
     {
-        $data= $this->homeworkRepository->getAllHomework($request);
+        try {
+            if(auth('admin')->user()->role == 2 ){
+                $data= auth('admin')->user()->homeworks;
+                // $courses = auth('admin')->user()->homeworks;//$this->courseRepository->all();
+            }
+            else {
+                $data= $this->homeworkRepository->getAllHomework($request);
+            }
+
         return view('admin.homework.list',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
+
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+
     }
 
     public function create()

@@ -125,36 +125,36 @@
                 events: booking,
                 selectable: true,
                 selectHelper: true,
-                select: function(start, end, allDays) {
-                    $('#bookingModal').modal('toggle');
-                    $('#saveBtn').click(function() {
-                        var title = $('#title').val();
-                        var start_date = moment(start).format('YYYY-MM-DD');
-                        var end_date = moment(end).format('YYYY-MM-DD');
-                        $.ajax({
-                            url:"{{ route('calendar.store') }}",
-                            type:"POST",
-                            dataType:'json',
-                            data:{ title, start_date, end_date  },
-                            success:function(response)
-                            {
-                                $('#bookingModal').modal('hide')
-                                $('#calendar').fullCalendar('renderEvent', {
-                                    'title': response.title,
-                                    'start' : response.start,
-                                    'end'  : response.end,
-                                    'color' : response.color
-                                });
-                            },
-                            error:function(error)
-                            {
-                                if(error.responseJSON.errors) {
-                                    $('#titleError').html(error.responseJSON.errors.title);
-                                }
-                            },
-                        });
-                    });
-                },
+                // select: function(start, end, allDays) {
+                //     $('#bookingModal').modal('toggle');
+                //     $('#saveBtn').click(function() {
+                //         var title = $('#title').val();
+                //         var start_date = moment(start).format('YYYY-MM-DD');
+                //         var end_date = moment(end).format('YYYY-MM-DD');
+                //         $.ajax({
+                //             url:"{{ route('calendar.store') }}",
+                //             type:"POST",
+                //             dataType:'json',
+                //             data:{ title, start_date, end_date  },
+                //             success:function(response)
+                //             {
+                //                 $('#bookingModal').modal('hide')
+                //                 $('#calendar').fullCalendar('renderEvent', {
+                //                     'title': response.title,
+                //                     'start' : response.start,
+                //                     'end'  : response.end,
+                //                     'color' : response.color
+                //                 });
+                //             },
+                //             error:function(error)
+                //             {
+                //                 if(error.responseJSON.errors) {
+                //                     $('#titleError').html(error.responseJSON.errors.title);
+                //                 }
+                //             },
+                //         });
+                //     });
+                // },
                 editable: true,
                 eventDrop: function(event) {
                     var id = event.id;

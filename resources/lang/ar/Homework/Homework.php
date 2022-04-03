@@ -46,6 +46,8 @@ return[
     'Add Homework' => 'إضافة وظيفة',
     'Profile Image' => 'الصورة الشخصية',
     'students details' => 'تفاصيل الطلاب',
+    'edit-homework'=> 'تعديل الوظيفة',
+    'students details' => 'تفاصيل الطلاب',
     'course'=>'الكورس',
     'please select one course from this list'=>'من فضلك اختر كورس لهذه الوظيفة',
 ];

@@ -20,8 +20,8 @@ class CertificateController extends Controller
 
     public function __construct(ICertificateRepository $certificateRepository)
     {
-        $this->middleware('permission:create Certificate')->only(['create']);
-        $this->middleware('permission:Certificates')->only(['index']);
+//        $this->middleware('permission:create Certificate')->only(['create']);
+//        $this->middleware('permission:Certificates')->only(['index']);
         $this->certificateRepository = $certificateRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 

@@ -19,7 +19,7 @@ $(function(e) {
 			sSearch: '',
 			lengthMenu: '_MENU_',
 			emptyTable:     "لا يوجد بيانات متوفرة في الجدول",
-    		info:           "عرض _START_ من _END_ الى _TOTAL_ الاجمالي",
+    		info:           "عرض _START_ من _END_ الى_TOTAL_ الاجمالي",
     		infoEmpty:      "عرض 0 من 0 الى 0 الاجمالي",
 			paginate: {
 				next:       "التالي",

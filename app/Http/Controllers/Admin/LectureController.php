@@ -37,7 +37,7 @@ class LectureController extends Controller
 //        $this->middleware('permission:Lectures');
 //        $this->middleware('permission:list Lecture')->only(['index']);
 //        $this->middleware('permission:add lecture files')->only(['add_files']);
-        $this->middleware('permission:create Lecture')->only(['create']);
+//        $this->middleware('permission:create Lecture')->only(['create']);
 //        $this->middleware('permission:update Lecture')->only(['edit']);
 //        $this->middleware('permission:present students lecture')->only(['studentsPresent']);
 //        $this->middleware('permission:delete Lecture')->only(['destroy']);
@@ -53,8 +53,23 @@ class LectureController extends Controller
     {
         //
         try {
+            if(auth('admin')->user()->role == 2 ){
+                $lectures = [];
+                $courses = auth('admin')->user()->courses;
+                if(count($courses) > 0){
+                    foreach($courses as $key => $course){
+                        // $lectures[] = $course->lectures();
+                        print_r($course->lectures());
+                        die();
+                    }
+                    $lectures = json_encode($lectures);
+                }
+            }
+            else {
+                $lectures = $this->lectureRepository->all();
+            }
 
-            $lectures = $this->lectureRepository->all();
+
             return view('admin.lectures.list', compact('lectures'));
 
         } catch (Exception $e) {

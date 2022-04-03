@@ -16,11 +16,11 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Advanced ui</h4><span
-								class="text-muted mt-1 tx-13 ms-2 mb-0">/ Timeline</span>
+							<h4 class="content-title mb-0 my-auto">Timeline</h4><span
+								class="text-muted mt-1 tx-13 ms-2 mb-0">/ Teacher Timeline</span>
 						</div>
 					</div>
-					<div class="d-flex my-xl-auto right-content">
+					<!-- <div class="d-flex my-xl-auto right-content">
 						<div class="mb-xl-0" id="p-r-c-1">
 							<button type="button" class="btn btn-info btn-icon btn-b" id="m-l-c-05"><i
 									class="mdi mdi-filter-variant"></i></button>
@@ -32,25 +32,27 @@
 						<div class="mb-xl-0" id="p-r-c-1">
 							<button type="button" class="btn btn-warning btn-icon" id="m-l-c-05"><i
 									class="mdi mdi-refresh"></i></button>
-						</div>
-						<div class="mb-xl-0">
-							<div class="btn-group dropdown">
-								<button type="button" class="btn btn-primary">14 Aug 2019</button>
+						</div>       
+						 <div class="mb-xl-0">
+							<div class="btn-group dropdown"> -->
+								<!-- <button type="button" class="btn btn-primary">14 Aug 2019</button>
 								<button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split"
 									id="dropdownMenuDate" data-bs-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate"
+									aria-expanded="false"> -->
+									<!-- @if (session()->has('NoTeacherTimeLine'))
+									<span class="sr-only">you have no courses</span>
+									@endif -->
+								<!-- </button> -->
+								<!-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate"
 									x-placement="bottom-end">
 									<a class="dropdown-item" href="#">2015</a>
 									<a class="dropdown-item" href="#">2016</a>
 									<a class="dropdown-item" href="#">2017</a>
 									<a class="dropdown-item" href="#">2018</a>
-								</div>
-							</div>
-						</div>
-					</div>
+								</div> -->
+							<!-- </div>
+						</div> 
+					</div> -->
 				</div>
 				<!-- breadcrumb -->
 
@@ -61,8 +63,13 @@
 							<div class="card-header custom-card-header">
 								<h6 class="card-title mb-0">Vertical Timeline</h6>
 							</div>
-							<div class="card-body">
-
+							@if (!empty('message'))
+							<div class="card-header custom-card-header">
+								<h6 class="card-title mb-0">you have no courses</h6>
+							</div>
+							@endif
+						<div class="card-body">
+							@if (count($courses) > 0)
 								<div class="vtimeline">
 								@foreach ($courses as $key => $course)
 									@if($key % 2 == 0)
@@ -75,7 +82,7 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="calendar/index">calendar</a>
+												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">calendar</a>
 											</div>															
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
@@ -95,8 +102,8 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="calendar/index">calendar</a>
-											</div>
+												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">calendar</a>
+											</div>														
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
 												<span>{{count($course->lectures)}}</span>
@@ -106,6 +113,7 @@
 									</div>
 									@endif
 									@endforeach
+							
 									<!-- <div class="timeline-wrapper timeline-wrapper-info">
 										<div class="timeline-badge"><i class="las la-user-circle"></i></div>
 										<div class="timeline-panel">
@@ -211,6 +219,7 @@
 									</div> -->
 								</div>
 							</div>
+							@endif
 						</div>
 					</div>
 				</div>

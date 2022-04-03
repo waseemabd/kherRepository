@@ -73,7 +73,12 @@
     <div class="row row-sm">
         <div class="col-xl-12">
             <div class="card">
-
+            <div class="card-header pb-0">
+                    
+                    <div class="d-flex justify-content-between mr">
+                        <a class="btn btn-primary btn-sm" href="{{ route('teacher.create') }}">{{trans('Teachers/Teachers.Add')}}</a>
+                    </div>
+                        
                 <div class="card-body">
                     <div class="table-responsive userlist-table">
                         <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
