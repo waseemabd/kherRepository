@@ -42,7 +42,7 @@
 
                 <div class="card-body">
                     <div class="todo-widget-header d-flex pb-2 pd-20">
-                        <div class="drop-down-profile" data-bs-toggle="dropdown"><img alt="" class="rounded-circle avatar avatar-md " src="{{asset('assets/img/faces/1.jpg')}}"></div>
+                        <div class="drop-down-profile" data-bs-toggle="dropdown"><img alt="" class="rounded-circle avatar avatar-md " src="{{URL::to('/') . '/Profile/' . $one->user ->name.'/'.$one->user -> profile->image}}"></div>
                         <div class="dropdown-menu tx-13">
                             <div class="main-header-profile">
                                 <div class="tx-16 h5 mg-b-0">{{$one->user->name}}</div>
@@ -86,7 +86,7 @@
                     @endif
                     <hr>
                     <h4 class="card-title">{{$one->title}}</h4>
-                    <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
+                    <a href="javascript:" class="dropdown-item" data-bs-toggle="modal"
                        data-bs-target="#info-sub" data-desc="{{$one->desc}}"
                        data-title="{{$one->title}}"
                     >
@@ -285,6 +285,7 @@
     <script src="{{asset('assets/js/admin-pages/blog/list.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+
 
 
 @endsection

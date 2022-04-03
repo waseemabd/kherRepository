@@ -23,9 +23,6 @@ class Course extends Model
 
         'title' => 'required',
         'diploma_id' => 'required',
-
-
-
     ];
 
     public function diploma()

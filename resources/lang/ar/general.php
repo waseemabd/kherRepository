@@ -75,7 +75,8 @@ return [
     'edu_content' => 'المحتوى التعليمي',
 
     'general' => 'عام',
-    'add_files'=>'اضافة ملفات'
+    'add_files'=>'اضافة ملفات',
+    'Profile'=>'الملف الشخصي'
 
 
 ];

@@ -6,6 +6,7 @@ use App\Helpers\Mapper;
 use App\Http\IRepositories\IHomeworkRepository;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FileRequest;
 use App\Models\Course;
 use App\Models\File;
 use App\Models\Homework;
@@ -101,7 +102,7 @@ class HomeworkController extends Controller
     }
     }
 
-    public function attachments(Request $request)
+    public function attachments(FileRequest $request)
     {
         try {
 

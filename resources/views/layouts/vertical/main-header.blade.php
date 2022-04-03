@@ -316,14 +316,7 @@
 
 										</div>
 									</div>
-									<a class="dropdown-item" href="{{url('admin/profile')}}"><i class="bx bx-user-circle"></i>Profile</a>
-									<a class="dropdown-item" href="{{url('editprofile')}}"><i class="bx bx-cog"></i> Edit Profile</a>
-									<a class="dropdown-item" href="{{url('mail')}}"><i class="bx bxs-inbox"></i>Inbox</a>
-									<a class="dropdown-item" href="{{url('mail-compose')}}"><i class="bx bx-envelope"></i>Messages</a>
-									<a class="dropdown-item" href="{{url('mail-settings')}}"><i class="bx bx-slider-alt"></i> Account
-										Settings</a>
-									<a class="dropdown-item" href="{{route('admin.logout')}}"><i class="bx bx-log-out"></i> Sign
-										Out</a>
+									<a class="dropdown-item" href="{{url('admin/profile')}}"><i class="bx bx-user-circle"></i>{{trans('general.Profile')}}</a>
 {{--									<a class="dropdown-item" href="{{url('profile')}}"><i class="bx bx-user-circle"></i>Profile</a>--}}
 {{--									<a class="dropdown-item" href="{{url('editprofile')}}"><i class="bx bx-cog"></i> Edit Profile</a>--}}
 {{--									<a class="dropdown-item" href="{{url('mail')}}"><i class="bx bxs-inbox"></i>Inbox</a>--}}
