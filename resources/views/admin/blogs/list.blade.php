@@ -35,7 +35,7 @@
         <script>
             window.onload = function() {
                 notif({
-                    msg: "Blog has Added Successfully",
+                    msg: "Blog has uploded to admin to approve it",
                     type: "success"
                 });
             }
@@ -108,7 +108,13 @@
                                     <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#block-sub"
-                                       title="Block"><span id="block" style="color: red">حجب</span></a>
+                                       title="Block"><span id="block-{{$one->id}}" style="color: red">
+                                            @if($one->status ==2)
+                                                 الغاء الحجب
+                                            @else
+                                                حجب
+                                            @endif
+                                        </span></a>
 
                                 </div>
                             </div>
@@ -226,6 +232,40 @@
 
     </div>
 
+    <div class="modal" id="block-sub">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 id="" class="modal-title">
+                        عملية الحجب أو الغاء الحجب
+                    </h6>
+                    <button aria-label="Close" class="close"
+                            data-bs-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <p id="">
+                            هل انت متأكد من هذه العملية ؟
+                            </p>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-danger" id="block_btn"
+                                type="submit">
+                            <span id="">
+                               نعم
+                            </span>
+                        </button>
+                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                type="button">{{trans('general.Cancel')}}</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
 
     @endforeach
     <div class="modal" id="delete-sub">
@@ -255,33 +295,7 @@
         </div>
     </div>
 
-    <div class="modal" id="block-sub">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                   <h6 id="block_title" class="modal-title">حجب</h6>
-                    <button aria-label="Close" class="close"
-                            data-bs-dismiss="modal" type="button"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                        <div class="modal-body">
-                            <p id="block_body">هل تريد حجب هذه المدونة ؟</p><br>
-                        </div>
-                    <div class="modal-footer">
-                        <button class="btn ripple btn-danger" id="block_btn"
-                                type="submit">
-                            <span id="block_botton">حجب</span>
-                        </button>
-                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
-                                type="button">{{trans('general.Cancel')}}</button>
-                    </div>
 
-                </div>
-
-            </div>
-        </div>
-    </div>
 
     <div class="modal" id="comment-sub">
         <div class="modal-dialog" role="document">

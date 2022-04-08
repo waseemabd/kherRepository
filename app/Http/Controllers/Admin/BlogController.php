@@ -35,7 +35,7 @@ class BlogController extends Controller
     public function record()
     {
 
-        $blogs=Blog::where('status',0)->get();
+        $blogs=Blog::where('status',0)->where('is_reject',0)->get();
         return view('admin.blogs.records',compact('blogs'));
     }
 
@@ -43,9 +43,9 @@ class BlogController extends Controller
     {
         if (auth('admin') ->user()->role===1)
         {
-            $blogs=Blog::where('status','<>',0)->get();
+            $blogs=Blog::where('status','<>',0)->where('is_reject',0)->get();
         }else{
-            $blogs=Blog::where('status','<>',0)->where('user_id',auth('admin') ->user()->id)->get();
+            $blogs=Blog::where('status','<>',0)->where('is_reject',0)->where('user_id',auth('admin') ->user()->id)->get();
         }
 
 
@@ -73,6 +73,7 @@ class BlogController extends Controller
                     'user_id'=>auth('admin') ->user() ->id,
                     'status'=>auth('admin') ->user() ->role ===1 ? 1 : 0,
                 ]);
+
                 if( $request->hasFile('file'))
                 {
                     $image = $request->file('file');
@@ -166,7 +167,7 @@ class BlogController extends Controller
     {
         try {
             $blog=Blog::find($id);
-            $blog->status=2;
+            $blog->is_reject=1;
             $blog->save();
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
         } catch (Exception $ex) {

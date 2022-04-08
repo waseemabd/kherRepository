@@ -201,12 +201,15 @@ $(function () {
             success: function (response) {
                 if (response.status === 200) {
                     $('#block-sub').modal('hide');
-                    $('#block').empty().append(response.content);
+
+                    $('#block-' + sub_id).empty().append(response.content);
+
+
                    if(response.block === 2)
                    {
-                       $('#block_title').empty().append('الغاء الحجب');
-                       $('#block_botton').empty().append('الغاء الحجب');
-                       $('#block_body').empty().append('هل تريد الغاء الحجب عن هذه المدونة؟');
+                       $('#block_title-' + sub_id).empty().append('الغاء الحجب');
+                       $('#block_botton-' + sub_id).empty().append(' الغاء حجب');
+                       $('#block_body-'+sub_id).empty().append('هل تريد الغاء حجب عن هذه المدونة؟');
                        setTimeout(function () {
                            toastr['success'](
                                Lang.get('js_local.Blog_Blocked_Successfully'),
@@ -219,9 +222,9 @@ $(function () {
                        }, 500);
                    }else
                    {
-                       $('#block_title').empty().append('حجب');
-                       $('#block_botton').empty().append('حجب');
-                       $('#block_body').empty().append('هل تريد حجب هذه المدونة؟');
+                       $('#block_title-' + sub_id).empty().append('حجب');
+                       $('#block_botton-' + sub_id).empty().append('حجب');
+                       $('#block_body-'+sub_id).empty().append('هل تريد حجب هذه المدونة؟');
                        setTimeout(function () {
                            toastr['success'](
                                Lang.get('js_local.Blog_UnBlocked_Successfully'),

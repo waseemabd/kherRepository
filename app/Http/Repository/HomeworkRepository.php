@@ -35,7 +35,14 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
         $data['students'] = Student::all();
         $data['teachers']=User::where('role',2)->get();
         $data['lectures']=Lecture::all();
-        $data['courses']=Course::all();
+        if ($user=auth('admin') -> user() ->role ==2)
+        {
+            $data['courses']=auth('admin') -> user()->courses;
+        }else
+        {
+            $data['courses']=Course::all();
+        }
+
 
         return $data;
     }
@@ -94,7 +101,14 @@ class HomeworkRepository extends BaseRepository implements IHomeworkRepository
         $data['ids_students']= $data['homework'] -> students -> pluck('id')->toArray();
         $data['lectures']=Lecture::all();
         $data['students'] = Student::all();
-        $data['courses']=Course::all();
+        if ($user=auth('admin') -> user() ->role ==2)
+        {
+            $data['courses']=auth('admin') -> user()->courses;
+        }else
+        {
+            $data['courses']=Course::all();
+        }
+
         $data['teachers']=User::where('role',2)->get();
 
         return $data;
