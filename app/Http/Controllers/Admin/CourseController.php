@@ -31,10 +31,10 @@ class CourseController extends Controller
         $this->userRepository = $userRepository;
         $this->diplomaRepository = $diplomaRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:courses')->only(['index']);
-//        $this->middleware('permission:create courses')->only(['create']);
-//        $this->middleware('permission:update courses')->only(['edit']);
-//        $this->middleware('permission:delete courses')->only(['destroy']);
+        $this->middleware('permission:courses')->only(['index']);
+        $this->middleware('permission:create courses')->only(['create']);
+        $this->middleware('permission:update courses')->only(['edit']);
+        $this->middleware('permission:delete courses')->only(['destroy']);
     }
 
 

@@ -30,6 +30,19 @@
 
         </script>
     @endif
+
+    @if (session()->has('success'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "Blog has Added Successfully",
+                    type: "success"
+                });
+            }
+
+        </script>
+    @endif
+
     @if($blogs->isEmpty())
         <div class="row">
             <div class="col-lg-12 col-md-12">

@@ -23,9 +23,10 @@ class BlogController extends Controller
     public function __construct(IBlogRepository  $blogRepository)
     {
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:blogs');
-//        $this->middleware('permission:list blogs')->only(['index']);
-//        $this->middleware('permission:update blog')->only(['edit']);
+        $this->middleware('permission:blogs');
+        $this->middleware('permission:list blogs')->only(['index']);
+        $this->middleware('permission:create blog')->only(['create']);
+        $this->middleware('permission:update blog')->only(['edit']);
         $this->blogRepository = $blogRepository;
 
     }
@@ -64,9 +65,8 @@ class BlogController extends Controller
 
         try {
             $validator = Validator::make($data, $validator_rules = Blog::create_update_rules);
-
-            if ($validator->passes()) {
-
+            if ($validator->passes())
+            {
                 $blog= Blog::create([
                     'title'=>$request['title'],
                     'desc'=>$request['desc'],
@@ -81,22 +81,21 @@ class BlogController extends Controller
                     $imageName = $request->file->getClientOriginalName();
                     $request->file->move(public_path('Blogs/' . $blog->id), $imageName);
                 }
-
-            }else
+                return redirect()->route('blogs.index')
+                    ->with('success','Blog has Added Successfully');
+            }
+            else
             {
                 return redirect()->route('blog.create')->with('error', trans('general.Operation_Failed'));
 
             }
-
-
 
         } catch (Exception $e) {
 
             return redirect()->route('blogs.index')->with('error', $e->getMessage());
 
         }
-        return redirect()->route('blogs.index')
-            ->with('edit','Blog information has updated successfully');
+
     }
     public function edit($id)
     {

@@ -38,13 +38,13 @@ class TestController extends Controller
         $this->studentRepository = $studentRepository;
         $this->answerRepository = $answerRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:Tests');
-//        $this->middleware('permission:list Test')->only(['index']);
-//        $this->middleware('permission:create Test')->only(['create']);
-//        $this->middleware('permission:update Test')->only(['edit']);
-//        $this->middleware('permission:delete Test')->only(['destroy']);
-//        $this->middleware('permission:manage question')->only(['testQuestions']);
-//        $this->middleware('permission:students test')->only(['testStudents']);
+        $this->middleware('permission:Tests');
+        $this->middleware('permission:list Test')->only(['index']);
+        $this->middleware('permission:create Test')->only(['create']);
+        $this->middleware('permission:update Test')->only(['edit']);
+        $this->middleware('permission:delete Test')->only(['destroy']);
+        $this->middleware('permission:manage question')->only(['testQuestions']);
+        $this->middleware('permission:students test')->only(['testStudents']);
     }
     /**
      * Display a listing of the resource.

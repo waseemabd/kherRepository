@@ -34,9 +34,9 @@ class QuestionController extends Controller
         $this->questionTypeRepository = $questionTypeRepository;
         $this->testRepository = $testRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:create Question')->only(['create']);
-//        $this->middleware('permission:update Question')->only(['edit']);
-//        $this->middleware('permission:delete Question')->only(['destroy']);
+        $this->middleware('permission:create Question')->only(['create']);
+        $this->middleware('permission:update Question')->only(['edit']);
+        $this->middleware('permission:delete Question')->only(['destroy']);
     }
 
 
