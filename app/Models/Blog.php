@@ -20,7 +20,7 @@ class Blog extends Model
 
         'title' => 'required',
         'desc' => 'required',
-        'user_id' => 'required',
+
 
     ];
 

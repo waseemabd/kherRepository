@@ -155,41 +155,7 @@
                             </div>
                         </div>
 
-                        <div class="row row-sm mt-2">
-                            <div class="col-md-6" id="students-div" hidden>
-                                <p class="mg-b-10">students</p>
-                                <select name="students[]" multiple="multiple" onchange="console.log($(this).children(':selected').length)" class="selectsum1">
-                                    @foreach($students as $student)
-                                        <option value="{{$student->id}}">
-                                            {{$student->getTranslatedName()}}
-                                        </option>
-                                    @endforeach
 
-                                </select>
-                            </div>
-
-
-{{--                           @if( auth('admin') -> user() ->role != 2)--}}
-{{--                            <div class="col-md-6">--}}
-{{--                                <p class="mg-b-10">{{trans('lectures/lectures.teacher')}} <span class="tx-danger">*</span></p>--}}
-{{--                                <select id="teacher" name="teacher_id" required="" class="form-control select2">--}}
-{{--                                    <option >--}}
-{{--                                        --}}{{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
-{{--                                    </option>--}}
-{{--                                    @foreach($teachers as $one)--}}
-{{--                                        <option value="{{$one->id}}">--}}
-{{--                                            {{$one->name}}--}}
-{{--                                        </option>--}}
-{{--                                    @endforeach--}}
-
-{{--                                </select>--}}
-{{--                                @error('course')--}}
-{{--                                <p class="validation_error">{{ $message }}</p>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                               @endif--}}
-
-                        </div>
 
 
                          <div class="row row-sm mt-2">

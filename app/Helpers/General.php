@@ -83,6 +83,7 @@ class General
         $lectures=$course->lectures;
         $homeworks=$course->homeworks;
         $tests_mark_array=[];
+        $tests_weight=0;
         $tests_mark=0;
         $homeworks_mark_array=[];
         $lecture_student_present_array=[];
@@ -92,14 +93,15 @@ class General
                 if (StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first())
                 {
                     $tests_mark_array[]=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->pluck('total_mark');
-                    $tests_mark+=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first()->total_mark;
+                    $tests_weight+=$test->weight;
+                    $tests_mark+=StudentTest::where('test_id',$test->id)->where('student_id',$student_id)->first()->total_mark * $test->weight;
 
                 }
         }
 
-        if(count($tests_mark_array) !=0)
+        if($tests_weight !=0)
         {
-            $average_test=$tests_mark/count($tests_mark_array);
+            $average_test=$tests_mark/$tests_weight;
         }else{
             $average_test=0;
         }

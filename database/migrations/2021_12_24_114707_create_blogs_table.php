@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('desc');
-            $table->integer('status')->default(1)->comment("0 inactive and 1 active");
+            $table->integer('status')->default(1)->comment("2 inactive and 1 active and 0 pending");
             $table->string('image')->nullable();
 
             $table->timestamps();

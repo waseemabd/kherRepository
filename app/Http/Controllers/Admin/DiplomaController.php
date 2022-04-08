@@ -77,10 +77,7 @@ class DiplomaController extends Controller
 
             if ($validator->passes()) {
 
-
                 $user = $this->diplomaRepository->create($data);
-
-
                 return redirect()->route('diploma.index')->with('message', trans('diplomas/diplomas.Diploma_Added_Successfully'));
 
             }

@@ -337,6 +337,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::get('student/result/{id}', [App\Http\Controllers\Admin\StudentController::class, 'resultStudent'])->name('student.result');
 
     ///blogs///
+    Route::get('blogs/records', [App\Http\Controllers\Admin\BlogController::class, 'record'])->name('blogs.records');
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
     Route::post('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('blog.destroy');
     Route::post('blog/block/{id}', [App\Http\Controllers\Admin\BlogController::class, 'block'])->name('blog.block');
@@ -345,6 +346,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
     Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
     Route::post('blog/delete_comment/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_comment'])->name('blog.delete_comment');
+    Route::get('blog/create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('blog.create');
+    Route::post('blog/store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('blog.store');
+    Route::post('blog/accept/{id}', [App\Http\Controllers\Admin\BlogController::class, 'accept'])->name('blog.accept');
+    Route::post('blog/reject/{id}', [App\Http\Controllers\Admin\BlogController::class, 'reject'])->name('blog.reject');
 
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');

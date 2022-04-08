@@ -14,6 +14,7 @@ return [
     'Homework' => 'الوظائف',
     'Homework menu' => 'قائمة الوظائف',
     'pending_list' => 'قائمة طلبات التسجيل',
-
+    'Add Blog'=>'اضافة',
+    'blogs record'=>'طلبات انشاء المدونات',
 
 ];

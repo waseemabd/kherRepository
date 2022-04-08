@@ -3,37 +3,101 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\JsonResponse;
+use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IBlogRepository;
 use App\Models\Blog;
 use App\Models\Comment;
+use App\Models\Diploma;
 use App\Models\File;
 use Exception;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class BlogController extends Controller
 {
     protected $blogRepository;
-
+    protected $requestData;
     public function __construct(IBlogRepository  $blogRepository)
     {
+        $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:blogs');
 //        $this->middleware('permission:list blogs')->only(['index']);
 //        $this->middleware('permission:update blog')->only(['edit']);
         $this->blogRepository = $blogRepository;
 
     }
+
+
+    public function record()
+    {
+
+        $blogs=Blog::where('status',0)->get();
+        return view('admin.blogs.records',compact('blogs'));
+    }
+
     public function index()
     {
-        $blogs=Blog::get();
+        if (auth('admin') ->user()->role===1)
+        {
+            $blogs=Blog::where('status','<>',0)->get();
+        }else{
+            $blogs=Blog::where('status','<>',0)->where('user_id',auth('admin') ->user()->id)->get();
+        }
+
 
         //dd($blogs);
         return view('admin.blogs.list',compact('blogs'));
     }
 
+    public function create()
+    {
 
+        return view('admin.blogs.add');
+    }
+
+    public function store(Request $request)
+    {
+        $data = $this->requestData;
+
+        try {
+            $validator = Validator::make($data, $validator_rules = Blog::create_update_rules);
+
+            if ($validator->passes()) {
+
+                $blog= Blog::create([
+                    'title'=>$request['title'],
+                    'desc'=>$request['desc'],
+                    'user_id'=>auth('admin') ->user() ->id,
+                    'status'=>auth('admin') ->user() ->role ===1 ? 1 : 0,
+                ]);
+                if( $request->hasFile('file'))
+                {
+                    $image = $request->file('file');
+                    $blog->update(['image'=>$image->getClientOriginalName()]);
+                    // move pic
+                    $imageName = $request->file->getClientOriginalName();
+                    $request->file->move(public_path('Blogs/' . $blog->id), $imageName);
+                }
+
+            }else
+            {
+                return redirect()->route('blog.create')->with('error', trans('general.Operation_Failed'));
+
+            }
+
+
+
+        } catch (Exception $e) {
+
+            return redirect()->route('blogs.index')->with('error', $e->getMessage());
+
+        }
+        return redirect()->route('blogs.index')
+            ->with('edit','Blog information has updated successfully');
+    }
     public function edit($id)
     {
        // $this->middleware('permission:update blog');
@@ -69,14 +133,42 @@ class BlogController extends Controller
             $blog=Blog::find($id);
            if($blog->status ==1)
            {
-               $blog->status=0;
+               $blog->status=2;
                $blog->save();
-           }else
+           }elseif($blog->status ==2)
                $blog->status=1;
                $blog->save();
+            return response()->json([
+                'status' => 200,
+                'block'=>$blog->status,
+                'content' => $blog->status ==2 ? 'الغاء الحجب' : 'حجب'
+            ]);
+            //return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
 
+    }
 
+    public function accept($id)
+    {
+        try {
+            $blog=Blog::find($id);
+           $blog->status=1;
+            $blog->save();
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
 
+    }
+
+    public function reject($id)
+    {
+        try {
+            $blog=Blog::find($id);
+            $blog->status=2;
+            $blog->save();
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
         } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());

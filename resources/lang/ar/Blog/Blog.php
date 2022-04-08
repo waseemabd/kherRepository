@@ -36,4 +36,5 @@ return[
     'birthday' => 'تاريخ الميلاد',
     'Profile Image' => 'صورة الشخصية',
     'students details' => 'تفاضيل الطلاب',
-]; 
+
+];

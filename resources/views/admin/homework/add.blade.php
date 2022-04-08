@@ -16,6 +16,8 @@
     <link href="{{asset('assets/plugins/amazeui-datetimepicker/css/amazeui.datetimepicker.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/pickerjs/picker.min.css')}}" rel="stylesheet">
+    <!--Internal Sumoselect css-->
+    <link rel="stylesheet" href="{{asset('assets/plugins/sumoselect/sumoselect-rtl.css')}}">
 
     <!-- Internal Spectrum-colorpicker css -->
     <link href="{{asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
@@ -84,10 +86,6 @@
                                 <label class="form-label">{{trans('Homework/Homework.lectures')}}:<span class="tx-danger">*</span></label>
                                 <select name="lecture_id" required="" id="select-beast" class="form-control   nice-select  custom-select">
                                     <option value="">{{trans('Homework/Homework.please select one lecture from this list')}}</option>
-
-{{--                                    @foreach($lectures as $one)--}}
-{{--                                        <option value="{{$one->id}}">{{$one->title}}</option>--}}
-{{--                                    @endforeach--}}
                                 </select>
                             </div>
                         </div>
@@ -97,12 +95,13 @@
                                 <label class="form-label">{{trans('Homework/Homework.teachers')}}:<span class="tx-danger">*</span></label>
                                 <select name="teacher_id" required="" id="select-beast" class="form-control  nice-select  custom-select">
                                     <option value="">{{trans('Homework/Homework.please select one teacher from this list')}}</option>
-{{--                                    @foreach($teachers as $one)--}}
-{{--                                        <option value="{{$one->id}}">{{$one->name}}</option>--}}
-{{--                                    @endforeach--}}
                                 </select>
                             </div>
                         </div>
+
+
+
+
 
                         <div class="row mg-b-20">
                             <div class="col-xs-12 col-md-12">
@@ -110,16 +109,20 @@
                                 <select name="students[]" required="" multiple class="form-control select2">
                                     <option >
                                     </option>
-{{--                                    @foreach($students as $student)--}}
-{{--                                        <option value="{{$student->id}}">--}}
-{{--                                            {{$student->getTranslatedName()}}--}}
-{{--                                        </option>--}}
-{{--                                    @endforeach--}}
-
                                 </select>
 
                             </div><!-- col-4 -->
                         </div><!-- col-4 -->
+
+{{--                        <div class="row mg-b-20">--}}
+{{--                            <div class="col-xs-12 col-md-12">--}}
+{{--                                <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>--}}
+{{--                                <select id="students" name="students[]" multiple onchange="console.log($(this).children(':selected').length)" class="form-control selectsum1">--}}
+{{--                                    <option value="">{{trans('Homework/Homework.please select one teacher from this list')}}</option>--}}
+
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
                          <div class="row row-sm mt-2">
                             <div class="col-12">
@@ -169,36 +172,43 @@
     <!-- Internal Form-validation js -->
     <script src="{{asset('assets/js/form-validation.js')}}"></script>
 
-    <!--Internal  Datepicker js -->
+
     <script src="{{asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
 
-    <!--Internal  jquery.maskedinput js -->
     <script src="{{asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
 
-    <!--Internal  spectrum-colorpicker js -->
+
     <script src="{{asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
 
-    <!-- Internal Select2.min js -->
     <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
 
-    <!--Internal Ion.rangeSlider.min js -->
+
     <script src="{{asset('assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js')}}"></script>
 
-    <!--Internal  jquery-simple-datetimepicker js -->
+
     <script src="{{asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
 
-    <!--Internal  pickerjs js -->
+
     <script src="{{asset('assets/plugins/pickerjs/picker.min.js')}}"></script>
 
-    <!-- Internal form-elements js -->
     <script src="{{asset('assets/js/form-elements.js')}}"></script>
 
-    <!-- Ionicons js -->
     <script src="{{asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
 
-
+    <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
 
     <script src="{{asset('assets/js/admin-pages/lectures/add.js')}}"></script>
+
+    <script src="{{asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+
+    <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
+    <script src="{{asset('assets/js/select2.js')}}"></script>
+    <!--Internal Sumoselect js-->
+    <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
+
+
     <script>
         $(document).ready(function () {
             $('select[name="course_id"]').on('change', function () {

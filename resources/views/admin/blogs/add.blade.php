@@ -3,7 +3,7 @@
 @section('styles')
 
     <!--- Internal Select2 css-->
-{{--    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">--}}
+    {{--    <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">--}}
 
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/katex.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css-rtl/editors/quill/monokai-sublime.min.css')}}">
@@ -19,7 +19,11 @@
 
     <!-- Internal Spectrum-colorpicker css -->
     <link href="{{asset('assets/plugins/spectrum-colorpicker/spectrum.css')}}" rel="stylesheet">
+    <!---Internal Fileupload css-->
+    <link href="{{asset('assets/plugins/fileuploads/css/fileupload.css')}}" rel="stylesheet" type="text/css"/>
 
+    <!---Internal Fancy uploader css-->
+    <link href="{{asset('assets/plugins/fancyuploder/fancy_fileupload.css')}}" rel="stylesheet" />
 
 @endsection
 
@@ -29,12 +33,15 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('lectures/lectures.lectures')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('lectures/lectures.add_lecture')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('Blog/Blog.Blog')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Blog/Blog.Edit')}} </span>
             </div>
         </div>
 
     </div>    <!-- breadcrumb -->
+
+
+
 
     <!-- row -->
     <div class="row">
@@ -42,31 +49,26 @@
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="card-body">
-{{--                    <div class="main-content-label mg-b-5">--}}
-{{--                        Required Input Validation--}}
-{{--                    </div>--}}
-{{--                    <p class="mg-b-20">It is Very Easy to Customize and it uses in your website apllication.</p>--}}
-                    <form action="{{route('homework.store')}}" method="POST"
-                          id="lecture_form" data-parsley-validate="">
+
+                    <form action="{{route('blog.store')}}" method="POST"
+                          id="lecture_form" data-parsley-validate=""  enctype="multipart/form-data">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-12 ">
                                 <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('lectures/lectures.title')}}: <span class="tx-danger">*</span></label>
-                                    <input class="form-control" name="title" placeholder="{{trans('lectures/lectures.plc_title')}}" required="" type="text">
+                                    <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
+                                    <input class="form-control" name="title"  placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
                                 </div>
                             </div>
-
-
                         </div>
 
 
-                         <div class="row row-sm mt-2">
+                        <div class="row row-sm mt-2">
                             <div class="col-12">
                                 <div class="form-group mg-b-0">
                                     <label
                                         class="form-label">{{trans('lectures/lectures.desc')}} </label>
-                                    <input class="form-control" type="hidden" name="desc" id="desc">
+                                    <input class="form-control" type="hidden"   name="desc" id="desc">
                                     <div id="blog-editor-wrapper">
                                         <div id="blog-editor-container">
                                             <div class="editor" style="min-height: 200px">
@@ -77,55 +79,26 @@
                                     </div>
                                 </div>
                             </div>
-                             <div class="row row-sm mg-b-20">
-                                 <div class="col-lg-6">
-                                     <label class="form-label">{{trans(Teachers/Teachers.teachers)}}</label>
-                                     <select name="teacher_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">{{trans(Homework/Homework.please select one teacher from this list)}}</option>
-                                         @foreach($teachers as $one)
-                                             <option value="{{$one->id}}">{{$one->name}}</option>
-                                         @endforeach
-                                     </select>
-                                 </div>
-                             </div>
-                             <div class="row row-sm mg-b-20">
-                                 <div class="col-lg-6">
-                                     <label class="form-label">{trans{(lectures/lectures.lectures)}}></label>
-                                     <select name="lecture_id" id="select-beast" class="form-control  nice-select  custom-select">
-                                         <option value="">{{trans(Homework/Homework.please select one lecture from this list)}}</option>
+                            <div class="tab-pane " id="files">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{trans('Blog/Blog.Add Image')}}</h5>
 
-                                         @foreach($lectures as $one)
-                                             <option value="{{$one->id}}">{{$one->title}}</option>
-                                         @endforeach
-                                     </select>
-                                 </div>
-                             </div>
-                             <div class="row mg-b-20">
-                                 <div class="col-xs-12 col-md-12">
-                                     <p class="mg-b-10">trans{{(students/students.students)}} <span class="tx-danger">*</span></p>
-                                     <select name="students[]" required="" multiple class="form-control select2">
-                                         <option >
-                                         </option>
-                                         @foreach($students as $student)
-                                             <option value="{{$student->id}}">
-                                                 {{$student->getTranslatedName()}}
-                                             </option>
-                                         @endforeach
-
-                                     </select>
-
-                                 </div><!-- col-4 -->
-                             </div><!-- col-4 -->
-
-
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div>
+                                                <input type="file" name="file" id="file" class="dropify" data-height="200" /></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
                             <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Add')}}</button></div>
                         </div>
-
-
-
-
-
                     </form>
+
+
+                        <!-- row -->
+
                 </div>
             </div>
         </div>
@@ -137,7 +110,7 @@
 @section('scripts')
 
     <!--Internal  Select2 js -->
-{{--    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>--}}
+    {{--    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>--}}
 
     <script src="{{asset('assets/js/editors/quill/katex.min.js')}}"></script>
     <script src="{{asset('assets/js/editors/quill/highlight.min.js')}}"></script>
@@ -182,7 +155,20 @@
 
 
 
-    <script src="{{asset('assets/js/admin-pages/lectures/add.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/lectures/edit.js')}}"></script>
+    <!--Internal Fileuploads js-->
+    <script src="{{asset('assets/plugins/fileuploads/js/fileupload.js')}}"></script>
+    <script src="{{asset('assets/plugins/fileuploads/js/file-upload.js')}}"></script>
+
+    <!--Internal Fancy uploader js-->
+    <script src="{{asset('assets/plugins/fancyuploder/jquery.ui.widget.js')}}"></script>
+    <script src="{{asset('assets/plugins/fancyuploder/jquery.fileupload.js')}}"></script>
+    <script src="{{asset('assets/plugins/fancyuploder/jquery.iframe-transport.js')}}"></script>
+    <script src="{{asset('assets/plugins/fancyuploder/jquery.fancy-fileupload.js')}}"></script>
+    <script src="{{asset('assets/plugins/fancyuploder/fancy-uploader.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/blog/delete_file.js')}}"></script>
+
+
 
 
 @endsection
