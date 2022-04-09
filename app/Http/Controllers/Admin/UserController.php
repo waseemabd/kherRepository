@@ -58,6 +58,7 @@ class UserController extends Controller
 
     public function show($id)
     {
+
         $user = $this->userRepository->showUser($id);
         return view('users.show',compact('user'));
     }

@@ -43,6 +43,11 @@ class Homework extends Model
         return $this->belongsTo(Lecture::class,'lecture_id','id');
     }
 
+    public function course()
+    {
+        return $this->belongsTo(Lecture::class,'course_id','id');
+    }
+
     public function files()
     {
         return $this->hasMany(File::class);

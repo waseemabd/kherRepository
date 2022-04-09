@@ -66,6 +66,7 @@ class Fks extends Migration
             // ******************
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('lecture_id')->constrained('lectures')->onDelete('cascade');
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade');
 
         });
 

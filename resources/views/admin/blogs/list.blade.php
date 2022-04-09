@@ -31,6 +31,40 @@
         </script>
     @endif
 
+    @if (session()->has('success'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "Blog has uploded to admin to approve it",
+                    type: "success"
+                });
+            }
+
+        </script>
+    @endif
+
+    @if($blogs->isEmpty())
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="card" id="basic-alert">
+                    <div class="card-body">
+                        <div class="text-wrap">
+                            <div class="example">
+                                <div class="alert alert-success" role="alert">
+                                    <button aria-label="Close" class="close" data-bs-dismiss="alert"
+                                            type="button" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    لا يوجد مدونات بعد.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endif
     @foreach($blogs as $one)
     <div id="row-{{$one->id}}" class="row">
 
@@ -42,7 +76,7 @@
 
                 <div class="card-body">
                     <div class="todo-widget-header d-flex pb-2 pd-20">
-                        <div class="drop-down-profile" data-bs-toggle="dropdown"><img alt="" class="rounded-circle avatar avatar-md " src="{{asset('assets/img/faces/1.jpg')}}"></div>
+                        <div class="drop-down-profile" data-bs-toggle="dropdown"><img alt="" class="rounded-circle avatar avatar-md " src="{{URL::to('/') . '/Profile/' . $one->user ->name.'/'.$one->user -> profile->image}}"></div>
                         <div class="dropdown-menu tx-13">
                             <div class="main-header-profile">
                                 <div class="tx-16 h5 mg-b-0">{{$one->user->name}}</div>
@@ -76,7 +110,13 @@
                                     <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#block-sub"
-                                       title="Block"><span style="color: red">@if($one->status==1) UnBlock @else Block @endif</span></a>
+                                       title="Block"><span id="block-{{$one->id}}" style="color: red">
+                                            @if($one->status ==2)
+                                                 الغاء الحجب
+                                            @else
+                                                حجب
+                                            @endif
+                                        </span></a>
 
                                 </div>
                             </div>
@@ -88,7 +128,7 @@
                     @endif
                     <hr>
                     <h4 class="card-title">{{$one->title}}</h4>
-                    <a href="javascript:;" class="dropdown-item" data-bs-toggle="modal"
+                    <a href="javascript:" class="dropdown-item" data-bs-toggle="modal"
                        data-bs-target="#info-sub" data-desc="{{$one->desc}}"
                        data-title="{{$one->title}}"
                     >
@@ -115,7 +155,7 @@
                                     <div class="panel-body border">
 
                                         @foreach($one->comments as $comment)
-                                            <div id="row-{{$comment->id}}" class="card-body p-4">
+                                            <div id="row-comment-{{$comment->id}}" class="card-body p-4">
                                                 <div class="d-flex flex-start">
                                                     @if($comment->user ===null)
                                                         @if($comment->student->profile->image===null)
@@ -193,6 +233,42 @@
         </div>
 
     </div>
+
+    <div class="modal" id="block-sub">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-content-demo">
+                <div class="modal-header">
+                    <h6 id="" class="modal-title">
+                        عملية الحجب أو الغاء الحجب
+                    </h6>
+                    <button aria-label="Close" class="close"
+                            data-bs-dismiss="modal" type="button"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-body">
+                        <p id="">
+                            هل انت متأكد من هذه العملية ؟
+                            </p>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn ripple btn-danger" id="block_btn"
+                                type="submit">
+                            <span id="">
+                               نعم
+                            </span>
+                        </button>
+                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                type="button">{{trans('general.Cancel')}}</button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     @endforeach
     <div class="modal" id="delete-sub">
         <div class="modal-dialog" role="document">
@@ -221,32 +297,7 @@
         </div>
     </div>
 
-    <div class="modal" id="block-sub">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-content-demo">
-                <div class="modal-header">
-                    <h6 class="modal-title">Block</h6>
-                    <button aria-label="Close" class="close"
-                            data-bs-dismiss="modal" type="button"><span
-                            aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body">
-                        <p>Did you wand to block this blog</p><br>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn ripple btn-danger" id="block_btn"
-                                type="submit">Block</button>
-                        <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
-                                type="button">{{trans('general.Cancel')}}</button>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
 
     <div class="modal" id="comment-sub">
         <div class="modal-dialog" role="document">
@@ -275,6 +326,38 @@
         </div>
     </div>
 
+    <div class="shown-event-ex">
+        <div
+            class="modal fade text-start"
+            id="info-sub"
+            tabindex="-1"
+            aria-labelledby="myModalLabel22"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h4 class="modal-title"
+                            id="myModalLabel22">{{trans('lectures/lectures.desc_for')}}<span
+                                id="d-title"></span></h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
+                        <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
+                            id="d-desc"></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary"
+                                data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -287,6 +370,7 @@
     <script src="{{asset('assets/js/admin-pages/blog/list.js')}}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+
 
 
 @endsection

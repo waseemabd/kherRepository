@@ -273,6 +273,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('homework/{id}/students/{stud_id}/answers', [App\Http\Controllers\Admin\HomeworkController::class, 'correctStudentsAnswers'])->name('homework.students.correctAnswers');
     Route::get('homework/View_file_student/{path}/{file_id}', [App\Http\Controllers\Admin\HomeworkController::class, 'open_file_student'])->name('homework.View_file_student');
     Route::get('homework/download_student/{path}/{file_id}', [App\Http\Controllers\Admin\HomeworkController::class, 'get_file_student'])->name('homework.download_student');
+    Route::get('homework/selectLectures/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'selectLectures'])->name('homework.select');
+    Route::get('homework/selectStudents/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'selectStudents'])->name('homework.select');
+    Route::get('homework/selectTeachers/{id}', [App\Http\Controllers\Admin\HomeworkController::class, 'selectTeachers'])->name('homework.select');
 
 
     Route::get('lectures', [App\Http\Controllers\Admin\LectureController::class, 'index'])->name('lecture.index');
@@ -334,8 +337,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('students/registration_request/accept/{id}', [App\Http\Controllers\Admin\StudentController::class, 'acceptStudent'])->name('students.accept');
     Route::post('students/deleteAccount/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
     Route::post('students/changeStatus', [App\Http\Controllers\Admin\StudentController::class, 'change_status'])->name('student.changeStatus');
+    Route::post('students/delete/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
+    Route::get('student/result/{id}', [App\Http\Controllers\Admin\StudentController::class, 'resultStudent'])->name('student.result');
 
     ///blogs///
+    Route::get('blogs/records', [App\Http\Controllers\Admin\BlogController::class, 'record'])->name('blogs.records');
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
     Route::post('blog/delete/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy'])->name('blog.destroy');
     Route::post('blog/block/{id}', [App\Http\Controllers\Admin\BlogController::class, 'block'])->name('blog.block');
@@ -344,6 +350,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('blog/image', [App\Http\Controllers\Admin\BlogController::class, 'saveImage'])->name('blog.image');
     Route::post('blog/delete_file/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_file'])->name('blog.delete_file');
     Route::post('blog/delete_comment/{id}', [App\Http\Controllers\Admin\BlogController::class, 'destroy_comment'])->name('blog.delete_comment');
+    Route::get('blog/create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('blog.create');
+    Route::post('blog/store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('blog.store');
+    Route::post('blog/accept/{id}', [App\Http\Controllers\Admin\BlogController::class, 'accept'])->name('blog.accept');
+    Route::post('blog/reject/{id}', [App\Http\Controllers\Admin\BlogController::class, 'reject'])->name('blog.reject');
 
     Route::get('tests', [App\Http\Controllers\Admin\TestController::class, 'index'])->name('test.index');
     Route::get('tests/create', [App\Http\Controllers\Admin\TestController::class, 'create'])->name('test.create');

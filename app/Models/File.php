@@ -18,9 +18,9 @@ class File extends Model
     ];
     public  const create_update_rules = [
 
-        'path' => 'required',
+        'file' => 'required',
         'name' => 'required',
-        'type' => 'required',
+
     ];
 
     public function lecture()

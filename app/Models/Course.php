@@ -23,9 +23,6 @@ class Course extends Model
 
         'title' => 'required',
         'diploma_id' => 'required',
-
-
-
     ];
 
     public function diploma()
@@ -48,6 +45,10 @@ class Course extends Model
     public function lectures()
     {
         return $this->hasMany(Lecture::class);
+    }
+    public function homeworks()
+    {
+        return $this->hasMany(Homework::class);
     }
 
     public function tests()

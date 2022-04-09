@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             HomeworkSeeder::class,
             HomeworkStudentSeeder::class,
 //            FileSeeder::class,
-            StudentFilesSeeder::class,
+            //StudentFilesSeeder::class,
             TestSeeder::class,
             StudentTestSeeder::class,
             QuestionTypeSeeder::class,

@@ -55,7 +55,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label for="RePassword">{{trans('Homework/Homework.name')}}</label>
-                                        <input id="name" name="name" type="text" value="" id="RePassword"
+                                        <input id="name" name="name" required="" type="text" value="" id="RePassword"
                                                class="form-control">
                                     </div>
                                     <div class="card">

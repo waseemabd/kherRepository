@@ -14,13 +14,14 @@ class Blog extends Model
         'desc',
         'image',
         'user_id',
+        'status'
     ];
     public  const create_update_rules = [
 
 
         'title' => 'required',
         'desc' => 'required',
-        'user_id' => 'required',
+
 
     ];
 

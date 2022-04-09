@@ -19,6 +19,7 @@ use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\User;
 use Exception;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -60,16 +61,14 @@ class LectureController extends Controller
     {
         //
         try {
+            $lectures = new Collection();
             if(auth('admin')->user()->role == 2 ){
-                $lectures = [];
+                //$lectures = [];
                 $courses = auth('admin')->user()->courses;
                 if(count($courses) > 0){
                     foreach($courses as $key => $course){
-                        // $lectures[] = $course->lectures();
-                        print_r($course->lectures());
-                        die();
+                        $lectures = $lectures->merge($course->lectures);
                     }
-                    $lectures = json_encode($lectures);
                 }
             }
             else {

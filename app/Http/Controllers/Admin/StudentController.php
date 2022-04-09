@@ -177,7 +177,21 @@ class StudentController extends Controller
 
             $this->studentRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+    public function resultStudent($id)
+    {
+        //
+        try {
+
+            $student=$this->studentRepository->find($id);
+            return view('students.result',compact('student'));
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 

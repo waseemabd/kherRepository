@@ -60,7 +60,7 @@
 								<div class="ps-0">
 									<div class="main-profile-overview">
 										<div class="main-img-user profile-user">
-											<img alt="" src="{{asset('assets/img/faces/6.jpg')}}">
+											<img alt="" src="{{URL::to('/') . '/Profile/' . auth('admin') -> user() ->name.'/'.auth('admin') -> user() -> profile->image}}">
 
                                             <a
 												class="fas fa-camera profile-edit" href="JavaScript:void(0);"></a>
@@ -141,59 +141,7 @@
 						</div>
 					</div>
 					<div class="col-lg-8">
-						<div class="row row-sm">
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
-								<div class="card ">
-									<div class="card-body">
-										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-primary-transparent">
-												<i class="icon-layers text-primary"></i>
-											</div>
-											<div class="ms-auto">
-												<h5 class="tx-13">Orders</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,587</h2>
-												<p class="text-muted mb-0 tx-11"><i
-														class="si si-arrow-up-circle text-success me-1"></i>increase</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
-								<div class="card ">
-									<div class="card-body">
-										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-danger-transparent">
-												<i class="icon-paypal text-danger"></i>
-											</div>
-											<div class="ms-auto">
-												<h5 class="tx-13">Revenue</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">46,782</h2>
-												<p class="text-muted mb-0 tx-11"><i
-														class="si si-arrow-up-circle text-success me-1"></i>increase</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-xl-4 col-lg-12 col-md-12">
-								<div class="card ">
-									<div class="card-body">
-										<div class="counter-status d-flex md-mb-0">
-											<div class="counter-icon bg-success-transparent">
-												<i class="icon-rocket text-success"></i>
-											</div>
-											<div class="ms-auto">
-												<h5 class="tx-13">Product sold</h5>
-												<h2 class="mb-0 tx-22 mb-1 mt-1">1,890</h2>
-												<p class="text-muted mb-0 tx-11"><i
-														class="si si-arrow-up-circle text-success me-1"></i>increase</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+
                         <!-- Col -->
                         <div class="col-lg-12">
                             <div class="card">

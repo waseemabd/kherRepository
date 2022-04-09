@@ -101,6 +101,7 @@ $permissions = [
     'blogs',
     'list blogs',
     'update blog',
+    'create blog',
     'delete blog',
     'block blog',
     'delete comment',

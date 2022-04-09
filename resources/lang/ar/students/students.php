@@ -52,6 +52,8 @@ return [
     'methods' => 'الطريقة',
     'surveys details' => 'تفاصيل الاستبيان',
     'questions' => 'الاسئلة',
+    'Roles'=>'السماحيات',
+
 
 
     'Student_Activated_Successfully' => 'تم تفعيل حساب الطالب بنجاح',
@@ -63,4 +65,11 @@ return [
     'deactivate' => 'غير مفعل',
 
 
+    'roles details'=>'تفاصيل السماحيات للمستخدم',
+    'User'=>'المستخدم',
+    'course results'=>'نتائج الطالب في هذا الكورس',
+    'homework result'=>'نتائج الوظائف',
+    'present result'=>'نتيجة الحضور والغياب',
+    'result as value'=>'النتيجة النهائية قيمتاً',
+    'result as text'=>'النتيجة النهائية كتابتاً',
 ];
