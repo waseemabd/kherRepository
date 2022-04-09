@@ -49,6 +49,10 @@ return [
     'Test_Deleted_Successfully' => 'تم حذف الاختبار بنجاح',
     'Question_Deleted_Successfully' => 'تم حذف السؤال بنجاح',
     'Survey_Deleted_Successfully' => 'تم حذف الاستبيان بنجاح',
+    'Student_Deleted_Successfully' => 'تم حذف الطالب بنجاح',
+    'User_Deleted_Successfully' => 'تم حذف المستخدم بنجاح',
+    'Teacher_Deleted_Successfully' => 'تم حذف المدرس بنجاح',
+    'Role_Deleted_Successfully' => 'تم حذف السماحية بنجاح',
 
     'Title' => 'العنوان',
     'Choose_one' => 'اختر',
@@ -57,7 +61,13 @@ return [
     'Student_Account_Accepted_Successfully' => 'تم قبول الطالب بنجاح',
 
 
+    'student_activate_warning' => 'هل تريد تفعيل حساب هذا الطالب؟ ',
+    'student_block_warning' => 'هل تريد إلغاء تفعيل حساب هذا الطالب؟ ',
 
+    'user_activate_warning' => 'هل تريد تفعيل حساب هذا المستخدم؟ ',
+    'user_block_warning' => 'هل تريد إلغاء تفعيل حساب هذا المستخدم؟ ',
 
+    'teacher_activate_warning' => 'هل تريد تفعيل حساب هذا المدرس؟ ',
+    'teacher_block_warning' => 'هل تريد إلغاء تفعيل حساب هذا المدرس؟ ',
 
 ];

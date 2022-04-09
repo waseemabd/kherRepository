@@ -64,6 +64,8 @@
                                 <a class="p-2 text-muted" data-bs-toggle="dropdown"><i
                                         class="fas fa-ellipsis-v"></i></a>
                                 <div class="dropdown-menu tx-13 dropleft">
+
+{{--                                    TODO--}}
                                     <a class="dropdown-item  btn btn-sm btn-danger"
                                        href="{{route('blog.edit',$one->id)}}"
                                        title="Edit"><span style="color: blue">{{trans('Blog/Blog.Edit')}}</span></a>

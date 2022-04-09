@@ -1,17 +1,16 @@
-
 @extends('layouts.app')
 
 @section('styles')
 
     <!-- Internal Data table css -->
-    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/plugins/datatable/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/responsive.bootstrap5.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/buttons.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet"/>
 
 @endsection
 
@@ -31,7 +30,7 @@
 
     @if (session()->has('edit'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: " Student information has updated successfully",
                     type: "success"
@@ -43,7 +42,7 @@
 
     @if (session()->has('delete'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: "Student has Deleted Successfully",
                     type: "success"
@@ -55,7 +54,7 @@
 
     @if (session()->has('success'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: "Student has Added Successfully",
                     type: "success"
@@ -72,20 +71,20 @@
         <div class="col-xl-12">
             <div class="card">
 
-{{--                <div class="card-header pb-0">--}}
-{{--                    <div class="d-flex justify-content-between">--}}
-{{--                        <a class="btn btn-primary btn-sm mr-10" href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>--}}
-{{--                    </div>--}}
+                {{--                <div class="card-header pb-0">--}}
+                {{--                    <div class="d-flex justify-content-between">--}}
+                {{--                        <a class="btn btn-primary btn-sm mr-10" href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>--}}
+                {{--                    </div>--}}
 
-{{--                </div>--}}
+                {{--                </div>--}}
                 <div class="card-body">
                     <div class="table-responsive userlist-table">
                         <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
-                                <th >#</th>
-                                <th >{{trans('students/students.name')}}</th>
-                                <th >{{trans('students/students.email')}}</th>
+                                <th>#</th>
+                                <th>{{trans('students/students.name')}}</th>
+                                <th>{{trans('students/students.email')}}</th>
                                 <th>{{trans('students/students.certificate')}}</th>
                                 <th>{{trans('students/students.status')}}</th>
                                 <th>{{trans('students/students.methods')}}</th>
@@ -110,16 +109,24 @@
                                     </td>
 
                                     <td>
+                                        @if(auth('admin') -> user() ->can('accept-registration Student'))
 
-                                        <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale"
-                                           data-id="{{ $student->id }}"
-                                           data-bs-toggle="modal" href="#accept-sub" title="{{trans('general.Accept')}}"><i
-                                                class="las la-check"></i></a>
+                                            <a class="modal-effect btn btn-sm btn-success" data-effect="effect-scale"
+                                               data-id="{{ $student->id }}"
+                                               data-bs-toggle="modal" href="#accept-sub"
+                                               title="{{trans('general.Accept')}}"><i
+                                                    class="las la-check"></i></a>
+                                        @endif
 
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $student->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
-                                                class="las la-trash"></i></a>
+
+                                        @if(auth('admin') -> user() ->can('delete Student'))
+
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                               data-id="{{ $student->id }}"
+                                               data-bs-toggle="modal" href="#delete-sub"
+                                               title="{{trans('general.Delete')}}"><i
+                                                    class="las la-trash"></i></a>
+                                        @endif
 
                                     </td>
 
@@ -133,8 +140,10 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content modal-content-demo">
                                     <div class="modal-header">
-                                        <h6 class="modal-title">{{trans('general.Delete')}}</h6><button aria-label="Close" class="close"
-                                                                                                        data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                        <h6 class="modal-title">{{trans('general.Delete')}}</h6>
+                                        <button aria-label="Close" class="close"
+                                                data-bs-dismiss="modal" type="button"><span
+                                                aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="modal-body">
@@ -142,8 +151,10 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn ripple btn-danger" id="delete_btn" type="submit">{{trans('general.Delete')}}</button>
-                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('general.Cancel')}}</button>
+                                            <button class="btn ripple btn-danger" id="delete_btn"
+                                                    type="submit">{{trans('general.Delete')}}</button>
+                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                                    type="button">{{trans('general.Cancel')}}</button>
                                         </div>
 
                                     </div>
@@ -156,8 +167,10 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content modal-content-demo">
                                     <div class="modal-header">
-                                        <h6 class="modal-title">{{trans('general.Accept')}}</h6><button aria-label="Close" class="close"
-                                                                                                        data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                                        <h6 class="modal-title">{{trans('general.Accept')}}</h6>
+                                        <button aria-label="Close" class="close"
+                                                data-bs-dismiss="modal" type="button"><span
+                                                aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
                                         <div class="modal-body">
@@ -165,8 +178,10 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button class="btn ripple btn-success" id="accept_btn" type="submit">{{trans('general.Accept')}}</button>
-                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('general.Cancel')}}</button>
+                                            <button class="btn ripple btn-success" id="accept_btn"
+                                                    type="submit">{{trans('general.Accept')}}</button>
+                                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                                    type="button">{{trans('general.Cancel')}}</button>
                                         </div>
 
                                     </div>
@@ -178,10 +193,6 @@
                 </div>
             </div>
         </div>
-
-
-
-
 
 
     @endsection('content')

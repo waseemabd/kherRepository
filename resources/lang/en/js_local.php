@@ -51,6 +51,10 @@ return [
     'Test_Deleted_Successfully' => 'Test Deleted Successfully',
     'Question_Deleted_Successfully' => 'Question Deleted Successfully',
     'Survey_Deleted_Successfully' => 'Survey Deleted Successfully',
+    'Student_Deleted_Successfully' => 'Student Deleted Successfully',
+    'User_Deleted_Successfully' => 'User Deleted Successfully',
+    'Teacher_Deleted_Successfully' => 'Teacher Deleted Successfully',
+    'Role_Deleted_Successfully' => 'Teacher Deleted Successfully',
 
     'Title' => 'Title',
     'Choose_one' => 'Choose One',
@@ -58,5 +62,15 @@ return [
 
     'Student_Account_Deleted_Successfully' => 'Student Account Deleted Successfully',
     'Student_Account_Accepted_Successfully' => 'Student Account Accepted Successfully',
+
+
+    'student_activate_warning' => 'Do you want to Activate Account for this Student?',
+    'student_block_warning' => 'Do you want to Block Account for this Student?',
+
+    'user_activate_warning' => 'Do you want to Activate Account for this User?',
+    'user_block_warning' => 'Do you want to Block Account for this User?',
+
+    'teacher_activate_warning' => 'Do you want to Activate Account for this Teacher?',
+    'teacher_block_warning' => 'Do you want to Block Account for this Teacher?',
 
 ];

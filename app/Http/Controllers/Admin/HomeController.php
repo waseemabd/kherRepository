@@ -34,7 +34,7 @@ class HomeController extends Controller
         $this->courseStudentRepository = $courseStudentRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**

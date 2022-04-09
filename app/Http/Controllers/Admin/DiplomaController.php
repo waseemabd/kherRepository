@@ -33,10 +33,10 @@ class DiplomaController extends Controller
         $this->notificationRepository = $notificationRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 
-//        $this->middleware('permission:diplomas');
-//        $this->middleware('permission:create diplomas')->only(['create']);
-//        $this->middleware('permission:update diplomas')->only(['edit']);
-//        $this->middleware('permission:delete diplomas')->only(['destroy']);
+        $this->middleware('permission:diplomas');
+        $this->middleware('permission:create diplomas')->only(['create']);
+        $this->middleware('permission:update diplomas')->only(['edit']);
+        $this->middleware('permission:delete diplomas')->only(['destroy']);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Helpers\JsonResponse;
 use App\Http\IRepositories\IRoleRepository;
 
 use App\Http\Requests\LoginRequest;
@@ -20,11 +21,11 @@ class RoleController extends Controller
     public function __construct(IRoleRepository  $roleRepository)
     {
         $this->roleRepository = $roleRepository;
-//        $this->middleware('permission:list roles')->only(['index']);
-//        $this->middleware('permission:create role')->only(['create']);
-//        $this->middleware('permission:update role')->only(['edit']);
-//        $this->middleware('permission:show role')->only(['show']);
-//        $this->middleware('permission:delete role')->only(['destroy']);
+        $this->middleware('permission:list roles')->only(['index']);
+        $this->middleware('permission:create role')->only(['create']);
+        $this->middleware('permission:update role')->only(['edit']);
+        $this->middleware('permission:show role')->only(['show']);
+        $this->middleware('permission:delete role')->only(['destroy']);
 
     }
 
@@ -61,8 +62,20 @@ class RoleController extends Controller
 
     }
 
+//    public function destroy($id)
+//    {
+//        return $this->roleRepository->deleteRole($id);
+//    }
+
     public function destroy($id)
     {
-        return $this->roleRepository->deleteRole($id);
+        //
+        try {
+
+            $this->roleRepository->delete($id);
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
     }
 }

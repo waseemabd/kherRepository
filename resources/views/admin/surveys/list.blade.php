@@ -72,10 +72,13 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between fz-13">
-                        <a class="btn btn-primary btn-sm fz-13"
-                           href="{{ route('survey.create') }}">{{trans('general.Add')}}</a>
-                    </div>
+                    @if(auth('admin') -> user() ->can('create Survey'))
+
+                        <div class="d-flex justify-content-between fz-13">
+                            <a class="btn btn-primary btn-sm fz-13"
+                               href="{{ route('survey.create') }}">{{trans('general.Add')}}</a>
+                        </div>
+                    @endif
 
                 </div>
                 <div class="card-body">
@@ -117,25 +120,35 @@
 
                                     <td>
 
+                                        @if(auth('admin') -> user() ->can('update Survey'))
 
-                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
-                                           href="{{ route('survey.edit', $survey->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                            <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
+                                               href="{{ route('survey.edit', $survey->id) }}"><i
+                                                    class="las la-edit"></i></a>
+                                        @endif
+                                        @if(auth('admin') -> user() ->can('delete Survey'))
 
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $survey->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub"
-                                           title="{{trans('general.Delete')}}"><i
-                                                class="las la-trash"></i></a>
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                               data-id="{{ $survey->id }}"
+                                               data-bs-toggle="modal" href="#delete-sub"
+                                               title="{{trans('general.Delete')}}"><i
+                                                    class="las la-trash"></i></a>
+                                        @endif
+                                        @if(auth('admin') -> user() ->can('show students Survey'))
 
-                                        <a class="btn btn-success btn-sm" title="{{trans('surveys/surveys.students')}}"
-                                           href="{{ route('survey.students', $survey->id) }}"><i
-                                                class="las la-graduation-cap"></i></a>
+                                            <a class="btn btn-success btn-sm"
+                                               title="{{trans('surveys/surveys.students')}}"
+                                               href="{{ route('survey.students', $survey->id) }}"><i
+                                                    class="las la-graduation-cap"></i></a>
 
+                                        @endif
+                                        @if(auth('admin') -> user() ->can('questions Survey'))
 
-                                        <a class="btn btn-warning btn-sm" title="{{trans('surveys/surveys.manage_questions')}}"
-                                           href="{{ route('survey.questions', $survey->id) }}"><i
-                                                class="las la-tools"></i></a>
+                                            <a class="btn btn-warning btn-sm"
+                                               title="{{trans('surveys/surveys.manage_questions')}}"
+                                               href="{{ route('survey.questions', $survey->id) }}"><i
+                                                    class="las la-tools"></i></a>
+                                        @endif
 
                                     </td>
                                 </tr>
@@ -209,28 +222,28 @@
         </div>
     </div>
 
-    @endsection('content')
+@endsection('content')
 
-    @section('scripts')
+@section('scripts')
 
-        <!-- Internal Data tables -->
-            <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+    <!-- Internal Data tables -->
+    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
-            <!--Internal  Datatable js -->
-            <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script src="{{asset('assets/js/admin-pages/surveys/list.js')}}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/surveys/list.js')}}"></script>
 
 @endsection
 

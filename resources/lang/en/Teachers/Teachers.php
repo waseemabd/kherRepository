@@ -24,8 +24,9 @@ return[
     'name' =>'الاسم',
     'Show User' => 'عرض المستخدم',
 
-    'Teacher_Activated_Successfully' => 'تم تفعيل حساب المدرس بنجاح',
-    'Teacher_Blocked_Successfully' => 'تم إلغاء تفعيل حساب المدرس بنجاح',
+    'Teacher_Activated_Successfully' => 'Teacher Account Activated Successfully',
+    'Teacher_Blocked_Successfully' => 'Teacher Account Blocked Successfully',
+
 
 
 ];

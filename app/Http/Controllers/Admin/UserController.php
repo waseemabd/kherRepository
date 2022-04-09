@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Helpers\JsonResponse;
+use App\Helpers\Mapper;
 use App\Http\IRepositories\IUserRepository;
 use App\Http\Requests\LoginRequest;
 use App\Http\Controllers\Controller;
@@ -20,9 +22,20 @@ class UserController extends Controller
 {
 
     protected $userRepository;
+    protected $requestData;
+
     public function __construct(IUserRepository  $userRepository)
     {
         $this->userRepository = $userRepository;
+        $this->requestData = Mapper::toUnderScore(Request()->all());
+
+
+        $this->middleware('permission:list user')->only(['index']);
+        $this->middleware('permission:create user')->only(['create']);
+        $this->middleware('permission:update user')->only(['edit']);
+        $this->middleware('permission:show user')->only(['show']);
+        $this->middleware('permission:delete user')->only(['destroy']);
+        $this->middleware('permission:block-activate user')->only(['change_status']);
     }
 
     public function index(Request $request)
@@ -93,9 +106,63 @@ class UserController extends Controller
             ->with('edit','User information has updated successfully');
     }
 
+//    public function destroy($id)
+//    {
+//         $this->userRepository->deleteUser($id);
+//        return redirect()->route('users.index')->with('delete','User has Deleted Successfully');
+//    }
+
     public function destroy($id)
     {
-         $this->userRepository->deleteUser($id);
-        return redirect()->route('users.index')->with('delete','User has Deleted Successfully');
+        try {
+
+            $this->userRepository->delete($id);
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
     }
+
+    public function change_status()
+    {
+        //
+        try {
+
+            $id = $this->requestData['user_id'];
+            $user = $this->userRepository->find($id);
+            $status = $user->status;
+
+            if($status == 1){
+                $data['status'] = 2;
+                $msg = trans('Users/user.User_Blocked_Successfully');
+            }else{
+                $data['status'] = 1;
+                $msg = trans('Users/user.User_Activated_Successfully');
+            }
+            $validator_rules = [
+                'status' => 'required'
+            ];
+
+            $validator = Validator::make($data, $validator_rules);
+
+            if ($validator->passes()) {
+
+
+                $course = $this->userRepository->update($data, $id);
+
+
+                return redirect()->route('users.index')->with('message', $msg);
+
+            }
+            return redirect()->route('users.index')->with('error', trans('general.Operation_Failed'));
+
+        } catch (\Exception $ex) {
+            return redirect()->route('users.index')->with('error', $ex->getMessage());
+
+        }
+
+
+    }
+
 }

@@ -1,19 +1,16 @@
-
-
-
 @extends('layouts.app')
 
 @section('styles')
 
     <!-- Internal Data table css -->
-    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/plugins/datatable/datatables.min.css')}}" rel="stylesheet"/>
     <link href="{{asset('assets/plugins/datatable/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/responsive.bootstrap5.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/buttons.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/dataTables.bootstrap5.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+    <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet"/>
 
 @endsection
 
@@ -33,7 +30,7 @@
 
     @if (session()->has('edit'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: " Student information has updated successfully",
                     type: "success"
@@ -45,7 +42,7 @@
 
     @if (session()->has('delete'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: "Student has Deleted Successfully",
                     type: "success"
@@ -57,7 +54,7 @@
 
     @if (session()->has('success'))
         <script>
-            window.onload = function() {
+            window.onload = function () {
                 notif({
                     msg: "Student has Added Successfully",
                     type: "success"
@@ -75,9 +72,13 @@
             <div class="card">
 
                 <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm mr-10" href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>
-                    </div>
+                    @if(auth('admin') -> user() ->can('create Student'))
+
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-primary btn-sm mr-10"
+                               href="{{ route('student.create') }}">{{trans('students/students.Add Student')}}</a>
+                        </div>
+                    @endif
 
                 </div>
                 <div class="card-body">
@@ -85,11 +86,11 @@
                         <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
-                                <th >#</th>
-                                <th >{{trans('students/students.name')}}</th>
-                                <th >{{trans('students/students.email')}}</th>
+                                <th>#</th>
+                                <th>{{trans('students/students.name')}}</th>
+                                <th>{{trans('students/students.email')}}</th>
                                 <th>{{trans('students/students.certificate')}}</th>
-{{--                                <th>{{trans('students/students.address')}}</th>--}}
+                                <th>{{trans('students/students.status')}}</th>
                                 <th>{{trans('students/students.methods')}}</th>
 
                             </tr>
@@ -97,29 +98,61 @@
 
                             <tbody>
                             @foreach ($students as $key => $student)
-                                <tr>
+                                <tr id="row-{{$student->id}}">
                                     <td>{{ ++$key }}</td>
                                     <td>{{ $student->getTranslatedName() }}</td>
                                     <td>{{ $student->email }}</td>
                                     <td>{{ $student -> certificate -> getTranslatedName() }}</td>
-{{--                                    <td>{{ $student -> profile -> address }}</td>--}}
-
+                                    <td>
+                                        @if ($student->status == 1)
+                                            <span class="label text-success d-flex">
+                                                <div class="dot-label bg-success ml-1"></div>{{trans('students/students.Active')}}
+                                            </span>
+                                        @else
+                                            <span class="label text-danger d-flex">
+                                                <div class="dot-label bg-danger ml-1"></div>{{trans('students/students.Inactive')}}
+                                            </span>
+                                        @endif
+                                    </td>
 
 
                                     <td>
-                                        <a class="btn btn-success btn-sm"
-                                           href="{{ route('student.show', $student->id) }}"><i
-                                                class="las la-eye"></i></a>
+                                        @if(auth('admin') -> user() ->can('show Student'))
 
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('student.edit', $student->id) }}"><i
-                                                class="las la-edit"></i></a>
+                                            <a class="btn btn-success btn-sm"
+                                               href="{{ route('student.show', $student->id) }}"><i
+                                                    class="las la-eye"></i></a>
+                                        @endif
+                                        @if(auth('admin') -> user() ->can('block-activate Student'))
 
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-student_id="{{ $student->id }}"  data-username="{{ $student->username }}"
-                                           data-bs-toggle="modal"  href="#modaldemo1" title="delete"><i
-                                                class="las la-trash"></i></a>
+                                            <a class="modal-effect btn btn-sm btn-{{$student->status == 1 ? 'danger' : 'success'}}"
+                                               data-effect="effect-scale"
+                                               data-id="{{ $student->id }}" data-status="{{ $student->status }}"
+                                               data-bs-toggle="modal" href="#status-sub"
+                                               title="{{$student->status == 1 ? trans('general.Block') : trans('general.Activate') }}"><i
+                                                    class="las la-user-{{$student->status == 1 ? 'slash' : 'check'}}"></i></a>
+                                        @endif
 
+                                        @if(auth('admin') -> user() ->can('update Student'))
+
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{ route('student.edit', $student->id) }}"><i
+                                                    class="las la-edit"></i></a>
+                                        @endif
+
+
+                                        {{--                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"--}}
+                                        {{--                                           data-student_id="{{ $student->id }}"  data-username="{{ $student->username }}"--}}
+                                        {{--                                           data-bs-toggle="modal"  href="#modaldemo1" title="delete"><i--}}
+                                        {{--                                                class="las la-trash"></i></a>--}}
+                                        @if(auth('admin') -> user() ->can('delete Student'))
+
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                               data-id="{{ $student->id }}"
+                                               data-bs-toggle="modal" href="#delete-sub"
+                                               title="{{trans('general.Delete')}}"><i
+                                                    class="las la-trash"></i></a>
+                                        @endif
 
                                     </td>
 
@@ -132,36 +165,93 @@
                 </div>
             </div>
         </div>
-        <div class="modal" id="modaldemo1">
+
+        <div class="modal" id="delete-sub">
             <div class="modal-dialog" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">{{trans('students/students.Delete User')}}</h6><button aria-label="Close" class="close"
-                                                                        data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title">{{trans('general.Delete')}}</h6>
+                        <button aria-label="Close" class="close"
+                                data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{ route('student.destroy') }}" method="post">
-                            {{ method_field('post') }}
-                            @csrf
-                            <div class="modal-body">
-                                <p>{{trans('students/students.Do Yoy Want to Delete This Student')}}?  </p><br>
+                        <div class="modal-body">
+                            <p>{{trans('students/students.Do Yoy Want to Delete This Student')}}? </p><br>
 
-                                <input class="form-control" hidden name="student_id" value="" id="student_id" type="text" readonly>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn ripple btn-danger" type="submit">{{trans('students/students.Delete')}}</button>
-                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('students/students.Close')}}</button>
-                            </div>
-
-
-                        </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn ripple btn-danger" id="delete_btn"
+                                    type="submit">{{trans('general.Delete')}}</button>
+                            <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                    type="button">{{trans('general.Cancel')}}</button>
+                        </div>
 
                     </div>
 
                 </div>
             </div>
         </div>
+
+        <div class="modal" id="status-sub">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content modal-content-demo">
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="myModalLabel22"></h6>
+                        <button aria-label="Close" class="close"
+                                data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ route('student.changeStatus') }}" method="post">
+                            @csrf
+                            <div class="modal-body">
+                                <p id="itemDeleteModalTitle"></p><br>
+                                <input class="form-control" hidden name="student_id" value="" id="student_id"
+                                       type="text" readonly>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn ripple btn-danger" id="status_btn" type="submit"></button>
+                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal"
+                                        type="button">{{trans('general.Cancel')}}</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    {{--        <div class="modal" id="modaldemo1">--}}
+    {{--            <div class="modal-dialog" role="document">--}}
+    {{--                <div class="modal-content modal-content-demo">--}}
+    {{--                    <div class="modal-header">--}}
+    {{--                        <h6 class="modal-title">{{trans('students/students.Delete User')}}</h6><button aria-label="Close" class="close"--}}
+    {{--                                                                        data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="modal-body">--}}
+    {{--                        <form action="{{ route('student.destroy') }}" method="post">--}}
+    {{--                            {{ method_field('post') }}--}}
+    {{--                            @csrf--}}
+    {{--                            <div class="modal-body">--}}
+    {{--                                <p>{{trans('students/students.Do Yoy Want to Delete This Student')}}?  </p><br>--}}
+
+    {{--                                <input class="form-control" hidden name="student_id" value="" id="student_id" type="text" readonly>--}}
+
+    {{--                            </div>--}}
+    {{--                            <div class="modal-footer">--}}
+    {{--                                <button class="btn ripple btn-danger" type="submit">{{trans('students/students.Delete')}}</button>--}}
+    {{--                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('students/students.Close')}}</button>--}}
+    {{--                            </div>--}}
+
+
+    {{--                        </form>--}}
+
+    {{--                    </div>--}}
+
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
 
 
 
@@ -187,14 +277,16 @@
 
             <!--Internal  Datatable js -->
             <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script>
-                $('#modaldemo1').on('show.bs.modal', function(event) {
-                    var button = $(event.relatedTarget)
-                    var student_id = button.data('student_id')
-                    var modal = $(this)
-                    modal.find('.modal-body #student_id').val(student_id);
-                })
+            <script src="{{asset('assets/js/admin-pages/students/list.js')}}"></script>
 
-            </script>
+    {{--            <script>--}}
+    {{--                $('#modaldemo1').on('show.bs.modal', function(event) {--}}
+    {{--                    var button = $(event.relatedTarget)--}}
+    {{--                    var student_id = button.data('student_id')--}}
+    {{--                    var modal = $(this)--}}
+    {{--                    modal.find('.modal-body #student_id').val(student_id);--}}
+    {{--                })--}}
+
+    {{--            </script>--}}
 @endsection
 

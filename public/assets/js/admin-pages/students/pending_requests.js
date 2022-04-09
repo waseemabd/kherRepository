@@ -47,7 +47,7 @@ $(function () {
         $.ajax({
             type: 'POST',
 
-            url: '/admin/students/delete/' + sub_id,
+            url: '/admin/students/deleteAccount/' + sub_id,
 
 
             success: function (response) {

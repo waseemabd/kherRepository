@@ -32,7 +32,7 @@ class SurveyQuestionController extends Controller
         $this->questionTypeRepository = $questionTypeRepository;
         $this->surveyRepository = $surveyRepository;
         $this->requestData = Mapper::toUnderScore(Request()->all());
-//        $this->middleware('permission:categories');
+
     }
     /**
      * Display a listing of the resource.

@@ -73,10 +73,10 @@
 
                 <div class="card-header pb-0">
                     @if(auth('admin') -> user() ->can('create Homework'))
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm"
-                           href="{{ route('homework.create') }}">{{trans('general.Add')}}</a>
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <a class="btn btn-primary btn-sm"
+                               href="{{ route('homework.create') }}">{{trans('general.Add')}}</a>
+                        </div>
                     @endif
 
                 </div>
@@ -112,39 +112,42 @@
 
                                     <td>
                                         @if(auth('admin') -> user() ->can('add files'))
-                                        <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('homework.add_files', $homework->id) }}"><i
-                                                class="far fa-file"></i></a>
+                                            <a class="btn btn-secondary btn-sm"
+                                               href="{{ route('homework.add_files', $homework->id) }}"><i
+                                                    class="far fa-file"></i></a>
                                         @endif
-                                            @if(auth('admin') -> user() ->can('show Homework'))
-                                                <a class="btn btn-success btn-sm" title="{{trans('general.View')}}"
-                                                   href="{{ route('homework.show', $homework->id) }}"><i
-                                                        class="las la-eye"></i></a>
-                                            @endif
+                                        @if(auth('admin') -> user() ->can('show Homework'))
+                                            <a class="btn btn-success btn-sm" title="{{trans('general.View')}}"
+                                               href="{{ route('homework.show', $homework->id) }}"><i
+                                                    class="las la-eye"></i></a>
+                                        @endif
 
-                                            @if(auth('admin') -> user() ->can('update Homework'))
-                                        <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
-                                           href="{{ route('homework.edit', $homework->id) }}"><i
-                                                class="las la-edit"></i></a>
-                                            @endif
+                                        @if(auth('admin') -> user() ->can('update Homework'))
+                                            <a class="btn btn-primary btn-sm" title="{{trans('general.Edit')}}"
+                                               href="{{ route('homework.edit', $homework->id) }}"><i
+                                                    class="las la-edit"></i></a>
+                                        @endif
 
 
-                                            @if(auth('admin') -> user() ->can('show Homework'))
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('homework.show', $homework->id) }}"><i
-                                                class="las la-eye"></i></a>
-                                            @endif
+                                        {{--                                            @if(auth('admin') -> user() ->can('show Homework'))--}}
+                                        {{--                                        <a class="btn btn-primary btn-sm"--}}
+                                        {{--                                           href="{{ route('homework.show', $homework->id) }}"><i--}}
+                                        {{--                                                class="las la-eye"></i></a>--}}
+                                        {{--                                            @endif--}}
+                                        @if(auth('admin') -> user() ->can('student Homework'))
+
                                             <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                                href="{{ route('homework.students', $homework->id) }}"><i
                                                     class="las la-graduation-cap"></i></a>
+                                        @endif
 
                                         @if(auth('admin') -> user() ->can('delete Homework'))
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $homework->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub"
-                                           title="{{trans('general.Delete')}}"><i
-                                                class="las la-trash"></i></a>
-                                            @endif
+                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                               data-id="{{ $homework->id }}"
+                                               data-bs-toggle="modal" href="#delete-sub"
+                                               title="{{trans('general.Delete')}}"><i
+                                                    class="las la-trash"></i></a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
@@ -218,28 +221,28 @@
         </div>
     </div>
 
-    @endsection('content')
+@endsection('content')
 
-    @section('scripts')
+@section('scripts')
 
-        <!-- Internal Data tables -->
-            <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
-            <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+    <!-- Internal Data tables -->
+    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
-            <!--Internal  Datatable js -->
-            <script src="{{asset('assets/js/table-data.js')}}"></script>
-            <script src="{{asset('assets/js/admin-pages/homework/list.js')}}"></script>
+    <!--Internal  Datatable js -->
+    <script src="{{asset('assets/js/table-data.js')}}"></script>
+    <script src="{{asset('assets/js/admin-pages/homework/list.js')}}"></script>
 
 @endsection
 

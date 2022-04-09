@@ -21,6 +21,8 @@ $permissions = [
     'update user',
     'show user',
     'delete user',
+    'block-activate user',
+
 
     'Certificates',
     'list Certificate',
@@ -41,6 +43,7 @@ $permissions = [
     'update Homework',
     'show Homework',
     'delete Homework',
+    'student Homework',
 
     'Lectures',
     'list Lecture',
@@ -69,6 +72,9 @@ $permissions = [
     'show Student',
     'delete Student',
     'list pending Students',
+    'block-activate Student',
+    'accept-registration Student',
+
 
     'teachers',
     'list teachers',
@@ -76,6 +82,7 @@ $permissions = [
     'update teacher',
     'show teacher',
     'delete teacher',
+    'block-activate teacher',
 
     'create Question',
     'update Question',
@@ -87,8 +94,8 @@ $permissions = [
     'create Test',
     'update Test',
     'delete Test',
-    'manage question',
-    'students test',
+    'manage Test question',
+    'students Test',
 
 
     'blogs',
@@ -103,6 +110,7 @@ $permissions = [
     'list Survey',
     'create Survey',
     'update Survey',
+    'delete Survey',
     'show students Survey',
     'questions Survey',
 

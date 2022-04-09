@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Helpers\JsonResponse;
+use App\Helpers\Mapper;
 use App\Http\Controllers\Controller;
 use App\Http\IRepositories\IStudentRepository;
 use App\Http\Requests\StudentRequest;
@@ -18,15 +19,23 @@ class StudentController extends Controller
 
 
     protected $studentRepository;
+    protected $requestData;
+
     public function __construct(IStudentRepository  $studentRepository)
     {
         $this->studentRepository = $studentRepository;
-//        $this->middleware('permission:Students');
-//        $this->middleware('permission:list Students')->only(['index']);
-//        $this->middleware('permission:create Student')->only(['create']);
-//        $this->middleware('permission:update Student')->only(['edit']);
-//        $this->middleware('permission:show Student')->only(['show']);
-//        $this->middleware('permission:delete Student')->only(['destroy']);
+        $this->requestData = Mapper::toUnderScore(Request()->all());
+
+        $this->middleware('permission:Students');
+        $this->middleware('permission:list Students')->only(['index']);
+        $this->middleware('permission:create Student')->only(['create']);
+        $this->middleware('permission:update Student')->only(['edit']);
+        $this->middleware('permission:show Student')->only(['show']);
+        $this->middleware('permission:delete Student')->only(['destroy']);
+        $this->middleware('permission:list pending Students')->only(['pending_registration_request']);
+        $this->middleware('permission:block-activate Student')->only(['change_status']);
+        $this->middleware('permission:accept-registration Student')->only(['acceptStudent']);
+
     }
 
     public function index()
@@ -98,10 +107,18 @@ class StudentController extends Controller
 
     }
 
-    public function destroy(Request $req)
+    public function destroy($id)
     {
-        $this->studentRepository->deleteStudent($req);
-        return redirect()->route('students.index')->with('delete','Student has Deleted Successfully');
+        try {
+
+            $this->studentRepository->delete($id);
+            return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
+        } catch (\Exception $ex) {
+            return JsonResponse::respondError($ex->getMessage());
+        }
+
+//        $this->studentRepository->deleteStudent($req);
+//        return redirect()->route('students.index')->with('delete','Student has Deleted Successfully');
     }
 
     public function pending_registration_request()
@@ -162,6 +179,47 @@ class StudentController extends Controller
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
         } catch (\Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
+        }
+
+
+    }
+
+    public function change_status()
+    {
+        //
+        try {
+
+            $id = $this->requestData['student_id'];
+            $student = $this->studentRepository->find($id);
+            $status = $student->status;
+
+            if($status == 1){
+                $data['status'] = 2;
+                $msg = trans('students/students.Student_Blocked_Successfully');
+            }else{
+                $data['status'] = 1;
+                $msg = trans('students/students.Student_Activated_Successfully');
+            }
+            $validator_rules = [
+                'status' => 'required'
+            ];
+
+            $validator = Validator::make($data, $validator_rules);
+
+            if ($validator->passes()) {
+
+
+                $course = $this->studentRepository->update($data, $id);
+
+
+                return redirect()->route('students.index')->with('message', $msg);
+
+            }
+            return redirect()->route('students.index')->with('error', trans('general.Operation_Failed'));
+
+        } catch (\Exception $ex) {
+            return redirect()->route('students.index')->with('error', $ex->getMessage());
+
         }
 
 

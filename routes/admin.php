@@ -224,6 +224,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('user/update/{id}', [App\Http\Controllers\Admin\UserController::class, 'update'])->name('user.update');
     Route::post('user/delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('user.destroy');
     Route::get('user/show/{id}', [App\Http\Controllers\Admin\UserController::class, 'show'])->name('user.show');
+    Route::post('user/changeStatus', [App\Http\Controllers\Admin\UserController::class, 'change_status'])->name('user.changeStatus');
 
     Route::get('roles', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
     Route::get('role/create', [App\Http\Controllers\Admin\RoleController::class, 'create'])->name('role.create');
@@ -318,6 +319,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('teacher/update/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'update'])->name('teacher.update');
     Route::post('teacher/delete/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'destroy'])->name('teacher.destroy');
     Route::get('teacher/show/{id}', [App\Http\Controllers\Admin\TeacherController::class, 'show'])->name('teacher.show');
+    Route::post('teacher/changeStatus', [App\Http\Controllers\Admin\TeacherController::class, 'change_status'])->name('teacher.changeStatus');
 
 
     //students///
@@ -326,11 +328,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('students/store', [App\Http\Controllers\Admin\StudentController::class, 'store'])->name('student.store');
     Route::get('students/edit/{id}', [App\Http\Controllers\Admin\StudentController::class, 'edit'])->name('student.edit');
     Route::post('students/update/{id}', [App\Http\Controllers\Admin\StudentController::class, 'update'])->name('student.update');
-    Route::post('students/delete', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
+    Route::post('students/delete/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroy'])->name('student.destroy');
     Route::get('students/show/{id}', [App\Http\Controllers\Admin\StudentController::class, 'show'])->name('student.show');
     Route::get('students/registration_request', [App\Http\Controllers\Admin\StudentController::class, 'pending_registration_request'])->name('students.pending_registration_request');
     Route::post('students/registration_request/accept/{id}', [App\Http\Controllers\Admin\StudentController::class, 'acceptStudent'])->name('students.accept');
-    Route::post('students/delete/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
+    Route::post('students/deleteAccount/{id}', [App\Http\Controllers\Admin\StudentController::class, 'destroyStudent'])->name('students.delete.account');
+    Route::post('students/changeStatus', [App\Http\Controllers\Admin\StudentController::class, 'change_status'])->name('student.changeStatus');
 
     ///blogs///
     Route::get('blogs', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('blogs.index');
@@ -408,6 +411,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('updateSettingAbout', [App\Http\Controllers\Admin\SettingController::class, 'updateAbout'])->name('settings.about.update');
     Route::post('updateSettingContact', [App\Http\Controllers\Admin\SettingController::class, 'updateContacts'])->name('settings.contact.update');
     Route::post('updateSettingImages', [App\Http\Controllers\Admin\SettingController::class, 'updateImages'])->name('settings.images.update');
+
+    Route::get('my-notifications', [\App\Http\Controllers\Admin\NotificationController::class, 'getNotificationsForAdmin'])->name('admin-my-notifications');
+    Route::get('unread-notification-num', [\App\Http\Controllers\Admin\NotificationController::class, 'getNumOfUnReadNotification'])->name('admin-ajax-unread-notification-num');
+    Route::get('show-notification-brief', [\App\Http\Controllers\Admin\NotificationController::class, 'getNotificationsBriefly'])->name('admin-ajax-get-notification-brief');
+
 
 });
 

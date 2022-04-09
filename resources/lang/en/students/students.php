@@ -25,6 +25,8 @@ return [
     'Close' => 'إغلاق',
     'roles' => ' السماحيات',
     'name' => 'الاسم',
+    'address' => 'الشهادة' ,
+    'methods' => ' الطريقة',
     'Show' =>'إظهار',
     'information' =>'المعلومات',
     'courses' =>'الكورسات',
@@ -35,6 +37,7 @@ return [
     'address'=>'العنوان',
     'phone'=>'رقم الهاتف',
     'birthday' =>'تاريخ الميلاد',
+    'certificate'=>'الشهادات',
     'Profile Image'=>'صورة الصفحة الشخصية',
     'courses details' => 'تفاصيل الكورس',
     'description' => 'الوصف',
@@ -53,14 +56,12 @@ return [
     'surveys details' => 'تفاصيل الاستبيان',
     'questions' => 'الاسئلة',
 
+    'Student_Activated_Successfully' => 'Student Account Activated Successfully',
+    'Student_Blocked_Successfully' => 'Student Account Blocked Successfully',
 
-    'Student_Activated_Successfully' => 'تم تفعيل حساب الطالب بنجاح',
-    'Student_Blocked_Successfully' => 'تم إلغاء تفعيل حساب الطالب بنجاح',
 
 
     'pending' => 'معلق',
     'active' => 'نشط',
     'deactivate' => 'غير مفعل',
-
-
 ];
