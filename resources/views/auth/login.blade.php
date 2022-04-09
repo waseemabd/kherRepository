@@ -27,7 +27,7 @@
                                         <div class="card-sigin">
                                             <div class="card-sigin">
                                                 <div class="card-sigin card-imge ">
-                                                     <a href="{{url('index')}}">
+                                                     <a href="#">
                                                         <img src="{{asset('assets/img/brand/KhairAcademy_Logo_2-01.png')}}" class="sign-favicon-a " alt="logo">
                                                      </a><br>
                                                      </div>
@@ -42,9 +42,6 @@
                                                         <form method="POST" action="{{route('admin.login')}}">
                                                             @csrf
                                                             <input type="hidden" id="not" name="not_t">
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input class="form-control" name="email" placeholder="Enter your email" type="email">
 
                                                             <div class="form-group form-right">
                                                                 <label class="box-label">{{trans('login/login.login')}}</label>
@@ -72,9 +69,9 @@
                                                             <button type="submit" class="btn btn-block btn-box" >{{trans('login/login.login')}}</button>
 
                                                         </form>
-                                                        <div class="box-signup">
-                                                            <span> {{trans("login/login.Don't have an account?")}}</span> <a class="sign-a" href="#"> {{trans('login/login.Create an Account')}} </a>
-                                                       </div>
+{{--                                                        <div class="box-signup">--}}
+{{--                                                            <span> {{trans("login/login.Don't have an account?")}}</span> <a class="sign-a" href="#"> {{trans('login/login.Create an Account')}} </a>--}}
+{{--                                                       </div>--}}
                                                     </div>
                                                 </div>
                                             </div>

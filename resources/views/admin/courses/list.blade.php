@@ -125,12 +125,11 @@
 
                                     <td>
 
+{{--                                            TODO PERMESSION--}}
                                     <a class="btn btn-secondary btn-sm"
                                            href="{{ route('course.pending', $course->id) }}" title="{{trans('courses/courses.pending_Course_list')}}"><i
                                                 class="las la-envelope-open" ></i></a>
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('course.edit', $course->id) }}" title="{{trans('general.Edit')}}"><i
-                                                class="las la-edit" ></i></a>
+
                                         @if(auth('admin') -> user() ->can('update courses'))
 
                                             <a class="btn btn-primary btn-sm"
