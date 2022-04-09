@@ -16,8 +16,8 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">Timeline</h4><span
-								class="text-muted mt-1 tx-13 ms-2 mb-0">/ Teacher Timeline</span>
+							<h4 class="content-title mb-0 my-auto">{{trans('Timeline/timeline.Timeline')}}</h4><span
+								class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Timeline/timeline.Teacher Timeline')}}</span>
 						</div>
 					</div>
 					<!-- <div class="d-flex my-xl-auto right-content">
@@ -61,11 +61,11 @@
 					<div class="col-lg-12">
 						<div class="card custom-card">
 							<div class="card-header custom-card-header">
-								<h6 class="card-title mb-0">Vertical Timeline</h6>
+								<h6 class="card-title mb-0">{{trans('Timeline/timeline.Vertical Timeline')}}</h6>
 							</div>
 							@if (!empty('message'))
 							<div class="card-header custom-card-header">
-								<h6 class="card-title mb-0">you have no courses</h6>
+								<h6 class="card-title mb-0">{{trans('Timeline/timeline.you have no courses')}}</h6>
 							</div>
 							@endif
 						<div class="card-body">
@@ -82,7 +82,7 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">calendar</a>
+												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">{{trans('Timeline/timeline.calendar')}}</a>
 											</div>															
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
@@ -102,7 +102,7 @@
 											</div>
 											<div class="timeline-body">
 												<p>{{$course->desc}}</p>
-												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">calendar</a>
+												<a class="btn ripple btn-primary text-white mb-3" href="{{ route('calendar.index', ['id'=>$course->id]) }}">{{trans('Timeline/timeline.calendar')}}</a>
 											</div>														
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>

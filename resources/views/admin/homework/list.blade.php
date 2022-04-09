@@ -71,7 +71,7 @@
         <div class="col-xl-12">
             <div class="card">
 
-                <div class="card-header pb-0">
+                <div class="card-header pb-0 mr10">
                     @if(auth('admin') -> user() ->can('create Homework'))
                         <div class="d-flex justify-content-between">
                             <a class="btn btn-primary btn-sm"

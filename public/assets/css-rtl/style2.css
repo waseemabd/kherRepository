@@ -5,10 +5,7 @@
 
 }
 
-.side-menu__label{
-    color: #4a4949;
-    font-size: 17px;
-}
+
 
 .slide.is-expanded a {
    color: #5b5d63;
@@ -28,7 +25,10 @@
 }
 .form-label{
     color: #4a4949;
-
+    
+}
+.label-mar-b{
+    margin-bottom: 9px !important;
 }
 .slide-item {
     font-size: 15px;
@@ -39,7 +39,7 @@
 .mr-10{
     margin-right: -10px;
 }
-
+.mr10{margin-right:10px}
 
 /*--------update general table -------*/
 
@@ -88,6 +88,9 @@ table.dataTable thead .sorting::after, table.dataTable thead .sorting::before {
     padding: 10px 17px !important;
     font-size: 15px !important;
 
+}
+.form-control{
+    box-shadow: 0px 4px 6px #dfdfdf;
 }
 
 .form-control-sm
@@ -160,6 +163,9 @@ div.dataTables_wrapper  {
 .mr-12{
     margin-right: 12px;
 }
+.mr-19{
+    margin-right: 19px; 
+}
 /* .mg-b-10 {
 
     margin-top: 10px;
@@ -207,19 +213,305 @@ div.dataTables_wrapper  {
 .width-in{
     width: 98.5%;
  }
-/*------style icons-----*/
-.side-menu .side-menu__icon {
-    fill: #6ba9ff !important;
+/*------style icons side bar-----*/
+.slide.is-expanded .angle, .slide.is-expanded .side-menu__icon, .slide.is-expanded .side-menu__label {
+    color: rgb(68, 67, 67) !important;
+    
 }
-/*------Update homework page---- */
+.slide:hover .side-menu__label{
+    color: #070707 !important;
+}
+.side-menu__icon{
+    fill: #f88e31  !important;
+}
+.slide:hover .side-menu__icon{
+    fill: #faaa32 !important;
+}
+.side-menu__label{
+    color: #4a4949;
+    font-size: 17px;
+   
+}
+.menu__item.active .side-menu__label {
+    color: #070707;
+}
+.app-sidebar .slide.active .side-menu__icon, .app-sidebar .slide.is-expanded .side-menu__icon{
+    fill: #faaa32 !important;
+}
+.slide:hover .angle,
+.app-sidebar .slide-menu a.active::before,
+.slide-item.active,
+.slide-item:hover{
+    color: #f88e31 !important;
+}
+
+.slide-item.active{
+    color: #f38015 !important;
+}
+.slide-item:hover{
+    color: #f59235 !important;
+}
+
+/*------Update homework page- and setting--- */
 .profile.navtab-custom li a{
-    background-color: #0f6ff2 !important;
+    background-color: #f88e31 !important;
     color: #fff;
 }
 .profile.navtab-custom a.active {
     background: #ecf0fa !important;
-    color: #0f6ff2 !important;
+    color: #f88e31 !important;
 }
+.profile.navtab-custom li a {
+    font-size: 15px;
+}
+
+
 .select2-selection--single{
     height: 41px !important;
 }
+
+/* checked if you teacher in page users */
+.form-check-input:checked {
+    background-color: #2e8a01;
+    border-color: #2e8a01;
+}
+
+/*---sidebar image user and logo */
+.app-sidebar__user{
+    margin-top: 75px;
+}
+.main-sidebar-header{
+    height:150px;
+    padding:0px;
+    border-bottom: none !important;
+    background:#fff;
+
+}
+.app.sidebar-mini.sidenav-toggled .logo-icon{
+    height:5.3rem !important;
+}
+.main-logo{
+    height:10rem;
+}
+.responsive-logo .logo-1 {
+    height: 5rem !important;
+    margin-top: 13px !important;
+    margin-right: 2px !important;
+  }
+
+  .sidenav-toggled .app-sidebar__user{
+      padding-top:100px !important;
+    }
+
+/*============style login page ====================*/
+.page,.main-body{
+    background-color: rgb(238, 234, 234);
+}
+.row-login{
+    position: relative;
+    
+}
+.row-boxx{
+    background-color:#fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translatex(-50%);
+    width: 500px;
+    height: 80vh;
+    border: 1px solid #ececec;
+    border-radius:20px;
+    margin-top: 50px;
+    box-shadow: 7px 10px 6px #dfdfdf;
+    
+}
+.card-sigin{
+    margin-top:-50px;
+   
+}
+
+/* desgin logo*/
+.card-sigin a{
+    margin: -212px auto
+}
+.ht-180{
+    height: 180px;
+}
+.info-logo{
+margin-top: -95px;
+text-align: center;
+font-size: 40px;
+}
+
+
+.info-logo h1{
+    font-size:50px;
+    font-family: "Neue Frutiger Arabic ";
+}
+
+.info-logo h3{
+    margin-top: -66px;
+    margin-bottom: 50px;
+    font-size:20px;
+    color: #5b5d63;
+}
+@media  (min-width: 350px ) and (max-width: 760px){
+.responsive-logo .logo-2 {
+    height: 5rem;
+    margin-top: 13px;
+    margin-right: 2px;
+  }
+}
+  /*----toggle bars*/
+
+ .header-icon {
+    color: #585a60;
+    font-size: 1.9rem;
+    line-height:40px !important;
+  }
+/*---------*/
+.main-signup-header{
+  font-size:26px;
+  /* height:110px; */
+  direction:rtl;
+  text-align:center;
+  border:none;
+
+}
+.main-signup-header h2{
+    color: #d05b74;
+    margin-top: 32px;
+    margin-bottom: 42px;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 24px;
+}
+.main-signup-header  h5 {
+    float: right;
+    margin-bottom: -34px;
+    margin-right: 24px;
+    color: #292325;
+    margin-top: -32px;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+/*---form----*/
+form{
+    direction:rtl
+
+}
+.box-group{
+    display:flex;
+    justify-content: flex-start;
+    margin-right: 20px;
+}
+.box-group i{
+    border-radius: 2px 6px 6px 2px;
+    display: inline-block;
+    width: 32px;
+    height: 37px;
+    background: #FEAC5E;
+    color: #fff;
+    line-height: 37px;;
+    text-align: center;
+    margin-top: 1px;
+}
+.box-label {
+    margin-right: -200px;
+    display: block;
+    font-size: 18px;
+}
+.icon-user{
+    width: 40px;
+    height: 40px;
+    background:#FEAC5E;
+}
+.box-input{
+    margin-bottom: 30px;
+    margin-right: 0px;
+    width: 100%;
+    height: 38px;
+    border: none;
+    outline: none;
+    
+    border-bottom: 1px solid #dfdbdb  !important;
+    border-top: 1px solid #dfdbdb  !important;
+    border-right: 1px solid #dfdbdb  !important;
+    border-left: 1px solid #dfdbdb  !important;
+    box-shadow: 0px 6px 6px #dfdfdf;
+    
+}
+.box-input::placeholder{
+    padding-right: 10px;
+}
+.btn-box{
+    margin-right: 125px;
+    padding: 10px;
+    width: 42%;
+    color:#fff;
+    background: #FEAC5E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #d05b74, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #d05b74, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border:none;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    
+}
+.btn-box:hover{
+    background: -webkit-linear-gradient(to right, #d05b74, #FEAC5E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #d05b74, #FEAC5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.box-signup{
+    direction:rtl;
+    margin-right: -200px;
+    font-size: 15px;
+  }
+.main-signin-footer{
+    direction:rtl;
+    margin-right:20px;
+}
+.box-signup a{
+    color:#d05b74;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/*----card in dashnord----*/
+.bg-primary-gradient {
+    
+    background-image: linear-gradient(45deg,#f7778c,#f93a5a) !important;
+  }
+
+  .bg-danger-gradient {
+    background-image: linear-gradient(270deg,#f7778c,#e882a2) !important;
+  }
+  .bg-success-gradient{
+    background-image: linear-gradient(270deg,#e882a2, #ffb789) !important;
+  }
+  .bg-warning-gradient{
+    background-image: linear-gradient(270deg, #ffb789, #f8a02d) !important;
+  }
+  .mt-200{
+      margin-top:-200px
+  }
+  
+  #back-to-top {
+    background: #f88931;
+  }
+  /*--responsive login page*/
+  
+  
+  @media  (min-width: 320px ) and (max-width: 480px){
+    .card-imge {
+        width: 200px;
+        height: 200px;
+        margin:10px auto 
+    }
+    .main-signup-header h2{
+        font-size:30px;
+        text-align: center;
+    }
+  }

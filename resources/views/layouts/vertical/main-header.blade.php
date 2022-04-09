@@ -3,11 +3,11 @@
 				<div class="container-fluid">
 					<div class="main-header-left ">
 						<div class="responsive-logo">
-							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/logo.png')}}" class="logo-1"
+							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/log-acadime.png')}}" class="logo-1"
 									alt="logo"></a>
 							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/logo-white.png')}}" class="dark-logo-1"
 									alt="logo"></a>
-							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/favicon.png')}}" class="logo-2"
+							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/log-acadime.png')}}" class="logo-2"
 									alt="logo"></a>
 							<a href="{{url('index')}}"><img src="{{asset('assets/img/brand/favicon-white.png')}}" class="dark-logo-2"
 									alt="logo"></a>
