@@ -117,6 +117,7 @@ $permissions = [
 
     'Setting',
     'TimeLine',
+    'pendinglist',
 
 ];
 

@@ -20,8 +20,15 @@ return [
     'homework_percentage'=>'النسبة الئوية للوظائف',
     'presence_percentage'=>'النسبة الئوية للحضور',
     'teachers' => 'المدرسون',
-
-
+    'pending_Course_list'=>'قائمة طلبات التسجيل',
+    'rating' => 'التقييم',
+    'accept' => 'قبول',
+    'reject'=>'رفض',
+    'course_name'=>'اسم الكورس',
+    'student_name' => 'اسم الطالب ',
+    'status' => 'حالة الطلب',
+    'Request_Accept_Successfully' => 'تم قبول طلب التسجيل بنجاح',
+    'Request_Reject_Successfully' => 'تم رفض طلب التسجيل ',
 
 
 
