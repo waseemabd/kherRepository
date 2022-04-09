@@ -23,8 +23,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{trans('courses/courses.courses')}}</h4><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('courses/courses.list')}}</span>
+                <h4 class="content-title mb-0 my-auto">{{trans('courses/courses.pending_Course_list')}}</h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('courses/courses.pending_Course_list')}}</span>
             </div>
         </div>
 
@@ -87,52 +87,30 @@
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
                                 <th class="wd-15p border-bottom-0">{{trans('courses/courses.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.diploma')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.teachers')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('courses/courses.desc')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('students/students.name')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.status')}}</th>
+                                <th class="wd-20p border-bottom-0">{{trans('courses/courses.rating')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach ($courses as $key => $course)
+                            @foreach ($CourseStudent as $key => $course)
                                 <tr id="row-{{$course->id}}">
                                     <td>{{ ++$key }}</td>
-                                    <td>{{ $course->title }}</td>
-                                    <td>{{ $course->diploma->title }}</td>
+                                    <td>{{ $course->course->title }}</td>
+                                    <td>{{ $course->student->username }}</td>
+                                    <td>{{ $course->status }}</td>
+                                    <td>{{ $course->rating }}</td>
                                     <td>
-
-                                        <ul>
-                                            @foreach ($course->users as $key => $teacher)
-                                                <li>{{$teacher->name}}</li>
-                                            @endforeach
-                                        </ul>
-
-                                    </td>
-                                    <td>
-                                        <a href="javascript:;" class="dropdown-item"  data-bs-toggle="modal"
-                                           data-bs-target="#info-sub" data-desc="{{$course->desc}}" data-title="{{$course->title}}"
-                                        >
-                                            {!! substr($course->desc,0,25) !!}...
-                                            <span style="color: blue">
-                                                {{trans('courses/courses.read_more')}}
-                                            </span>
-                                            </a>
-                                    </td>
-
-                                    <td>
-
-                                    <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('course.pending', $course->id) }}" title="{{trans('courses/courses.pending_Course_list')}}"><i
-                                                class="las la-envelope-open" ></i></a>
                                         <a class="btn btn-primary btn-sm"
-                                           href="{{ route('course.edit', $course->id) }}" title="{{trans('general.Edit')}}"><i
+                                           href="{{ route('course.accept', $course->id) }}" title="{{trans('courses/courses.accept')}}"><i
                                                 class="las la-edit" ></i></a>
 
                                         <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                            data-id="{{ $course->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub" title="{{trans('general.Delete')}}"><i
+                                           data-bs-toggle="modal" href="#delete-sub" title="{{trans('courses/courses.reject')}}"><i
                                                 class="las la-trash"></i></a>
                                     </td>
                                 </tr>
@@ -163,37 +141,7 @@
                             </div>
                         </div>
 
-                        <div class="shown-event-ex">
-                            <div
-                                class="modal fade text-start"
-                                id="info-sub"
-                                tabindex="-1"
-                                aria-labelledby="myModalLabel22"
-                                aria-hidden="true"
-                            >
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-
-                                            <h4 class="modal-title" id="myModalLabel22">{{trans('courses/courses.desc_for')}}<span id="d-title"></span></h4>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-
-                                            {{--                        <span class="la la-exclamation-circle fs-60 text-warning"></span>--}}
-                                            <h4 class="modal-title fs-19 font-weight-semi-bold pt-2 pb-1"
-                                                id="d-desc"></h4>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-outline-secondary"
-                                                    data-bs-dismiss="modal">{{trans('general.Cancel')}}</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                       
                     </div>
                 </div>
             </div>

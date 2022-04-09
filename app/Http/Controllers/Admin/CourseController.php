@@ -9,6 +9,7 @@ use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\IDiplomaRepository;
 use App\Http\IRepositories\IUserRepository;
 use App\Models\Course;
+use App\Models\CourseStudent;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -237,4 +238,29 @@ class CourseController extends Controller
             return JsonResponse::respondError($ex->getMessage());
         }
     }
+
+    function pending($id){
+        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
+        return view('admin.courses.pending', compact('CourseStudent'));
+    }
+
+    function accept($id){
+        $CourseStudent=CourseStudent::findOrFail($id);
+        $CourseStudent->status = 1;
+        $CourseStudent->save();
+        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
+        return view('admin.courses.pending', compact('CourseStudent'));
+        // $CourseStudent->update(array('status' => 1));
+    }
+
+    function reject($id){
+        // $CourseStudent=CourseStudent::findOrFail($id);
+        // $CourseStudent->delete();
+        // $CourseStudent->save();
+        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
+        return view('admin.courses.pending', compact('CourseStudent'));
+        // $CourseStudent->update(array('status' => 1));
+    }
+
+
 }

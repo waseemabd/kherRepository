@@ -252,6 +252,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::get('courses/create', [App\Http\Controllers\Admin\CourseController::class, 'create'])->name('course.create');
     Route::post('courses/store', [App\Http\Controllers\Admin\CourseController::class, 'store'])->name('course.store');
     Route::get('courses/edit/{id}', [App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('course.edit');
+    Route::get('courses/pending/{id}', [App\Http\Controllers\Admin\CourseController::class, 'pending'])->name('course.pending');
+    Route::get('courses/accept/{id}', [App\Http\Controllers\Admin\CourseController::class, 'accept'])->name('course.accept');
+    
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
 

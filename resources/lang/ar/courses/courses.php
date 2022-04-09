@@ -20,6 +20,11 @@ return [
     'homework_percentage'=>'النسبة الئوية للوظائف',
     'presence_percentage'=>'النسبة الئوية للحضور',
     'teachers' => 'المدرسون',
+    'pending_Course_list'=>'قائمة طلبات التسجيل',
+    'status' => 'الحالة',
+    'rating' => 'التقييم',
+    'accept' => 'قبول',
+    'reject'=>'رفض',
 
 
 
