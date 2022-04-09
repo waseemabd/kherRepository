@@ -8,8 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Http\IRepositories\ICourseRepository;
 use App\Http\IRepositories\IDiplomaRepository;
 use App\Http\IRepositories\IUserRepository;
+use App\Http\IRepositories\IStudentCourseRegistrationRequestRepository;
 use App\Models\Course;
-use App\Models\CourseStudent;
+use App\Models\StudentCourseRegistrationRequest;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -22,15 +23,18 @@ class CourseController extends Controller
     protected $userRepository;
     protected $diplomaRepository;
     protected $requestData;
+    protected $studentcourseregistrationrequest;
 
 
     public function __construct(ICourseRepository $courseRepository,
                                 IUserRepository $userRepository,
-                                IDiplomaRepository $diplomaRepository)
+                                IDiplomaRepository $diplomaRepository,
+                                IStudentCourseRegistrationRequestRepository $studentcourseregistrationrequest)
     {
         $this->courseRepository = $courseRepository;
         $this->userRepository = $userRepository;
         $this->diplomaRepository = $diplomaRepository;
+        $this->studentcourseregistrationrequest = $studentcourseregistrationrequest;
         $this->requestData = Mapper::toUnderScore(Request()->all());
 //        $this->middleware('permission:courses')->only(['index']);
 //        $this->middleware('permission:create courses')->only(['create']);
@@ -240,27 +244,54 @@ class CourseController extends Controller
     }
 
     function pending($id){
-        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
+        $CourseStudent=$this->studentcourseregistrationrequest->getSubscriptionsByIdAndStatus($id,'Pending');
+        // $CourseStudent = StudentCourseRegistrationRequest::where('course_id',$id)->where('status', 'Pending')->get();
         return view('admin.courses.pending', compact('CourseStudent'));
     }
 
     function accept($id){
-        $CourseStudent=CourseStudent::findOrFail($id);
-        $CourseStudent->status = 1;
-        $CourseStudent->save();
-        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
-        return view('admin.courses.pending', compact('CourseStudent'));
-        // $CourseStudent->update(array('status' => 1));
+        $CourseStudent=$this->studentcourseregistrationrequest->updateSubscriptionsByIdAndStatus($id,'Accept');
+       // $CourseStudent=StudentCourseRegistrationRequest::findOrFail($id);
+        // $CourseStudent->status = 'Accept';
+        // $CourseStudent->save();
+        // $CourseStudent = StudentCourseRegistrationRequest::where('course_id',$id)->where('status', 'Pending')->get();
+        return redirect()->route('course.pending', ['id' => $id])->with('message', trans('courses/courses.Request_Accept_Successfully'));
+        // return view('admin.courses.pending', compact('CourseStudent'));
     }
 
     function reject($id){
-        // $CourseStudent=CourseStudent::findOrFail($id);
-        // $CourseStudent->delete();
+        $CourseStudent=$this->studentcourseregistrationrequest->updateSubscriptionsByIdAndStatus($id,'Reject');
+        // $CourseStudent=StudentCourseRegistrationRequest::findOrFail($id);
+        // $CourseStudent->status = 'Reject';
         // $CourseStudent->save();
-        $CourseStudent = CourseStudent::where('course_id',$id)->where('status', 0)->get();
-        return view('admin.courses.pending', compact('CourseStudent'));
-        // $CourseStudent->update(array('status' => 1));
+        // $CourseStudent = StudentCourseRegistrationRequest::where('course_id',$id)->where('status', 'Pending')->get();
+        return redirect()->route('course.pending' , ['id' => $id])->with('error', trans('courses/courses.Request_Reject_Successfully'));
+        // return view('admin.courses.pending', compact('CourseStudent'));
     }
 
+    function pendinglist(){
+        $CourseStudentPending=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Pending');
+        $CourseStudentAccept=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Accept');
+        $CourseStudentReject=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Reject');
+        // $CourseStudent = StudentCourseRegistrationRequest::where('course_id',$id)->where('status', 'Pending')->get();
+        return view('admin.courses.pendinglist', compact('CourseStudentPending','CourseStudentAccept','CourseStudentReject'));
+    }
 
+    function rejectlist($id){
+        $CourseStudent=$this->studentcourseregistrationrequest->updateSubscriptionsByIdAndStatus($id,'Reject');
+        $CourseStudentPending=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Pending');
+        $CourseStudentAccept=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Accept');
+        $CourseStudentReject=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Reject');
+        return redirect()->route('course.pendinglist' , compact('CourseStudentPending','CourseStudentAccept','CourseStudentReject'))->with('error', trans('courses/courses.Request_Reject_Successfully'));
+        // return view('admin.courses.pending', compact('CourseStudent'));
+    }
+
+    function acceptlist($id){
+        $CourseStudent=$this->studentcourseregistrationrequest->updateSubscriptionsByIdAndStatus($id,'Accept');
+        $CourseStudentPending=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Pending');
+        $CourseStudentAccept=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Accept');
+        $CourseStudentReject=$this->studentcourseregistrationrequest->getSubscriptionsByStatus('Reject');
+        return redirect()->route('course.pendinglist' , compact('CourseStudentPending','CourseStudentAccept','CourseStudentReject'))->with('message', trans('courses/courses.Request_Accept_Successfully'));
+    }
+    
 }

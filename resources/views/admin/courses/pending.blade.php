@@ -74,22 +74,16 @@
         <div class="col-xl-12">
             <div class="card">
 
-                <div class="card-header pb-0">
-                    <div class="d-flex justify-content-between">
-                        <a class="btn btn-primary btn-sm" href="{{ route('course.create') }}">{{trans('general.Add')}}</a>
-                    </div>
-
-                </div>
+               
                 <div class="card-body">
                     <div class="table-responsive userlist-table">
                         <table class="table table-striped table-vcenter text-nowrap mb-0" id="example1">
                             <thead>
                             <tr>
                                 <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.title')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('students/students.name')}}</th>
-                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.status')}}</th>
-                                <th class="wd-20p border-bottom-0">{{trans('courses/courses.rating')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.course_name')}}</th>
+                                <th class="wd-15p border-bottom-0">{{trans('courses/courses.student_name')}} </th>
+                                <th class="wd-15p border-bottom-0"> {{trans('courses/courses.status')}}</th>
                                 <th class="wd-10p border-bottom-0">{{trans('general.Actions')}}</th>
 
                             </tr>
@@ -102,44 +96,22 @@
                                     <td>{{ $course->course->title }}</td>
                                     <td>{{ $course->student->username }}</td>
                                     <td>{{ $course->status }}</td>
-                                    <td>{{ $course->rating }}</td>
                                     <td>
                                         <a class="btn btn-primary btn-sm"
                                            href="{{ route('course.accept', $course->id) }}" title="{{trans('courses/courses.accept')}}"><i
                                                 class="las la-edit" ></i></a>
 
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                           data-id="{{ $course->id }}"
-                                           data-bs-toggle="modal" href="#delete-sub" title="{{trans('courses/courses.reject')}}"><i
-                                                class="las la-trash"></i></a>
+                                                <a class="modal-effect btn btn-sm btn-danger"
+                                           href="{{ route('course.reject', $course->id) }}" title="{{trans('courses/courses.reject')}}"><i
+                                                class="las la-trash" ></i></a>
+
                                     </td>
                                 </tr>
                             @endforeach
                             </tbody>
                         </table>
 
-                        <div class="modal" id="delete-sub">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content modal-content-demo">
-                                    <div class="modal-header">
-                                        <h6 class="modal-title">{{trans('general.Delete')}}</h6><button aria-label="Close" class="close"
-                                                                                               data-bs-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <div class="modal-body">
-                                            <div class="modal-body">
-                                                <p>{{trans('general.delete_warning')}} </p><br>
-
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button class="btn ripple btn-danger" id="delete_btn" type="submit">{{trans('general.Delete')}}</button>
-                                                <button class="btn ripple btn-secondary" data-bs-dismiss="modal" type="button">{{trans('general.Cancel')}}</button>
-                                            </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
+                   
 
                        
                     </div>

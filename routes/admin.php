@@ -249,12 +249,15 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('diplomas/delete/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'destroy'])->name('diploma.destroy');
 
     Route::get('courses', [App\Http\Controllers\Admin\CourseController::class, 'index'])->name('course.index');
+    Route::get('courses/pendinglist', [App\Http\Controllers\Admin\CourseController::class, 'pendingList'])->name('course.pendinglist');
     Route::get('courses/create', [App\Http\Controllers\Admin\CourseController::class, 'create'])->name('course.create');
     Route::post('courses/store', [App\Http\Controllers\Admin\CourseController::class, 'store'])->name('course.store');
     Route::get('courses/edit/{id}', [App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('course.edit');
     Route::get('courses/pending/{id}', [App\Http\Controllers\Admin\CourseController::class, 'pending'])->name('course.pending');
     Route::get('courses/accept/{id}', [App\Http\Controllers\Admin\CourseController::class, 'accept'])->name('course.accept');
-    
+    Route::get('courses/acceptlist/{id}', [App\Http\Controllers\Admin\CourseController::class, 'acceptlist'])->name('course.acceptlist');
+    Route::get('courses/rejectlist/{id}', [App\Http\Controllers\Admin\CourseController::class, 'rejectlist'])->name('course.rejectlist');
+    Route::get('courses/reject/{id}', [App\Http\Controllers\Admin\CourseController::class, 'reject'])->name('course.reject');
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
 
