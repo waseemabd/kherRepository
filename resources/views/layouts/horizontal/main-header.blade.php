@@ -4,10 +4,10 @@
 					<div class="main-header-left ">
 						<a class="animated-arrow hor-toggle horizontal-navtoggle"><span></span></a><!-- sidebar-toggle-->
 						<a class="header-brand" href="{{url('index')}}">
-							<img src="{{asset('assets/img/brand/logo-white.png')}}" class="desktop-dark">
-							<img src="{{asset('assets/img/brand/logo.png')}}" class="desktop-logo">
-							<img src="{{asset('assets/img/brand/favicon.png')}}" class="desktop-logo-1">
-							<img src="{{asset('assets/img/brand/favicon-white.png')}}" class="desktop-logo-dark">
+							<!-- <img src="{{asset('assets/img/brand/logo-white.png')}}" class="desktop-dark"> -->
+							<img src="{{asset('assets/img/brand/log-acadime.png')}}" class="desktop-logo">
+							<!-- <img src="{{asset('assets/img/brand/favicon.png')}}" class="desktop-logo-1"> -->
+						<!-- <img src="{{asset('assets/img/brand/favicon-white.png')}}" class="desktop-logo-dark"> -->
 						</a>
 						<div class="main-header-center  ms-4">
 							<input class="form-control" placeholder="Search for anything..." type="search"><button class="btn"><i class="fe fe-search"></i></button>

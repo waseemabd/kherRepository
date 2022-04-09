@@ -13,7 +13,6 @@
             // take 100% width in responsive also
             dropdownAutoWidth: true,
             width: '100%',
-            placeholder: Lang.get('js_local.Choose_one'),
             dropdownParent: $this.parent()
         });
     });

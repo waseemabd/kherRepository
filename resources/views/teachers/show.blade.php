@@ -50,8 +50,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <a href="{{route('teachers.index')}}" class="content-title mb-0 my-auto">Teachers</a><span
-                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ Show</span>
+               <h4> <a href="{{route('teachers.index')}}" class="content-title mb-0 my-auto">{{trans('Teachers\Teachers.Teachers')}}</a></h4><span
+                    class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Teachers\Teachers.Show')}}</span>
             </div>
         </div>
 
@@ -71,29 +71,29 @@
                             <li class="">
                                 <a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="active"> <span
                                         class="visible-xs"><i
-                                            class="las la-user-circle tx-16 me-1"></i></span> <span
-                                        class="hidden-xs">information</span> </a>
+                                            class="las la-user-circle tx-20 me-1"></i></span> <span
+                                        class="hidden-xs">{{trans('Teachers\Teachers.information')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#courses" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">courses</span> </a>
+                                        class="visible-xs"><i class="fas fa-book-open tx-20 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Teachers\Teachers.courses')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#schedules" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
-                                    <span class="hidden-xs">schedules</span> </a>
+                                        class="visible-xs"><i class="fas fa-calendar-alt tx-20 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Teachers\Teachers.schedules')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#homeworks" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">homeworks</span> </a>
+                                        class="visible-xs"><i class="fas fa-clone tx-20 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Teachers\Teachers.homeworks')}}</span> </a>
                             </li>
 
                             <li class="">
                                 <a href="#surveys" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                                    <span class="hidden-xs">surveys</span> </a>
+                                        class="visible-xs"><i class="fas fa-file-signature tx-20 me-1"></i></span>
+                                    <span class="hidden-xs">{{trans('Teachers\Teachers.surveys')}}</span> </a>
                             </li>
                         </ul>
                     </div>
@@ -101,11 +101,11 @@
                         <div class="tab-pane active" id="profile">
                             <form role="form">
                                 <div class="form-group">
-                                    <label for="FullName">Full Name</label>
+                                    <label for="FullName">{{trans('Teachers\Teachers.Full Name')}}</label>
                                     <input readonly type="text" value="{{$user->name}}" id="FullName" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email">Email</label>
+                                    <label for="Email">{{trans('Teachers\Teachers.email')}}</label>
                                     <input readonly  type="email" value="{{$user->email}}" id="Email"
                                            class="form-control">
                                 </div>
@@ -118,7 +118,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">courses details</h3>
+                                            <h3 class="card-title">{{trans('Teachers\Teachers.courses details')}}</h3>
 
                                         </div>
                                         <div class="card-body">
@@ -139,7 +139,7 @@
 
 
                                                                     <div class="form-group">
-                                                                        <label for="FullName">description</label>
+                                                                        <label for="FullName">{{trans('Teachers\Teachers.description')}}</label>
                                                                         <textarea readonly type="text"  id="FullName" class="form-control">{{ $one->desc }}</textarea>
                                                                     </div>
 
@@ -171,7 +171,7 @@
                                 <div class="col-lg-12">
                                     <div class="card custom-card">
                                         <div class="card-header custom-card-header">
-                                            <h6 class="card-title mb-0">schedules Timeline</h6>
+                                            <h6 class="card-title mb-0">{{trans('Teachers\Teachers.schedules Timeline')}}</h6>
                                         </div>
                                         <div class="card-body">
                                             <div class="vtimeline">
@@ -217,10 +217,11 @@
                                                                   <div class="timeline-footer d-flex align-items-center flex-wrap">
 
                                                                       <span ><i class="fe fe-calendar text-muted me-1"></i>{{$one->date}}</span>
-                                                                      start
-
-                                                                      <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->duration}} minute</span>
-                                                                      duration
+                                                                      {{trans('Teachers\Teachers.start')}}
+                                                                      {{$one->duration}} 
+                                                                      <span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$one->duration}}{{trans('Teachers\Teachers.minute')}} </span>
+                                                                      {{trans('Teachers\Teachers.duration')}} 
+                                                                      {{$one->duration}}
                                                                   </div>
                                                               </div>
                                                           </div>
@@ -240,7 +241,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">teacher homeworks</h3>
+                                            <h3 class="card-title">{{trans('Teachers\Teachers.teacher homeworks')}}</h3>
                                         </div>
                                         <div class="card-body">
                                             <div class="panel-group1" id="accordion11">
@@ -258,13 +259,13 @@
                                                             <div class="panel-body border">
                                                                 <form role="form">
                                                                     <div class="form-group">
-                                                                        <label for="FullName">description</label>
+                                                                        <label for="FullName">{{trans('Teachers\Teachers.description')}}</label>
                                                                         <input readonly type="text" value="{{$one->desc}}" id="FullName" class="form-control">
                                                                     </div>
 
 
                                                                     <div class="form-group">
-                                                                        <label for="AboutMe">File</label>
+                                                                        <label for="AboutMe">{{trans('Teachers\Teachers.File')}}</label>
 
                                                                         <?php $i = 0; ?>
                                                                         <div class="table-responsive mt-15">
@@ -273,9 +274,9 @@
                                                                                 <thead>
                                                                                 <tr class="text-dark">
                                                                                     <th scope="col">#</th>
-                                                                                    <th scope="col">file name</th>
-                                                                                    <th scope="col">created at</th>
-                                                                                    <th scope="col">methods</th>
+                                                                                    <th scope="col">{{trans('Teachers\Teachers.file name')}}</th>
+                                                                                    <th scope="col">{{trans('Teachers\Teachers.created at')}}</th>
+                                                                                    <th scope="col">{{trans('Teachers\Teachers.methods')}}</th>
                                                                                 </tr>
                                                                                 </thead>
                                                                                 <tbody id="list">
@@ -359,7 +360,7 @@
                                 <div class="col-lg-12 col-md-12">
                                     <div class="card overflow-hidden">
                                         <div class="card-header pb-0">
-                                            <h3 class="card-title">surveys details</h3>
+                                            <h3 class="card-title">{{trans('Teachers/Teachers.surveys details')}}</h3>
 
                                         </div>
                                         <!-- <div class="card-body">

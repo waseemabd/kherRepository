@@ -108,17 +108,17 @@
                                                             <td>
 
 
-                                                                <a class="btn btn-outline-primary btn-sm"
+                                                                <a class="btn btn-primary btn-sm"
                                                                    href="{{ route('homework.students.answers', [$homework->id, $student->id]) }}"
                                                                    title="{{trans('general.addMark')}}" >
                                                                      <i class="las la-edit"></i></a>
 
-                                                                <a class="btn btn-outline-success btn-sm"
+                                                                <a class="btn btn-success btn-sm"
                                                                    href="{{ route('homework.View_file_student',['path'=>\App\Models\StudentFile::where('student_id',$student->id)->where('homework_id',$homework->id)->first()->path,'file_id'=>\App\Models\StudentFile::where('student_id',$student->id)->where('homework_id',$homework->id)->first()->id])  }}"
                                                                    role="button"><i class="fas fa-eye"></i>&nbsp;
                                                                 </a>
 
-                                                                <a class="btn btn-outline-info btn-sm"
+                                                                <a class="btn btn-info btn-sm"
                                                                    href="{{ route('homework.download_student',['path'=>\App\Models\StudentFile::where('student_id',$student->id)->where('homework_id',$homework->id)->first()->path,'file_id'=>\App\Models\StudentFile::where('student_id',$student->id)->where('homework_id',$homework->id)->first()->id])  }}"
                                                                    role="button"><i
                                                                         class="fas fa-download"></i>&nbsp;

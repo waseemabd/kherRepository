@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10 fz-13">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
-                                <select name="diploma" required="" class="form-control select2">
+                                <select name="diploma" required="" class="form-control  select2-diploma">
                                     <option >
 {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
                                     </option>
@@ -67,7 +67,7 @@
 
                             <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10 fz-13">{{trans('courses/courses.teachers')}} <span class="tx-danger">*</span></p>
-                                <select name="teachers[]" required="" class="form-control select2" multiple>
+                                <select name="teachers[]" required="" class="form-control select2-teacher" multiple>
                                     <option >
                                         {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
                                     </option>
@@ -85,19 +85,19 @@
                         </div>
 
                         <div class="row row-sm">
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mg-t-30">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.test_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="testPercentage" placeholder="{{trans('courses/courses.test_percentage')}} مثلا 60" required type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mg-t-30">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.homework_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="homeworkPercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 30" required type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mg-t-30">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.presence_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" name="presencePercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 10" required type="text">
@@ -139,6 +139,7 @@
 
     <!--Internal  Select2 js -->
     <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    
 
     <script src="{{asset('assets/js/editors/quill/katex.min.js')}}"></script>
     <script src="{{asset('assets/js/editors/quill/highlight.min.js')}}"></script>
@@ -158,6 +159,8 @@
     <script src="{{asset('assets/js/admin-pages/courses/add.js')}}"></script>
         <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
         <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+        
+
 
 
 @endsection

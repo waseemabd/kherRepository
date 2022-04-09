@@ -4,13 +4,13 @@
 <aside class="app-sidebar sidebar-scroll">
     <div class="main-sidebar-header active">
         <a class="desktop-logo logo-light active" href="{{route('home')}}"><img
-                src="{{asset('assets/img/brand/logo.png')}}" class="main-logo" alt="logo"></a>
+                src="{{asset('assets/img/brand/KhairAcademy_Logo_2-01.png')}}" class="main-logo" alt="logo"></a>
         <a class="desktop-logo logo-dark active" href="{{route('home')}}"><img
-                src="{{asset('assets/img/brand/logo-white.png')}}" class="main-logo dark-theme" alt="logo"></a>
+                src="{{asset('assets/img/brand/KhairAcademy_Logo_2-01.png')}}" class="main-logo dark-theme" alt="logo"></a>
         <a class="logo-icon mobile-logo icon-light active" href="{{route('home')}}"><img
-                src="{{asset('assets/img/brand/favicon.png')}}" class="logo-icon" alt="logo"></a>
+                src="{{asset('assets/img/brand/log-acadime.png')}}" class="logo-icon" alt="logo"></a>
         <a class="logo-icon mobile-logo icon-dark active" href="{{route('home')}}"><img
-                src="{{asset('assets/img/brand/favicon-white.png')}}" class="logo-icon dark-theme" alt="logo"></a>
+                src="{{asset('assets/img/brand/log-acadime.png')}}" class="logo-icon dark-theme" alt="logo"></a>
     </div>
     <div class="main-sidemenu">
         <div class="app-sidebar__user clearfix">
@@ -277,7 +277,7 @@
                             <ul class="slide-menu">
                                 <li><a class="slide-item" href="{{route('teachers.index')}}">{{trans('Update.Teachers menu')}}</a></li>
                                {{-- @if(auth('admin') -> user() ->can('TimeLine')) --}}
-                                <li><a class="slide-item" href="{{url('timeline')}}">Timeline</a></li>
+                                <li><a class="slide-item" href="{{url('timeline')}}">{{trans('Timeline/timeline.Timeline')}}</a></li>
                                {{-- @endif --}}
                             </ul>
                         </li>

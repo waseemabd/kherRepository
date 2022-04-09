@@ -42,40 +42,62 @@
                                     <input class="form-control" value="{{$course->title}}" name="title" placeholder="{{trans('courses/courses.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                <p class="mg-b-10">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
-                                <select name="diploma" required="" class="form-control select2">
-                                    <option >
-                                        {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
-                                    </option>
-                                    @foreach($diplomas as $diploma)
-                                        <option value="{{$diploma->id}}" {{$course->diploma->id == $diploma->id ? 'selected' : ''}}>
-                                            {{$diploma->title}}
-                                        </option>
-                                    @endforeach
+                            
+                        </div>
+                        
+                        <div class="row row-sm mt-2">
 
-                                </select>
-                                @error('diploma')
-                                <p class="validation_error">{{ $message }}</p>
-                                @enderror
-                            </div><!-- col-4 -->
+                                    <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10 fz-13">{{trans('courses/courses.teachers')}} <span class="tx-danger">*</span></p>
+                                        <select name="teachers[]" required="" class="form-control select2" multiple>
+                                            <option >
+                                                {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
+                                            </option>
+                                            @foreach($teachers as $teacher)
+                                                <option value="{{$teacher->id}}" {{in_array($teacher->id, $selectedTeachers) ? 'selected' : ''}}>
+                                                    {{$teacher->name}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                        @error('diploma')
+                                        <p class="validation_error">{{ $message }}</p>
+                                        @enderror
+                                    </div><!-- col-4 -->
+
+                                    <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                        <p class="mg-b-10">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
+                                        <select name="diploma" required="" class="form-control select2">
+                                            <option >
+                                                {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
+                                            </option>
+                                            @foreach($diplomas as $diploma)
+                                                <option value="{{$diploma->id}}" {{$course->diploma->id == $diploma->id ? 'selected' : ''}}>
+                                                    {{$diploma->title}}
+                                                </option>
+                                            @endforeach
+
+                                        </select>
+                                        @error('diploma')
+                                        <p class="validation_error">{{ $message }}</p>
+                                        @enderror
+                                    </div><!-- col-4 -->
                         </div>
 
-
                         <div class="row row-sm">
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mt-5">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.test_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" value="{{$course->testPercentage}}" name="testPercentage" placeholder="{{trans('courses/courses.test_percentage')}} مثلا 60" required type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mt-5">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.homework_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" value="{{$course->homeworkPercentage}}" name="homeworkPercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 30" required type="text">
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-12 mt-5">
+                            <div class="col-lg-4 col-sm-12 mt-5">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label fz-13">{{trans('courses/courses.presence_percentage')}}: <span class="tx-danger">*</span></label>
                                     <input class="form-control" value="{{$course->presencePercentage}}" name="presencePercentage" placeholder="{{trans('courses/courses.homework_percentage')}} مثلا 10" required type="text">
@@ -83,26 +105,7 @@
                             </div>
                         </div>
 
-                        <div class="row row-sm mt-2">
-
-                            <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                <p class="mg-b-10 fz-13">{{trans('courses/courses.teachers')}} <span class="tx-danger">*</span></p>
-                                <select name="teachers[]" required="" class="form-control select2" multiple>
-                                    <option >
-                                        {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
-                                    </option>
-                                    @foreach($teachers as $teacher)
-                                        <option value="{{$teacher->id}}" {{in_array($teacher->id, $selectedTeachers) ? 'selected' : ''}}>
-                                            {{$teacher->name}}
-                                        </option>
-                                    @endforeach
-
-                                </select>
-                                @error('diploma')
-                                <p class="validation_error">{{ $message }}</p>
-                                @enderror
-                            </div><!-- col-4 -->
-                        </div>
+                       
 
                         <div class="row row-sm mt-2">
                             <div class="col-12">

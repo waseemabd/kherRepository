@@ -47,29 +47,25 @@
                           id="lecture_form" data-parsley-validate="">
                         @csrf
                         <div class="row row-sm">
-                            <div class="col-6">
+                            <div class="col-lg-6 col-sm-12">
                                 <div class="form-group mg-b-0">
                                     <label class="form-label">{{trans('lectures/lectures.title')}}: </label>
                                     <input class="form-control" name="title" value="{{$homework->title}}" placeholder="{{trans('lectures/lectures.plc_title')}}" type="text">
                                 </div>
                             </div>
 
+                                <div class="col-lg-6 col-sm-12">
+                                        <div class="form-group mg-b-0">
+                                            <label class="form-label">{{trans('homeworks/homeworks.mark')}}: </label>
+                                            <input class="form-control" value="{{$homework->mark}}" name="mark"  required="" type="text">
+                                        </div>
+                                    </div>
 
-                        </div>
-                        <br>
-
-                        <div class="row row-sm">
-                            <div class="col-6">
-                                <div class="form-group mg-b-0">
-                                    <label class="form-label">{{trans('homeworks/homeworks.mark')}}: </label>
-                                    <input class="form-control" value="{{$homework->mark}}" name="mark"  required="" type="text">
-                                </div>
-                            </div>
                         </div>
                              <br>
 
                         <div class="row row-sm mt-2">
-                            <div class="col-12">
+                            <div class="col-6 col-sm-12">
                                 <div class="form-group mg-b-0">
                                     <label
                                         class="form-label">{{trans('lectures/lectures.desc')}} </label>
@@ -84,7 +80,8 @@
                                     </div>
                                 </div>
                             </div>
-                                   <br>
+                        </div>
+                         <br>
                             <div class="row row-sm mt-2">
                                 <div class="col-lg-6 mg-t-20 mg-lg-t-0">
                                     <p class="mg-b-10">{{trans('Homework/Homework.teachers')}}</p>
@@ -97,17 +94,14 @@
 
                                 </div><!-- col-4 -->
 
-                            </div>
-                                 <br>
-                            <div class="row row-sm mt-2">
-                                <div class="col-lg-6 mg-t-20 mg-lg-t-0">
-                                    <label class="form-label">{{trans('Homework/Homework.lectures')}}</label>
-                                        <select name="lecture_id"  class="form-control select2">
-                                            <option></option>
-                                            @foreach($lectures as $one)
-                                                <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="col-lg-6 mg-t-20 mg-lg-t-0">
+                                        <label class="form-label label-mar-b">{{trans('Homework/Homework.lectures')}}</label>
+                                            <select name="lecture_id"  class="form-control select2">
+                                                <option></option>
+                                                @foreach($lectures as $one)
+                                                    <option value="{{$one->id}}" {{$homework->lecture->id == $one->id ? 'selected': ''}}>{{$one->title}}</option>
+                                                @endforeach
+                                            </select>
 
                                     </div><!-- col-4 -->
                             </div>

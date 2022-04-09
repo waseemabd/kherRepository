@@ -75,7 +75,7 @@
             <div class="card">
             <div class="card-header pb-0">
                     
-                    <div class="d-flex justify-content-between mr">
+                    <div class="d-flex justify-content-between mr-19">
                         <a class="btn btn-primary btn-sm" href="{{ route('teacher.create') }}">{{trans('Teachers/Teachers.Add')}}</a>
                     </div>
                         

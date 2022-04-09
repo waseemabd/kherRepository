@@ -71,7 +71,7 @@
         <div class="col-xl-12">
             <div class="card">
 
-                <div class="card-header pb-0">
+                <div class="card-header pb-0 mr10">
                     @if(auth('admin') -> user() ->can('create Homework'))
                     <div class="d-flex justify-content-between">
                         <a class="btn btn-primary btn-sm"
@@ -128,12 +128,6 @@
                                                 class="las la-edit"></i></a>
                                             @endif
 
-
-                                            @if(auth('admin') -> user() ->can('show Homework'))
-                                        <a class="btn btn-primary btn-sm"
-                                           href="{{ route('homework.show', $homework->id) }}"><i
-                                                class="las la-eye"></i></a>
-                                            @endif
                                             <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
                                                href="{{ route('homework.students', $homework->id) }}"><i
                                                     class="las la-graduation-cap"></i></a>

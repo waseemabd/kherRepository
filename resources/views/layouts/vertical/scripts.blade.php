@@ -76,3 +76,4 @@
 		<!-- custom js -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>
 		<script src="{{asset('assets/js/translate.js')}}"></script>
+		<script src="{{asset('assets/js/select2.js')}}"></script>

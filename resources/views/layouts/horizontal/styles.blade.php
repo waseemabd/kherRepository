@@ -27,3 +27,4 @@
 
 		<!--- Animations css-->
 		<link href="{{asset('assets/css-rtl/animate.css')}}" rel="stylesheet">
+		<link href="{{asset('assets/css-rtl/style2.css')}}" rel="stylesheet">

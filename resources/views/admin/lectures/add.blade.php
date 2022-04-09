@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-sm-12 col-lg-6 col-md-12">
                                 <p class="mg-b-10 mr-3">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></p>
-                                <select name="type" id="type" required="" class="form-control select2 ">
+                                <select name="type" id="type" required="" class="form-control  select2-type">
                                     <option label="{{trans('lectures/lectures.sel_type')}}">
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
@@ -224,7 +224,7 @@
 
     <!--Internal  Select2 js -->
 {{--    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>--}}
-
+    
     <script src="{{asset('assets/js/editors/quill/katex.min.js')}}"></script>
     <script src="{{asset('assets/js/editors/quill/highlight.min.js')}}"></script>
     <script src="{{asset('assets/js/editors/quill/quill.min.js')}}"></script>
@@ -280,11 +280,12 @@
 
     <!--Internal  Form-elements js-->
     <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
-    <script src="{{asset('assets/js/select2.js')}}"></script>
+    
 
     <!--Internal Sumoselect js-->
     <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
 
+    <script src="{{asset('assets/js/select2.js')}}"></script>
 
 
 @endsection

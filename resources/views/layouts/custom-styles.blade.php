@@ -21,17 +21,17 @@
 		<link href="{{asset('assets/css-rtl/style.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css-rtl/boxed.css')}}" rel="stylesheet">
 		<link href="{{asset('assets/css-rtl/dark-boxed.css')}}" rel="stylesheet">
-		<!-- <link href="{{asset('assets/css-rtl/style2.css')}}" rel="stylesheet"> -->
-
+		
 		<!--- Dark-mode css --->
 		<link href="{{asset('assets/css-rtl/style-dark.css')}}" rel="stylesheet">
-
+		
 		<!---Skinmodes css-->
 		<link href="{{asset('assets/css-rtl/skin-modes.css')}}" rel="stylesheet" />
-
-
-
+		
+		
+		
 		@yield('styles')
-
+		
 		<!--- Animations css-->
 		<link href="{{asset('assets/css/animate.css')}}" rel="stylesheet">
+		<link href="{{asset('assets/css-rtl/style2.css')}}" rel="stylesheet">

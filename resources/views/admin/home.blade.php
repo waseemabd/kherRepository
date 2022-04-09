@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.diplomas_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.diplomas_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.courses_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.courses_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.teachers_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.teachers_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.active_students_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.active_students_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.student_request_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.student_request_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -167,7 +167,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.course_request_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.course_request_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
@@ -183,7 +183,7 @@
 {{--            <div class="card overflow-hidden sales-card bg-success-gradient">--}}
 {{--                <div class="ps-3 pt-3 pe-3 pb-2 pt-0">--}}
 {{--                    <div class="">--}}
-{{--                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.teachers_num')}}</h6>--}}
+{{--                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.teachers_num')}}</h6>--}}
 {{--                    </div>--}}
 {{--                    <div class="pb-0 mt-0">--}}
 {{--                        <div class="d-flex">--}}
@@ -210,7 +210,7 @@
                         </div>
                     </div>
                     <div class="">
-                        <h6 class="mb-3 tx-12 text-white">{{trans('dashboard/dashboard.user_num')}}</h6>
+                        <h6 class="mb-3 tx-22 text-white">{{trans('dashboard/dashboard.user_num')}}</h6>
                     </div>
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
