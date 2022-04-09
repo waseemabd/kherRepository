@@ -59,12 +59,14 @@
                     <div class="row mg-b-20">
                         <div class="parsley-input col-md-6" id="fnWrapper">
                             <label>{{trans('Users/user.user name')}}: </label>
-                            {!! Form::text('name', null, array('class' => 'form-control','required')) !!}
+                            <input class="form-control" name="name"  value="{{$user->name}} " type="text">
+
                         </div>
 
                         <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                             <label>{{trans('Users/user.email')}}: </label>
-                            {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
+                            <input class="form-control" name="email"  value="{{$user->email}} " type="text">
+
                         </div>
                     </div>
 
@@ -73,12 +75,14 @@
                 <div class="row mg-b-20">
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                         <label>{{trans('Users/user.password')}}: </label>
-                        {!! Form::password('password', array('class' => 'form-control',)) !!}
+                        <input class="form-control" name="password"  value="" type="password">
+
                     </div>
 
                     <div class="parsley-input col-md-6 mg-t-20 mg-md-t-0" id="lnWrapper">
                         <label>{{trans('Users/user.confirm password')}}: </label>
-                        {!! Form::password('confirm-password', array('class' => 'form-control',)) !!}
+                        <input class="form-control" name="confirm-password"  value="" type="password">
+
                     </div>
                 </div>
 
