@@ -75,5 +75,6 @@ return [
     'edu_content' => 'Educational Content',
     'general' => 'general',
 
+    'kher_academy' => 'Kher Academy',
 
 ];

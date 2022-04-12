@@ -12,7 +12,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
 		<!-- Title -->
-		<title> Valex – Laravel Admin & Dashboard Template </title>
+		<title> {{ trans('general.kher_academy') }} </title>
 
         <!-- styles -->
         @include('layouts.vertical.styles')
