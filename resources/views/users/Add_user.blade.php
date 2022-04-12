@@ -98,7 +98,7 @@
                     <div class="row row-sm mg-b-20">
                         <div class="col-lg-6 col-md-12">
                             <label class="form-label">{{trans('Users/user.status')}}</label>
-                            <select name="Status" id="select-beast" class="form-control  nice-select  custom-select mg-b-30 select2">
+                            <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
                                 <option value="1">{{trans('Users/user.Active')}}</option>
                                 <option value="0">{{trans('Users/user.Inactive')}}</option>
                             </select>
@@ -106,7 +106,13 @@
                         <div class="col-xs-12 col-md-12 col-lg-6 ">
                             <div class="form-group">
                                 <label class="form-label ">{{trans('Users/user.user role')}}  <span class="tx-danger">*</span></label>
-                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple', 'required' )) !!}
+                                <select name="roles_name[]" multiple class="form-control  select2 ">
+                                    @foreach($roles as $role)
+                                    <option value="{{$role}}">{{$role}}</option>
+                                    @endforeach
+                                </select>
+{{--                                {!! Form::select('roles_name[]', $roles,[], array('class' => 'form-control select2','multiple'))--}}
+{{--                           !!}--}}
                             </div>
                         </div>
                     </div>
@@ -148,11 +154,6 @@
     <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
     <script src="{{asset('assets/js/form-elements.js')}}"></script>
 
-    <!-- Internal Data tables -->
-{{--    <script src="{{asset('assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/datatables.min.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/js/dataTables.bootstrap5.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/plugins/datatable/js/dataTables.buttons.min.js')}}"></script>--}}
     <script src="{{asset('assets/plugins/datatable/js/buttons.bootstrap5.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/jszip.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/js/buttons.html5.min.js')}}"></script>
@@ -160,13 +161,22 @@
     <script src="{{asset('assets/plugins/datatable/js/buttons.colVis.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/pdfmake/pdfmake.min.js')}}"></script>
     <script src="{{asset('assets/plugins/datatable/pdfmake/vfs_fonts.js')}}"></script>
+    <script src="{{asset('assets/js/select2.js')}}"></script>
     <script>
         $('.select2').select2();
     </script>
-{{--    <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>--}}
-{{--    <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>--}}
 
-    <!--Internal  Datatable js -->
-{{--    <script src="{{asset('assets/js/table-data.js')}}"></script>--}}
+
+
+
+
+    <script src="{{asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js')}}"></script>
+    <script src="{{asset('assets/plugins/spectrum-colorpicker/spectrum.js')}}"></script>
+    <script src="{{asset('assets/plugins/select2/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js')}}"></script>
+    <script src="{{asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js')}}"></script>
+
+
 
 @endsection

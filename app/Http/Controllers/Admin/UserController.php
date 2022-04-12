@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -119,7 +120,7 @@ class UserController extends Controller
 
             $this->userRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -158,7 +159,7 @@ class UserController extends Controller
             }
             return redirect()->route('users.index')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return redirect()->route('users.index')->with('error', $ex->getMessage());
 
         }

@@ -32,6 +32,7 @@ class UserRepository extends BaseRepository implements IUserRepository
     public function createUser()
     {
         $roles = Role::pluck('name','name')->all();
+
         return view('users.Add_user',compact('roles'));
     }
 
