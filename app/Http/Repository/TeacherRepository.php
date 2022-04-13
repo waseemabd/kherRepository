@@ -18,7 +18,7 @@ class TeacherRepository extends BaseRepository implements ITeacherRepository
     {
 
         $data = User::where('role',2)->orderBy('id','DESC')->paginate(5);
-        return view('teachers.index',compact('data'))
+        return view('admin.teachers.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
 
     }

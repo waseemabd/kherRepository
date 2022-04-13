@@ -61,13 +61,13 @@ class UserController extends Controller
     {
 
         $user = $this->userRepository->showUser($id);
-        return view('users.show',compact('user'));
+        return view('admin.users.show',compact('user'));
     }
 
     public function edit($id)
     {
         $data= $this->userRepository->editUser($id);
-        return view('users.edit',$data);
+        return view('admin.users.edit',$data);
 
     }
 

@@ -25,7 +25,7 @@ class UserRepository extends BaseRepository implements IUserRepository
     public function getAllUsers($request)
     {
         $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.show_users',compact('data'))
+        return view('admin.users.show_users',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -33,7 +33,7 @@ class UserRepository extends BaseRepository implements IUserRepository
     {
         $roles = Role::pluck('name','name')->all();
 
-        return view('users.Add_user',compact('roles'));
+        return view('admin.users.Add_user',compact('roles'));
     }
 
     public function storeUser($request)

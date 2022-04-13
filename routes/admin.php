@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Livewire\Accordion;
 use App\Http\Livewire\Alerts;
 use App\Http\Livewire\Avatar;
@@ -105,7 +106,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('user/test', function () {
+    return view('user.about');
+});
 Route::get('/', function () {
     return view('livewire.index');
 });
@@ -428,9 +431,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
     Route::post('updateSettingContact', [App\Http\Controllers\Admin\SettingController::class, 'updateContacts'])->name('settings.contact.update');
     Route::post('updateSettingImages', [App\Http\Controllers\Admin\SettingController::class, 'updateImages'])->name('settings.images.update');
 
-    Route::get('my-notifications', [\App\Http\Controllers\Admin\NotificationController::class, 'getNotificationsForAdmin'])->name('admin-my-notifications');
-    Route::get('unread-notification-num', [\App\Http\Controllers\Admin\NotificationController::class, 'getNumOfUnReadNotification'])->name('admin-ajax-unread-notification-num');
-    Route::get('show-notification-brief', [\App\Http\Controllers\Admin\NotificationController::class, 'getNotificationsBriefly'])->name('admin-ajax-get-notification-brief');
+    Route::get('my-notifications', [NotificationController::class, 'getNotificationsForAdmin'])->name('admin-my-notifications');
+    Route::get('unread-notification-num', [NotificationController::class, 'getNumOfUnReadNotification'])->name('admin-ajax-unread-notification-num');
+    Route::get('show-notification-brief', [NotificationController::class, 'getNotificationsBriefly'])->name('admin-ajax-get-notification-brief');
 
 
 });

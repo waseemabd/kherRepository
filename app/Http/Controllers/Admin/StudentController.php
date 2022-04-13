@@ -41,14 +41,14 @@ class StudentController extends Controller
     public function index()
     {
         $students= $this->studentRepository->getStudents();
-        return view('students.index',compact('students'));
+        return view('admin.students.index',compact('students'));
     }
 
 
     public function create()
     {
         $certificate= $this->studentRepository->createStudent();
-        return view('students.create',compact('certificate'));
+        return view('admin.students.create',compact('certificate'));
     }
 
 
@@ -62,14 +62,14 @@ class StudentController extends Controller
     public function show($id)
     {
         $student = $this->studentRepository->ShowStudent($id);
-        return view('students.show',compact('student'));
+        return view('admin.students.show',compact('student'));
     }
 
     public function edit($id)
     {
         $data=  $this->studentRepository->editStudent($id);
 
-        return view('students.edit',$data);
+        return view('admin.students.edit',$data);
     }
 
     public function update(StudentUpdateRequest $input, $id)
@@ -113,7 +113,7 @@ class StudentController extends Controller
 
             $this->studentRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -127,10 +127,10 @@ class StudentController extends Controller
         try {
 
             $students= $this->studentRepository->getStudentByStatus(0);
-            return view('students.pending_students',compact('students'));
+            return view('admin.students.pending_students',compact('students'));
 
-        } catch (\Exception $exception) {
-            throw new \Exception('common_msg.' . trans($exception->getMessage()));
+        } catch (Exception $exception) {
+            throw new Exception('common_msg.' . trans($exception->getMessage()));
         }
 
 
@@ -162,7 +162,7 @@ class StudentController extends Controller
             }
             return JsonResponse::respondError($validator->errors()->all());
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -190,7 +190,7 @@ class StudentController extends Controller
         try {
 
             $student=$this->studentRepository->find($id);
-            return view('students.result',compact('student'));
+            return view('admin.students.result',compact('student'));
         } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
@@ -231,7 +231,7 @@ class StudentController extends Controller
             }
             return redirect()->route('students.index')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return redirect()->route('students.index')->with('error', $ex->getMessage());
 
         }

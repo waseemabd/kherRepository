@@ -107,123 +107,21 @@ use App\Http\Controllers\FullCalenderController;
 |
 */
 
-Route::get('/', function () {
-    return view('livewire.index');
-});
-Route::get('accordion', Accordion::class);
-Route::get('alerts', Alerts::class);
-Route::get('avatar', Avatar::class);
-Route::get('background', Background::class);
-Route::get('badge', Badge::class);
-Route::get('blog', Blog::class);
-Route::get('border', Border::class);
-Route::get('breadcrumbs', Breadcrumbs::class);
-Route::get('buttons', Buttons::class);
-// Route::get('calendar', Calendar::class)->name('calendar');
-Route::get('cards', Cards::class);
-Route::get('carousel', Carousel::class);
-Route::get('chart-chartjs', ChartChartjs::class);
-Route::get('chart-echart', ChartEchart::class);
-Route::get('chart-flot', ChartFlot::class);
-Route::get('chart-morris', ChartMorris::class);
-Route::get('chart-peity', ChartPeity::class);
-Route::get('chart-sparkline', ChartSparkline::class);
-Route::get('chat', Chat::class);
-Route::get('collapse', Collapse::class);
-Route::get('contacts', Contacts::class);
-Route::get('counters', Counters::class);
-Route::get('display', Display::class);
-Route::get('draggablecards', Draggablecards::class);
-Route::get('dropdown', Dropdown::class);
-Route::get('editprofile', Editprofile::class);
-Route::get('emptypage', Emptypage::class);
-Route::get('extras', Extras::class);
-Route::get('faq', Faq::class);
-Route::get('flex', Flex::class);
-Route::get('forgot', Forgot::class);
-Route::get('form-advanced', FormAdvanced::class);
-Route::get('form-editor', FormEditor::class);
-Route::get('form-elements', FormElements::class);
-Route::get('form-layouts', FormLayouts::class);
-Route::get('form-validation', FormValidation::class);
-Route::get('form-wizards', FormWizards::class);
-Route::get('gallery', Gallery::class);
-Route::get('height', Height::class);
-Route::get('icons', Icons::class);
-Route::get('image-compare', ImageCompare::class);
-Route::get('images', Images::class);
-Route::get('index', Index::class);
-Route::get('invoice', Invoice::class);
-Route::get('list-group', ListGroup::class);
-Route::get('lockscreen', Lockscreen::class);
-Route::get('mail', Mail::class);
-Route::get('mail-compose', MailCompose::class);
-Route::get('mail-read', MailRead::class);
-Route::get('mail-settings', MailSettings::class);
-Route::get('map-leaflet', MapLeaflet::class);
-Route::get('map-vector', MapVector::class);
-Route::get('margin', Margin::class);
-Route::get('media-object', MediaObject::class);
-Route::get('modals', Modals::class);
-Route::get('navigation', Navigation::class);
-Route::get('notification', Notification::class);
-Route::get('padding', Padding::class);
-Route::get('pagination', Pagination::class);
-Route::get('popover', Popover::class);
-Route::get('position', Position::class);
-Route::get('pricing', Pricing::class);
-Route::get('product-cart', ProductCart::class);
-Route::get('product-details', ProductDetails::class);
-Route::get('products', Products::class);
-Route::get('profile', Profile::class);
-Route::get('progress', Progress::class);
-Route::get('rangeslider', Rangeslider::class);
-Route::get('rating', Rating::class);
-Route::get('reset', Reset::class);
-Route::get('search', Search::class);
-Route::get('signin', Signin::class);
-Route::get('signup', Signup::class);
-Route::get('spinners', Spinners::class);
-Route::get('sweet-alert', SweetAlert::class);
-Route::get('table-basic', TableBasic::class);
-Route::get('table-data', TableData::class);
-Route::get('tabs', Tabs::class);
-Route::get('tags', Tags::class);
-Route::get('thumbnails', Thumbnails::class);
-Route::get('timeline', Timeline::class);
-Route::get('toast', Toast::class);
-Route::get('todotask', Todotask::class);
-Route::get('tooltip', Tooltip::class);
-Route::get('treeview', Treeview::class);
-Route::get('typography', Typography::class);
-Route::get('underconstruction', Underconstruction::class);
-Route::get('userlist', Userlist::class);
-Route::get('widget-notification', WidgetNotification::class);
-Route::get('widgets', Widgets::class);
-Route::get('width', Width::class);
-Route::get('error500', Error500::class);
-Route::get('error404', Error404::class);
-Auth::routes();
 
+Route::group(['prefix' => 'user'], function () {
 
-Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
-});
+    Route::get('/home', function () {
+        return view('user.home');
+    });
+    Route::get('/login', function () {
+        return view('user.login');
+    });
+    Route::get('/aboutUs', function () {
+        return view('user.about');
+    });
 
-Route::group(['middleware' => 'guest:admin'], function () {
-    Route::get('admin/login', [App\Http\Controllers\Admin\LoginController::class, 'getLogin'])->name('admin.getLogin');
-    Route::post('admin/login',  [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
+    Route::get('/courses', function () {
+        return view('user.course');
+    });
 
 });
-
-// Route::get('/show-event-calendar', [EventController::class, 'index']);
-// Route::post('/manage-events', [EventController::class, 'manageEvents']);
-// Route::get('calendar',  [EventController::class, 'render']);
-Route::get('calendar/index/{id}', [CalendarController::class, 'index'])->name('calendar.index');
-Route::post('calendar', [CalendarController::class, 'store'])->name('calendar.store');
-Route::patch('calendar/update/{id}', [CalendarController::class, 'update'])->name('calendar.update');
-Route::delete('calendar/destroy/{id}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
-Route::get('full_calender', [FullCalenderController::class, 'index']);
-
-Route::post('full_calender/action', [FullCalenderController::class, 'action']);

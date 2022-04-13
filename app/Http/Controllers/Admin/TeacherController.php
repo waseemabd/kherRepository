@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -50,13 +51,13 @@ class TeacherController extends Controller
     public function show($id)
     {
         $user = $this->userRepository->showUser($id);
-        return view('teachers.show', compact('user'));
+        return view('admin.teachers.show', compact('user'));
     }
 
     public function edit($id)
     {
         $data = $this->userRepository->editUser($id);
-        return view('teachers.edit', $data);
+        return view('admin.teachers.edit', $data);
     }
 
     public function update(UserUpdateRequest $request, $id)
@@ -106,7 +107,7 @@ class TeacherController extends Controller
 
             $this->teacherRepository->delete($id);
             return JsonResponse::respondSuccess(trans('common_msg.' . JsonResponse::MSG_DELETED_SUCCESSFULLY));
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return JsonResponse::respondError($ex->getMessage());
         }
 
@@ -118,7 +119,7 @@ class TeacherController extends Controller
     public function create()
     {
         $certificate = $this->userRepository->cre();
-        return view('students.create', compact('certificate'));
+        return view('admin.students.create', compact('certificate'));
     }
 
 
@@ -155,7 +156,7 @@ class TeacherController extends Controller
             }
             return redirect()->route('teachers.index')->with('error', trans('general.Operation_Failed'));
 
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return redirect()->route('teachers.index')->with('error', $ex->getMessage());
 
         }
