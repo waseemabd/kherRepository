@@ -42,6 +42,8 @@
 <script>
     var isRtl =true;
 
+    Lang.setLocale('ar');
+
 
     @if(Session::has('message'))
     setTimeout(function () {

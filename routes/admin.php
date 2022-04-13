@@ -212,7 +212,7 @@ Auth::routes();
 
 
 
-Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
+Route::group(['prefix' => 'admin','middleware' => ['auth:admin' , 'localization']], function () {
     Route::get('/home', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('home');
     Route::get('logout', [App\Http\Controllers\Admin\LoginController::class, 'logout'])->name('admin.logout');
 
@@ -438,7 +438,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth:admin'], function () {
 
 });
 
-Route::group(['middleware' => 'guest:admin'], function () {
+Route::group(['middleware' => ['guest:admin', 'localization']], function () {
     Route::get('admin/login', [App\Http\Controllers\Admin\LoginController::class, 'getLogin'])->name('admin.getLogin');
     Route::post('admin/login',  [App\Http\Controllers\Admin\LoginController::class, 'login'])->name('admin.login');
 

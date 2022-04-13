@@ -48,6 +48,5 @@ return[
 
     'Teacher_Activated_Successfully' => 'تم تفعيل حساب المدرس بنجاح',
     'Teacher_Blocked_Successfully' => 'تم إلغاء تفعيل حساب المدرس بنجاح',
-
-
+    'Timeline' => 'البرنامج الزمني',
 ];
