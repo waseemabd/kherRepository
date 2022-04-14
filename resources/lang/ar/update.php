@@ -6,7 +6,7 @@ return [
     'Index' => 'الفهرس',
     'General' => 'عام',
     'Teachers' => 'المدرسين',
-    'Teachers menu' => 'قائمة المدرسن',
+    'Teachers menu' => 'قائمة المدرسين',
     'Blogs' => 'المدونات',
     'blogs menu' => 'قائمة المدونات ',
     'Students' => 'الطلاب',

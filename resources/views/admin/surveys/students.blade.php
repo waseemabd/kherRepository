@@ -95,10 +95,11 @@
                                                             <td>
 
 
-                                                                <a class="btn btn-primary btn-sm"
+                                                                <a class="btn btn-warning btn-sm"
                                                                    title="{{trans('general.Answers')}}"
-                                                                   href="{{ route('survey.students.answers', [$survey->id, $student->id]) }}"><i
-                                                                        class="las la-school"></i></a>
+                                                                   href="{{ route('survey.students.answers', [$survey->id, $student->id]) }}">
+                                                                   <i class="fas fa-edit"></i>
+                                                                       </a>
 
                                                             </td>
                                                         </tr>

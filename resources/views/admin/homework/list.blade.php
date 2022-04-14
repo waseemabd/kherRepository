@@ -137,8 +137,8 @@
                                         @if(auth('admin') -> user() ->can('student Homework'))
 
                                             <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
-                                               href="{{ route('homework.students', $homework->id) }}"><i
-                                                    class="las la-graduation-cap"></i></a>
+                                               href="{{ route('homework.students', $homework->id) }}">
+                                               <i class="fas fa-user-graduate"></i></a>
                                         @endif
 
                                         @if(auth('admin') -> user() ->can('delete Homework'))

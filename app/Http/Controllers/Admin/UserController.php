@@ -30,7 +30,7 @@ class UserController extends Controller
         $this->requestData = Mapper::toUnderScore(Request()->all());
 
 
-        $this->middleware('permission:list user')->only(['index']);
+        $this->middleware('permission:list users')->only(['index']);
         $this->middleware('permission:create user')->only(['create']);
         $this->middleware('permission:update user')->only(['edit']);
         $this->middleware('permission:show user')->only(['show']);

@@ -29,7 +29,12 @@ return [
     'status' => 'حالة الطلب',
     'Request_Accept_Successfully' => 'تم قبول طلب التسجيل بنجاح',
     'Request_Reject_Successfully' => 'تم رفض طلب التسجيل ',
-
+    'Pending' => 'تعليق',
+    'Accept' => 'قبول',
+    'Reject'=> 'رفض',
+    'Pending Requests'=> 'الطلبات المعلقة',
+    'Accepted Requests'=> 'الطلبات المقبولة',
+    'Rejected Requests'=> 'الطلبات المرفوضة',
 
 
 ];

@@ -52,8 +52,9 @@
                                     <input class="form-control mt-10" name="title" placeholder="{{trans('surveys/surveys.plc_title')}}" required="" type="text">
                                 </div>
                             </div>
-                            
+                           
                             <div class=" col-sm-12 col-md-12 col-lg-12  mg-t-20 mg-lg-t-0">
+                            
                                 <p class="mg-b-10">{{trans('surveys/surveys.type')}} <span class="tx-danger">*</span></p>
                                 <select name="type" id="type" required="" class="form-control select2">
                                     <option></option>
@@ -63,20 +64,23 @@
                                     <option value="1">
                                         {{trans('surveys/surveys.course')}}
                                     </option>
-
+                                
                                 </select>
                                 @error('type')
                                 <p class="validation_error">{{ $message }}</p>
                                 @enderror
                             </div><!-- col-4 -->
-
+                           
                         </div>
-
+                      
                         <div class="row row-sm mt-2" id="course_div">
+                             @error('course')
+                                <p class="validation_error">{{ $message }}</p>
+                                @enderror
                             <div class=" col-sm-12 col-md-12 col-lg-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('surveys/surveys.course')}} <span class="tx-danger">*</span></p>
                               
-                                <select name="course" id="course_sel" class="form-control select2">
+                                <select name="course" id="course_sel" class="form-control select2 " placeholder=" ">
                                     <option >
                                         {{--                                        {{trans('surveys/surveys.sel_diploma')}}--}}
                                     </option>
@@ -85,13 +89,11 @@
                                             {{$course->title}}
                                         </option>
                                     @endforeach
-                                    @error('course')
-                                <p class="validation_error">{{ $message }}</p>
-                                @enderror
+                              
                                 </select>
                                
                             </div><!-- col-4 -->
-
+                          
                         </div>
 
                          <div class="row row-sm mt-2">

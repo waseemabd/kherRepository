@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-lg-6 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10 fz-13">{{trans('courses/courses.diploma')}} <span class="tx-danger">*</span></p>
-                                <select name="diploma" required="" class="form-control  select2-diploma">
+                                <select name="diploma" required="" class="form-control   select2-type">
                                     <option >
 {{--                                        {{trans('courses/courses.sel_diploma')}}--}}
                                     </option>

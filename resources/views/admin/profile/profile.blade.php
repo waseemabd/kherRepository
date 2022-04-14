@@ -44,8 +44,8 @@
 				<div class="breadcrumb-header justify-content-between">
 					<div class="my-auto">
 						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">User</h4><span
-								class="text-muted mt-1 tx-13 ms-2 mb-0">/ Profile</span>
+							<h4 class="content-title mb-0 my-auto">{{trans('Profile/profile.User')}}</h4><span
+								class="text-muted mt-1 tx-13 ms-2 mb-0">/ {{trans('Profile/profile.Profile')}} </span>
 						</div>
 					</div>
 				</div>
@@ -82,7 +82,7 @@
                                                         <div class="media-icon bg-primary-transparent text-primary">
                                                         </div>
                                                         <div class="media-body">
-                                                            <span>Bithday</span>
+                                                            <span>{{trans('Profile/profile.Bithday')}}</span>
                                                             <div>
                                                                 {{$user->profile->birthday}}
                                                             </div>
@@ -92,7 +92,7 @@
                                                         <div class="media-icon bg-primary-transparent text-primary">
                                                         </div>
                                                         <div class="media-body">
-                                                            <span>Role</span>
+                                                            <span>{{trans('Profile/profile.Role')}}</span>
                                                             <div>
                                                                 {{App\Helpers\General::roleUser(auth('admin') -> user() -> role) }}
                                                             </div>
@@ -114,7 +114,7 @@
                                                             <i class="icon ion-md-phone-portrait"></i>
                                                         </div>
                                                         <div class="media-body">
-                                                            <span>Mobile</span>
+                                                            <span>{{trans('Profile/profile.Mobile')}}</span>
                                                             <div>
                                                                {{$user->profile->phone}}
                                                             </div>
@@ -125,7 +125,7 @@
                                                             <i class="icon ion-md-locate"></i>
                                                         </div>
                                                         <div class="media-body">
-                                                            <span>Current Address</span>
+                                                            <span>{{trans('Profile/profile.Current Address')}}</span>
                                                             <div>
                                                                 {{$user->profile->address}}
                                                             </div>
@@ -146,17 +146,17 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                    <div class="mb-4 main-content-label">Personal Information</div>
+                                    <div class="mb-4 main-content-label">{{trans('Profile/profile.Personal Information')}}</div>
                                     <form action="{{route('profile.update',$user->id)}}" method="POST" class="form-horizontal"
                                           enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">User Name</label>
+                                                    <label class="form-label">{{trans('Profile/profile.User Name')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="name" class="form-control"  placeholder="User Name" value="{{$user->name}}">
+                                                    <input type="text" name="name" class="form-control"  placeholder="{{trans('Profile/profile.User Name')}}" value="{{$user->name}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -164,62 +164,62 @@
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">password</label>
+                                                    <label class="form-label">{{trans('Profile/profile.password')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="password" class="form-control"  placeholder="" value="">
+                                                    <input type="text" name="password" class="form-control"  placeholder="{{trans('Profile/profile.password')}}" value="">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">comfirm password</label>
+                                                    <label class="form-label">{{trans('Profile/profile.comfirm password')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="confirm_password" class="form-control"   placeholder="" value="">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="mb-4 main-content-label">Contact Info</div>
-                                        <div class="form-group ">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <label class="form-label">Email</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <input type="text" name="email" class="form-control"  placeholder="Email" value="{{$user->email}}">
+                                                    <input type="text" name="confirm_password" class="form-control"   placeholder="{{trans('Profile/profile.comfirm password')}}" value="">
                                                 </div>
                                             </div>
                                         </div>
 
+                                        <div class="mb-4 main-content-label">{{trans('Profile/profile.Contact Info')}}</div>
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">Phone</label>
+                                                    <label class="form-label">{{trans('Profile/profile.Email')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
-                                                    <input type="text" name="phone" class="form-control"  placeholder="phone number" value="{{$user->profile->phone}}">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group ">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <label class="form-label">Address</label>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <textarea class="form-control" name="address" rows="2"  placeholder="Address">{{$user->profile->address}}</textarea>
+                                                    <input type="text" name="email" class="form-control"  placeholder="{{trans('Profile/profile.Email')}}" value="{{$user->email}}">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="mb-4 main-content-label">About Yourself</div>
                                         <div class="form-group ">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">Birthday Info</label>
+                                                    <label class="form-label">{{trans('Profile/profile.phone number')}}</label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <input type="text" name="phone" class="form-control"  placeholder="{{trans('Profile/profile.phone number')}}" value="{{$user->profile->phone}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">{{trans('Profile/profile.Address')}}</label>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <textarea class="form-control" name="address" rows="2"  placeholder="{{trans('Profile/profile.Address')}}">{{$user->profile->address}}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-4 main-content-label">{{trans('Profile/profile.About Yourself')}}</div>
+                                        <div class="form-group ">
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <label class="form-label">{{trans('Profile/profile.Birthday Info')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <input   class="end_date form-control date-input" id="datetimepicker1" name="birthday" type="text" value="{{now()}}">
@@ -228,7 +228,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <label class="form-label">Image Info</label>
+                                                    <label class="form-label">{{trans('Profile/profile.Image Info')}}</label>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <input type="file" name="file" id="file" class="dropify" data-height="200" /></div>
@@ -239,7 +239,7 @@
 
                                 </div>
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary waves-effect waves-light">Update Profile</button>
+                                    <button type="submit" class="btn btn-primary waves-effect waves-light">{{trans('Profile/profile.Update Profile')}}</button>
                                 </div>
                                     </form>
                                 </div>

@@ -227,3 +227,4 @@ Route::delete('calendar/destroy/{id}', [CalendarController::class, 'destroy'])->
 Route::get('full_calender', [FullCalenderController::class, 'index']);
 
 Route::post('full_calender/action', [FullCalenderController::class, 'action']);
+

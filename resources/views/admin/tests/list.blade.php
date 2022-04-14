@@ -147,8 +147,9 @@
                                         @if(auth('admin') -> user() ->can('students Test'))
 
                                             <a class="btn btn-success btn-sm" title="{{trans('tests/tests.students')}}"
-                                               href="{{ route('test.students', $test->id) }}"><i
-                                                    class="las la-graduation-cap"></i></a>
+                                               href="{{ route('test.students', $test->id) }}">
+                                               <i class="fas fa-user-graduate"></i>
+                                            </a>
                                         @endif
                                         @if(auth('admin') -> user() ->can('manage Test question'))
 
@@ -156,7 +157,7 @@
                                             <a class="btn btn-warning btn-sm"
                                                title="{{trans('tests/tests.manage_questions')}}"
                                                href="{{ route('test.questions', $test->id) }}"><i
-                                                    class="las la-tools"></i></a>
+                                                    class="fas fa-tools"></i></a>
                                         @endif
 
                                     </td>

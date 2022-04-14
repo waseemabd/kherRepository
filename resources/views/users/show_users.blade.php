@@ -130,7 +130,7 @@
                                         @endif
 
                                         @if(auth('admin') -> user() ->can('block-activate user'))
-                                            <a class="modal-effect btn btn-sm btn-{{$user->status == 1 ? 'danger' : 'success'}}"
+                                            <a class="modal-effect btn btn-sm btn-{{$user->status == 1 ? 'blocke' : 'success'}}"
                                                data-effect="effect-scale"
                                                data-id="{{ $user->id }}" data-status="{{ $user->status }}"
                                                data-bs-toggle="modal" href="#status-sub"
@@ -277,9 +277,11 @@
             <script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
             <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 
+
             <!--Internal  Datatable js -->
             <script src="{{asset('assets/js/table-data.js')}}"></script>
             <script src="{{asset('assets/js/admin-pages/users/list.js')}}"></script>
+            
 
 
     {{--            <script>--}}

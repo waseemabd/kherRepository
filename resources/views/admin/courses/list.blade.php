@@ -126,9 +126,8 @@
                                     <td>
 
 {{--                                            TODO PERMESSION--}}
-                                    <a class="btn btn-secondary btn-sm"
-                                           href="{{ route('course.pending', $course->id) }}" title="{{trans('courses/courses.pending_Course_list')}}"><i
-                                                class="las la-envelope-open" ></i></a>
+                                    <a class="btn btn-success btn-sm"
+                                           href="{{ route('course.pending', $course->id) }}" title="{{trans('courses/courses.pending_Course_list')}}"><i class="fas fa-bars"></i></a>
 
                                         @if(auth('admin') -> user() ->can('update courses'))
 

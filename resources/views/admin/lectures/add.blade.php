@@ -61,8 +61,9 @@
                             </div>
                             <div class="col-sm-12 col-lg-6 col-md-12">
                                 <p class="mg-b-10 mr-3">{{trans('lectures/lectures.type')}} <span class="tx-danger">*</span></p>
-                                <select name="type" id="type" required="" class="form-control  select2-type">
-                                    <option label="{{trans('lectures/lectures.sel_type')}}">
+                                <select name="type" required="" class="form-control select2  select2-type">
+                                    <option >
+                                   
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
                                     <option value="0">{{trans('lectures/lectures.unsync')}}</option>
@@ -79,10 +80,11 @@
                         <div class="row row-sm mt-2">
                             <div class="col-lg-12 mg-t-20 mg-lg-t-0">
                                 <p class="mg-b-10">{{trans('lectures/lectures.course')}} <span class="tx-danger">*</span></p>
-                                <select id="course_seclection" name="course" required="" class="form-control select2">
-                                    <option >
+                                <select id="course_seclection" name="course" required="" class="form-control select2" placeholder="ola" >
+                                    <option>
                                         {{--                                        {{trans('lectures/lectures.sel_diploma')}}--}}
                                     </option>
+                                    
                                     @foreach($courses as $course)
                                         <option value="{{$course->id}}">
                                             {{$course->title}}
@@ -252,6 +254,5 @@
     <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
 
     <script src="{{asset('assets/js/select2.js')}}"></script>
-
 
 @endsection

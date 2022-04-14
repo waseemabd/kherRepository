@@ -92,7 +92,7 @@
                                 </div>
                                 <br>
                             </div>
-                            <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10" type="submit">{{trans('general.Add')}}</button></div>
+                            <div class="col-12"><button class="btn btn-main-primary pd-x-20 mg-t-10 btn-sm mg-r-t" type="submit">{{trans('general.Add')}}</button></div>
                         </div>
                     </form>
 

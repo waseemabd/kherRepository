@@ -47,13 +47,13 @@
                         <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                             <li class="">
                                 <a href="#students" data-bs-toggle="tab" aria-expanded="true" class="active"> <span
-                                        class="visible-xs"><i
-                                            class="las la-user-circle tx-16 me-1"></i></span> <span
+                                        class="visible-xs">
+                                        <i class="fas fa-user-graduate tx-16 me-1"></i></span> <span
                                         class="hidden-xs">{{trans('tests/tests.students')}}</span> </a>
                             </li>
                             <li class="">
                                 <a href="#test" data-bs-toggle="tab" aria-expanded="false"> <span
-                                        class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
+                                        class="visible-xs"><i class="fas fa-file tx-16 me-1"></i></span>
                                     <span class="hidden-xs">{{trans('homeworks/homeworks.homework_preview')}}</span> </a>
                             </li>
 
