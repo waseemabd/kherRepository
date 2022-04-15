@@ -67,7 +67,7 @@
                             With Best Online Courses</h1>
                         <p>It was popularised in Letraset sheets containing Lorem Ipsum and more recently with desktop publishing software.</p>
                         <div class="hero-btn">
-                            <a href="course.html" class="btn v1"> <i class="ri-eye-line"></i> View Courses</a>
+                            <a href="{{route('courses')}}" class="btn v1"> <i class="ri-eye-line"></i> View Courses</a>
                             <a href="login.html" class="btn v2"> <i class="ri-user-line"></i> Join For Free</a>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
                                 <li> <i class="ri-login-circle-line"></i> 5000 Online Courses</li>
                             </ul>
                             <h5>*We Have <span>15 Years</span> of Working Experience</h5>
-                            <a href="course.html" class="btn v1"> <i class="ri-eye-line"></i> View Courses</a>
+                            <a href="{{route('courses')}}" class="btn v1"> <i class="ri-eye-line"></i> View Courses</a>
                         </div>
                     </div>
                 </div>

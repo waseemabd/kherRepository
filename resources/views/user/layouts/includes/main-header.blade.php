@@ -35,7 +35,26 @@
                                 <li><a target="_blank" href="https://instagram.com"> <i class="ri-instagram-line"></i> </a></li>
                             </ul>
                         </div>
-                        <a href="login.html" class="link style3"> Login/Register</a>
+                        <a href="{{route('getLogin')}}" class="link style3">
+                            @if(auth('user') -> user())
+                                 Logged
+                            @elseif(auth('student') -> user())
+                                Logged
+                            @else
+                                Login
+                            @endif
+                        </a>
+                        <div class="header-social">
+                            <a href="
+                            @if(auth('user')->user())
+                               {{route('user.logout')}}
+                            @elseif(auth('student')->user())
+                            {{route('user.logout')}}
+                            @endif
+                                " class="link style3"> Logout</a>
+                        </div>
+
+
                     </div>
                 </div>
                 <div class="col-lg-6 xl-none">
