@@ -13,7 +13,8 @@ class Comment extends Model
         'desc',
         'student_id',
         'user_id',
-        'blog_id'
+        'blog_id',
+        'parent_id'
     ];
     public  const create_update_rules = [
 
@@ -27,10 +28,18 @@ class Comment extends Model
     {
         return $this->belongsTo(Student::class,'student_id','id');
     }
-
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class,'blog_id','id');
+    }
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany(Comment::class,'parent_id');
     }
 
 

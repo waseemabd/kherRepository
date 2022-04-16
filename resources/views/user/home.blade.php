@@ -486,114 +486,25 @@
                 </div>
             </div>
             <div class="row justify-content-md-center">
+                @foreach($courses as $course)
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="course-card style2">
-                        <div class="course-img">
-                            <a href="course-details.html"><img src="assets/img/course/course-9.jpg" alt="Image"></a>
-                        </div>
+{{--                        <div class="course-img">--}}
+{{--                            <a href="course-details.html"><img src="assets/img/course/course-9.jpg" alt="Image"></a>--}}
+{{--                        </div>--}}
                         <div class="course-info">
-                            <span class="course-price">$35.50</span>
-                            <h3><a href="course-details.html">Diploma in Teaching skills:
-                                    Educators</a></h3>
-                            <div class="course-rating">
-                                <ul>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-line"></i> </li>
-                                </ul>
-                                <span>4 Ratings</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing eiusmo tempor </p>
+{{--                            <span class="course-price">$35.50</span>--}}
+                            <h3><a href="course-details.html">{{$course->diploma->title}}</a></h3>
+
+                            <p>{{$course->desc}}</p>
                         </div>
                         <div class="course-metainfo">
-                            <p><i class="ri-user-line"></i>13 students</p>
-                            <p><i class="ri-book-open-line"></i><a href="course-details.html">4 Lessons</a></p>
+                            <p><i class="ri-user-line"></i>{{$course->students->count()}} students</p>
+                            <p><i class="ri-book-open-line"></i><a href="course-details.html">{{$course->lectures->count()}} Lessons</a></p>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="course-card style2">
-                        <div class="course-img">
-                            <a href="course-details.html"><img src="assets/img/course/course-10.jpg" alt="Image"></a>
-                        </div>
-                        <div class="course-info">
-                            <span class="course-price">$55.50</span>
-                            <h3><a href="course-details.html">Diploma in Teaching skills:
-                                    Educators</a></h3>
-                            <div class="course-rating">
-                                <ul>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-line"></i> </li>
-                                </ul>
-                                <span>9 Ratings</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing eiusmo tempor </p>
-                        </div>
-                        <div class="course-metainfo">
-                            <p><i class="ri-user-line"></i>23 students</p>
-                            <p><i class="ri-book-open-line"></i><a href="course-details.html">10 Lessons</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="course-card style2">
-                        <div class="course-img">
-                            <a href="course-details.html"><img src="assets/img/course/course-11.jpg" alt="Image"></a>
-                        </div>
-                        <div class="course-info">
-                            <span class="course-price">$95.50</span>
-                            <h3><a href="course-details.html">Information About UI/UX
-                                    Design</a></h3>
-                            <div class="course-rating">
-                                <ul>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-line"></i> </li>
-                                </ul>
-                                <span>10 Ratings</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing eiusmo tempor </p>
-                        </div>
-                        <div class="course-metainfo">
-                            <p><i class="ri-user-line"></i>22 students</p>
-                            <p><i class="ri-book-open-line"></i><a href="course-details.html">12 Lessons</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6">
-                    <div class="course-card style2">
-                        <div class="course-img">
-                            <a href="course-details.html"><img src="assets/img/course/course-1.jpg" alt="Image"></a>
-                        </div>
-                        <div class="course-info">
-                            <span class="course-price">$55.50</span>
-                            <h3><a href="course-details.html">Diploma in Educational
-                                    psychology</a></h3>
-                            <div class="course-rating">
-                                <ul>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-fill"></i></li>
-                                    <li> <i class="ri-star-line"></i> </li>
-                                </ul>
-                                <span>6 Ratings</span>
-                            </div>
-                            <p>Lorem ipsum dolor sit consectetur adipisicing eiusmo tempor </p>
-                        </div>
-                        <div class="course-metainfo">
-                            <p><i class="ri-user-line"></i>16 students</p>
-                            <p><i class="ri-book-open-line"></i><a href="course-details.html">8 Lessons</a></p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -627,70 +538,33 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($users as  $user)
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member">
                         <div class="team-member-img">
-                            <img src="assets/img/team/team-member-1.jpg" alt="Image">
-                            <ul class="social-profile style1">
-                                <li><a target="_blank" href="https://facebook.com"><i class="ri-facebook-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://linkedin.com"> <i class="ri-linkedin-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://twitter.com"> <i class="ri-twitter-fill"></i> </a></li>
-                            </ul>
+                            @if($user -> profile)
+                                @if($user -> profile ->image != null)
+                                   <img src="{{URL::to('/') . '/Profile/' . $user ->name.'/'. $user -> profile->image}}" alt="Image">
+                                @else
+                                <img src="{{asset('end-user/assets/img/team/team-member-2.jpg')}}" alt="Image">
+                                @endif
+                            @else
+                            <img src="{{asset('end-user/assets/img/team/team-member-2.jpg')}}" alt="Image">
+
+                            @endif
+{{--                            <ul class="social-profile style1">--}}
+{{--                                <li><a target="_blank" href="https://facebook.com"><i class="ri-facebook-fill"></i> </a></li>--}}
+{{--                                <li><a target="_blank" href="https://linkedin.com"> <i class="ri-linkedin-fill"></i> </a></li>--}}
+{{--                                <li><a target="_blank" href="https://twitter.com"> <i class="ri-twitter-fill"></i> </a></li>--}}
+{{--                            </ul>--}}
                         </div>
                         <div class="team-member-info">
-                            <h4>Tony Stark</h4>
-                            <p>Founder & CEO</p>
+                            <a href="#"><h4>{{$user ->name}}</h4> </a>
+                            <p>{{App\Helpers\General::roleUser($user -> role) }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-member">
-                        <div class="team-member-img">
-                            <img src="assets/img/team/team-member-2.jpg" alt="Image">
-                            <ul class="social-profile style1">
-                                <li><a target="_blank" href="https://facebook.com"><i class="ri-facebook-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://linkedin.com"> <i class="ri-linkedin-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://twitter.com"> <i class="ri-twitter-fill"></i> </a></li>
-                            </ul>
-                        </div>
-                        <div class="team-member-info">
-                            <h4>Mark Toen</h4>
-                            <p>Co-Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-member">
-                        <div class="team-member-img">
-                            <img src="assets/img/team/team-member-3.jpg" alt="Image">
-                            <ul class="social-profile style1">
-                                <li><a target="_blank" href="https://facebook.com"><i class="ri-facebook-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://linkedin.com"> <i class="ri-linkedin-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://twitter.com"> <i class="ri-twitter-fill"></i> </a></li>
-                            </ul>
-                        </div>
-                        <div class="team-member-info">
-                            <h4>Phil Heath</h4>
-                            <p>Vice President</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team-member">
-                        <div class="team-member-img">
-                            <img src="assets/img/team/team-member-4.jpg" alt="Image">
-                            <ul class="social-profile style1">
-                                <li><a target="_blank" href="https://facebook.com"><i class="ri-facebook-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://linkedin.com"> <i class="ri-linkedin-fill"></i> </a></li>
-                                <li><a target="_blank" href="https://twitter.com"> <i class="ri-twitter-fill"></i> </a></li>
-                            </ul>
-                        </div>
-                        <div class="team-member-info">
-                            <h4>Jhon Doe</h4>
-                            <p>Instructor</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -824,81 +698,33 @@
                 </div>
             </div>
             <div class="row justify-content-md-center">
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details-right-sidebar.html" class="blog-img">
-                            <img src="assets/img/blog/blog-1.jpg" alt="Image">
-                        </a>
-                        <div class="blog-info">
-                            <div class="blog-date">
-                                <h6><span>25</span>Feb 2021</h6>
-                            </div>
-                            <h3><a href="blog-details-right-sidebar.html">This is yet another impressive Lorem generator offer</a></h3>
-                            <p>Lorem ipsum dolor am consectetur adipisicing elit, sed do eiusmod tempor labore et dolore.</p>
-                            <div class="blog-author-wrap">
-                                <div class="blog-author">
-                                    <div class="blog-author-img">
-                                        <img src="assets/img/blog/author-1.jpg" alt="Image">
-                                    </div>
-                                    <div class="blog-author-name">
-                                        <p>By <a href="blog-details-left-sidebar.html">Mark John</a></p>
-                                    </div>
+                @foreach($blogs as $blog)
+                    <div class="col-xl-4 col-lg-6 col-md-6">
+                        <div class="blog-card">
+                            <a href="{{route('blog_details',$blog->id)}}" class="blog-img">
+                                <img style="height:380px;width: 450px" src="{{URL::to('/') . '/Blogs/' . $blog->id.'/'.$blog->image}}" alt="Image">
+                            </a>
+                            <div class="blog-info">
+                                <div class="blog-date">
+                                    <h6>{{$blog->created_at->diffforhumans()}}</h6>
                                 </div>
-                                <a href="blog-details-right-sidebar.html" class="read-more"><i class="las la-arrow-left"></i></a>
+                                <h3><a href="{{route('blog_details',$blog->id)}}">{{$blog->title}}</a></h3>
+                                <p>{{$blog->desc}}</p>
+                                <div class="blog-author-wrap">
+                                    <div class="blog-author">
+                                        <div class="blog-author-img">
+                                            <img src="{{URL::to('/') . '/Profile/' . $blog->user ->name.'/'.$blog->user -> profile->image}}" alt="Image">
+                                        </div>
+                                        <div class="blog-author-name">
+                                            <p>By <a href="{{route('blog_details',$blog->id)}}">{{$blog->user->name}}</a></p>
+                                        </div>
+                                    </div>
+                                    <a href="{{route('blog_details',$blog->id)}}" class="read-more"><i class="las la-arrow-left"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details-right-sidebar.html" class="blog-img">
-                            <img src="assets/img/blog/blog-2.jpg" alt="Image">
-                        </a>
-                        <div class="blog-info">
-                            <div class="blog-date">
-                                <h6><span>04</span>Feb 2021</h6>
-                            </div>
-                            <h3><a href="blog-details-right-sidebar.html">Role Of A Online Instructor In Competitive Education System</a></h3>
-                            <p>Lorem ipsum dolor am consectetur adipisicing elit, sed do eiusmod tempor labore et dolore.</p>
-                            <div class="blog-author-wrap">
-                                <div class="blog-author">
-                                    <div class="blog-author-img">
-                                        <img src="assets/img/blog/author-2.jpg" alt="Image">
-                                    </div>
-                                    <div class="blog-author-name">
-                                        <p>By <a href="blog-details-left-sidebar.html">Phill Heath</a></p>
-                                    </div>
-                                </div>
-                                <a href="blog-details-right-sidebar.html" class="read-more"><i class="las la-arrow-left"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6">
-                    <div class="blog-card">
-                        <a href="blog-details-right-sidebar.html" class="blog-img">
-                            <img src="assets/img/blog/blog-3.jpg" alt="Image">
-                        </a>
-                        <div class="blog-info">
-                            <div class="blog-date">
-                                <h6><span>12</span>Jan 2021</h6>
-                            </div>
-                            <h3><a href="blog-details-right-sidebar.html">Top Online Courses For Foreign Students & Teachers</a></h3>
-                            <p>Lorem ipsum dolor am consectetur adipisicing elit, sed do eiusmod tempor labore et dolore.</p>
-                            <div class="blog-author-wrap">
-                                <div class="blog-author">
-                                    <div class="blog-author-img">
-                                        <img src="assets/img/blog/author-3.jpg" alt="Image">
-                                    </div>
-                                    <div class="blog-author-name">
-                                        <p>By <a href="blog-details-left-sidebar.html">Tony Stark</a></p>
-                                    </div>
-                                </div>
-                                <a href="blog-details-right-sidebar.html" class="read-more"><i class="las la-arrow-left"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

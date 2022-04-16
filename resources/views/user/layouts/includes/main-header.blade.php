@@ -89,12 +89,11 @@
                         <div id="menu" class="text-left">
                             <ul class="main-menu ">
                                 <li class="has-children">
-                                    <a href="#">HOME</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="index.html">HOME 1</a></li>
-                                        <li><a href="index-2.html">HOME 2</a></li>
-                                        <li><a href="index-3.html">HOME 3</a></li>
-                                    </ul>
+                                    <a href="{{route('site.home')}}">HOME</a>
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li><a href="index.html">HOME 1</a></li>--}}
+{{--                                        --}}
+{{--                                    </ul>--}}
                                 </li>
                                 <li class="has-children">
                                     <a href="#">COURSES</a>
@@ -156,23 +155,23 @@
                                     </ul>
                                 </li>
                                 <li class="has-children">
-                                    <a href="#">BLOG</a>
-                                    <ul class="sub-menu">
-                                        <li class="has-children"><a href="#">BLOG LAYOUT</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="blog-left-sidebar.html">BLOG LEFT SIDEBAR</a></li>
-                                                <li><a href="blog-right-sidebar.html">BLOG RIGHT SIDEBAR</a></li>
-                                                <li><a href="blog-no-sidebar.html">BLOG NO SIDEBAR</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="has-children"><a href="#">BLOG DETAILS</a>
-                                            <ul class="sub-menu">
-                                                <li><a href="blog-details-left-sidebar.html">BLOG DETAILS LEFT SIDEBAR</a></li>
-                                                <li><a href="blog-details-right-sidebar.html">BLOG DETAILS RIGHT SIDEBAR</a></li>
-                                                <li><a href="blog-details-no-sidebar.html">BLOG DETAILS NO SIDEBAR</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
+                                    <a href="{{route('user_blogs')}}">BLOG</a>
+{{--                                    <ul class="sub-menu">--}}
+{{--                                        <li class="has-children"><a href="{{route('blogs')}}">BLOG LAYOUT</a>--}}
+{{--                                            <ul class="sub-menu">--}}
+{{--                                                <li><a href="blog-left-sidebar.html">BLOG LEFT SIDEBAR</a></li>--}}
+{{--                                                <li><a href="blog-right-sidebar.html">BLOG RIGHT SIDEBAR</a></li>--}}
+{{--                                                <li><a href="{{route('courses')}}">SHOW BLOGS</a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </li>--}}
+{{--                                        <li class="has-children"><a href="#">BLOG DETAILS</a>--}}
+{{--                                            <ul class="sub-menu">--}}
+{{--                                                <li><a href="blog-details-left-sidebar.html">BLOG DETAILS LEFT SIDEBAR</a></li>--}}
+{{--                                                <li><a href="blog-details-right-sidebar.html">BLOG DETAILS RIGHT SIDEBAR</a></li>--}}
+{{--                                                <li><a href="blog-details-no-sidebar.html">BLOG DETAILS NO SIDEBAR</a></li>--}}
+{{--                                            </ul>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
                                 </li>
                             </ul>
                         </div>

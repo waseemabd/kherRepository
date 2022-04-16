@@ -33,6 +33,6 @@ class Blog extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class,'blog_id','id');
+        return $this->hasMany(Comment::class,'blog_id','id')->whereNull('parent_id');
     }
 }
