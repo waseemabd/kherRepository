@@ -23,7 +23,7 @@
 
         <!-- Loader -->
 		<div id="global-loader">
-			<img src="{{asset('assets/img/loader.svg')}}" class="loader-img" alt="Loader">
+			<img src="{{asset('assets/img/brand/khairAcademy_Logo_2-01.png')}}" class="loader-img" alt="Loader">
 		</div>
 		<!-- /Loader -->
 

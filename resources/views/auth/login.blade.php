@@ -46,10 +46,10 @@
                                                             <div class="form-group form-right">
                                                                 <label class="box-label">{{trans('login/login.login')}}</label>
                                                                 <div class="box-group">
-                                                                <i class="fas fa-user"></i>
-                                                                <input class="form-control box-input" name="email" placeholder="{{trans('login/login.Enter your email')}}" type="email">
-                                                                @error('email')
-                                                                <div>
+                                                                      <i class="fas fa-user"></i>
+                                                                    <input class="form-control box-input" name="email" placeholder="{{trans('login/login.Enter your email')}}" type="email">
+                                                                </div>
+                                                                 @error('email')
                                                                 <span class="text-danger">{{$message}}</span>
                                                                 @enderror
                                                             </div>
@@ -60,8 +60,8 @@
                                                                 <div class="box-group">
                                                                 <i class="fas fa-lock"></i>
                                                                 <input class="form-control box-input" name="password" placeholder="{{trans('login/login.Enter your password')}}" type="password">
+                                                            </div>
                                                                 @error('password')
-                                                                </div>
                                                                 <span class="text-danger">{{$message}}</span>
                                                                 @enderror
                                                             </div>

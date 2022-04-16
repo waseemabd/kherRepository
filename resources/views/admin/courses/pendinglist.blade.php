@@ -83,19 +83,20 @@
                 <ul class="nav nav-tabs profile navtab-custom panel-tabs">
                     <li class="">
                         <a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="active"> <span
-                                class="visible-xs"><i
-                                    class="las la-user-circle tx-16 me-1"></i></span> <span
-                                class="hidden-xs">Pending</span> </a>
+                                class="visible-xs">
+                                
+                                <i class="fas fa-file-signature tx-16 me-1"></i></span> <span
+                                class="hidden-xs">{{trans('courses/courses.Pending')}}</span> </a>
                     </li>
                     <li class="">
                         <a href="#courses" data-bs-toggle="tab" aria-expanded="false"> <span
-                                class="visible-xs"><i class="las la-cog tx-16 me-1"></i></span>
-                            <span class="hidden-xs">Accept</span> </a>
+                                class="visible-xs"><i class="fas fa-check tx-16 me-1"></i></span>
+                            <span class="hidden-xs">{{trans('courses/courses.Accept')}}</span> </a>
                     </li>
                     <li class="">
                         <a href="#schedules" data-bs-toggle="tab" aria-expanded="false"> <span
-                                class="visible-xs"><i class="las la-images tx-15 me-1"></i></span>
-                            <span class="hidden-xs">Reject</span> </a>
+                                class="visible-xs"><i class="fas fa-times-circle tx-16 me-1"></i></span>
+                            <span class="hidden-xs">{{trans('courses/courses.Reject')}}</span> </a>
                     </li>
                     
 
@@ -105,7 +106,7 @@
             <div class="tab-content border-start border-bottom border-right border-top-0 p-4">
                 <div class="tab-pane active" id="profile">
                 <div class="card-header pb-0">
-                                    <h3 class="card-title">Pending Requests</h3>
+                                    <h3 class="card-title">{{trans('courses/courses.Pending Requests')}}</h3>
 
                                 </div>
                 <div class="card-body">
@@ -156,7 +157,7 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="card overflow-hidden">
                                 <div class="card-header pb-0">
-                                    <h3 class="card-title">Accepted Requests</h3>
+                                    <h3 class="card-title">{{trans('courses/courses.Accepted Requests')}}</h3>
 
                                 </div>
                                 <div class="card-body">
@@ -204,7 +205,7 @@
                         <div class="col-lg-12">
                             <div class="card custom-card">
                                 <div class="card-header custom-card-header">
-                                    <h6 class="card-title mb-0">Rejected Requests</h6>
+                                    <h6 class="card-title mb-0">{{trans('courses/courses.Rejected Requests')}}</h6>
                                 </div>
                                 <div class="card-body">
                                 <div class="card-body">

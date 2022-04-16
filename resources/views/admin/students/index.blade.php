@@ -125,7 +125,7 @@
                                         @endif
                                         @if(auth('admin') -> user() ->can('block-activate Student'))
 
-                                            <a class="modal-effect btn btn-sm btn-{{$student->status == 1 ? 'danger' : 'success'}}"
+                                            <a class="modal-effect btn btn-sm btn-{{$student->status == 1 ? 'blocke' : 'success'}}"
                                                data-effect="effect-scale"
                                                data-id="{{ $student->id }}" data-status="{{ $student->status }}"
                                                data-bs-toggle="modal" href="#status-sub"

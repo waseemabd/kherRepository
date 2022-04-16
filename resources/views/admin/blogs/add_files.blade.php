@@ -59,7 +59,7 @@
                                                class="form-control">
                                     </div>
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div >
                                             <div>
                                                 <input type="file" name="file" id="file" class="dropify" data-height="200" /></div>
                                         </div>
@@ -67,7 +67,7 @@
                                     <input type="hidden"  id="homework_id" name="homework_id"
                                            value="{{ $homework->id }}">
                                     <br><br>
-                                    <button  id="add" class="btn btn-primary btn-sm "
+                                    <button  id="add" class="btn btn-primary"
                                              name="uploadedFile">{{trans(Blog/Blog.file Add)}}</button>
                                 </form>
                             </div>

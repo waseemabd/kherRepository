@@ -27,7 +27,7 @@ return [
     'Survey_Updated_Successfully' => 'تم تعديل الاستبيان بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
-
+    'sel_course' => 'اختر الكورس',
     'add_question' => 'إضافة سؤال',
     'manage_questions' => 'إدارة الاسئلة',
     'students' => 'الطلاب',

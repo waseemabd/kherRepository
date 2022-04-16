@@ -515,3 +515,30 @@ form{
         text-align: center;
     }
   }
+  /*---page profile--*/
+  .main-header-profile{
+    background-color: #f88e31 !important;
+  }
+  .main-header .dropdown-menu::after {
+    border-bottom: 9px solid #f88e31 !important;
+  }
+  .main-profile-menu .dropdown-item:hover {
+    background-color: transparent;
+    color: #f9ad7b  !important;
+  }
+  .btn-blocke{
+      background: rgb(255, 0, 0) !important;
+      color: #fff !important;
+  }
+  .card-title {
+    margin-top: 2.75rem;
+  }
+  .mg-r-t{
+    margin-right: 20px !important;
+    margin-top: -29px !important;
+}
+
+/*====style loader images======*/
+
+#global-loader{background:#fff;height:100%;position:fixed;top:0;width:100%;z-index:50000}
+.loader-img{top:20% !important; max-width:100% !important; height:30% !important};

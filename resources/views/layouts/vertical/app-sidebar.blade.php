@@ -147,10 +147,10 @@
                             <li><a class="slide-item" href="{{route('course.create')}}">{{trans('general.Add')}}</a>
                             </li>
                         @endif
-                        @if(auth('admin') -> user() ->can('pendinglist courses'))
+                       
                             <li><a class="slide-item" href="{{route('course.pendinglist')}}">{{trans('general.pendinglist')}}</a>
                             </li>
-                        @endif
+                   
 
                     </ul>
                 </li>

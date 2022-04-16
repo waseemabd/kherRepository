@@ -7,7 +7,7 @@ return [
     'Inactive' => 'Inactive',
     'Name' => 'الاسم',
     'Actions' => 'الإجراءات',
-    'Block' => 'إلغاء تفعيل',
+    'Block' => 'حظر',
     'Activate' => 'تفعيل',
     'Edit' => 'تعديل',
     'Delete' => 'حذف',
@@ -69,5 +69,7 @@ return [
 
     'teacher_activate_warning' => 'هل تريد تفعيل حساب هذا المدرس؟ ',
     'teacher_block_warning' => 'هل تريد إلغاء تفعيل حساب هذا المدرس؟ ',
+
+    
 
 ];

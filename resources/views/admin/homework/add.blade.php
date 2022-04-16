@@ -106,7 +106,7 @@
                         <div class="row mg-b-20">
                             <div class="col-xs-12 col-md-12">
                                 <p class="mg-b-10">{{trans('Homework/Homework.students')}} <span class="tx-danger">*</span></p>
-                                <select name="students[]" required="" multiple class="form-control select2">
+                                <select name="students[]" required="" multiple class="form-control select2 ">
                                     <option >
                                     </option>
                                 </select>

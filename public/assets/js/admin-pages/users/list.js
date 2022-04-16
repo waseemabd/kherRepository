@@ -3,7 +3,7 @@ $(function () {
     var isRtl = true;
     var select = $('.select2');
     var dtUserTable = $('.table');
-
+   
 
     $.ajaxSetup({
 

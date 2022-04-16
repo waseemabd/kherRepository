@@ -87,7 +87,7 @@
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
 												<span>{{count($course->lectures)}}</span>
-												<span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$course->lectures->first()->start_date}}</span>
+
 											</div>
 										</div>
 									</div>
@@ -107,7 +107,7 @@
 											<div class="timeline-footer d-flex align-items-center flex-wrap">
 												<i class="si si-notebook  text-muted me-1"></i>
 												<span>{{count($course->lectures)}}</span>
-												<span class="ms-auto"><i class="fe fe-calendar text-muted me-1"></i>{{$course->lectures->first()->start_date}}</span>
+												
 											</div>
 										</div>
 									</div>

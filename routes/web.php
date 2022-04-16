@@ -37,5 +37,3 @@ Route::group(['prefix' => 'user','middleware' => ['auth-user:user' , 'localizati
 
 
 });
-
-

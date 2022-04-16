@@ -138,8 +138,9 @@
 
                                             <a class="btn btn-success btn-sm"
                                                title="{{trans('surveys/surveys.students')}}"
-                                               href="{{ route('survey.students', $survey->id) }}"><i
-                                                    class="las la-graduation-cap"></i></a>
+                                               href="{{ route('survey.students', $survey->id) }}">
+                                               <i class="fas fa-user-graduate"></i>
+                                               </a>
 
                                         @endif
                                         @if(auth('admin') -> user() ->can('questions Survey'))
@@ -147,7 +148,7 @@
                                             <a class="btn btn-warning btn-sm"
                                                title="{{trans('surveys/surveys.manage_questions')}}"
                                                href="{{ route('survey.questions', $survey->id) }}"><i
-                                                    class="las la-tools"></i></a>
+                                                    class="fas fa-tools"></i></a>
                                         @endif
 
                                     </td>

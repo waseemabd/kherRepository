@@ -95,7 +95,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Username">{{trans('students/students.address')}}</label>
-                                    <input readonly type="text" value="{{$user->profile->address}}" id="Username" class="form-control">
+                                    <input readonly  type="text" value="{{$user->profile->address}}" id="Username" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label for="Password">{{trans('students/students.phone')}}</label>
@@ -234,7 +234,7 @@
     <!--Internal  Form-elements js-->
     <script src="{{asset('assets/js/advanced-form-elements.js')}}"></script>
     <script src="{{asset('assets/js/select2.js')}}"></script>
-
+    
     <!--Internal Sumoselect js-->
     <script src="{{asset('assets/plugins/sumoselect/jquery.sumoselect.js')}}"></script>
 
@@ -255,6 +255,7 @@
 
     <!-- Internal Treeview js -->
     <script src="{{asset('assets/plugins/treeview/treeview.js')}}"></script>
+    
 
 @endsection
 

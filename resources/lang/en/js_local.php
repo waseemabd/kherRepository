@@ -57,20 +57,20 @@ return [
     'Role_Deleted_Successfully' => 'Teacher Deleted Successfully',
 
     'Title' => 'Title',
-    'Choose_one' => 'Choose One',
+     'Choose_one' => 'Choose One',
 
-
-    'Student_Account_Deleted_Successfully' => 'Student Account Deleted Successfully',
-    'Student_Account_Accepted_Successfully' => 'Student Account Accepted Successfully',
-
-
-    'student_activate_warning' => 'Do you want to Activate Account for this Student?',
-    'student_block_warning' => 'Do you want to Block Account for this Student?',
-
-    'user_activate_warning' => 'Do you want to Activate Account for this User?',
-    'user_block_warning' => 'Do you want to Block Account for this User?',
-
-    'teacher_activate_warning' => 'Do you want to Activate Account for this Teacher?',
-    'teacher_block_warning' => 'Do you want to Block Account for this Teacher?',
-
-];
+     'Student_Account_Deleted_Successfully' => 'Student Account Deleted Successfully',
+     'Student_Account_Accepted_Successfully' => 'Student Account Accepted Successfully',
+ 
+ 
+     'student_activate_warning' => 'Do you want to Activate Account for this Student?',
+     'student_block_warning' => 'Do you want to Block Account for this Student?',
+ 
+     'user_activate_warning' => 'Do you want to Activate Account for this User?',
+     'user_block_warning' => 'Do you want to Block Account for this User? ',
+     
+ 
+     'teacher_activate_warning' => 'Do you want to Activate Account for this Teacher?',
+     'teacher_block_warning' => 'Do you want to Block Account for this Teacher?',
+ ];
+  
