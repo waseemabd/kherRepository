@@ -14,6 +14,8 @@ return [
     'Diploma_Updated_Successfully' => 'تم تعديل شهادة الدبلوم بنجاح',
     'read_more' => 'اقرأ المزيد',
     'desc_for' => 'الوصف الخاص ب: ',
+    'courses' => 'الكورسات',
+    'Show' =>'إظهار',
 
 
 

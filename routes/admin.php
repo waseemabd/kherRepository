@@ -251,6 +251,7 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin' , 'localization'
     Route::get('diplomas/edit/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'edit'])->name('diploma.edit');
     Route::post('diplomas/update/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'update'])->name('diploma.update');
     Route::post('diplomas/delete/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'destroy'])->name('diploma.destroy');
+    Route::get('diplomas/show/{id}', [App\Http\Controllers\Admin\DiplomaController::class, 'show'])->name('diploma.show');
 
     Route::get('courses', [App\Http\Controllers\Admin\CourseController::class, 'index'])->name('course.index');
     Route::get('courses/pendinglist', [App\Http\Controllers\Admin\CourseController::class, 'pendingList'])->name('course.pendinglist');
@@ -264,6 +265,9 @@ Route::group(['prefix' => 'admin','middleware' => ['auth:admin' , 'localization'
     Route::get('courses/reject/{id}', [App\Http\Controllers\Admin\CourseController::class, 'reject'])->name('course.reject');
     Route::post('courses/update/{id}', [App\Http\Controllers\Admin\CourseController::class, 'update'])->name('course.update');
     Route::post('courses/delete/{id}', [App\Http\Controllers\Admin\CourseController::class, 'destroy'])->name('course.destroy');
+    Route::get('courses/show/{id}', [App\Http\Controllers\Admin\CourseController::class, 'show'])->name('course.show');
+
+
 
     Route::get('homework', [App\Http\Controllers\Admin\HomeworkController::class, 'index'])->name('homework.index');
     Route::get('homework/create', [App\Http\Controllers\Admin\HomeworkController::class, 'create'])->name('homework.create');

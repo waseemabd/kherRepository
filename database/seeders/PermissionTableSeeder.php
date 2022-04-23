@@ -35,6 +35,7 @@ $permissions = [
     'create diplomas',
     'update diplomas',
     'delete diplomas',
+    'show diploma',
 
     'Homework',
     'list Homework',
@@ -58,6 +59,7 @@ $permissions = [
     'create courses',
     'update courses',
     'delete courses',
+    'show course',
 
 
     'create role',

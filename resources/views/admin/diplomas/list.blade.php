@@ -113,6 +113,13 @@
 
                                     <td>
 
+                                     @if(auth('admin') -> user() ->can('show diploma')) 
+
+                                            <a class="btn btn-success btn-sm"
+                                            href="{{ route('diploma.show', $diploma->id) }}"><i
+                                                    class="las la-eye"></i></a>
+                                     @endif
+
                                         @if(auth('admin') -> user() ->can('update diplomas'))
 
                                             <a class="btn btn-primary btn-sm"
