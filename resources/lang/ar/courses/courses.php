@@ -35,6 +35,9 @@ return [
     'Pending Requests'=> 'الطلبات المعلقة',
     'Accepted Requests'=> 'الطلبات المقبولة',
     'Rejected Requests'=> 'الطلبات المرفوضة',
-
+    'Show' =>'إظهار',
+    'information' =>'المعلومات',
+    'DIPLOMA DETAILS' =>'تفاصيل شهادة الدبلوم',
+    'TEACHERS DETAILS' => ' قائمة المدرسون',
 
 ];

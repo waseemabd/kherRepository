@@ -15,4 +15,10 @@ class CourseRepository extends BaseRepository implements ICourseRepository
         return Course::class;
     }
 
+    public function showCourse($id)
+    {
+       return  Course::find($id);
+
+    }
+
 }

@@ -37,6 +37,7 @@ class DiplomaController extends Controller
         $this->middleware('permission:create diplomas')->only(['create']);
         $this->middleware('permission:update diplomas')->only(['edit']);
         $this->middleware('permission:delete diplomas')->only(['destroy']);
+        $this->middleware('permission:show diploma')->only(['show']);
     }
 
     /**
@@ -147,6 +148,8 @@ class DiplomaController extends Controller
     public function show($id)
     {
         //
+        $diploma = $this->diplomaRepository->showDiploma($id);
+        return view('admin.diplomas.show', compact('diploma'));
     }
 
     /**

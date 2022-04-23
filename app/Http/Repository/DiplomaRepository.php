@@ -15,4 +15,11 @@ class DiplomaRepository extends BaseRepository implements IDiplomaRepository
         return Diploma::class;
     }
 
+    public function showDiploma($id)
+    {
+       return  Diploma::find($id);
+
+    }
+    
+
 }

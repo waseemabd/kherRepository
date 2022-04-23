@@ -50,6 +50,7 @@ class CourseController extends Controller
         $this->middleware('permission:create courses')->only(['create']);
         $this->middleware('permission:update courses')->only(['edit']);
         $this->middleware('permission:delete courses')->only(['destroy']);
+        $this->middleware('permission:show course')->only(['show']);
     }
 
 
@@ -191,6 +192,12 @@ class CourseController extends Controller
     public function show($id)
     {
         //
+        $course = $this->courseRepository->showCourse($id);
+        $diplomas =  $course->diploma()->first();
+        $teachers = $course->users()->get();
+        // print_r($teachers);
+        // die();
+        return view('admin.courses.show', compact('course','diplomas','teachers'));
     }
 
     /**

@@ -124,6 +124,12 @@
                                     </td>
 
                                     <td>
+                                       @if(auth('admin') -> user() ->can('show course')) 
+
+                                        <a class="btn btn-success btn-sm"
+                                        href="{{ route('course.show', $course->id) }}"><i
+                                                class="las la-eye"></i></a>
+                                                  @endif 
 
 {{--                                            TODO PERMESSION--}}
                                     <a class="btn btn-success btn-sm"
