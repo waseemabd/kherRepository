@@ -121,40 +121,6 @@
         }
     });
 
-    //fancyfileuplod
-    // $('#demo').FancyFileUpload({
-    //     url : '/admin/uploadFile',
-    //     params : {
-    //         // action : 'fileuploader',
-    //         _token: $('meta[name="csrf-token"]').attr('content'),
-    //     },
-    //     // fileupload : {
-    //     //     maxChunkSize : 1000000
-    //     // },
-    //     maxfilesize : 25000000000,
-    //     edit:false,
-    //     uploadcompleted : function(e, data) {
-    //        console.log(data)
-    //     },
-    //     // 'uploadcancelled' : null,
-    //
-    //
-    //     // 'url' : '',
-    //     // 'params' : {},
-    //     // 'edit' : true,
-    //     // 'maxfilesize' : -1,
-    //     // 'accept' : null,
-    //     // 'displayunits' : 'iec_windows',
-    //     // 'adjustprecision' : true,
-    //     // 'retries' : 5,
-    //     // 'retrydelay' : 500,
-    //     // 'added' : null,
-    //     // 'startupload' : null,
-    //     // 'continueupload' : null,
-    //     // 'uploadcancelled' : null,
-    //     // 'uploadcompleted' : null,
-    //     // 'fileupload' : {},
-    //     // 'langmap' : {}
-    // });
+
 
 })(window, document, jQuery);
