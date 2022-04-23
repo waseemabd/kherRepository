@@ -4,7 +4,8 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('home', [App\Http\Controllers\Site\HomeController::class, 'home'])->name('site.home');
+Route::get('/', [App\Http\Controllers\Site\HomeController::class, 'home'])->name('site.home');
+Route::get('/home', [App\Http\Controllers\Site\HomeController::class, 'home'])->name('site.home');
 Route::get('/courses', [App\Http\Controllers\Site\HomeController::class, 'courses'])->name('courses');
 Route::get('/user-blogs', [App\Http\Controllers\Site\BlogController::class, 'GetAllBlogs'])->name('user_blogs');
 Route::get('/blog-details/{id}', [App\Http\Controllers\Site\BlogController::class, 'GetBlogDetails'])->name('blog_details');
