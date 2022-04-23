@@ -49,14 +49,14 @@
                         </article>
 
                         <div id="list-comments" class="post-comment-wrap style2">
-                            <h4 class="comment-title">{{$blog->comments->count()}} Comments</h4>
+                            <h4 class="comment-title">{{trans('Blog/Blog.Comments')}} {{$blog->comments->count()}} </h4>
                             @include("user.comment",['comments'=>$blog->comments, 'blog_id'=>$blog->id])
                         </div>
 
 
                         <div class="comment-form-wrap">
                             <div class="comment-form-title style2">
-                                <p>You Have To Login Before Comment This Blog*
+                                <p>{{trans('Blog/Blog.You Have To Login Before Comment This Blog*')}}
                                 </p>
                             </div>
 
@@ -65,9 +65,9 @@
                                         @csrf
                                         <div class="col-lg-12">
                                             <div class="form-group">
-                                                <label for="msg">Enter Your Comment</label>
+                                                <label for="msg">{{trans('Blog/Blog.Enter Your Comment')}}</label>
 
-                                                <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Your comments..."></textarea>
+                                                <textarea name="desc" id="desc" cols="30" rows="10" placeholder="{{trans('Blog/Blog.Your comments...')}}"></textarea>
                                             </div>
                                             <div class="form-group">
 
@@ -76,7 +76,7 @@
                                         </div>
 
                                         <div class="col-lg-12">
-                                            <button type="submit" id="comment"  class="btn v1 d-block w-100">Post A Comment</button>
+                                            <button type="submit" id="comment"  class="btn v1 d-block w-100">{{trans('Blog/Blog.Post A Comment')}}</button>
                                         </div>
 
                                     </form>
