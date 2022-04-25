@@ -29,6 +29,7 @@ Route::get('user/login',  [App\Http\Controllers\Site\LoginController::class, 'lo
 
 Route::group(['prefix' => 'student','middleware' => ['auth-student:student' , 'localization']], function () {
 
+    Route::post('register/{id}',  [App\Http\Controllers\Site\HomeController::class, 'registerCourse'])->name('student.register');
 
 });
 

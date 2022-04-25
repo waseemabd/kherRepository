@@ -486,18 +486,32 @@
                 </div>
             </div>
             <div class="row justify-content-md-center">
+
                 @foreach($courses as $course)
                 <div class="col-xl-3 col-lg-4 col-md-6">
                     <div class="course-card style2">
 {{--                        <div class="course-img">--}}
 {{--                            <a href="course-details.html"><img src="assets/img/course/course-9.jpg" alt="Image"></a>--}}
 {{--                        </div>--}}
-                        <div class="course-info">
-{{--                            <span class="course-price">$35.50</span>--}}
-                            <h3><a href="course-details.html">{{$course->diploma->title}}</a></h3>
 
-                            <p>{{$course->desc}}</p>
-                        </div>
+                                 <div class="course-info">
+                                     <form action="{{route('student.register',$course->id)}}" method="POST">
+                                         @csrf
+                                         @if(auth('student')->user())
+                                         @if(\App\Models\CourseStudent::where('course_id',$course->id)->where('student_id',auth('student')->user()->id)->first())
+{{--                                         <button type="submit"  style="color:springgreen "  > <span  class="course-price">register done</span></button>--}}
+                                         @else
+                                             <button type="submit"  style="color:springgreen "  > <span  class="course-price">register</span></button>
+                                         @endif
+                                         @endif
+                                     </form>
+                                     <h3><a  href="course-details.html">{{$course->diploma->title}}</a></h3>
+                                     <p>{{$course->desc}}</p>
+                                 </div>
+
+
+
+
                         <div class="course-metainfo">
                             <p><i class="ri-user-line"></i>{{$course->students->count()}} students</p>
                             <p><i class="ri-book-open-line"></i><a href="course-details.html">{{$course->lectures->count()}} Lessons</a></p>
@@ -505,6 +519,7 @@
                     </div>
                 </div>
                 @endforeach
+
             </div>
         </div>
     </section>
@@ -730,6 +745,7 @@
     </section>
 
 @section('script')
+
 
 
 @endsection
