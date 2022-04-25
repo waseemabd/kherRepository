@@ -84,12 +84,12 @@
                                     <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                        data-id="{{ $one->id }}"
                                        data-bs-toggle="modal" href="#accept-sub"
-                                       title="قبول"><span style="color: red">قبول</span></a>
+                                       title="قبول"><span style="color: red">{{trans('Blog/Blog.Accept')}}</span></a>
 
                                     <a   class=" dropdown-item modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                          data-id="{{ $one->id }}"
                                          data-bs-toggle="modal" href="#reject-sub"
-                                         title="رفض"><span style="color: red">رفض</span></a>
+                                         title="رفض"><span style="color: red">{{trans('Blog/Blog.Refusal')}}</span></a>
 
                                 </div>
                             </div>

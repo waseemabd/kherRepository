@@ -36,5 +36,14 @@ return[
     'birthday' => 'تاريخ الميلاد',
     'Profile Image' => 'صورة الشخصية',
     'students details' => 'تفاضيل الطلاب',
-
+    'Accept'=>'قبول',
+    'Refusal'=>'رفض',
+    'Enter Your Comment'=>'أضافة تعليق',
+    'You Have To Login Before Comment This Blog*'=>'يجب تسجيل الدخول قبل التعليق على المدونة * ',
+    'Post A Comment'=>'نشر التعليق',
+    'Reply' =>'رد',
+    'Your comments...' => 'تعليقك....',
+    'Comments'=> 'تعليقات',
+    'By'=> 'من قبل',
+    'Blogs'=>'المدونات',    
 ];

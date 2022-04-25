@@ -53,10 +53,10 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumb-title">
-                        <h2>Blogs</h2>
+                        <h2>{{trans('Blog/Blog.Blogs')}}</h2>
                         <ul class="breadcrumb-menu">
-                            <li><a href="index.html">Home </a></li>
-                            <li>Blogs</li>
+                            <li><a href="index.html">{{trans('Blog/Blog.Home')}}</a></li>
+                            <li>{{trans('Blog/Blog.Blogs') }}</li>
                         </ul>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
                                                 <img src="{{URL::to('/') . '/Profile/' . $blog->user ->name.'/'.$blog->user -> profile->image}}" alt="Image">
                                             </div>
                                             <div class="blog-author-name">
-                                                <p>By <a href="{{route('blog_details',$blog->id)}}">{{$blog->user->name}}</a></p>
+                                                <p>{{trans('Blog/Blog.By') }} <a href="{{route('blog_details',$blog->id)}}">{{$blog->user->name}}</a></p>
                                             </div>
                                         </div>
                                         <a href="{{route('blog_details',$blog->id)}}" class="read-more"><i class="las la-arrow-left"></i></a>

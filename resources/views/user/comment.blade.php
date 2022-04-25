@@ -31,7 +31,7 @@
                         <input type="hidden" class="form-control" name="blog_id" value="{{$blog_id}}">
                         <input type="hidden" class="form-control" name="parent_id" value="{{$item->id}}">
                     </div>
-                    <button class="btn btn-primary btn-sm" type="submit" >Reply</button>
+                    <button class="btn btn-primary btn-sm" type="submit" >{{trans('Blog/Blog.Reply')}}</button>
                 </form>
                 @include("user.comment",['comments'=>$item->replies])
             </div>
@@ -66,7 +66,7 @@
                         <input type="hidden" class="form-control" name="blog_id" value="{{$blog_id}}">
                         <input type="hidden" id="parent_id" class="form-control" name="parent_id" value="{{$item->id}}">
                     </div>
-                    <button id="replay" class="btn btn-primary btn-sm" type="submit" >Reply</button>
+                    <button id="replay" class="btn btn-primary btn-sm" type="submit" >{{trans('Blog/Blog.Reply')}}</button>
                 </form>
 
                 @include("user.comment",['comments'=>$item->replies])
